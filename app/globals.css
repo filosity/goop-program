@@ -1,26 +1,111 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: #FFFFFF;
+  --color-foreground: #1A1A1A;
+
+  /* Primary: deep burgundy */
+  --color-burgundy-50: #FDF2F4;
+  --color-burgundy-100: #F9E1E5;
+  --color-burgundy-200: #F3C4CC;
+  --color-burgundy-300: #E89AA8;
+  --color-burgundy-400: #D66B80;
+  --color-burgundy-500: #C2415C;
+  --color-burgundy-600: #A32E48;
+  --color-burgundy-700: #8B2239;
+  --color-burgundy-800: #6B1D2A;
+  --color-burgundy-900: #5A1A25;
+  --color-burgundy-950: #3A0D15;
+
+  /* Secondary: warm cream/beige */
+  --color-cream-50: #FEFCFA;
+  --color-cream-100: #FBF7F2;
+  --color-cream-200: #F5F0EB;
+  --color-cream-300: #EDE5DC;
+  --color-cream-400: #E0D3C6;
+  --color-cream-500: #CDBFB0;
+  --color-cream-600: #B5A494;
+  --color-cream-700: #968475;
+  --color-cream-800: #7A6C60;
+  --color-cream-900: #655A50;
+  --color-cream-950: #352E28;
+
+  /* Accent: gold for points/rewards */
+  --color-gold-50: #FFFBEB;
+  --color-gold-100: #FEF3C7;
+  --color-gold-200: #FDE68A;
+  --color-gold-300: #FCD34D;
+  --color-gold-400: #FBBF24;
+  --color-gold-500: #D4A017;
+  --color-gold-600: #B8860B;
+  --color-gold-700: #92640D;
+  --color-gold-800: #784F12;
+  --color-gold-900: #653E15;
+  --color-gold-950: #3B2006;
+
+  --font-sans: var(--font-inter-tight);
+  --font-serif: var(--font-playfair);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream-50);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Shared keyframe animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Utility classes */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Scroll snap carousel */
+.scroll-snap-x {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.scroll-snap-x::-webkit-scrollbar {
+  display: none;
+}
+.snap-card {
+  scroll-snap-align: start;
+  flex-shrink: 0;
 }
