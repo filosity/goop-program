@@ -2009,7 +2009,7 @@ export default function Activities() {
       id="section-activities"
       style={{
         padding: "0px 48px 100px",
-        marginTop: "-50px",
+        marginTop: "-30px",
       }}
     >
       {/* Title */}
