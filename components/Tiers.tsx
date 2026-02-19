@@ -5,7 +5,7 @@ import { DollarSignCircle, GiftBox, DiscountTag, Bolt, DeliveryTruck, User, Star
 
 const benefitDescriptions: Record<string, string> = {
   "10% cashback on all purchases":
-    "Earn 10% back on every purchase as store credit, automatically applied to your account.",
+    "Earn 10% back on every purchase as goop credit, automatically applied to your account.",
   "Birthday gift":
     "Receive a complimentary gift from our curated collection delivered to you during your birthday month.",
   "Member-only sales access":

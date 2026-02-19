@@ -9,7 +9,7 @@ const achievements = [
     id: "first-purchase",
     title: "First Purchase",
     description: "Complete your very first purchase to kickstart your beauty journey.",
-    reward: "+25 goop credit",
+    reward: "+$5 goop credit",
     code: "FIRST25",
     codeHint: "apply this code at checkout to claim your bonus goop credit",
     goal: 1,
@@ -29,7 +29,7 @@ const achievements = [
     id: "beauty-explorer",
     title: "Beauty Explorer",
     description: "Try products from 3 different categories to discover your favorites.",
-    reward: "+75 goop credit",
+    reward: "+$10 goop credit",
     code: "EXPLORE75",
     codeHint: "apply this code at checkout to claim your bonus goop credit",
     goal: 3,
@@ -49,7 +49,7 @@ const achievements = [
     id: "review-maven",
     title: "Review Maven",
     description: "Write 5 thoughtful product reviews to help the community.",
-    reward: "+100 goop credit",
+    reward: "+$5 goop credit",
     code: "REVIEW100",
     codeHint: "apply this code at checkout to claim your bonus goop credit",
     goal: 5,
@@ -79,9 +79,9 @@ const achievements = [
     id: "brand-ambassador",
     title: "Brand Ambassador",
     description: "Refer 3 friends who each make their first purchase.",
-    reward: "$50 store credit",
+    reward: "$25 goop credit",
     code: "AMBASS50",
-    codeHint: "apply this code at checkout to redeem your $50 store credit",
+    codeHint: "apply this code at checkout to redeem your $25 goop credit",
     goal: 3,
     image: "/tier4.jpg",
   },
@@ -617,7 +617,7 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { o
   const [redeemed] = useState<Set<string>>(new Set(["first-purchase"]));
   const [celebratingId, setCelebratingId] = useState<string | null>(null);
 
-  const currentPointsRef = useRef(50);
+  const currentPointsRef = useRef(5);
 
   // Sync claimed count and claimable state to parent
   useEffect(() => {
@@ -706,10 +706,10 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { o
     // Add goop credit from reward if applicable
     const achievement = achievements.find(a => a.id === id);
     if (achievement) {
-      const match = achievement.reward.match(/\+(\d+)\s*goop credit/i);
+      const match = achievement.reward.match(/\+\$(\d+(?:\.\d+)?)\s*goop credit/i);
       if (match) {
-        const pts = parseInt(match[1], 10);
-        const newTotal = currentPointsRef.current + pts;
+        const dollars = parseFloat(match[1]);
+        const newTotal = Math.round((currentPointsRef.current + dollars) * 100) / 100;
         currentPointsRef.current = newTotal;
         window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
       }
@@ -945,7 +945,7 @@ function VotingPointsEarned() {
           textAlign: "center",
         }}
       >
-        +5 goop credit earned
+        +$0.25 goop credit earned
       </span>
     </div>
   );
@@ -1005,7 +1005,7 @@ function VotingComplete({ totalEarned, questionVisible }: { totalEarned: number;
           justifyContent: "center",
         }}
       >
-        +{totalEarned} goop credit earned today
+        +${totalEarned.toFixed(2)} goop credit earned today
       </span>
     </div>
   );
@@ -1388,7 +1388,7 @@ function VotingContent({ onAnsweredCountChange }: { onAnsweredCountChange: (coun
   const [hoveredOption, setHoveredOption] = useState<string | null>(null);
   const [transitioning, setTransitioning] = useState(false);
   const [questionVisible, setQuestionVisible] = useState(true);
-  const currentPointsRef = useRef(50);
+  const currentPointsRef = useRef(5);
   const totalEarned = useRef(0);
 
   /* Shuffle all questions, pick 8, assign random variation (1/2/3) per question — once per mount */
@@ -1459,9 +1459,9 @@ function VotingContent({ onAnsweredCountChange }: { onAnsweredCountChange: (coun
 
   const awardPoints = useCallback(() => {
     setShowPoints(true);
-    const pts = 5;
-    totalEarned.current += pts;
-    const newTotal = currentPointsRef.current + pts;
+    const pts = 0.25;
+    totalEarned.current = Math.round((totalEarned.current + pts) * 100) / 100;
+    const newTotal = Math.round((currentPointsRef.current + pts) * 100) / 100;
     currentPointsRef.current = newTotal;
     window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
 
@@ -1561,9 +1561,9 @@ function VotingContent({ onAnsweredCountChange }: { onAnsweredCountChange: (coun
 
 /* ─── Check-in data ─── */
 const checkinRewardCycles = [
-  ["+5 goop credit", "+10 goop credit", "Free sample", "+15 goop credit", "2x goop credit today", "+25 goop credit", "Mystery gift"],
-  ["+10 goop credit", "Free mini", "+20 goop credit", "Early access", "+15 goop credit", "Beauty tool", "+50 goop credit"],
-  ["+5 goop credit", "+15 goop credit", "Lip balm", "+10 goop credit", "Free shipping", "+30 goop credit", "Deluxe sample"],
+  ["+$0.25 goop credit", "+$0.50 goop credit", "Free sample", "+$0.75 goop credit", "2x goop credit today", "+$1 goop credit", "Mystery gift"],
+  ["+$0.50 goop credit", "Free mini", "+$1 goop credit", "Early access", "+$0.75 goop credit", "Beauty tool", "+$2.50 goop credit"],
+  ["+$0.25 goop credit", "+$0.75 goop credit", "Lip balm", "+$0.50 goop credit", "Free shipping", "+$1.50 goop credit", "Deluxe sample"],
 ];
 
 const checkinDayIcons = [DollarSignCircle, Star, GiftBox, Bolt, DiscountTag, DeliveryTruck, Headphones];
@@ -1766,7 +1766,7 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
   const [justCheckedIn, setJustCheckedIn] = useState(false);
   const [streakCount, setStreakCount] = useState(0);
   const [checkInHovered, setCheckInHovered] = useState(false);
-  const currentPointsRef = useRef(50);
+  const currentPointsRef = useRef(5);
   const carouselRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const dragStartX = useRef(0);
@@ -1817,10 +1817,10 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
       setJustCheckedIn(true);
 
       const reward = rewards[checkedDays];
-      const match = reward.match(/\+(\d+)\s*goop credit/i);
+      const match = reward.match(/\+\$(\d+(?:\.\d+)?)\s*goop credit/i);
       if (match) {
-        const pts = parseInt(match[1], 10);
-        const newTotal = currentPointsRef.current + pts;
+        const dollars = parseFloat(match[1]);
+        const newTotal = Math.round((currentPointsRef.current + dollars) * 100) / 100;
         currentPointsRef.current = newTotal;
         window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
       }
@@ -2041,7 +2041,7 @@ export default function Activities() {
         }}
       >
         {activeTab === "achievements" && "Unlock achievements by shopping and engaging with the brand."}
-        {activeTab === "voting" && "Have a say in what happens next and earn +5 goop credit."}
+        {activeTab === "voting" && "Have a say in what happens next and earn +$0.25 goop credit."}
         {activeTab === "check-in" && "Check in daily to earn rewards and build your streak."}
       </p>
 

@@ -32,7 +32,7 @@ const baseCards = [
   },
   {
     title: "Complete face mapping quiz",
-    subtitle: "+100 goop credit",
+    subtitle: "+$5 goop credit",
     button: "TAKE THE QUIZ",
     likes: "+1K",
     redeemCode: null,
@@ -59,7 +59,7 @@ const baseCards = [
   },
   {
     title: "Refer a friend and earn bonus goop credit",
-    subtitle: "+200 goop credit per referral",
+    subtitle: "+$10 goop credit per referral",
     button: "REFER NOW",
     likes: "+890",
     redeemCode: null,
@@ -77,7 +77,7 @@ const baseCards = [
   },
   {
     title: "Share your skincare routine on TikTok",
-    subtitle: "+75 goop credit",
+    subtitle: "+$4 goop credit",
     button: "SHARE",
     likes: "+1.8K",
     redeemCode: null,
@@ -86,7 +86,7 @@ const baseCards = [
   },
   {
     title: "Unlock Tier 3 for exclusive early access",
-    subtitle: "450 goop credit to go",
+    subtitle: "$22 goop credit to go",
     button: "VIEW TIERS",
     likes: "+2.4K",
     redeemCode: null,
@@ -134,7 +134,7 @@ const eventItems = [
     description: "Join us at our exclusive pop-up in SoHo, NYC for live skin consultations, complimentary mini facials, and first access to our spring collection. RSVP for a free welcome gift bag.",
     date: "Mar 15, 2026",
     location: "245 Spring St, New York",
-    points: "+50 goop credit for attending",
+    points: "+$2.50 goop credit for attending",
   },
   {
     type: "digital" as const,
@@ -142,7 +142,7 @@ const eventItems = [
     description: "Our lead aesthetician breaks down the perfect evening skincare stack. Learn layering techniques, ingredient pairing, and get your questions answered live.",
     date: "Mar 22, 2026",
     location: "Zoom — link sent after RSVP",
-    points: "+25 goop credit",
+    points: "+$1 goop credit",
   },
   {
     type: "in-person" as const,
@@ -158,7 +158,7 @@ const eventItems = [
     description: "Ask anything about our brand journey, ingredient sourcing, or upcoming launches. Candid conversation and surprise giveaways for attendees.",
     date: "Apr 12, 2026",
     location: "Instagram Live",
-    points: "+15 goop credit",
+    points: "+$1 goop credit",
   },
   {
     type: "in-person" as const,
@@ -166,7 +166,7 @@ const eventItems = [
     description: "Hands-on workshop where you'll create your own custom serum blend. Take home your creation plus a full-size product of your choice.",
     date: "Apr 19, 2026",
     location: "Goop Lab, Santa Monica",
-    points: "+75 goop credit",
+    points: "+$4 goop credit",
   },
   {
     type: "digital" as const,
@@ -174,7 +174,7 @@ const eventItems = [
     description: "Our dermatologist advisor explains the science behind these powerhouse ingredients. Find out which one is right for your skin type and concerns.",
     date: "May 3, 2026",
     location: "YouTube Premiere",
-    points: "+20 goop credit",
+    points: "+$1 goop credit",
   },
   {
     type: "in-person" as const,
@@ -182,7 +182,7 @@ const eventItems = [
     description: "Celebrate the longest day with a wellness-focused brunch, guided meditation, and exclusive product reveals. Open to all loyalty members.",
     date: "Jun 21, 2026",
     location: "The Line Hotel, Austin",
-    points: "+60 goop credit",
+    points: "+$3 goop credit",
   },
   {
     type: "digital" as const,
@@ -190,7 +190,7 @@ const eventItems = [
     description: "A joint session with a fitness trainer and our skin experts on how exercise impacts your skin, plus the best pre and post-workout products.",
     date: "May 17, 2026",
     location: "Zoom — free for all members",
-    points: "+20 goop credit",
+    points: "+$1 goop credit",
   },
   {
     type: "in-person" as const,
@@ -206,7 +206,7 @@ const eventItems = [
     description: "Cast your vote for the 2026 Community Choice Awards. Top voters win a curated gift box. Results announced live with prizes and surprises.",
     date: "Jul 1, 2026",
     location: "goopbeauty.com/awards",
-    points: "+30 goop credit for voting",
+    points: "+$1.50 goop credit for voting",
   },
 ];
 

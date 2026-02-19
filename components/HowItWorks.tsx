@@ -154,13 +154,13 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
       setCoins([]);
       return;
     }
-    const target = 150;
+    const target = 7.5;
     let current = 0;
     const interval = setInterval(() => {
-      current += 3;
+      current += 0.15;
       if (current > target) current = target;
-      setPoints(current);
-      if (current % 15 === 0 && current < target) {
+      setPoints(Math.round(current * 100) / 100);
+      if (Math.round(current * 100) % 75 === 0 && current < target) {
         coinId.current++;
         setCoins((prev) => [
           ...prev.slice(-5),
@@ -230,7 +230,7 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
             lineHeight: 1.1,
           }}
         >
-          {active ? points.toLocaleString() : "—"}
+          {active ? `$${points.toFixed(2)}` : "—"}
         </p>
         <p
           style={{
@@ -241,7 +241,7 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
             margin: "8px 0 0 0",
           }}
         >
-          {active && points > 0 ? `$${(points / 20).toFixed(2)} value` : "10% cashback"}
+          {active && points > 0 ? "goop credit value" : "10% cashback"}
         </p>
       </div>
     </div>

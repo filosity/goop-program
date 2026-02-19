@@ -14,7 +14,7 @@ const earnCards = [
   },
   {
     title: "Tell us your\nInstagram handle",
-    points: "+10 goop credit",
+    points: "+$1 goop credit",
     icon: "instagram",
     action: "connect",
     image: "/earn1.jpg",
@@ -22,7 +22,7 @@ const earnCards = [
   },
   {
     title: "Tell us your\nTik Tok handle",
-    points: "+x goop credit",
+    points: "+$1 goop credit",
     icon: "tiktok",
     action: "connect",
     image: "/earn2.jpg",
@@ -30,7 +30,7 @@ const earnCards = [
   },
   {
     title: "Mention on Instagram\nor Tik Tok story",
-    points: "+40 goop credit",
+    points: "+$5 goop credit",
     icon: "instagram",
     action: "connect",
     image: "/earn3.jpg",
@@ -38,7 +38,7 @@ const earnCards = [
   },
   {
     title: "Follow on Instagram",
-    points: "+10 goop credit",
+    points: "+$1 goop credit",
     icon: "instagram",
     action: "follow",
     image: "/earn4.jpg",
@@ -46,7 +46,7 @@ const earnCards = [
   },
   {
     title: "Follow on Tik Tok",
-    points: "+10 goop credit",
+    points: "+$1 goop credit",
     icon: "tiktok",
     action: "follow",
     image: "/earn5.jpg",
@@ -54,7 +54,7 @@ const earnCards = [
   },
   {
     title: "Write a review",
-    points: "+40 goop credit",
+    points: "+$1 goop credit",
     icon: "star",
     action: "review",
     image: "/earn6.jpg",
@@ -62,7 +62,7 @@ const earnCards = [
   },
   {
     title: "Birthday celebration",
-    points: "+10 goop credit",
+    points: "+$1 goop credit",
     icon: "gift",
     action: "submit",
     image: "/earn7.jpg",
@@ -70,7 +70,7 @@ const earnCards = [
   },
   {
     title: "Join our SMS list",
-    points: "+40 goop credit",
+    points: "+$2 goop credit",
     icon: "phone",
     action: "submit",
     image: "/earn8.jpg",
@@ -78,7 +78,7 @@ const earnCards = [
   },
   {
     title: "Purchase 3 times",
-    points: "+100 goop credit",
+    points: "+$5 goop credit",
     icon: "bag",
     action: "shop",
     image: "/earn9.jpg",
@@ -86,7 +86,7 @@ const earnCards = [
   },
   {
     title: "Read our editorial",
-    points: "+40 goop credit",
+    points: "+$2 goop credit",
     icon: "book",
     action: "read",
     image: "/earn10.jpg",
@@ -94,7 +94,7 @@ const earnCards = [
   },
   {
     title: "Listen to the podcast",
-    points: "+100 goop credit",
+    points: "+$2 goop credit",
     icon: "headphones",
     action: "listen",
     image: "/earn11.jpg",
@@ -426,8 +426,8 @@ function RedeemContent({
   const handleRedeem = useCallback(() => {
     if (sliderValue <= 0 || popup) return;
     const redeemed = sliderValue;
-    const credit = (redeemed * 0.05).toFixed(2);
-    const newTotal = totalPoints - redeemed;
+    const credit = redeemed.toFixed(2);
+    const newTotal = Math.round((totalPoints - redeemed) * 100) / 100;
 
     setPopup({ phase: "in", points: redeemed, credit, displayPoints: 0 });
     setSliderValue(0);
@@ -446,7 +446,7 @@ function RedeemContent({
         const progress = step / steps;
         // Ease-out curve
         const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(eased * redeemed);
+        const current = Math.round(eased * redeemed * 100) / 100;
         setPopup((p) => p ? { ...p, displayPoints: current } : null);
 
         if (step >= steps) {
@@ -464,7 +464,7 @@ function RedeemContent({
   }, [sliderValue, totalPoints, onPointsChange, popup]);
 
   const maxPoints = totalPoints;
-  const dollarValue = (sliderValue * 0.05).toFixed(2);
+  const dollarValue = sliderValue.toFixed(2);
   const fillPercent = maxPoints > 0 ? (sliderValue / maxPoints) * 100 : 0;
 
   return (
@@ -558,7 +558,7 @@ function RedeemContent({
               letterSpacing: "-0.02em",
             }}
           >
-            {totalPoints.toLocaleString()} pts
+            ${totalPoints.toFixed(2)}
           </span>
         </div>
 
@@ -577,7 +577,7 @@ function RedeemContent({
             letterSpacing: "0.01em",
           }}
         >
-          1$ spent = 1 goop credit &nbsp;&middot;&nbsp; 1 goop credit = $0.05
+          goop credit = dollar value goop credit
         </span>
       </div>
 
@@ -661,7 +661,7 @@ function RedeemContent({
                 letterSpacing: "0.01em",
               }}
             >
-              {sliderValue.toLocaleString()} pts
+              ${sliderValue.toFixed(2)}
             </div>
             <div
               style={{
@@ -679,7 +679,7 @@ function RedeemContent({
             type="range"
             min={0}
             max={maxPoints}
-            step={1}
+            step={0.5}
             value={sliderValue}
             onChange={(e) => setSliderValue(Number(e.target.value))}
             className="redeem-slider"
@@ -688,8 +688,8 @@ function RedeemContent({
 
           {/* Min/max */}
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 400, color: "#b0ada8" }}>0</span>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 400, color: "#b0ada8" }}>{maxPoints.toLocaleString()}</span>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 400, color: "#b0ada8" }}>$0</span>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 400, color: "#b0ada8" }}>${maxPoints.toFixed(2)}</span>
           </div>
         </div>
 
@@ -872,7 +872,7 @@ function RedeemContent({
               animation: popup.phase !== "out" ? "redeemTextUp 0.4s ease 0.4s both" : undefined,
             }}
           >
-            Your store credit has been applied.
+            Your goop credit has been applied.
           </p>
 
           {/* Stats row */}
@@ -916,7 +916,7 @@ function RedeemContent({
                   fontVariantNumeric: "tabular-nums",
                 }}
               >
-                {popup.displayPoints.toLocaleString()}
+                ${popup.displayPoints.toFixed(2)}
               </p>
             </div>
 
@@ -997,7 +997,7 @@ function RedeemContent({
                 letterSpacing: "-0.01em",
               }}
             >
-              {totalPoints.toLocaleString()} pts
+              ${totalPoints.toFixed(2)}
             </span>
           </div>
         </div>
@@ -1087,17 +1087,17 @@ function RedeemContent({
 
 /* ─── Free products data ─── */
 const freeProducts = [
-  { name: "Jillian Dempsey Makeup Bag", points: 900, image: "/product-makeupbag.webp", tierRequired: null, discount: null as string | null },
-  { name: "Bathorium Boreal Fog Bath Bomb", points: 200, image: "/product-bath-bomb.webp", tierRequired: null, discount: null as string | null },
-  { name: "Corpus Body Wash", points: 600, image: "/product-corpus-bodywash.webp", tierRequired: null, discount: null as string | null },
-  { name: "Maison Louis Marie No.14 Icila Body Lotion", points: 740, image: "/product-icila-bodylotion.webp", tierRequired: null, discount: null },
-  { name: "Surya Love Bath Heart-Opening Soak", points: 700, image: "/product-love-bath-soak.webp", tierRequired: null, discount: null },
-  { name: "Bathorium Pomelo Grove Bath Bomb", points: 220, image: "/product-pomelo-bath-bomb.webp", tierRequired: null, discount: null },
-  { name: "goop beauty Afterglow Body Oil", points: 960, image: "/product-afterglow-bodyoil.webp", tierRequired: null, discount: null },
-  { name: "goop beauty Microderm Instant Glow Body Polish", points: 960, image: "/product-glow-body-polish.webp", tierRequired: null, discount: null },
-  { name: "Surya Cooling Abhyanga Massage Body Oil", points: 960, image: "/product-cooling-body-oil.webp", tierRequired: 2, discount: null },
-  { name: "Kate McLeod Amber & Vanilla Pebble", points: 1300, image: "/product-amber-pebble.webp", tierRequired: 2, discount: null },
-  { name: "Rahua Aloe Vera Shampoo & Conditioner Duo", points: 1520, image: "/product-aloe-vera-duo.webp", tierRequired: 3, discount: null },
+  { name: "Jillian Dempsey Makeup Bag", points: 45, image: "/product-makeupbag.webp", tierRequired: null, discount: null as string | null },
+  { name: "Bathorium Boreal Fog Bath Bomb", points: 10, image: "/product-bath-bomb.webp", tierRequired: null, discount: null as string | null },
+  { name: "Corpus Body Wash", points: 30, image: "/product-corpus-bodywash.webp", tierRequired: null, discount: null as string | null },
+  { name: "Maison Louis Marie No.14 Icila Body Lotion", points: 37, image: "/product-icila-bodylotion.webp", tierRequired: null, discount: null },
+  { name: "Surya Love Bath Heart-Opening Soak", points: 35, image: "/product-love-bath-soak.webp", tierRequired: null, discount: null },
+  { name: "Bathorium Pomelo Grove Bath Bomb", points: 11, image: "/product-pomelo-bath-bomb.webp", tierRequired: null, discount: null },
+  { name: "goop beauty Afterglow Body Oil", points: 48, image: "/product-afterglow-bodyoil.webp", tierRequired: null, discount: null },
+  { name: "goop beauty Microderm Instant Glow Body Polish", points: 48, image: "/product-glow-body-polish.webp", tierRequired: null, discount: null },
+  { name: "Surya Cooling Abhyanga Massage Body Oil", points: 48, image: "/product-cooling-body-oil.webp", tierRequired: 2, discount: null },
+  { name: "Kate McLeod Amber & Vanilla Pebble", points: 65, image: "/product-amber-pebble.webp", tierRequired: 2, discount: null },
+  { name: "Rahua Aloe Vera Shampoo & Conditioner Duo", points: 76, image: "/product-aloe-vera-duo.webp", tierRequired: 3, discount: null },
 ];
 
 /* ─── Free products tab content (carousel) ─── */
@@ -1364,7 +1364,7 @@ function FreeProductsContent({
                       lineHeight: 1,
                     }}
                   >
-                    {product.points.toLocaleString()} goop credit
+                    ${product.points} goop credit
                   </p>
                 </div>
 
@@ -1453,7 +1453,7 @@ function FreeProductsContent({
                           transition: "opacity 0.2s ease, transform 0.2s ease",
                         }}
                       >
-                        need {(product.points - totalPoints).toLocaleString()} more goop credit
+                        need ${(product.points - totalPoints).toFixed(2)} more goop credit
                         <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderTop: "4px solid #000000" }} />
                       </div>
                     )}
@@ -1951,7 +1951,7 @@ export default function WaysToEarn() {
     document.body.style.userSelect = "";
     document.body.style.webkitUserSelect = "";
   }, []);
-  const [totalPoints, setTotalPoints] = useState(50);
+  const [totalPoints, setTotalPoints] = useState(5);
   const [currentTier, setCurrentTier] = useState(0);
 
   useEffect(() => {
@@ -2023,11 +2023,11 @@ export default function WaysToEarn() {
         // Add goop credit from this card
         const card = earnCards[index];
         if (card?.points) {
-          const match = card.points.match(/\+(\d+)/);
+          const match = card.points.match(/\+\$(\d+(?:\.\d+)?)/);
           if (match) {
-            const pts = parseInt(match[1], 10);
+            const dollars = parseFloat(match[1]);
             setTotalPoints(prev => {
-              const newTotal = prev + pts;
+              const newTotal = Math.round((prev + dollars) * 100) / 100;
               setTimeout(() => {
                 window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
               }, 0);
@@ -2067,7 +2067,7 @@ export default function WaysToEarn() {
           letterSpacing: "-0.01em",
         }}
       >
-        Goop credit
+        goop credit
       </h2>
 
       {/* Subtext */}

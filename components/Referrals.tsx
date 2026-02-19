@@ -99,7 +99,7 @@ export default function Referrals() {
             }}
           >
             Share the beauty. Your friend gets $10 off their first order, and you
-            earn $10 in store credit.
+            earn $10 in goop credit.
           </p>
 
           {/* Email input */}

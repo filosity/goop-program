@@ -54,7 +54,7 @@ const benefits = [
 
 const benefitDescriptions: Record<string, string> = {
   "10% cashback on all purchases":
-    "Earn 10% back on every purchase as store credit, automatically applied to your account.",
+    "Earn 10% back on every purchase as goop credit, automatically applied to your account.",
   "Priority Direct With Concierge":
     "Get priority access to our dedicated concierge team for personalised product recommendations and styling advice.",
   "Birthday gift":

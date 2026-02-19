@@ -23,7 +23,7 @@ export default function StickyNav() {
   const [arrowHovered, setArrowHovered] = useState(false);
   const [peekHovered, setPeekHovered] = useState(false);
   const [showPeek, setShowPeek] = useState(false);
-  const [userPoints, setUserPoints] = useState(50);
+  const [userPoints, setUserPoints] = useState(5);
   const [hasClaimable, setHasClaimable] = useState(true);
 
   useEffect(() => {
@@ -317,7 +317,7 @@ export default function StickyNav() {
               letterSpacing: "-0.02em",
             }}
           >
-            ${(userPoints * 0.05).toFixed(2)}
+            ${userPoints.toFixed(2)}
           </p>
           <p
             style={{
@@ -329,7 +329,7 @@ export default function StickyNav() {
               lineHeight: 1.4,
             }}
           >
-            {userPoints.toLocaleString()} goop credit
+            goop credit balance
           </p>
         </div>
       </div>

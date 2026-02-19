@@ -172,7 +172,7 @@ function SubMenu({ children }: { children: React.ReactNode }) {
 
 /* ─── Navigation Bar ─── */
 function NavBar() {
-  const [currentPoints, setCurrentPoints] = useState(50);
+  const [currentPoints, setCurrentPoints] = useState(5);
   const [totalSpend, setTotalSpend] = useState(50);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [openSub, setOpenSub] = useState<"spend" | "tiers" | "sweepstakes" | "featured" | "header" | null>(null);
@@ -234,7 +234,8 @@ function NavBar() {
 
   const handleSimulateSpend = useCallback((amount: number) => {
     const newSpend = totalSpend + amount;
-    const newPoints = currentPoints + amount;
+    const earned = Math.round(amount * 0.1 * 100) / 100; // 10% cashback as goop credit
+    const newPoints = Math.round((currentPoints + earned) * 100) / 100;
     const newTier = getTierFromSpend(newSpend);
 
     setTotalSpend(newSpend);
@@ -500,7 +501,7 @@ function NavBar() {
             lineHeight: 1,
           }}
         >
-          {TIER_NAMES[currentTier]} · {currentPoints.toLocaleString()} gc
+          {TIER_NAMES[currentTier]} · ${currentPoints.toFixed(2)} goop credit
         </span>
 
         <a
