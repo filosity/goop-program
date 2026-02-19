@@ -1087,12 +1087,17 @@ function RedeemContent({
 
 /* ─── Free products data ─── */
 const freeProducts = [
-  { name: "Nourishing Face Cream", points: 400, image: "/tier1.jpg", tierRequired: null, discount: null as string | null },
-  { name: "15% off Rose Quartz Roller", points: 100, image: "/tier2.jpg", tierRequired: null, discount: "15% off" },
-  { name: "Vitamin C Serum", points: 500, image: "/tier3.jpg", tierRequired: null, discount: null },
-  { name: "20% off Luxury Candle Set", points: 180, image: "/tier4.jpg", tierRequired: null, discount: "20% off" },
-  { name: "Rejuvenating Eye Cream", points: 650, image: "/tier1.jpg", tierRequired: 2, discount: null },
-  { name: "25% off Signature Fragrance", points: 300, image: "/tier2.jpg", tierRequired: 3, discount: "25% off" },
+  { name: "Jillian Dempsey Makeup Bag", points: 900, image: "/product-makeupbag.webp", tierRequired: null, discount: null as string | null },
+  { name: "Bathorium Boreal Fog Bath Bomb", points: 200, image: "/product-bath-bomb.webp", tierRequired: null, discount: null as string | null },
+  { name: "Corpus Body Wash", points: 600, image: "/product-corpus-bodywash.webp", tierRequired: null, discount: null as string | null },
+  { name: "Maison Louis Marie No.14 Icila Body Lotion", points: 740, image: "/product-icila-bodylotion.webp", tierRequired: null, discount: null },
+  { name: "Surya Love Bath Heart-Opening Soak", points: 700, image: "/product-love-bath-soak.webp", tierRequired: null, discount: null },
+  { name: "Bathorium Pomelo Grove Bath Bomb", points: 220, image: "/product-pomelo-bath-bomb.webp", tierRequired: null, discount: null },
+  { name: "goop beauty Afterglow Body Oil", points: 960, image: "/product-afterglow-bodyoil.webp", tierRequired: null, discount: null },
+  { name: "goop beauty Microderm Instant Glow Body Polish", points: 960, image: "/product-glow-body-polish.webp", tierRequired: null, discount: null },
+  { name: "Surya Cooling Abhyanga Massage Body Oil", points: 960, image: "/product-cooling-body-oil.webp", tierRequired: 2, discount: null },
+  { name: "Kate McLeod Amber & Vanilla Pebble", points: 1300, image: "/product-amber-pebble.webp", tierRequired: 2, discount: null },
+  { name: "Rahua Aloe Vera Shampoo & Conditioner Duo", points: 1520, image: "/product-aloe-vera-duo.webp", tierRequired: 3, discount: null },
 ];
 
 /* ─── Free products tab content (carousel) ─── */
@@ -1206,12 +1211,9 @@ function FreeProductsContent({
                 backgroundColor: "#ffffff",
                 display: "flex",
                 flexDirection: "column",
-                overflow: "hidden",
                 border: "1px solid #e5e2de",
                 transition: "box-shadow 0.3s ease",
               }}
-              onMouseEnter={() => {}}
-              onMouseLeave={() => {}}
             >
               {/* Product image — top */}
               <div
@@ -1220,15 +1222,19 @@ function FreeProductsContent({
                   flex: 1,
                   overflow: "hidden",
                   backgroundColor: "#f5f3f0",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "24px",
                 }}
               >
                 <img
                   src={product.image}
                   alt={product.name}
                   style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
                     display: "block",
                     pointerEvents: "none",
                   }}
