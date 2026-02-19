@@ -2025,7 +2025,7 @@ export default function Activities() {
           letterSpacing: "-0.01em",
         }}
       >
-        activities
+        Activities
       </h2>
 
       {/* Subtext */}

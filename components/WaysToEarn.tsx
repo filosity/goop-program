@@ -2051,7 +2051,7 @@ export default function WaysToEarn() {
     <section
       id="section-ways-to-earn"
       style={{
-        padding: "0px 48px 120px",
+        padding: "0px 48px 100px",
       }}
     >
       {/* Title */}
@@ -2067,7 +2067,7 @@ export default function WaysToEarn() {
           letterSpacing: "-0.01em",
         }}
       >
-        goop credit
+        Goop credit
       </h2>
 
       {/* Subtext */}
