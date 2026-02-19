@@ -625,7 +625,7 @@ export default function HowItWorks() {
       title: "Redeem",
       description: "Exchange your goop credit for discounts and free products.",
       component: RedeemStep,
-      imageSrc: "/product-afterglow-bodyoil.webp",
+      imageSrc: stepImages[2],
     },
   ];
 
