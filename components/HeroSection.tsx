@@ -483,7 +483,7 @@ function HeroSectionV1() {
   const [visible, setVisible] = useState(false);
   const [openTier, setOpenTier] = useState<number | null>(null);
   const [hoveredMilestone, setHoveredMilestone] = useState<number | null>(null);
-  const [userPoints, setUserPoints] = useState(50);
+  const [userPoints, setUserPoints] = useState(5);
   const [totalSpend, setTotalSpend] = useState(50);
   const sectionRef = useRef<HTMLElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
@@ -671,7 +671,7 @@ function HeroSectionV1() {
                 letterSpacing: "-0.02em",
               }}
             >
-              ${(userPoints * 0.05).toFixed(2)}
+              ${userPoints.toFixed(2)}
             </p>
 
             {/* goop credit info */}
@@ -685,7 +685,7 @@ function HeroSectionV1() {
                 lineHeight: 1.55,
               }}
             >
-              You have {userPoints.toLocaleString()} goop credit
+              goop credit
             </p>
 
             {/* Activity link */}
