@@ -41,7 +41,7 @@ const tiers = [
   },
   {
     name: "Tier 3",
-    spend: "$900–$2,999 annual spend",
+    spend: "$900+ annual spend",
     image: "/tier3.jpg",
     benefits: [
       "10% cashback on all purchases",

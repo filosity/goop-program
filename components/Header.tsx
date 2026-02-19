@@ -81,12 +81,6 @@ function getTierFromSpend(spend: number): number {
   return 0;
 }
 
-function getNextTierInfo(tier: number, spend: number): string | null {
-  if (tier === 0) return `$${(350 - spend).toFixed(0)} to Tier 2`;
-  if (tier === 1) return `$${(900 - spend).toFixed(0)} to Tier 3`;
-  return null; // Tier 3 — The Collective is invite only
-}
-
 /* ─── Submenu arrow icon ─── */
 function SubArrow() {
   return (
@@ -506,7 +500,7 @@ function NavBar() {
             lineHeight: 1,
           }}
         >
-          {TIER_NAMES[currentTier]}{getNextTierInfo(currentTier, totalSpend) ? ` · ${getNextTierInfo(currentTier, totalSpend)}` : ""} · ${currentPoints.toFixed(2)} goop credit
+          {TIER_NAMES[currentTier]} · ${currentPoints.toFixed(2)} goop credit
         </span>
 
         <a

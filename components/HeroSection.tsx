@@ -76,7 +76,7 @@ const tierData = [
   },
   {
     name: "Tier 3",
-    spend: "$900–$2,999 annual spend",
+    spend: "$900+ annual spend",
     image: "/tier3.jpg",
     benefits: [
       "10% cashback on all purchases",
@@ -471,10 +471,9 @@ function TierMilestone({
 }
 
 function getBarWidth(spend: number): number {
-  if (spend >= 500) return 100;
-  if (spend >= 300) return 60 + ((spend - 300) / 200) * 40;
-  if (spend >= 100) return 20 + ((spend - 100) / 200) * 40;
-  return (spend / 100) * 20;
+  if (spend >= 900) return 60;
+  if (spend >= 350) return 20 + ((spend - 350) / 550) * 40;
+  return (spend / 350) * 20;
 }
 const HERO_TIER_NAMES: Record<number, string> = { 0: "Tier 1", 1: "Tier 2", 2: "Tier 3", 3: "The Collective" };
 
@@ -490,7 +489,7 @@ function HeroSectionV1() {
   const hasAnimated = useRef(false);
 
   // Tier is based on cumulative spend (never decreases), not point balance
-  const userTier = totalSpend >= 500 ? 3 : totalSpend >= 300 ? 2 : totalSpend >= 100 ? 1 : 0;
+  const userTier = totalSpend >= 900 ? 2 : totalSpend >= 350 ? 1 : 0;
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -523,7 +522,7 @@ function HeroSectionV1() {
       const detail = (e as CustomEvent).detail;
       if (detail?.spend !== undefined) {
         setTotalSpend(detail.spend);
-        const newTier = detail.spend >= 500 ? 3 : detail.spend >= 300 ? 2 : detail.spend >= 100 ? 1 : 0;
+        const newTier = detail.spend >= 900 ? 2 : detail.spend >= 350 ? 1 : 0;
         setBarWidth(getBarWidth(detail.spend));
       }
     };
@@ -773,7 +772,7 @@ function HeroSectionV1() {
               <TierMilestone
                 label="Tier 2"
                 position="20%"
-                tooltip={`$${Math.max(100 - totalSpend, 0)}`}
+                tooltip={`$${Math.max(350 - totalSpend, 0)} to Tier 2`}
                 reached={userTier >= 1}
                 tierIndex={0}
                 onOpenPopup={setOpenTier}
@@ -784,7 +783,7 @@ function HeroSectionV1() {
               <TierMilestone
                 label="Tier 3"
                 position="60%"
-                tooltip={`$${Math.max(300 - totalSpend, 0)}`}
+                tooltip={`$${Math.max(900 - totalSpend, 0)} to Tier 3`}
                 reached={userTier >= 2}
                 tierIndex={1}
                 onOpenPopup={setOpenTier}
@@ -795,8 +794,8 @@ function HeroSectionV1() {
               <TierMilestone
                 label="The Collective"
                 position="100%"
-                tooltip={`$${Math.max(500 - totalSpend, 0)}`}
-                reached={userTier >= 3}
+                tooltip="Invite only"
+                reached={false}
                 align="right"
                 tierIndex={2}
                 onOpenPopup={setOpenTier}

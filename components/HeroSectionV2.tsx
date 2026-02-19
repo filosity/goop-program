@@ -16,8 +16,7 @@ const MILESTONE_POSITIONS = ["20%", "60%", "100%"];
 const MILESTONE_THRESHOLDS = [350, 900, 3000];
 
 function getBarWidth(spend: number): number {
-  if (spend >= 3000) return 100;
-  if (spend >= 900) return 60 + ((spend - 900) / 2100) * 40;
+  if (spend >= 900) return 60;
   if (spend >= 350) return 20 + ((spend - 350) / 550) * 40;
   return (spend / 350) * 20;
 }
@@ -256,7 +255,7 @@ export default function HeroSectionV2() {
   const hasAnimated = useRef(false);
 
   const userTier =
-    totalSpend >= 3000 ? 3 : totalSpend >= 900 ? 2 : totalSpend >= 350 ? 1 : 0;
+    totalSpend >= 900 ? 2 : totalSpend >= 350 ? 1 : 0;
 
   useEffect(() => {
     const el = sectionRef.current;

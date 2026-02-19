@@ -102,7 +102,7 @@ const tiers = [
   {
     name: "Tier 3",
     subtitle: "",
-    spend: "$900–$2,999 annual spend",
+    spend: "$900+ annual spend",
     current: false,
     image: "/tier3.jpg",
     benefits: [
