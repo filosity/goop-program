@@ -13,7 +13,7 @@ const achievements = [
     code: "FIRST25",
     codeHint: "apply this code at checkout to claim your bonus goop credit",
     goal: 1,
-    image: "/tier1.jpg",
+    image: "/model-holding-serum.png",
   },
   {
     id: "skincare-devotee",
@@ -23,7 +23,7 @@ const achievements = [
     code: "SKIN15",
     codeHint: "use this code at checkout for 15% off your next skincare order",
     goal: 5,
-    image: "/tier2.jpg",
+    image: "/goop-moisturizer-collection.png",
   },
   {
     id: "beauty-explorer",
@@ -33,7 +33,7 @@ const achievements = [
     code: "EXPLORE75",
     codeHint: "apply this code at checkout to claim your bonus goop credit",
     goal: 3,
-    image: "/tier3.jpg",
+    image: "/goop-full-collection.png",
   },
   {
     id: "loyal-customer",
@@ -43,7 +43,7 @@ const achievements = [
     code: "LOYAL-SHIP",
     codeHint: "add this code to your account to unlock permanent free shipping",
     goal: 10,
-    image: "/tier4.jpg",
+    image: "/luxury-beauty-gift-stack.avif",
   },
   {
     id: "review-maven",
@@ -53,7 +53,7 @@ const achievements = [
     code: "REVIEW100",
     codeHint: "apply this code at checkout to claim your bonus goop credit",
     goal: 5,
-    image: "/tier1.jpg",
+    image: "/dewy-skin-closeup.avif",
   },
   {
     id: "social-butterfly",
@@ -63,7 +63,7 @@ const achievements = [
     code: "EARLYACCESS",
     codeHint: "your early access has been activated for all upcoming product drops",
     goal: 3,
-    image: "/tier2.jpg",
+    image: "/glowing-skin-closeup.avif",
   },
   {
     id: "seasonal-collector",
@@ -73,7 +73,7 @@ const achievements = [
     code: "GIFTBOX26",
     codeHint: "use this code at checkout to receive your curated gift box",
     goal: 4,
-    image: "/tier3.jpg",
+    image: "/goop-retinol-duo.png",
   },
   {
     id: "brand-ambassador",
@@ -83,7 +83,7 @@ const achievements = [
     code: "AMBASS50",
     codeHint: "apply this code at checkout to redeem your $25 goop credit",
     goal: 3,
-    image: "/tier4.jpg",
+    image: "/model-holding-face-mask.png",
   },
 ];
 
