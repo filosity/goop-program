@@ -561,23 +561,6 @@ function RedeemContent({
           </span>
         </div>
 
-        {/* Rate pill */}
-        <span
-          style={{
-            alignSelf: "flex-start",
-            fontFamily: "var(--font-sans)",
-            fontSize: "11px",
-            fontWeight: 500,
-            color: "#aaaaaa",
-            border: "1px solid #e5e2de",
-            borderRadius: "40px",
-            padding: "8px 18px",
-            lineHeight: 1,
-            letterSpacing: "0.01em",
-          }}
-        >
-          goop credit = dollar value goop credit
-        </span>
       </div>
 
       {/* Right column — beige */}
@@ -678,7 +661,7 @@ function RedeemContent({
             type="range"
             min={0}
             max={maxPoints}
-            step={0.5}
+            step={0.01}
             value={sliderValue}
             onChange={(e) => setSliderValue(Number(e.target.value))}
             className="redeem-slider"
@@ -945,7 +928,7 @@ function RedeemContent({
                   lineHeight: 1,
                 }}
               >
-                credit
+                redeemed
               </p>
               <p
                 style={{
