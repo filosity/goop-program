@@ -67,7 +67,7 @@ function AnnouncementBar({ onClose }: { onClose: () => void }) {
 }
 
 /* ─── Tier Thresholds (matching Tiers.tsx) ─── */
-const TIER_THRESHOLDS = [0, 350, 900, 3000];
+const TIER_THRESHOLDS = [0, 350, 900];
 const TIER_NAMES: Record<number, string> = {
   0: "Tier 1",
   1: "Tier 2",
@@ -76,10 +76,15 @@ const TIER_NAMES: Record<number, string> = {
 };
 
 function getTierFromSpend(spend: number): number {
-  if (spend >= 3000) return 3;
   if (spend >= 900) return 2;
   if (spend >= 350) return 1;
   return 0;
+}
+
+function getNextTierInfo(tier: number, spend: number): string | null {
+  if (tier === 0) return `$${(350 - spend).toFixed(0)} to Tier 2`;
+  if (tier === 1) return `$${(900 - spend).toFixed(0)} to Tier 3`;
+  return null; // Tier 3 — The Collective is invite only
 }
 
 /* ─── Submenu arrow icon ─── */
@@ -501,7 +506,7 @@ function NavBar() {
             lineHeight: 1,
           }}
         >
-          {TIER_NAMES[currentTier]} · ${currentPoints.toFixed(2)} goop credit
+          {TIER_NAMES[currentTier]}{getNextTierInfo(currentTier, totalSpend) ? ` · ${getNextTierInfo(currentTier, totalSpend)}` : ""} · ${currentPoints.toFixed(2)} goop credit
         </span>
 
         <a
