@@ -1346,7 +1346,7 @@ function FreeProductsContent({
                       lineHeight: 1,
                     }}
                   >
-                    ${product.points} Your goop credit
+                    ${product.points} goop credit
                   </p>
                 </div>
 
