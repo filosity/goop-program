@@ -241,7 +241,7 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
             margin: "8px 0 0 0",
           }}
         >
-          {active && points > 0 ? "goop credit value" : "10% cashback"}
+          {active && points > 0 ? "goop credit" : "10% cashback"}
         </p>
       </div>
     </div>
@@ -625,7 +625,7 @@ export default function HowItWorks() {
       title: "Redeem",
       description: "Exchange your goop credit for discounts and free products.",
       component: RedeemStep,
-      imageSrc: stepImages[2],
+      imageSrc: "/product-afterglow-bodyoil.webp",
     },
   ];
 
