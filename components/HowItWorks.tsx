@@ -217,7 +217,7 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
             margin: "0 0 6px 0",
           }}
         >
-          Points earned
+          goop credit earned
         </p>
         <p
           style={{
@@ -241,7 +241,7 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
             margin: "8px 0 0 0",
           }}
         >
-          {active && points > 0 ? `$${(points / 20).toFixed(2)} value` : "1 pt per $1 spent"}
+          {active && points > 0 ? `$${(points / 20).toFixed(2)} value` : "10% cashback"}
         </p>
       </div>
     </div>
@@ -615,15 +615,15 @@ export default function HowItWorks() {
     },
     {
       number: "2",
-      title: "Earn points",
-      description: "Earn 1 point for every $1 you spend.",
+      title: "Earn goop credit",
+      description: "Earn goop credit on every purchase.",
       component: EarnStep,
       imageSrc: stepImages[1],
     },
     {
       number: "3",
       title: "Redeem",
-      description: "Exchange your points for discounts and free products.",
+      description: "Exchange your goop credit for discounts and free products.",
       component: RedeemStep,
       imageSrc: stepImages[2],
     },

@@ -116,7 +116,7 @@ export default function FloatingPoints() {
           $50.00
         </p>
 
-        {/* Points */}
+        {/* goop credit */}
         <p
           style={{
             fontFamily: "var(--font-sans)",
@@ -127,7 +127,7 @@ export default function FloatingPoints() {
             lineHeight: 1.4,
           }}
         >
-          1,000 points
+          1,000 goop credit
         </p>
       </div>
 

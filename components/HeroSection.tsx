@@ -63,10 +63,10 @@ function SectionLabel({ text }: { text: string }) {
 const tierData = [
   {
     name: "Tier 2",
-    spend: "$100–$299 annual spend",
+    spend: "$350–$899 annual spend",
     image: "/tier2.jpg",
     benefits: [
-      "Earn 1.5 points per $1 spent",
+      "10% cashback on all purchases",
       "Birthday gift",
       "Member-only sales access",
       "Early access to new products",
@@ -76,10 +76,10 @@ const tierData = [
   },
   {
     name: "Tier 3",
-    spend: "$300–$499 annual spend",
+    spend: "$900–$2,999 annual spend",
     image: "/tier3.jpg",
     benefits: [
-      "Earn 2 points per $1 spent",
+      "10% cashback on all purchases",
       "Birthday gift",
       "Member-only sales access",
       "Early access to new products",
@@ -90,10 +90,10 @@ const tierData = [
   },
   {
     name: "The Collective",
-    spend: "$500+ annual spend",
+    spend: "Invite only",
     image: "/tier4.jpg",
     benefits: [
-      "Earn 3 points per $1 spent",
+      "10% cashback on all purchases",
       "Birthday gift",
       "Member-only sales access",
       "Early access to new products",
@@ -111,7 +111,7 @@ function PopupBenefitIcon({ benefit }: { benefit: string }) {
   const s = 22;
 
   const b = benefit.toLowerCase();
-  if (b.includes("point") || b.includes("earn"))
+  if (b.includes("cashback") || b.includes("earn"))
     return <DollarSignCircle size={s} color="currentColor" />;
   if (b.includes("birthday"))
     return <GiftBox size={s} color="currentColor" />;
@@ -135,14 +135,8 @@ function PopupBenefitIcon({ benefit }: { benefit: string }) {
 
 /* ─── Benefit descriptions ─── */
 const popupBenefitDescriptions: Record<string, string> = {
-  "Earn 1 point per $1 spent":
-    "Every dollar you spend earns you 1 reward point that can be redeemed for discounts, free products, and exclusive experiences.",
-  "Earn 1.5 points per $1 spent":
-    "Accelerate your rewards — earn 50% more points on every purchase to unlock perks faster.",
-  "Earn 2 points per $1 spent":
-    "Double the rewards. Every dollar now earns you 2 points, getting you to your next reward in half the time.",
-  "Earn 3 points per $1 spent":
-    "Our highest earning rate. Triple points on every purchase means you'll never run out of rewards.",
+  "10% cashback on all purchases":
+    "Earn 10% back on every purchase as store credit, automatically applied to your account.",
   "Birthday gift":
     "Receive a complimentary gift from our curated collection delivered to you during your birthday month.",
   "Member-only sales access":
@@ -680,7 +674,7 @@ function HeroSectionV1() {
               ${(userPoints * 0.05).toFixed(2)}
             </p>
 
-            {/* Points info */}
+            {/* goop credit info */}
             <p
               style={{
                 fontFamily: "var(--font-serif)",
@@ -691,7 +685,7 @@ function HeroSectionV1() {
                 lineHeight: 1.55,
               }}
             >
-              You have {userPoints.toLocaleString()} points
+              You have {userPoints.toLocaleString()} goop credit
             </p>
 
             {/* Activity link */}

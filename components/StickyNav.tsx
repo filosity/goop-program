@@ -7,7 +7,7 @@ const sections = [
   { id: "section-tiers", label: "tiers" },
   { id: "section-membership", label: "membership" },
   { id: "section-sweepstakes", label: "sweepstakes" },
-  { id: "section-ways-to-earn", label: "points" },
+  { id: "section-ways-to-earn", label: "goop credit" },
   { id: "section-activities", label: "activities" },
 ];
 
@@ -329,7 +329,7 @@ export default function StickyNav() {
               lineHeight: 1.4,
             }}
           >
-            {userPoints.toLocaleString()} points
+            {userPoints.toLocaleString()} goop credit
           </p>
         </div>
       </div>

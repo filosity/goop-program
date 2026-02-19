@@ -507,7 +507,7 @@ export default function Sweepstakes() {
                           transition: "opacity 0.2s ease",
                         }}
                       >
-                        Ways to Earn Points
+                        Ways to Earn goop credit
                       </a>{" "}
                       to enter the campaign.
                     </p>
@@ -781,7 +781,7 @@ export default function Sweepstakes() {
                       transition: "opacity 0.2s ease",
                     }}
                   >
-                    Ways to Earn Points
+                    Ways to Earn goop credit
                   </a>{" "}
                   to enter.
                 </p>
@@ -921,7 +921,7 @@ export default function Sweepstakes() {
                         fontWeight: 400,
                       }}
                     >
-                      Ways to Earn Points
+                      Ways to Earn goop credit
                     </a>{" "}
                     to enter the campaign.
                   </p>

@@ -14,7 +14,7 @@ const earnCards = [
   },
   {
     title: "Tell us your\nInstagram handle",
-    points: "+10 points",
+    points: "+10 goop credit",
     icon: "instagram",
     action: "connect",
     image: "/earn1.jpg",
@@ -22,7 +22,7 @@ const earnCards = [
   },
   {
     title: "Tell us your\nTik Tok handle",
-    points: "+x points",
+    points: "+x goop credit",
     icon: "tiktok",
     action: "connect",
     image: "/earn2.jpg",
@@ -30,7 +30,7 @@ const earnCards = [
   },
   {
     title: "Mention on Instagram\nor Tik Tok story",
-    points: "+40 points",
+    points: "+40 goop credit",
     icon: "instagram",
     action: "connect",
     image: "/earn3.jpg",
@@ -38,7 +38,7 @@ const earnCards = [
   },
   {
     title: "Follow on Instagram",
-    points: "+10 points",
+    points: "+10 goop credit",
     icon: "instagram",
     action: "follow",
     image: "/earn4.jpg",
@@ -46,7 +46,7 @@ const earnCards = [
   },
   {
     title: "Follow on Tik Tok",
-    points: "+10 points",
+    points: "+10 goop credit",
     icon: "tiktok",
     action: "follow",
     image: "/earn5.jpg",
@@ -54,7 +54,7 @@ const earnCards = [
   },
   {
     title: "Write a review",
-    points: "+40 points",
+    points: "+40 goop credit",
     icon: "star",
     action: "review",
     image: "/earn6.jpg",
@@ -62,7 +62,7 @@ const earnCards = [
   },
   {
     title: "Birthday celebration",
-    points: "+10 points",
+    points: "+10 goop credit",
     icon: "gift",
     action: "submit",
     image: "/earn7.jpg",
@@ -70,7 +70,7 @@ const earnCards = [
   },
   {
     title: "Join our SMS list",
-    points: "+40 points",
+    points: "+40 goop credit",
     icon: "phone",
     action: "submit",
     image: "/earn8.jpg",
@@ -78,7 +78,7 @@ const earnCards = [
   },
   {
     title: "Purchase 3 times",
-    points: "+100 points",
+    points: "+100 goop credit",
     icon: "bag",
     action: "shop",
     image: "/earn9.jpg",
@@ -86,7 +86,7 @@ const earnCards = [
   },
   {
     title: "Read our editorial",
-    points: "+40 points",
+    points: "+40 goop credit",
     icon: "book",
     action: "read",
     image: "/earn10.jpg",
@@ -94,7 +94,7 @@ const earnCards = [
   },
   {
     title: "Listen to the podcast",
-    points: "+100 points",
+    points: "+100 goop credit",
     icon: "headphones",
     action: "listen",
     image: "/earn11.jpg",
@@ -515,7 +515,7 @@ function RedeemContent({
             letterSpacing: "-0.01em",
           }}
         >
-          Your points for store credit
+          Your goop credit for store credit
         </p>
 
         <p
@@ -528,7 +528,7 @@ function RedeemContent({
             lineHeight: 1.6,
           }}
         >
-          Use the slider to choose how many points to convert.
+          Use the slider to choose how many goop credit to convert.
         </p>
 
         {/* Divider */}
@@ -578,7 +578,7 @@ function RedeemContent({
             letterSpacing: "0.01em",
           }}
         >
-          1$ spent = 1 point &nbsp;&middot;&nbsp; 1 point = $0.05
+          1$ spent = 1 goop credit &nbsp;&middot;&nbsp; 1 goop credit = $0.05
         </span>
       </div>
 
@@ -858,7 +858,7 @@ function RedeemContent({
               animation: popup.phase !== "out" ? "redeemTextUp 0.4s ease 0.3s both" : undefined,
             }}
           >
-            Points redeemed
+            goop credit redeemed
           </p>
 
           {/* Subtitle */}
@@ -903,7 +903,7 @@ function RedeemContent({
                   lineHeight: 1,
                 }}
               >
-                points
+                goop credit
               </p>
               <p
                 style={{
@@ -1363,7 +1363,7 @@ function FreeProductsContent({
                       lineHeight: 1,
                     }}
                   >
-                    {product.points.toLocaleString()} points
+                    {product.points.toLocaleString()} goop credit
                   </p>
                 </div>
 
@@ -1452,7 +1452,7 @@ function FreeProductsContent({
                           transition: "opacity 0.2s ease, transform 0.2s ease",
                         }}
                       >
-                        need {(product.points - totalPoints).toLocaleString()} more points
+                        need {(product.points - totalPoints).toLocaleString()} more goop credit
                         <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderTop: "4px solid #000000" }} />
                       </div>
                     )}
@@ -1621,7 +1621,7 @@ function UploadReceiptContent() {
                 lineHeight: 1,
               }}
             >
-              earn points
+              earn goop credit
             </span>
 
             <p
@@ -1650,7 +1650,7 @@ function UploadReceiptContent() {
             >
               Make a photo or scan of your receipt and upload.
               <br />
-              Earn 1 point for every $1 spent.
+              10% cashback on all purchases.
             </p>
 
             {/* Drop zone */}
@@ -1827,7 +1827,7 @@ function UploadReceiptContent() {
             </p>
 
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#888888", margin: "0 0 32px 0", lineHeight: 1.6 }}>
-              Once the verification process is finished your points will be added to your account. You can follow the status in your Rewards History.
+              Once the verification process is finished your goop credit will be added to your account. You can follow the status in your Rewards History.
             </p>
 
             <div style={{ display: "flex", gap: "10px" }}>
@@ -1877,7 +1877,7 @@ function UploadReceiptContent() {
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M7 1L8.8 4.6L12.8 5.2L9.9 8L10.6 12L7 10.1L3.4 12L4.1 8L1.2 5.2L5.2 4.6L7 1Z" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          1 point per $1 spent
+          10% cashback on all purchases
         </div>
       </div>
     </div>
@@ -1997,7 +1997,7 @@ export default function WaysToEarn() {
 
   const handlePointsChange = useCallback((newTotal: number) => {
     setTotalPoints(newTotal);
-    // Only update point balance — tier is based on spend, not point balance
+    // Only update goop credit balance — tier is based on spend, not goop credit balance
     window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
   }, []);
 
@@ -2019,7 +2019,7 @@ export default function WaysToEarn() {
         setAnimPhase(null);
         const next = new Set(completedCards).add(index);
         setCompletedCards(next);
-        // Add points from this card
+        // Add goop credit from this card
         const card = earnCards[index];
         if (card?.points) {
           const match = card.points.match(/\+(\d+)/);
@@ -2066,7 +2066,7 @@ export default function WaysToEarn() {
           letterSpacing: "-0.01em",
         }}
       >
-        Points
+        goop credit
       </h2>
 
       {/* Subtext */}
@@ -2082,9 +2082,9 @@ export default function WaysToEarn() {
         }}
       >
         {activeTab === "earn" && "Follow us on social media, sign up for SMS and more."}
-        {activeTab === "exchange" && "Exchange your points for store credit."}
-        {activeTab === "products" && "Redeem your points for free products."}
-        {activeTab === "upload" && "Upload your receipt and earn points for every dollar spent."}
+        {activeTab === "exchange" && "Exchange your goop credit for store credit."}
+        {activeTab === "products" && "Redeem your goop credit for free products."}
+        {activeTab === "upload" && "Upload your receipt and earn goop credit for every dollar spent."}
       </p>
 
       <div
@@ -2149,7 +2149,7 @@ export default function WaysToEarn() {
               border: activeTab === "exchange" ? "1px solid #000000" : exchangeTabHovered ? "1px solid #000000" : "1px solid #d5d5d5",
             }}
           >
-            exchange points
+            exchange goop credit
           </button>
 
           <button

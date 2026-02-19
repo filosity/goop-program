@@ -9,9 +9,9 @@ const achievements = [
     id: "first-purchase",
     title: "First Purchase",
     description: "Complete your very first purchase to kickstart your beauty journey.",
-    reward: "+25 points",
+    reward: "+25 goop credit",
     code: "FIRST25",
-    codeHint: "apply this code at checkout to claim your bonus points",
+    codeHint: "apply this code at checkout to claim your bonus goop credit",
     goal: 1,
     image: "/tier1.jpg",
   },
@@ -29,9 +29,9 @@ const achievements = [
     id: "beauty-explorer",
     title: "Beauty Explorer",
     description: "Try products from 3 different categories to discover your favorites.",
-    reward: "+75 points",
+    reward: "+75 goop credit",
     code: "EXPLORE75",
-    codeHint: "apply this code at checkout to claim your bonus points",
+    codeHint: "apply this code at checkout to claim your bonus goop credit",
     goal: 3,
     image: "/tier3.jpg",
   },
@@ -49,9 +49,9 @@ const achievements = [
     id: "review-maven",
     title: "Review Maven",
     description: "Write 5 thoughtful product reviews to help the community.",
-    reward: "+100 points",
+    reward: "+100 goop credit",
     code: "REVIEW100",
-    codeHint: "apply this code at checkout to claim your bonus points",
+    codeHint: "apply this code at checkout to claim your bonus goop credit",
     goal: 5,
     image: "/tier1.jpg",
   },
@@ -703,10 +703,10 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { o
   }, [claimed, claimable]);
 
   const handleClaim = useCallback((id: string) => {
-    // Add points from reward if applicable
+    // Add goop credit from reward if applicable
     const achievement = achievements.find(a => a.id === id);
     if (achievement) {
-      const match = achievement.reward.match(/\+(\d+)\s*points/i);
+      const match = achievement.reward.match(/\+(\d+)\s*goop credit/i);
       if (match) {
         const pts = parseInt(match[1], 10);
         const newTotal = currentPointsRef.current + pts;
@@ -888,7 +888,7 @@ const VOTING_DISPLAY_COUNT = 8;
 /* ─── Random images for voting version 1 ─── */
 const votingImages = ["/tier1.jpg", "/tier2.jpg", "/tier3.jpg", "/tier4.jpg", "/featured1.jpg", "/featured2.jpg", "/featured3.jpg", "/featured4.jpg"];
 
-/* ─── Shared points-earned animation (black circle, white checkmark) ─── */
+/* ─── Shared goop credit earned animation (black circle, white checkmark) ─── */
 function VotingPointsEarned() {
   return (
     <div
@@ -940,7 +940,7 @@ function VotingPointsEarned() {
           textAlign: "center",
         }}
       >
-        +5 points earned
+        +5 goop credit earned
       </span>
     </div>
   );
@@ -1000,7 +1000,7 @@ function VotingComplete({ totalEarned, questionVisible }: { totalEarned: number;
           justifyContent: "center",
         }}
       >
-        +{totalEarned} points earned today
+        +{totalEarned} goop credit earned today
       </span>
     </div>
   );
@@ -1552,9 +1552,9 @@ function VotingContent({ onAnsweredCountChange }: { onAnsweredCountChange: (coun
 
 /* ─── Check-in data ─── */
 const checkinRewardCycles = [
-  ["+5 points", "+10 points", "Free sample", "+15 points", "2x points today", "+25 points", "Mystery gift"],
-  ["+10 points", "Free mini", "+20 points", "Early access", "+15 points", "Beauty tool", "+50 points"],
-  ["+5 points", "+15 points", "Lip balm", "+10 points", "Free shipping", "+30 points", "Deluxe sample"],
+  ["+5 goop credit", "+10 goop credit", "Free sample", "+15 goop credit", "2x goop credit today", "+25 goop credit", "Mystery gift"],
+  ["+10 goop credit", "Free mini", "+20 goop credit", "Early access", "+15 goop credit", "Beauty tool", "+50 goop credit"],
+  ["+5 goop credit", "+15 goop credit", "Lip balm", "+10 goop credit", "Free shipping", "+30 goop credit", "Deluxe sample"],
 ];
 
 const checkinDayIcons = [DollarSignCircle, Star, GiftBox, Bolt, DiscountTag, DeliveryTruck, Headphones];
@@ -1808,7 +1808,7 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
       setJustCheckedIn(true);
 
       const reward = rewards[checkedDays];
-      const match = reward.match(/\+(\d+)\s*points/i);
+      const match = reward.match(/\+(\d+)\s*goop credit/i);
       if (match) {
         const pts = parseInt(match[1], 10);
         const newTotal = currentPointsRef.current + pts;
@@ -2032,7 +2032,7 @@ export default function Activities() {
         }}
       >
         {activeTab === "achievements" && "Unlock achievements by shopping and engaging with the brand."}
-        {activeTab === "voting" && "Have a say in what happens next and earn +5 points."}
+        {activeTab === "voting" && "Have a say in what happens next and earn +5 goop credit."}
         {activeTab === "check-in" && "Check in daily to earn rewards and build your streak."}
       </p>
 

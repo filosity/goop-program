@@ -17,10 +17,10 @@ import {
 const tiers = [
   {
     name: "Tier 1",
-    spend: "$0–$99 annual spend",
+    spend: "$0–$349 annual spend",
     image: "/tier1.jpg",
     benefits: [
-      "Earn 1 point per $1 spent",
+      "10% cashback on all purchases",
       "Birthday gift",
       "Member-only sales access",
       "Early access to new products",
@@ -29,10 +29,10 @@ const tiers = [
   },
   {
     name: "Tier 2",
-    spend: "$100–$299 annual spend",
+    spend: "$350–$899 annual spend",
     image: "/tier2.jpg",
     benefits: [
-      "Earn 1.5 points per $1 spent",
+      "10% cashback on all purchases",
       "Birthday gift",
       "Member-only sales access",
       "Early access to new products",
@@ -42,10 +42,10 @@ const tiers = [
   },
   {
     name: "Tier 3",
-    spend: "$300–$499 annual spend",
+    spend: "$900–$2,999 annual spend",
     image: "/tier3.jpg",
     benefits: [
-      "Earn 2 points per $1 spent",
+      "10% cashback on all purchases",
       "Birthday gift",
       "Member-only sales access",
       "Early access to new products",
@@ -56,10 +56,10 @@ const tiers = [
   },
   {
     name: "The Collective",
-    spend: "$500+ annual spend",
+    spend: "Invite only",
     image: "/tier4.jpg",
     benefits: [
-      "Earn 3 points per $1 spent",
+      "10% cashback on all purchases",
       "Birthday gift",
       "Member-only sales access",
       "Early access to new products",
@@ -75,7 +75,7 @@ const tiers = [
 /* ─── Benefit icon ─── */
 function TierBenefitIcon({ benefit, size = 22 }: { benefit: string; size?: number }) {
   const b = benefit.toLowerCase();
-  if (b.includes("point") || b.includes("earn"))
+  if (b.includes("cashback") || b.includes("earn"))
     return <DollarSignCircle size={size} color="#ffffff" />;
   if (b.includes("birthday"))
     return <GiftBox size={size} color="#ffffff" />;

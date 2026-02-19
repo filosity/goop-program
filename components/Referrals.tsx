@@ -465,7 +465,7 @@ export default function Referrals() {
           }}
         >
           <img
-            src="/tier3.jpg"
+            src="/background-header.jpg"
             alt=""
             style={{
               width: "100%",

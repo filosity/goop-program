@@ -18,9 +18,9 @@ import {
 /* ─── Benefits data ─── */
 const benefits = [
   {
-    title: "Earn 1 point per $1 spent",
+    title: "10% cashback on all purchases",
     description:
-      "Every dollar you spend earns you 1 reward point that can be redeemed for discounts, free products, and exclusive experiences.",
+      "Earn 10% back on every purchase as store credit, automatically applied to your account.",
   },
   {
     title: "Priority Direct With Concierge",
@@ -80,7 +80,7 @@ function BenefitIcon({
   color?: string;
 }) {
   const b = title.toLowerCase();
-  if (b.includes("point") || b.includes("earn"))
+  if (b.includes("cashback") || b.includes("earn"))
     return <DollarSignCircle size={size} color={color} />;
   if (b.includes("concierge"))
     return <Headphones size={size} color={color} />;

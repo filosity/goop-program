@@ -40,7 +40,7 @@ const MembershipV3 = dynamic(() => import("./MembershipV3"), { ssr: false });
  */
 
 const benefits = [
-  "Earn 1 point per $1 spent",
+  "10% cashback on all purchases",
   "Priority Direct With Concierge",
   "Birthday gift",
   "Member-only sales access",
@@ -53,8 +53,8 @@ const benefits = [
 ];
 
 const benefitDescriptions: Record<string, string> = {
-  "Earn 1 point per $1 spent":
-    "Every dollar you spend earns you 1 reward point that can be redeemed for discounts, free products, and exclusive experiences.",
+  "10% cashback on all purchases":
+    "Earn 10% back on every purchase as store credit, automatically applied to your account.",
   "Priority Direct With Concierge":
     "Get priority access to our dedicated concierge team for personalised product recommendations and styling advice.",
   "Birthday gift":
@@ -78,7 +78,7 @@ const benefitDescriptions: Record<string, string> = {
 /* ─── Benefit icon (white icon — for dark bg) ─── */
 function MemberBenefitIcon({ benefit, size = 20 }: { benefit: string; size?: number }) {
   const b = benefit.toLowerCase();
-  if (b.includes("point") || b.includes("earn"))
+  if (b.includes("cashback") || b.includes("earn"))
     return <DollarSignCircle size={size} color="#ffffff" />;
   if (b.includes("concierge"))
     return <Headphones size={size} color="#ffffff" />;
@@ -105,7 +105,7 @@ function MemberBenefitIcon({ benefit, size = 20 }: { benefit: string; size?: num
 /* ─── Popup icon (white icon — for dark popup) ─── */
 function PopupIcon({ benefit, size = 35 }: { benefit: string; size?: number }) {
   const b = benefit.toLowerCase();
-  if (b.includes("point") || b.includes("earn"))
+  if (b.includes("cashback") || b.includes("earn"))
     return <DollarSignCircle size={size} color="#ffffff" />;
   if (b.includes("concierge"))
     return <Headphones size={size} color="#ffffff" />;

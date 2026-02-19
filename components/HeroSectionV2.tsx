@@ -13,23 +13,23 @@ const TIER_NAMES: Record<number, string> = {
 
 const MILESTONE_LABELS = ["Tier 2", "Tier 3", "The Collective"];
 const MILESTONE_POSITIONS = ["20%", "60%", "100%"];
-const MILESTONE_THRESHOLDS = [100, 300, 500];
+const MILESTONE_THRESHOLDS = [350, 900, 3000];
 
 function getBarWidth(spend: number): number {
-  if (spend >= 500) return 100;
-  if (spend >= 300) return 60 + ((spend - 300) / 200) * 40;
-  if (spend >= 100) return 20 + ((spend - 100) / 200) * 40;
-  return (spend / 100) * 20;
+  if (spend >= 3000) return 100;
+  if (spend >= 900) return 60 + ((spend - 900) / 2100) * 40;
+  if (spend >= 350) return 20 + ((spend - 350) / 550) * 40;
+  return (spend / 350) * 20;
 }
 
 /* ─── Tier data for popup ─── */
 const tierData = [
   {
     name: "Tier 2",
-    spend: "$100\u2013$299 annual spend",
+    spend: "$350\u2013$899 annual spend",
     image: "/tier2.jpg",
     benefits: [
-      "Earn 1.5 points per $1 spent",
+      "10% cashback on all purchases",
       "Birthday gift",
       "Member-only sales access",
       "Early access to new products",
@@ -39,10 +39,10 @@ const tierData = [
   },
   {
     name: "Tier 3",
-    spend: "$300\u2013$499 annual spend",
+    spend: "$900\u2013$2,999 annual spend",
     image: "/tier3.jpg",
     benefits: [
-      "Earn 2 points per $1 spent",
+      "10% cashback on all purchases",
       "Birthday gift",
       "Member-only sales access",
       "Early access to new products",
@@ -53,10 +53,10 @@ const tierData = [
   },
   {
     name: "The Collective",
-    spend: "$500+ annual spend",
+    spend: "Invite only",
     image: "/tier4.jpg",
     benefits: [
-      "Earn 3 points per $1 spent",
+      "10% cashback on all purchases",
       "Birthday gift",
       "Member-only sales access",
       "Early access to new products",
@@ -70,9 +70,7 @@ const tierData = [
 ];
 
 const popupBenefitDescriptions: Record<string, string> = {
-  "Earn 1.5 points per $1 spent": "Accelerate your rewards \u2014 earn 50% more points on every purchase to unlock perks faster.",
-  "Earn 2 points per $1 spent": "Double the rewards. Every dollar now earns you 2 points, getting you to your next reward in half the time.",
-  "Earn 3 points per $1 spent": "Our highest earning rate. Triple points on every purchase means you\u2019ll never run out of rewards.",
+  "10% cashback on all purchases": "Earn 10% back on every purchase as store credit, automatically applied to your account.",
   "Birthday gift": "Receive a complimentary gift from our curated collection delivered to you during your birthday month.",
   "Member-only sales access": "Get early and exclusive access to seasonal sales events reserved only for loyalty members.",
   "Early access to new products": "Be the first to shop new product launches before they become available to the public.",
@@ -87,7 +85,7 @@ const popupBenefitDescriptions: Record<string, string> = {
 function PopupBenefitIcon({ benefit }: { benefit: string }) {
   const s = 22;
   const b = benefit.toLowerCase();
-  if (b.includes("point") || b.includes("earn")) return <DollarSignCircle size={s} color="currentColor" />;
+  if (b.includes("cashback") || b.includes("earn")) return <DollarSignCircle size={s} color="currentColor" />;
   if (b.includes("birthday")) return <GiftBox size={s} color="currentColor" />;
   if (b.includes("sales")) return <DiscountTag size={s} color="currentColor" />;
   if (b.includes("early access")) return <Bolt size={s} color="currentColor" />;
@@ -258,7 +256,7 @@ export default function HeroSectionV2() {
   const hasAnimated = useRef(false);
 
   const userTier =
-    totalSpend >= 500 ? 3 : totalSpend >= 300 ? 2 : totalSpend >= 100 ? 1 : 0;
+    totalSpend >= 3000 ? 3 : totalSpend >= 900 ? 2 : totalSpend >= 350 ? 1 : 0;
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -361,7 +359,7 @@ export default function HeroSectionV2() {
         <div
           style={{
             width: "100%",
-            maxWidth: "960px",
+            maxWidth: "1280px",
             backgroundColor: "rgba(255,255,255,0.92)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
@@ -421,7 +419,7 @@ export default function HeroSectionV2() {
             }}
           />
 
-          {/* Column 2: Points / Dollar value */}
+          {/* Column 2: goop credit / Dollar value */}
           <div
             style={{
               flex: 1,
@@ -454,7 +452,7 @@ export default function HeroSectionV2() {
                 lineHeight: 1.4,
               }}
             >
-              {userPoints.toLocaleString()} points
+              {userPoints.toLocaleString()} goop credit
             </p>
             <a
               href="#"

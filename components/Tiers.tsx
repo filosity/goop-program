@@ -4,14 +4,8 @@ import { useState, useEffect } from "react";
 import { DollarSignCircle, GiftBox, DiscountTag, Bolt, DeliveryTruck, User, Star, PresentBox, Gifts, XmarkCircle } from "@vectoricons/atlas-icons-react";
 
 const benefitDescriptions: Record<string, string> = {
-  "Earn 1 point per $1 spent":
-    "Every dollar you spend earns you 1 reward point that can be redeemed for discounts, free products, and exclusive experiences.",
-  "Earn 1.5 points per $1 spent":
-    "Accelerate your rewards — earn 50% more points on every purchase to unlock perks faster.",
-  "Earn 2 points per $1 spent":
-    "Double the rewards. Every dollar now earns you 2 points, getting you to your next reward in half the time.",
-  "Earn 3 points per $1 spent":
-    "Our highest earning rate. Triple points on every purchase means you'll never run out of rewards.",
+  "10% cashback on all purchases":
+    "Earn 10% back on every purchase as store credit, automatically applied to your account.",
   "Birthday gift":
     "Receive a complimentary gift from our curated collection delivered to you during your birthday month.",
   "Member-only sales access":
@@ -62,7 +56,7 @@ function BenefitIcon({
   // Map benefit text to icon key
   let key = "points";
   const b = benefit.toLowerCase();
-  if (b.includes("point") || b.includes("earn")) key = "points";
+  if (b.includes("cashback") || b.includes("earn")) key = "points";
   else if (b.includes("birthday")) key = "birthday";
   else if (b.includes("sales")) key = "sales";
   else if (b.includes("early access")) key = "early";
@@ -79,11 +73,11 @@ const tiers = [
   {
     name: "Tier 1",
     subtitle: "your tier",
-    spend: "$0–$99 annual spend",
+    spend: "$0–$349 annual spend",
     current: true,
     image: "/tier1.jpg",
     benefits: [
-      "Earn 1 point per $1 spent",
+      "10% cashback on all purchases",
       "Birthday gift",
       "Member-only sales access",
       "Early access to new products",
@@ -93,11 +87,11 @@ const tiers = [
   {
     name: "Tier 2",
     subtitle: "",
-    spend: "$100–$299 annual spend",
+    spend: "$350–$899 annual spend",
     current: false,
     image: "/tier2.jpg",
     benefits: [
-      "Earn 1.5 points per $1 spent",
+      "10% cashback on all purchases",
       "Birthday gift",
       "Member-only sales access",
       "Early access to new products",
@@ -108,11 +102,11 @@ const tiers = [
   {
     name: "Tier 3",
     subtitle: "",
-    spend: "$300–$499 annual spend",
+    spend: "$900–$2,999 annual spend",
     current: false,
     image: "/tier3.jpg",
     benefits: [
-      "Earn 2 points per $1 spent",
+      "10% cashback on all purchases",
       "Birthday gift",
       "Member-only sales access",
       "Early access to new products",
@@ -124,11 +118,11 @@ const tiers = [
   {
     name: "The Collective",
     subtitle: "",
-    spend: "$500+ annual spend",
+    spend: "Invite only",
     current: false,
     image: "/tier4.jpg",
     benefits: [
-      "Earn 3 points per $1 spent",
+      "10% cashback on all purchases",
       "Birthday gift",
       "Member-only sales access",
       "Early access to new products",

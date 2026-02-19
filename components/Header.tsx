@@ -67,7 +67,7 @@ function AnnouncementBar({ onClose }: { onClose: () => void }) {
 }
 
 /* ─── Tier Thresholds (matching Tiers.tsx) ─── */
-const TIER_THRESHOLDS = [0, 100, 300, 500];
+const TIER_THRESHOLDS = [0, 350, 900, 3000];
 const TIER_NAMES: Record<number, string> = {
   0: "Tier 1",
   1: "Tier 2",
@@ -76,9 +76,9 @@ const TIER_NAMES: Record<number, string> = {
 };
 
 function getTierFromSpend(spend: number): number {
-  if (spend >= 500) return 3;
-  if (spend >= 300) return 2;
-  if (spend >= 100) return 1;
+  if (spend >= 3000) return 3;
+  if (spend >= 900) return 2;
+  if (spend >= 350) return 1;
   return 0;
 }
 
@@ -477,7 +477,7 @@ function NavBar() {
           gap: "14px",
         }}
       >
-        {/* Tier & points indicator */}
+        {/* Tier & goop credit indicator */}
         <div
           style={{
             display: "flex",
@@ -516,7 +516,7 @@ function NavBar() {
                 lineHeight: 1,
               }}
             >
-              {currentPoints.toLocaleString()} pts
+              {currentPoints.toLocaleString()} gc
             </span>
           </div>
         </div>
