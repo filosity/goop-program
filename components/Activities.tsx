@@ -882,8 +882,9 @@ const allVotingQuestions: { question: string; options: string[]; images?: string
     options: ["Clean Beauty", "Glass Skin", "Ayurvedic Wellness"],
   },
   {
-    question: "What packaging style do you prefer?",
-    options: ["Minimalist Glass", "Recycled Kraft", "Matte Black"],
+    question: "Which product do you prefer?",
+    options: ["Microderm Instant Glow Body Polish", "Cooling Abhyanga Massage Body Oil", "Pomelo Grove Bath Bomb"],
+    images: ["/product-glow-body-polish.webp", "/product-cooling-body-oil.webp", "/product-pomelo-bath-bomb.webp"],
   },
 ];
 

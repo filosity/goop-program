@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { MagnifyingGlass, User, Bag, XmarkCircle } from "@vectoricons/atlas-icons-react";
+import { XmarkCircle } from "@vectoricons/atlas-icons-react";
 
 /* ─── Announcement Bar ─── */
 function AnnouncementBar({ onClose }: { onClose: () => void }) {
@@ -253,20 +253,54 @@ function NavBar() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "0 20px",
-        height: "44px",
+        padding: "0 24px",
+        height: "48px",
         backgroundColor: "#ffffff",
+        borderBottom: "1px solid #e5e2de",
         position: "relative",
       }}
     >
-      {/* Left — Nav Links */}
+      {/* Left — Logo + Nav Links */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "18px",
+          gap: "24px",
         }}
       >
+        {/* Logo */}
+        <a href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+          <img src="/goop-logo.png" alt="goop" style={{ height: "20px", display: "block" }} />
+        </a>
+
+        {/* Nav links */}
+        <a
+          href="#"
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "13px",
+            fontWeight: 400,
+            color: "#000000",
+            textDecoration: "none",
+            lineHeight: 1,
+          }}
+        >
+          shop
+        </a>
+        <a
+          href="#"
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "13px",
+            fontWeight: 400,
+            color: "#000000",
+            textDecoration: "none",
+            lineHeight: 1,
+          }}
+        >
+          read
+        </a>
+
         {/* Program dropdown */}
         <div ref={dropdownRef} style={{ position: "relative" }}>
           <a
@@ -277,9 +311,8 @@ function NavBar() {
             }}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "11.5px",
+              fontSize: "13px",
               fontWeight: 400,
-              letterSpacing: "0.01em",
               color: "#000000",
               textDecoration: "none",
               lineHeight: 1,
@@ -449,120 +482,66 @@ function NavBar() {
         </div>
       </div>
 
-      {/* Center — Logo */}
-      <a
-        href="#"
-        style={{
-          position: "absolute",
-          left: "50%",
-          transform: "translateX(-50%)",
-          fontFamily: "var(--font-serif)",
-          fontSize: "15px",
-          fontWeight: 400,
-          letterSpacing: "0.015em",
-          color: "#000000",
-          textDecoration: "none",
-          lineHeight: 1,
-          whiteSpace: "nowrap",
-        }}
-      >
-        goop<span style={{ fontStyle: "italic" }}>beauty</span>
-      </a>
-
-      {/* Right — Tier indicator + Icon Buttons */}
+      {/* Right — Nav links + Tier indicator */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "14px",
+          gap: "24px",
         }}
       >
         {/* Tier & goop credit indicator */}
-        <div
+        <span
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-end",
-            gap: "3px",
-            marginRight: "4px",
+            fontFamily: "var(--font-sans)",
+            fontSize: "11px",
+            fontWeight: 500,
+            color: "#888888",
+            lineHeight: 1,
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "10px",
-                fontWeight: 600,
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-                color: "#000000",
-                lineHeight: 1,
-              }}
-            >
-              {TIER_NAMES[currentTier]}
-            </span>
-            <span
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "10px",
-                fontWeight: 400,
-                color: "#888888",
-                lineHeight: 1,
-              }}
-            >
-              {currentPoints.toLocaleString()} gc
-            </span>
-          </div>
-        </div>
+          {TIER_NAMES[currentTier]} · {currentPoints.toLocaleString()} gc
+        </span>
 
-        <button
-          aria-label="Search"
+        <a
+          href="#"
           style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
+            fontFamily: "var(--font-sans)",
+            fontSize: "13px",
+            fontWeight: 400,
             color: "#000000",
-            padding: 0,
-            display: "flex",
-            alignItems: "center",
+            textDecoration: "none",
+            lineHeight: 1,
           }}
         >
-          <MagnifyingGlass size={17} color="currentColor" />
-        </button>
-        <button
-          aria-label="Account"
+          search
+        </a>
+        <a
+          href="#"
           style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
+            fontFamily: "var(--font-sans)",
+            fontSize: "13px",
+            fontWeight: 400,
             color: "#000000",
-            padding: 0,
-            display: "flex",
-            alignItems: "center",
+            textDecoration: "none",
+            lineHeight: 1,
           }}
         >
-          <User size={17} color="currentColor" />
-        </button>
-        <button
-          aria-label="Bag"
+          account
+        </a>
+        <a
+          href="#"
           style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
+            fontFamily: "var(--font-sans)",
+            fontSize: "13px",
+            fontWeight: 400,
             color: "#000000",
-            padding: 0,
-            display: "flex",
-            alignItems: "center",
+            textDecoration: "none",
+            lineHeight: 1,
           }}
         >
-          <Bag size={17} color="currentColor" />
-        </button>
+          bag (0)
+        </a>
       </div>
     </nav>
   );
