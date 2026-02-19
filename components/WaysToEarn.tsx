@@ -1334,7 +1334,7 @@ function FreeProductsContent({
                       letterSpacing: "-0.01em",
                     }}
                   >
-                    {product.name}
+                    {product.discount ? `${product.discount} ${product.name}` : product.name}
                   </p>
                   <p
                     style={{
