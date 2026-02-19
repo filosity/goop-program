@@ -235,6 +235,8 @@ function TierDot({
         >
           {reached ? (
             <span><span style={{ fontWeight: 700 }}>{label}</span> unlocked</span>
+          ) : label === "The Collective" ? (
+            <span>Invite only</span>
           ) : (
             <span>Spend <span style={{ fontWeight: 700 }}>${spendToGo}</span> more to unlock</span>
           )}

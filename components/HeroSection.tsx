@@ -461,6 +461,8 @@ function TierMilestone({
         >
           {reached ? (
             <span><span style={{ fontWeight: 700 }}>{label}</span> unlocked</span>
+          ) : tooltip === "Invite only" ? (
+            <span>Invite only</span>
           ) : (
             <span>Spend <span style={{ fontWeight: 700 }}>{tooltip}</span> more to unlock</span>
           )}
