@@ -316,7 +316,7 @@ function MemberBenefitRow({
 }
 
 export default function Membership() {
-  const [version, setVersion] = useState(2);
+  const [version, setVersion] = useState(1);
   const [btnHovered, setBtnHovered] = useState(false);
   const [hoveredBenefit, setHoveredBenefit] = useState<number | null>(null);
   const [activeBenefit, setActiveBenefit] = useState<string | null>(null);
@@ -349,29 +349,6 @@ export default function Membership() {
           margin: "0 auto",
         }}
       >
-        {/* Section label — connected to black card */}
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            backgroundColor: "#000000",
-            padding: "10px 14px",
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "10px",
-              fontWeight: 600,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color: "#ffffff",
-              lineHeight: 1,
-            }}
-          >
-            exclusive rewards tier
-          </span>
-        </div>
       </div>
 
       <div

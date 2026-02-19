@@ -1359,6 +1359,9 @@ export default function Featured() {
         div::-webkit-scrollbar { display: none; }
         [data-carousel] * { -webkit-user-drag: none; user-drag: none; }
         [data-carousel] img { pointer-events: none; }
+        @keyframes communityFadeIn {
+          to { opacity: 1; transform: translateY(0); }
+        }
       `}</style>
     </section>
   );

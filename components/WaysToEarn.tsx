@@ -149,6 +149,7 @@ function EarnCard({
   const isDone = completed;
   const isChecking = phase === "check";
   const isExiting = phase === "exit";
+  const collapsed = isExiting || isDone;
   const showOverlay = isDone || isChecking;
   const showInteraction = card.action && !isDone && !isChecking && !isExiting;
   const dimmed = anyHighlighted && !highlighted;
@@ -157,14 +158,12 @@ function EarnCard({
     <div
       data-earn-index={index}
       style={{
-        minWidth: isExiting ? "0px" : "calc(25% - 12px)",
-        maxWidth: isExiting ? "0px" : "calc(25% - 12px)",
-        marginRight: isExiting ? "0px" : "16px",
-        opacity: isExiting ? 0 : dimmed ? 0.5 : 1,
+        minWidth: collapsed ? "0px" : "calc(25% - 12px)",
+        maxWidth: collapsed ? "0px" : "calc(25% - 12px)",
+        marginRight: collapsed ? "0px" : "16px",
+        opacity: collapsed ? 0 : dimmed ? 0.5 : 1,
         transform: isExiting ? "scale(0.92)" : "scale(1)",
-        transition: isExiting
-          ? "min-width 0.45s cubic-bezier(0.4,0,0.2,1), max-width 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, transform 0.3s ease, margin-right 0.45s cubic-bezier(0.4,0,0.2,1)"
-          : "opacity 0.5s ease",
+        transition: "min-width 0.45s cubic-bezier(0.4,0,0.2,1), max-width 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, transform 0.3s ease, margin-right 0.45s cubic-bezier(0.4,0,0.2,1)",
         overflow: "hidden",
         flexShrink: 0,
       }}
@@ -515,7 +514,7 @@ function RedeemContent({
             letterSpacing: "-0.01em",
           }}
         >
-          Your goop credit for store credit
+          Your goop credit for a discount
         </p>
 
         <p
@@ -2082,7 +2081,7 @@ export default function WaysToEarn() {
         }}
       >
         {activeTab === "earn" && "Follow us on social media, sign up for SMS and more."}
-        {activeTab === "exchange" && "Exchange your goop credit for store credit."}
+        {activeTab === "exchange" && "Exchange your goop credit for a discount."}
         {activeTab === "products" && "Redeem your goop credit for free products."}
         {activeTab === "upload" && "Upload your receipt and earn goop credit for every dollar spent."}
       </p>
@@ -2216,19 +2215,7 @@ export default function WaysToEarn() {
                 paddingBottom: "4px",
               }}
             >
-              {earnCards
-                .map((card, i) => ({ card, i }))
-                .sort((a, b) => {
-                  const aExiting = animPhase?.index === a.i && animPhase.phase === "exit";
-                  const bExiting = animPhase?.index === b.i && animPhase.phase === "exit";
-                  if (aExiting || bExiting) return 0;
-                  const aDone = completedCards.has(a.i);
-                  const bDone = completedCards.has(b.i);
-                  if (aDone && !bDone) return 1;
-                  if (!aDone && bDone) return -1;
-                  return 0;
-                })
-                .map(({ card, i }) => (
+              {earnCards.map((card, i) => (
                   <EarnCard
                     key={i}
                     card={card}
