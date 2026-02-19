@@ -3,9 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import { ArrowDown } from "@vectoricons/atlas-icons-react";
 
-/* ─── Available images for steps ─── */
-const allImages = ["/tier1.jpg", "/tier2.jpg", "/tier3.jpg", "/tier4.jpg"];
-
 /* ─── Step image component — rendered above interactive area ─── */
 function StepImage({ src }: { src: string }) {
   return (
@@ -594,38 +591,27 @@ export default function HowItWorks() {
     };
   }, []);
 
-  const [stepImages, setStepImages] = useState([allImages[0], allImages[1], allImages[2]]);
-  const hasShuffled = useRef(false);
-
-  useEffect(() => {
-    if (!hasShuffled.current) {
-      hasShuffled.current = true;
-      const shuffled = [...allImages].sort(() => 0.5 - Math.random());
-      setStepImages([shuffled[0], shuffled[1], shuffled[2]]);
-    }
-  }, []);
-
   const steps = [
     {
       number: "1",
       title: "Sign up",
       description: "Create a free account in seconds.",
       component: SignUpStep,
-      imageSrc: stepImages[0],
+      imageSrc: "/tier1.jpg",
     },
     {
       number: "2",
       title: "Earn goop credit",
       description: "Earn goop credit on every purchase.",
       component: EarnStep,
-      imageSrc: stepImages[1],
+      imageSrc: "/tier2.jpg",
     },
     {
       number: "3",
       title: "Redeem",
       description: "Exchange your goop credit for discounts and free products.",
       component: RedeemStep,
-      imageSrc: stepImages[2],
+      imageSrc: "/tier3.jpg",
     },
   ];
 
