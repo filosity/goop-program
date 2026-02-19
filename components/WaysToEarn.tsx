@@ -2051,7 +2051,7 @@ export default function WaysToEarn() {
     <section
       id="section-ways-to-earn"
       style={{
-        padding: "0px 48px 168px",
+        padding: "0px 48px 120px",
       }}
     >
       {/* Title */}

@@ -272,7 +272,7 @@ function CommunityHero({
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
-            color: item.type === "instagram" ? "#e1306c" : "rgba(255,255,255,0.8)",
+            color: "rgba(255,255,255,0.8)",
             marginBottom: "8px",
           }}
         >
@@ -360,7 +360,7 @@ function CommunityGridCard({
             style={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%)",
+              background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.3) 100%)",
               pointerEvents: "none",
             }}
           />
@@ -386,7 +386,7 @@ function CommunityGridCard({
               fontSize: "10px",
               fontWeight: 600,
               letterSpacing: "0.06em",
-              color: hasImg ? "rgba(255,255,255,0.8)" : item.type === "instagram" ? "#c13584" : "#888888",
+              color: hasImg ? "rgba(255,255,255,0.8)" : "#888888",
               textTransform: "uppercase",
             }}
           >

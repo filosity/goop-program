@@ -32,19 +32,44 @@ const steps = [
 
 const pastWinners = [
   {
-    product: "all-in-one nourishing face cream",
+    product: "Jillian Dempsey Makeup Bag",
     winner: "casey r.",
-    image: "/winner1.jpg",
+    image: "/product-makeupbag.webp",
   },
   {
-    product: "utilykt candle",
+    product: "Bathorium Boreal Fog Bath Bomb",
     winner: "jake k.",
-    image: "/winner2.jpg",
+    image: "/product-bath-bomb.webp",
   },
   {
-    product: "euphoria powder",
+    product: "Corpus Body Wash",
     winner: "sam o.",
-    image: "/winner3.jpg",
+    image: "/product-corpus-bodywash.webp",
+  },
+  {
+    product: "goop beauty Afterglow Body Oil",
+    winner: "mia t.",
+    image: "/product-afterglow-bodyoil.webp",
+  },
+  {
+    product: "Surya Love Bath Heart-Opening Soak",
+    winner: "alex d.",
+    image: "/product-love-bath-soak.webp",
+  },
+  {
+    product: "Kate McLeod Amber & Vanilla Pebble",
+    winner: "riley p.",
+    image: "/product-amber-pebble.webp",
+  },
+  {
+    product: "Maison Louis Marie No.14 Icila Body Lotion",
+    winner: "jordan w.",
+    image: "/product-icila-bodylotion.webp",
+  },
+  {
+    product: "Rahua Aloe Vera Shampoo & Conditioner Duo",
+    winner: "taylor m.",
+    image: "/product-aloe-vera-duo.webp",
   },
 ];
 

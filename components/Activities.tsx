@@ -2008,7 +2008,7 @@ export default function Activities() {
       id="section-activities"
       style={{
         padding: "0px 48px 100px",
-        marginTop: "-60px",
+        marginTop: "-80px",
       }}
     >
       {/* Title */}
@@ -2024,7 +2024,7 @@ export default function Activities() {
           letterSpacing: "-0.01em",
         }}
       >
-        Activities
+        activities
       </h2>
 
       {/* Subtext */}
