@@ -1222,19 +1222,15 @@ function FreeProductsContent({
                   flex: 1,
                   overflow: "hidden",
                   backgroundColor: "#f5f3f0",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "24px",
                 }}
               >
                 <img
                   src={product.image}
                   alt={product.name}
                   style={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    objectFit: "contain",
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
                     display: "block",
                     pointerEvents: "none",
                   }}

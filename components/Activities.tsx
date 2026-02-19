@@ -848,30 +848,30 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { o
 }
 
 /* ─── Voting data ─── */
-const allVotingQuestions = [
+const allVotingQuestions: { question: string; options: string[]; images?: string[] }[] = [
   {
-    question: "What\u2019s your favorite skincare ingredient this season?",
-    options: ["Retinol", "Vitamin C", "Niacinamide"],
+    question: "Which bath ritual is your go-to?",
+    options: ["Boreal Fog Bath Bomb", "Love Bath Heart-Opening Soak", "Pomelo Grove Bath Bomb"],
+    images: ["/product-bath-bomb.webp", "/product-love-bath-soak.webp", "/product-pomelo-bath-bomb.webp"],
   },
   {
-    question: "Which product should we bring back?",
-    options: ["Rose Quartz Mist", "Honey Glow Mask", "Pearl Essence Serum"],
+    question: "Which body care product would you like to try?",
+    options: ["Afterglow Body Oil", "Corpus Body Wash", "No.14 Icila Body Lotion"],
+    images: ["/product-afterglow-bodyoil.webp", "/product-corpus-bodywash.webp", "/product-icila-bodylotion.webp"],
+  },
+  {
+    question: "What should we feature as product of the month?",
+    options: ["Instant Glow Body Polish", "Jillian Dempsey Makeup Bag", "Aloe Vera Shampoo Duo"],
+    images: ["/product-glow-body-polish.webp", "/product-makeupbag.webp", "/product-aloe-vera-duo.webp"],
+  },
+  {
+    question: "Which product would you gift a friend?",
+    options: ["Amber & Vanilla Pebble", "Cooling Massage Body Oil", "Afterglow Body Oil"],
+    images: ["/product-amber-pebble.webp", "/product-cooling-body-oil.webp", "/product-afterglow-bodyoil.webp"],
   },
   {
     question: "What type of event would you attend?",
     options: ["In-store Workshop", "Virtual Masterclass", "Pop-up Experience"],
-  },
-  {
-    question: "Which scent do you want for our next candle?",
-    options: ["Jasmine & Sage", "Sandalwood Noir", "Ocean Mist"],
-  },
-  {
-    question: "What packaging style do you prefer?",
-    options: ["Minimalist Glass", "Recycled Kraft", "Matte Black"],
-  },
-  {
-    question: "Which collaboration would excite you most?",
-    options: ["Celebrity Skincare Line", "Artisan Perfumer Collab", "Wellness Retreat Bundle"],
   },
   {
     question: "What\u2019s your ideal self-care ritual?",
@@ -879,14 +879,18 @@ const allVotingQuestions = [
   },
   {
     question: "Which beauty trend excites you most?",
-    options: ["Clean Beauty", "Glass Skin", "Bold Lip Colors"],
+    options: ["Clean Beauty", "Glass Skin", "Ayurvedic Wellness"],
+  },
+  {
+    question: "What packaging style do you prefer?",
+    options: ["Minimalist Glass", "Recycled Kraft", "Matte Black"],
   },
 ];
 
 const VOTING_DISPLAY_COUNT = 8;
 
-/* ─── Random images for voting version 1 ─── */
-const votingImages = ["/tier1.jpg", "/tier2.jpg", "/tier3.jpg", "/tier4.jpg", "/featured1.jpg", "/featured2.jpg", "/featured3.jpg", "/featured4.jpg"];
+/* ─── Fallback images for voting version 1 ─── */
+const votingImages = ["/product-bath-bomb.webp", "/product-afterglow-bodyoil.webp", "/product-corpus-bodywash.webp", "/product-icila-bodylotion.webp", "/product-glow-body-polish.webp", "/product-makeupbag.webp", "/product-amber-pebble.webp", "/product-cooling-body-oil.webp"];
 
 /* ─── Shared goop credit earned animation (black circle, white checkmark) ─── */
 function VotingPointsEarned() {
@@ -1387,7 +1391,7 @@ function VotingContent({ onAnsweredCountChange }: { onAnsweredCountChange: (coun
   const totalEarned = useRef(0);
 
   /* Shuffle all questions, pick 8, assign random variation (1/2/3) per question — once per mount */
-  const selectedQuestionsRef = useRef<{ question: string; options: string[]; variation: number }[]>([]);
+  const selectedQuestionsRef = useRef<{ question: string; options: string[]; images?: string[]; variation: number }[]>([]);
   if (selectedQuestionsRef.current.length === 0) {
     const shuffled = [...allVotingQuestions].sort(() => Math.random() - 0.5);
     const picked = shuffled.slice(0, VOTING_DISPLAY_COUNT);
@@ -1405,9 +1409,13 @@ function VotingContent({ onAnsweredCountChange }: { onAnsweredCountChange: (coun
     const shuffled = [...votingImages].sort(() => Math.random() - 0.5);
     let idx = 0;
     votingQuestions.forEach((q) => {
-      q.options.forEach((opt) => {
-        imageMapRef.current[opt] = shuffled[idx % shuffled.length];
-        idx++;
+      q.options.forEach((opt, optIdx) => {
+        if (q.images && q.images[optIdx]) {
+          imageMapRef.current[opt] = q.images[optIdx];
+        } else {
+          imageMapRef.current[opt] = shuffled[idx % shuffled.length];
+          idx++;
+        }
       });
     });
   }
