@@ -329,7 +329,7 @@ export default function StickyNav() {
               lineHeight: 1.4,
             }}
           >
-            goop credit balance
+            goop credit
           </p>
         </div>
       </div>
