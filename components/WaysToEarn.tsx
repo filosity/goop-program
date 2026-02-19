@@ -1069,17 +1069,17 @@ function RedeemContent({
 
 /* ─── Free products data ─── */
 const freeProducts = [
-  { name: "Jillian Dempsey Makeup Bag", points: 45, image: "/product-makeupbag.webp", tierRequired: null, discount: null as string | null },
-  { name: "Bathorium Boreal Fog Bath Bomb", points: 10, image: "/product-bath-bomb.webp", tierRequired: null, discount: null as string | null },
-  { name: "Corpus Body Wash", points: 30, image: "/product-corpus-bodywash.webp", tierRequired: null, discount: null as string | null },
-  { name: "Maison Louis Marie No.14 Icila Body Lotion", points: 37, image: "/product-icila-bodylotion.webp", tierRequired: null, discount: null },
-  { name: "Surya Love Bath Heart-Opening Soak", points: 35, image: "/product-love-bath-soak.webp", tierRequired: null, discount: null },
-  { name: "Bathorium Pomelo Grove Bath Bomb", points: 11, image: "/product-pomelo-bath-bomb.webp", tierRequired: null, discount: null },
-  { name: "goop beauty Afterglow Body Oil", points: 48, image: "/product-afterglow-bodyoil.webp", tierRequired: null, discount: null },
-  { name: "goop beauty Microderm Instant Glow Body Polish", points: 48, image: "/product-glow-body-polish.webp", tierRequired: null, discount: null },
-  { name: "Surya Cooling Abhyanga Massage Body Oil", points: 48, image: "/product-cooling-body-oil.webp", tierRequired: 2, discount: null },
-  { name: "Kate McLeod Amber & Vanilla Pebble", points: 65, image: "/product-amber-pebble.webp", tierRequired: 2, discount: null },
-  { name: "Rahua Aloe Vera Shampoo & Conditioner Duo", points: 76, image: "/product-aloe-vera-duo.webp", tierRequired: 3, discount: null },
+  { name: "Jillian Dempsey Makeup Bag", points: 33.75, originalPoints: 45, image: "/product-makeupbag.webp", tierRequired: null, discount: "25% off" as string | null },
+  { name: "Bathorium Boreal Fog Bath Bomb", points: 10, originalPoints: null as number | null, image: "/product-bath-bomb.webp", tierRequired: null, discount: null as string | null },
+  { name: "Corpus Body Wash", points: 22.50, originalPoints: 30, image: "/product-corpus-bodywash.webp", tierRequired: null, discount: "25% off" as string | null },
+  { name: "Maison Louis Marie No.14 Icila Body Lotion", points: 37, originalPoints: null as number | null, image: "/product-icila-bodylotion.webp", tierRequired: null, discount: null },
+  { name: "Surya Love Bath Heart-Opening Soak", points: 35, originalPoints: null as number | null, image: "/product-love-bath-soak.webp", tierRequired: null, discount: null },
+  { name: "Bathorium Pomelo Grove Bath Bomb", points: 11, originalPoints: null as number | null, image: "/product-pomelo-bath-bomb.webp", tierRequired: null, discount: null },
+  { name: "goop beauty Afterglow Body Oil", points: 36, originalPoints: 48, image: "/product-afterglow-bodyoil.webp", tierRequired: null, discount: "25% off" },
+  { name: "goop beauty Microderm Instant Glow Body Polish", points: 48, originalPoints: null as number | null, image: "/product-glow-body-polish.webp", tierRequired: null, discount: null },
+  { name: "Surya Cooling Abhyanga Massage Body Oil", points: 36, originalPoints: 48, image: "/product-cooling-body-oil.webp", tierRequired: 2, discount: "25% off" },
+  { name: "Kate McLeod Amber & Vanilla Pebble", points: 65, originalPoints: null as number | null, image: "/product-amber-pebble.webp", tierRequired: 2, discount: null },
+  { name: "Rahua Aloe Vera Shampoo & Conditioner Duo", points: 57, originalPoints: 76, image: "/product-aloe-vera-duo.webp", tierRequired: 3, discount: "25% off" },
 ];
 
 /* ─── Free products tab content (carousel) ─── */
@@ -1344,9 +1344,23 @@ function FreeProductsContent({
                       color: "#888888",
                       margin: "6px 0 0 0",
                       lineHeight: 1,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
                     }}
                   >
-                    ${product.points} goop credit
+                    {product.discount && product.originalPoints ? (
+                      <>
+                        <span style={{ textDecoration: "line-through", opacity: 0.5 }}>
+                          ${product.originalPoints}
+                        </span>
+                        <span style={{ color: "#1a1a1a", fontWeight: 600 }}>
+                          ${product.points} goop credit
+                        </span>
+                      </>
+                    ) : (
+                      <span>${product.points} goop credit</span>
+                    )}
                   </p>
                 </div>
 
