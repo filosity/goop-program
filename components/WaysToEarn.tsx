@@ -424,7 +424,6 @@ function RedeemContent({
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [redeemHovered, setRedeemHovered] = useState(false);
-  const [applyHovered, setApplyHovered] = useState(false);
   const [popup, setPopup] = useState<{
     phase: "in" | "counting" | "done" | "out";
     points: number;
@@ -577,7 +576,7 @@ function RedeemContent({
       {/* Right column — beige */}
       <div
         style={{
-          backgroundColor: "#f5f8f8",
+          backgroundColor: "#F6F5F1",
           padding: "72px 60px",
           display: "flex",
           flexDirection: "column",
@@ -686,8 +685,8 @@ function RedeemContent({
           </div>
         </div>
 
-        {/* Buttons */}
-        <div style={{ display: "flex", justifyContent: "center", gap: "10px", marginTop: "36px" }}>
+        {/* Button */}
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "36px" }}>
           <button
             onClick={handleRedeem}
             onMouseEnter={() => setRedeemHovered(true)}
@@ -696,37 +695,16 @@ function RedeemContent({
               fontFamily: "var(--font-sans)",
               fontSize: "18px",
               fontWeight: 600,
-              color: "#000000",
-              backgroundColor: redeemHovered ? "#3be03b" : "#46DE46",
-              border: "1px solid #46DE46",
+              color: redeemHovered ? "#000000" : "#ffffff",
+              backgroundColor: redeemHovered ? "#46DE46" : "#0C3D3D",
+              border: "none",
               minHeight: "52px",
               padding: "0 36px",
               borderRadius: "999px",
               cursor: sliderValue > 0 ? "pointer" : "default",
               lineHeight: 1,
-              transition: "background-color 0.2s ease, opacity 0.2s ease",
+              transition: "background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease",
               opacity: sliderValue > 0 ? 1 : 0.35,
-            }}
-          >
-            Apply To Subscription →
-          </button>
-
-          <button
-            onMouseEnter={() => setApplyHovered(true)}
-            onMouseLeave={() => setApplyHovered(false)}
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "18px",
-              fontWeight: 600,
-              color: applyHovered ? "#ffffff" : "#0C3D3D",
-              backgroundColor: applyHovered ? "#0C3D3D" : "transparent",
-              border: "1px solid #0C3D3D",
-              minHeight: "52px",
-              padding: "0 36px",
-              borderRadius: "999px",
-              cursor: "pointer",
-              lineHeight: 1,
-              transition: "background-color 0.2s ease, color 0.2s ease",
             }}
           >
             Apply To Subscription →

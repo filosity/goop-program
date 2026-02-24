@@ -620,7 +620,7 @@ export default function HowItWorks() {
       id="section-how-it-works"
       ref={sectionRef}
       style={{
-        backgroundColor: "#f0f5f5",
+        backgroundColor: "#F6F5F1",
         padding: collapsed ? "16px 48px 16px" : "36px 48px 80px",
       }}
     >

@@ -422,22 +422,22 @@ export default function Milestones() {
       </h2>
 
       {/* Subtitle */}
-      <p
-        style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: "16px",
-          fontWeight: 400,
-          color: "#6b8a89",
-          textAlign: "left",
-          margin: subscribed ? "0 0 48px 0" : "0 0 20px 0",
-          lineHeight: 1.5,
-          maxWidth: "1280px",
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}
-      >
-        Unlock exclusive rewards the longer you stay subscribed.
-      </p>
+      <div style={{ maxWidth: "1280px", marginLeft: "auto", marginRight: "auto" }}>
+        <p
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "16px",
+            fontWeight: 400,
+            color: "#6b8a89",
+            textAlign: "left",
+            margin: subscribed ? "0 0 48px 0" : "0 0 20px 0",
+            lineHeight: 1.5,
+            maxWidth: "480px",
+          }}
+        >
+          Unlock exclusive rewards the longer you stay subscribed.
+        </p>
+      </div>
 
       {/* Subscribe button */}
       {!subscribed && (

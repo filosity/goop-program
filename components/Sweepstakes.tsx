@@ -228,7 +228,7 @@ export default function Sweepstakes() {
               border: "1px solid #0C3D3D",
             }}
           >
-            Join The Sweepstakes
+            AG1 Limited Edition Bottle Giveaway
           </button>
           <button
             onClick={() => setActiveTab("past")}

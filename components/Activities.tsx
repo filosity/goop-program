@@ -705,56 +705,58 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { o
         ))}
       </div>
 
-      {/* Arrow nav — centered below */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "8px",
-          marginTop: "16px",
-        }}
-      >
-        <button
-          onClick={() => carouselRef.current?.scrollBy({ left: -320, behavior: "smooth" })}
-          onMouseEnter={() => setLeftArrowHovered(true)}
-          onMouseLeave={() => setLeftArrowHovered(false)}
-          aria-label="Previous"
+      {/* Arrow nav — only show if cards overflow (more than 3) */}
+      {achievements.length > 3 && (
+        <div
           style={{
-            width: "36px",
-            height: "36px",
-            borderRadius: "50%",
-            backgroundColor: "transparent",
-            border: leftArrowHovered ? "1px solid #000000" : "1px solid #d4e0df",
-            cursor: "pointer",
             display: "flex",
-            alignItems: "center",
             justifyContent: "center",
-            transition: "border-color 0.2s ease",
+            gap: "8px",
+            marginTop: "16px",
           }}
         >
-          <ArrowLeft size={12} color="#000000" />
-        </button>
-        <button
-          onClick={() => carouselRef.current?.scrollBy({ left: 320, behavior: "smooth" })}
-          onMouseEnter={() => setRightArrowHovered(true)}
-          onMouseLeave={() => setRightArrowHovered(false)}
-          aria-label="Next"
-          style={{
-            width: "36px",
-            height: "36px",
-            borderRadius: "50%",
-            backgroundColor: "transparent",
-            border: rightArrowHovered ? "1px solid #000000" : "1px solid #d4e0df",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            transition: "border-color 0.2s ease",
-          }}
-        >
-          <ArrowRight size={12} color="#000000" />
-        </button>
-      </div>
+          <button
+            onClick={() => carouselRef.current?.scrollBy({ left: -320, behavior: "smooth" })}
+            onMouseEnter={() => setLeftArrowHovered(true)}
+            onMouseLeave={() => setLeftArrowHovered(false)}
+            aria-label="Previous"
+            style={{
+              width: "36px",
+              height: "36px",
+              borderRadius: "50%",
+              backgroundColor: "transparent",
+              border: leftArrowHovered ? "1px solid #000000" : "1px solid #d4e0df",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "border-color 0.2s ease",
+            }}
+          >
+            <ArrowLeft size={12} color="#000000" />
+          </button>
+          <button
+            onClick={() => carouselRef.current?.scrollBy({ left: 320, behavior: "smooth" })}
+            onMouseEnter={() => setRightArrowHovered(true)}
+            onMouseLeave={() => setRightArrowHovered(false)}
+            aria-label="Next"
+            style={{
+              width: "36px",
+              height: "36px",
+              borderRadius: "50%",
+              backgroundColor: "transparent",
+              border: rightArrowHovered ? "1px solid #000000" : "1px solid #d4e0df",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "border-color 0.2s ease",
+            }}
+          >
+            <ArrowRight size={12} color="#000000" />
+          </button>
+        </div>
+      )}
 
       <style>{`
         @keyframes achieveOverlayIn {
