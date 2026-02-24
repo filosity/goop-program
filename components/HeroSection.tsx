@@ -63,7 +63,7 @@ function SectionLabel({ text }: { text: string }) {
   );
 }
 
-function HeroSectionV1() {
+function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
   const [visible, setVisible] = useState(false);
   const [userPoints, setUserPoints] = useState(5);
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -148,19 +148,39 @@ function HeroSectionV1() {
         }
       `}</style>
 
-      {/* Background image */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: "url('/background-header.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          opacity: visible ? 1 : 0,
-          transition: "opacity 0.5s ease",
-        }}
-      />
+      {/* Background */}
+      {bgMode === "video" ? (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            opacity: visible ? 1 : 0,
+            transition: "opacity 0.5s ease",
+          }}
+        >
+          <source src="/membership.mp4" type="video/mp4" />
+        </video>
+      ) : (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: "url('/background-header.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            opacity: visible ? 1 : 0,
+            transition: "opacity 0.5s ease",
+          }}
+        />
+      )}
 
       {/* 30% black overlay */}
       <div
@@ -386,17 +406,26 @@ function HeroSectionV1() {
 /* ─── Version Switcher ─── */
 export default function HeroSection() {
   const [version, setVersion] = useState(1);
+  const [bgMode, setBgMode] = useState<"video" | "static">("video");
 
   useEffect(() => {
     function handleVersion(e: Event) {
       const detail = (e as CustomEvent).detail;
       if (detail?.version) setVersion(detail.version);
     }
+    function handleBgMode(e: Event) {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.mode) setBgMode(detail.mode);
+    }
     window.addEventListener("hero-version", handleVersion);
-    return () => window.removeEventListener("hero-version", handleVersion);
+    window.addEventListener("header-bg-mode", handleBgMode);
+    return () => {
+      window.removeEventListener("hero-version", handleVersion);
+      window.removeEventListener("header-bg-mode", handleBgMode);
+    };
   }, []);
 
-  if (version === 2) return <HeroSectionV2 />;
-  if (version === 3) return <HeroSectionV3 />;
-  return <HeroSectionV1 />;
+  if (version === 2) return <HeroSectionV2 bgMode={bgMode} />;
+  if (version === 3) return <HeroSectionV3 bgMode={bgMode} />;
+  return <HeroSectionV1 bgMode={bgMode} />;
 }

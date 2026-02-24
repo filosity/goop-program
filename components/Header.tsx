@@ -103,6 +103,8 @@ function ProgramDropdown({
   setShowFeaturedBtn,
   showMembership,
   setShowMembership,
+  headerBgMode,
+  setHeaderBgMode,
 }: {
   open: boolean;
   totalSpend: number;
@@ -128,6 +130,8 @@ function ProgramDropdown({
   setShowFeaturedBtn: (b: boolean) => void;
   showMembership: boolean;
   setShowMembership: (b: boolean) => void;
+  headerBgMode: "video" | "static";
+  setHeaderBgMode: (m: "video" | "static") => void;
 }) {
   const handleSimulateSpend = useCallback(
     (amount: number) => {
@@ -216,6 +220,31 @@ function ProgramDropdown({
       {versionMenu("featured", "featured", "featured-version", activeFeatured, setActiveFeatured)}
       {versionMenu("membership", "tiers", "tiers-version", activeMembership, setActiveMembership)}
       {versionMenu("sweepstakes", "sweepstakes", "sweepstakes-version", activeSweepstakes, setActiveSweepstakes)}
+      {/* Header background mode */}
+      <div
+        style={{ position: "relative" }}
+        onMouseEnter={() => setOpenSub("headerBg")}
+        onMouseLeave={() => setOpenSub(null)}
+      >
+        <DropdownItem hasArrow>header image</DropdownItem>
+        {openSub === "headerBg" && (
+          <SubMenu>
+            {(["video", "static"] as const).map((mode) => (
+              <DropdownItem
+                key={mode}
+                onClick={() => {
+                  setHeaderBgMode(mode);
+                  window.dispatchEvent(new CustomEvent("header-bg-mode", { detail: { mode } }));
+                  closeAll();
+                }}
+                onMouseEnter={() => setOpenSub("headerBg")}
+              >
+                <span style={{ fontWeight: headerBgMode === mode ? 700 : 400 }}>{mode}</span>
+              </DropdownItem>
+            ))}
+          </SubMenu>
+        )}
+      </div>
       {/* Visibility toggles */}
       <div style={{ borderTop: "1px solid #e8e5e1", margin: "4px 0" }} />
       <DropdownItem
@@ -275,6 +304,7 @@ export default function Header() {
   const [showEvents, setShowEvents] = useState(false);
   const [showFeaturedBtn, setShowFeaturedBtn] = useState(false);
   const [showMembership, setShowMembership] = useState(false);
+  const [headerBgMode, setHeaderBgMode] = useState<"video" | "static">("video");
   const [shopHov, setShopHov] = useState(false);
 
   const logoRef = useRef<HTMLDivElement>(null);
@@ -385,6 +415,8 @@ export default function Header() {
               setShowFeaturedBtn={setShowFeaturedBtn}
               showMembership={showMembership}
               setShowMembership={setShowMembership}
+              headerBgMode={headerBgMode}
+              setHeaderBgMode={setHeaderBgMode}
             />
           </div>
 

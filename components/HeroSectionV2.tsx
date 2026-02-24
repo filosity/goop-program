@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 
-export default function HeroSectionV2() {
+export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" | "static" }) {
   const [userPoints, setUserPoints] = useState(50);
   const [visible, setVisible] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -77,19 +77,39 @@ export default function HeroSectionV2() {
         }
       `}</style>
 
-      {/* Background image */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: "url('/background-header.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          opacity: visible ? 1 : 0,
-          transition: "opacity 0.6s ease",
-        }}
-      />
+      {/* Background */}
+      {bgMode === "video" ? (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            opacity: visible ? 1 : 0,
+            transition: "opacity 0.6s ease",
+          }}
+        >
+          <source src="/membership.mp4" type="video/mp4" />
+        </video>
+      ) : (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: "url('/background-header.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            opacity: visible ? 1 : 0,
+            transition: "opacity 0.6s ease",
+          }}
+        />
+      )}
 
       {/* 30% black overlay */}
       <div
