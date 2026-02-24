@@ -1539,7 +1539,7 @@ const streakRewards = [
   { name: "AG1 Tote", image: "/milestone-tote.jpg", code: "TOTE42" },
 ];
 
-/* ─── Daily Streak Content ─── */
+/* ─── Daily Check-in Content ─── */
 function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: number) => void }) {
   const [checkedCount, setCheckedCount] = useState(0);
   const [checkInHovered, setCheckInHovered] = useState(false);
@@ -1679,10 +1679,10 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "12px" }}>
         <div>
           <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 6px 0", letterSpacing: "-0.01em" }}>
-            Daily Streak
+            Daily Check-in
           </h3>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", margin: 0, lineHeight: 1.5 }}>
-            Check in daily and unlock milestone rewards every 7 days.
+            Check in daily and unlock milestone rewards.
           </p>
           {checkedCount > 0 && (
             <a
@@ -2272,7 +2272,7 @@ export default function Activities() {
             marginBottom: "24px",
           }}
         >
-          {/* Daily Streak tab (first) */}
+          {/* Daily Check-in tab (first) */}
           <button
             onClick={() => switchTab("streak")}
             onMouseEnter={() => setStreakTabHovered(true)}
@@ -2295,7 +2295,7 @@ export default function Activities() {
               gap: "6px",
             }}
           >
-            Daily Streak
+            Daily Check-in
             <span style={{ fontWeight: 400, color: activeTab === "streak" ? "rgba(255,255,255,0.45)" : "#aaaaaa", display: "inline-flex", alignItems: "center" }}>
               (<span style={{ fontWeight: 600, color: activeTab === "streak" ? "rgba(255,255,255,0.45)" : "#aaaaaa" }}>{streakStreak}</span>
               <svg width="10" height="10" viewBox="0 0 24 24" fill={activeTab === "streak" ? "#ffffff" : "#0C3D3D"} style={{ marginLeft: "2px" }}>
