@@ -1898,7 +1898,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
           {/* Background line */}
           <div style={{
             position: "absolute",
-            top: `${8 + 48}px`,
+            top: `${8 + 49}px`,
             left: 0,
             right: 0,
             height: "3px",
@@ -1909,7 +1909,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
           {/* Progress fill */}
           <div style={{
             position: "absolute",
-            top: `${8 + 48}px`,
+            top: `${8 + 49}px`,
             left: 0,
             height: "3px",
             backgroundColor: "#0C3D3D",
@@ -1957,8 +1957,8 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                           : day.isRewardEarned && !day.isRewardClaimed
                             ? "3px solid #E8913A"
                             : day.isChecked
-                              ? "2px solid #0C3D3D"
-                              : "2px solid #d4e0df",
+                              ? "3px solid #0C3D3D"
+                              : "3px solid #d4e0df",
                         backgroundColor: "#ffffff",
                         boxShadow: day.isToday
                           ? "0 0 0 3px rgba(12,61,61,0.2)"
@@ -2086,7 +2086,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                   textTransform: "uppercase",
                   color: "#000000",
                   lineHeight: 1,
-                  marginTop: hasReward ? "10px" : "2px",
+                  marginTop: hasReward ? "10px" : "3px",
                   whiteSpace: "nowrap",
                   textAlign: "center",
                 }}>
@@ -2101,7 +2101,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                     fontWeight: 600,
                     color: "#000000",
                     lineHeight: 1,
-                    marginTop: "4px",
+                    marginTop: "1px",
                     whiteSpace: "nowrap",
                     textAlign: "center",
                     opacity: earnedDay === day.dayNum ? 0 : 1,
