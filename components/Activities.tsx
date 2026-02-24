@@ -2003,9 +2003,12 @@ export default function Activities() {
           fontSize: "16px",
           fontWeight: 400,
           color: "#6b8a89",
-          textAlign: "center",
+          textAlign: "left",
           margin: "0 0 36px 0",
           lineHeight: 1.4,
+          maxWidth: "1280px",
+          marginLeft: "auto",
+          marginRight: "auto",
         }}
       >
         {activeTab === "achievements" && "Unlock achievements by engaging with AG1."}

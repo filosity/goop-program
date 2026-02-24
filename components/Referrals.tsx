@@ -19,7 +19,7 @@ export default function Referrals() {
   const [friendNameFocused, setFriendNameFocused] = useState(false);
   const [messageFocused, setMessageFocused] = useState(false);
 
-  const referralLink = "drinkag1.com/ref/yourcode123";
+  const referralLink = "drinkag1.com/bubblehouse/yourcode123";
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(`https://${referralLink}`);
