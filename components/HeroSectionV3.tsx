@@ -145,7 +145,7 @@ export default function HeroSectionV3() {
                 lineHeight: 1.4,
               }}
             >
-              {isSubscribed ? "Member since Jan 2026" : "Not yet subscribed"}
+              {isSubscribed ? "Member since Feb 2026" : "Not yet subscribed"}
             </p>
             <a
               href="#"
@@ -241,7 +241,7 @@ export default function HeroSectionV3() {
                 lineHeight: 1.4,
               }}
             >
-              Member since Jan 2026
+              Member since Feb 2026
             </p>
           </>
         ) : (

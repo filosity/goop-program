@@ -210,7 +210,7 @@ function MilestoneCard({
                 style={{
                   position: "absolute",
                   left: "50%",
-                  top: "50%",
+                  top: "30%",
                   width: `${w}px`,
                   height: `${h}px`,
                   marginLeft: `${-w / 2}px`,

@@ -335,7 +335,7 @@ function HeroSectionV1() {
                     lineHeight: 1.55,
                   }}
                 >
-                  Member since <span style={{ fontWeight: 600 }}>Jan 2026</span>
+                  Member since <span style={{ fontWeight: 600 }}>Feb 2026</span>
                 </p>
               </>
             ) : (

@@ -285,7 +285,7 @@ export default function HeroSectionV2() {
                     lineHeight: 1.4,
                   }}
                 >
-                  Member since Jan 2026
+                  Member since Feb 2026
                 </p>
               </>
             ) : (

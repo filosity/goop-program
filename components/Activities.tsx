@@ -1622,6 +1622,8 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
       el.style.scrollBehavior = "smooth";
       el.style.cursor = "grab";
     }
+    // Reset hasDragged after a tick so click handlers still see it during the same event loop
+    requestAnimationFrame(() => { hasDragged.current = false; });
   }, []);
 
   const handleShowHistory = useCallback(() => {
@@ -1751,7 +1753,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
               {nextReward.reward.name}
             </p>
           </div>
-          <div style={{ width: "390px", maxWidth: "390px", flexShrink: 0 }}>
+          <div style={{ width: "510px", maxWidth: "510px", flexShrink: 0 }}>
             <img
               src={nextReward.reward.image}
               alt={nextReward.reward.name}
@@ -1844,6 +1846,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                     <img
                       src={day.reward!.image}
                       alt={day.reward!.name}
+                      draggable={false}
                       style={{
                         width: "100%",
                         height: "100%",
@@ -1852,6 +1855,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                         filter: day.isChecked ? "none" : "grayscale(0.6)",
                         opacity: day.isChecked ? 1 : 0.4,
                         transition: "filter 0.4s ease, opacity 0.4s ease",
+                        pointerEvents: "none",
                       }}
                     />
 
@@ -2065,6 +2069,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
 
       <style>{`
         [data-streak-scroll]::-webkit-scrollbar { display: none; }
+        [data-streak-scroll] img { -webkit-user-drag: none; user-select: none; pointer-events: none; }
         @keyframes streakCirclePop {
           0% { transform: scale(0); opacity: 0; }
           100% { transform: scale(1); opacity: 1; }
