@@ -277,15 +277,8 @@ export default function Header() {
         }}
       >
         {/* ── Left: AG1 Logo ── */}
-        <div ref={logoRef} style={{ position: "relative", flexShrink: 0 }}>
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              setDropdownOpen((p) => !p);
-            }}
-            style={{ display: "block", lineHeight: 0 }}
-          >
+        <div style={{ flexShrink: 0 }}>
+          <a href="#" onClick={(e) => e.preventDefault()} style={{ display: "block", lineHeight: 0 }}>
             <svg viewBox="0 0 123 55" fill="none" style={{ width: "90px", height: "40px" }}>
               <path fill="#0F2E2F" d="M38.598 36.4008L46.0412 53.8289C46.0742 53.9279 46.1733 53.994 46.2723 53.994H51.9331C52.1147 53.994 52.2467 53.7959 52.1642 53.6308L29.9995 1.7427C29.9665 1.64367 29.8675 1.5777 29.7685 1.5777H23.4144C23.3154 1.5777 23.2164 1.64367 23.1834 1.7427L1.01877 53.6308C0.952759 53.7959 1.06821 53.994 1.24975 53.994H6.91056C7.00958 53.994 7.10863 53.9279 7.14164 53.8289L14.3703 36.9289L13.2316 37.3911H40.2979L38.598 36.4008ZM37.6903 31.6807H15.7896L16.2683 32.4399L26.4677 8.52576H26.6988L37.0466 32.7534L37.6903 31.6807Z" />
               <path fill="#0F2E2F" d="M98.5895 25.9703H93.1267H69.8562C69.7077 25.9703 69.5922 26.0859 69.5922 26.2345V31.4166C69.5922 31.5651 69.7077 31.6807 69.8562 31.6807H93.5557L93.1927 31.2021C93.1927 35.5426 88.9346 49.0263 73.5531 49.0263C60.7461 49.0263 53.0553 39.1239 53.0553 27.5052C53.0553 16.2331 61.1422 6.66081 73.8172 6.66081C82.4652 6.66081 87.994 10.5392 90.8161 16.1836C90.8656 16.2661 90.9482 16.3321 91.0472 16.3321H96.873C97.0546 16.3321 97.1701 16.1506 97.1206 15.9855C94.7441 8.98789 87.6143 1 73.6521 1C57.9899 1 47.2295 12.7838 47.2295 27.5878C47.2295 42.4248 57.1647 54.7036 73.5531 54.7036C88.2085 54.7036 99.0846 44.1576 99.0846 27.8518C99.0846 27.3897 99.0845 26.8121 99.0185 26.4325C98.969 26.1849 98.8865 25.9703 98.5895 25.9703Z" />
@@ -294,29 +287,42 @@ export default function Header() {
               <path fill="#023D3D" d="M119.372 1.62059C117.787 1.62059 116.5 2.90574 116.5 4.4893C116.5 6.07285 117.787 7.35801 119.372 7.35801C120.958 7.35801 122.245 6.07285 122.245 4.4893C122.245 2.90574 120.958 1.62059 119.372 1.62059ZM119.372 6.87311C118.055 6.87311 116.982 5.80158 116.982 4.48591C116.982 3.17023 118.055 2.09871 119.372 2.09871C120.69 2.09871 121.763 3.17023 121.763 4.48591C121.763 5.80158 120.69 6.87311 119.372 6.87311Z" />
             </svg>
           </a>
-
-          <ProgramDropdown
-            open={dropdownOpen}
-            totalSpend={totalSpend}
-            currentPoints={currentPoints}
-            setTotalSpend={setTotalSpend}
-            setCurrentPoints={setCurrentPoints}
-            closeAll={closeAll}
-            openSub={openSub}
-            setOpenSub={setOpenSub}
-            activeFeatured={activeFeatured}
-            setActiveFeatured={setActiveFeatured}
-            activeMembership={activeMembership}
-            setActiveMembership={setActiveMembership}
-            activeSweepstakes={activeSweepstakes}
-            setActiveSweepstakes={setActiveSweepstakes}
-            activeHeader={activeHeader}
-            setActiveHeader={setActiveHeader}
-          />
         </div>
 
         {/* ── Right: Nav links + Shop All + icons ── */}
         <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
+          {/* Program — opens version-switching dropdown */}
+          <div ref={logoRef} style={{ position: "relative" }}>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setDropdownOpen((p) => !p);
+              }}
+              style={navLink}
+            >
+              Program
+            </a>
+            <ProgramDropdown
+              open={dropdownOpen}
+              totalSpend={totalSpend}
+              currentPoints={currentPoints}
+              setTotalSpend={setTotalSpend}
+              setCurrentPoints={setCurrentPoints}
+              closeAll={closeAll}
+              openSub={openSub}
+              setOpenSub={setOpenSub}
+              activeFeatured={activeFeatured}
+              setActiveFeatured={setActiveFeatured}
+              activeMembership={activeMembership}
+              setActiveMembership={setActiveMembership}
+              activeSweepstakes={activeSweepstakes}
+              setActiveSweepstakes={setActiveSweepstakes}
+              activeHeader={activeHeader}
+              setActiveHeader={setActiveHeader}
+            />
+          </div>
+
           {/* AG1 for Daily Health */}
           <a href="#" style={navLink}>
             AG1 for Daily Health
