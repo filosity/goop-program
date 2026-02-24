@@ -353,7 +353,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                     fontWeight: 400,
                     lineHeight: 1,
                     color: "#000000",
-                    margin: "0 0 12px 0",
+                    margin: "0 0 20px 0",
                     letterSpacing: "-0.02em",
                   }}
                 >

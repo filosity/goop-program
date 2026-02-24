@@ -302,7 +302,7 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
                     fontSize: "32px",
                     fontWeight: 400,
                     color: "#000000",
-                    margin: "0 0 12px 0",
+                    margin: "0 0 20px 0",
                     lineHeight: 1,
                     letterSpacing: "-0.02em",
                   }}
