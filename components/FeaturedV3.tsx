@@ -67,10 +67,10 @@ const eventItems = [
 /* ─── Avatar helpers ─── */
 
 const pastelColors = [
-  "#b8d8e8", "#7bb8d0", "#b5e2d5", "#f0c4d0", "#d4b8e8",
-  "#f5d6a8", "#a8d8c0", "#c4d4f0", "#e8c8b8", "#b0d4b8",
-  "#d0b8e0", "#a8c8e8", "#e0d4a8", "#c0e0d0", "#f0b8c4",
-  "#b8c8f0", "#d8e0a8", "#e8b8d0", "#a8e0d8", "#c8b8e8",
+  "#0C3D3D", "#14504F", "#1a6b5a", "#0d8b87", "#2d8f6f",
+  "#0a3030", "#276b5d", "#3da88a", "#1b5e5e", "#0f4a4a",
+  "#347a6c", "#2a9d8f", "#1c7c6b", "#0e6363", "#3b8b7a",
+  "#245c52", "#1a7a6a", "#0b5454", "#2e7d6d", "#3c9585",
 ];
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -123,7 +123,7 @@ function SocialDots({ cardIndex }: { cardIndex: number }) {
               fontFamily: "var(--font-sans)",
               fontSize: "9px",
               fontWeight: 700,
-              color: "#1a2a3a",
+              color: "#ffffff",
               lineHeight: 1,
             }}
           >
