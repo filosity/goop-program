@@ -1697,7 +1697,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
     <div
       style={{
         border: "1px solid #d4e0df",
-        backgroundColor: "#F6F5F1",
+        backgroundColor: "#ffffff",
         padding: "48px",
       }}
     >
