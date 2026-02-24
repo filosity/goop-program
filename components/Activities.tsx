@@ -2291,9 +2291,6 @@ export default function Activities() {
               border: "1px solid #0C3D3D",
             }}
           >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill={activeTab === "streak" ? "#ffffff" : "#0C3D3D"} style={{ marginRight: "4px", flexShrink: 0, verticalAlign: "middle" }}>
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg>
             Daily Streak{" "}
             <span
               style={{
@@ -2302,7 +2299,10 @@ export default function Activities() {
                 marginLeft: "6px",
               }}
             >
-              (<span style={{ fontWeight: 600, color: activeTab === "streak" ? "rgba(255,255,255,0.45)" : "#aaaaaa" }}>{streakStreak}</span>)
+              (<span style={{ fontWeight: 600, color: activeTab === "streak" ? "rgba(255,255,255,0.45)" : "#aaaaaa" }}>{streakStreak}</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill={activeTab === "streak" ? "rgba(255,255,255,0.45)" : "#aaaaaa"} style={{ marginLeft: "3px", verticalAlign: "middle", position: "relative", top: "-1px" }}>
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>)
             </span>
           </button>
           {/* Achievements tab */}
