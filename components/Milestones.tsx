@@ -355,6 +355,26 @@ export default function Milestones() {
     return () => clearTimeout(timeout);
   }, [currentMonth]);
 
+  /* Dispatch subscription update whenever state changes */
+  useEffect(() => {
+    if (!subscribed) return;
+    const days = (currentMonth - 1) * 30 + 15;
+    window.dispatchEvent(new CustomEvent("subscription-updated", { detail: { subscribed: true, days, month: currentMonth } }));
+  }, [subscribed, currentMonth]);
+
+  /* Listen for subscribe from hero */
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.source === "hero" && !subscribed) {
+        setSubscribed(true);
+        setCurrentMonth(1);
+      }
+    };
+    window.addEventListener("subscription-updated", handler);
+    return () => window.removeEventListener("subscription-updated", handler);
+  }, [subscribed]);
+
   const handleSubscribe = useCallback(() => {
     setSubscribed(true);
     setCurrentMonth(1);

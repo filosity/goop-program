@@ -473,7 +473,7 @@ export default function Referrals() {
               position: "absolute",
               top: 0,
               left: 0,
-              right: "-50vw",
+              right: "calc(-1 * (50vw - 640px))",
               bottom: 0,
               overflow: "hidden",
             }}
@@ -485,6 +485,7 @@ export default function Referrals() {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
+                objectPosition: "center center",
                 display: "block",
               }}
             />

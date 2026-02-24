@@ -5,6 +5,9 @@ import { useState, useEffect, useRef } from "react";
 export default function HeroSectionV2() {
   const [userPoints, setUserPoints] = useState(50);
   const [visible, setVisible] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [subDays, setSubDays] = useState(0);
+  const [subBtnHovered, setSubBtnHovered] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -28,11 +31,26 @@ export default function HeroSectionV2() {
       const detail = (e as CustomEvent).detail;
       if (detail?.points !== undefined) setUserPoints(detail.points);
     };
+    const subHandler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.subscribed) {
+        setIsSubscribed(true);
+        if (detail.days !== undefined) setSubDays(detail.days);
+      }
+    };
     window.addEventListener("points-updated", pointsHandler);
+    window.addEventListener("subscription-updated", subHandler);
     return () => {
       window.removeEventListener("points-updated", pointsHandler);
+      window.removeEventListener("subscription-updated", subHandler);
     };
   }, []);
+
+  const handleHeroSubscribe = () => {
+    setIsSubscribed(true);
+    setSubDays(15);
+    window.dispatchEvent(new CustomEvent("subscription-updated", { detail: { subscribed: true, days: 15, month: 1, source: "hero" } }));
+  };
 
   return (
     <section
@@ -160,7 +178,7 @@ export default function HeroSectionV2() {
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "44px",
+                fontSize: "32px",
                 fontWeight: 400,
                 color: "#000000",
                 margin: "0 0 4px 0",
@@ -173,7 +191,7 @@ export default function HeroSectionV2() {
             <p
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "11px",
+                fontSize: "10px",
                 fontWeight: 600,
                 color: "#1a1a1a",
                 margin: "0 0 4px 0",
@@ -187,7 +205,7 @@ export default function HeroSectionV2() {
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "14px",
+                fontSize: "12px",
                 fontWeight: 400,
                 color: "#6b8a89",
                 margin: "0 0 8px 0",
@@ -200,7 +218,7 @@ export default function HeroSectionV2() {
               href="#"
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "15px",
+                fontSize: "13px",
                 fontWeight: 500,
                 color: "#6b8a89",
                 textDecoration: "underline",
@@ -232,32 +250,72 @@ export default function HeroSectionV2() {
               paddingLeft: "40px",
             }}
           >
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "44px",
-                fontWeight: 400,
-                color: "#000000",
-                margin: "0 0 4px 0",
-                lineHeight: 1,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Active subscriber
-            </p>
-
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "18px",
-                fontWeight: 400,
-                color: "#1a1a1a",
-                margin: "0",
-                lineHeight: 1.4,
-              }}
-            >
-              Member since Jan 2026
-            </p>
+            {isSubscribed ? (
+              <>
+                <p
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "32px",
+                    fontWeight: 400,
+                    color: "#000000",
+                    margin: "0 0 4px 0",
+                    lineHeight: 1,
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  Active subscriber
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "14px",
+                    fontWeight: 400,
+                    color: "#1a1a1a",
+                    margin: "0",
+                    lineHeight: 1.4,
+                  }}
+                >
+                  Member since Jan 2026
+                </p>
+              </>
+            ) : (
+              <>
+                <p
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "32px",
+                    fontWeight: 400,
+                    color: "#000000",
+                    margin: "0 0 12px 0",
+                    lineHeight: 1,
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  Not subscribed
+                </p>
+                <button
+                  onClick={handleHeroSubscribe}
+                  onMouseEnter={() => setSubBtnHovered(true)}
+                  onMouseLeave={() => setSubBtnHovered(false)}
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "15px",
+                    fontWeight: 600,
+                    color: subBtnHovered ? "#000000" : "#ffffff",
+                    backgroundColor: subBtnHovered ? "#46DE46" : "#0C3D3D",
+                    border: "none",
+                    minHeight: "44px",
+                    padding: "0 28px",
+                    borderRadius: "999px",
+                    cursor: "pointer",
+                    transition: "background-color 0.2s ease, color 0.2s ease",
+                    alignSelf: "flex-start",
+                  }}
+                >
+                  Subscribe →
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>

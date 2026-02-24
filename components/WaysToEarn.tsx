@@ -20,7 +20,7 @@ const earnCards = [
     action: null,
     image: "/earn1.jpg",
     input: null,
-    description: "Currently subscribed for 15 days",
+    description: null,
   },
   {
     title: "Be a Member\nfor 1 year",
@@ -29,7 +29,7 @@ const earnCards = [
     action: null,
     image: "/earn2.jpg",
     input: null,
-    description: "Currently subscribed for 15 days",
+    description: null,
   },
   {
     title: "Connect\nInstagram",
@@ -122,6 +122,7 @@ function EarnCard({
   onComplete,
   highlighted,
   anyHighlighted,
+  subscriptionDays = 0,
 }: {
   card: (typeof earnCards)[0];
   index: number;
@@ -130,6 +131,7 @@ function EarnCard({
   onComplete: () => void;
   highlighted: boolean;
   anyHighlighted: boolean;
+  subscriptionDays?: number;
 }) {
   const isDone = completed;
   const isChecking = phase === "check";
@@ -249,7 +251,19 @@ function EarnCard({
           >
             {card.title}
           </p>
-          {card.description && (
+          {(index === 1 || index === 2) && subscriptionDays > 0 && (
+            <p style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "12px",
+              fontWeight: 500,
+              color: "rgba(255,255,255,0.6)",
+              margin: "6px 0 0 0",
+              lineHeight: 1.3,
+            }}>
+              Currently subscribed for {subscriptionDays} days
+            </p>
+          )}
+          {card.description && index !== 1 && index !== 2 && (
             <p style={{
               fontFamily: "var(--font-sans)",
               fontSize: "12px",
@@ -1927,6 +1941,7 @@ export default function WaysToEarn() {
   }, []);
   const [totalPoints, setTotalPoints] = useState(5);
   const [currentTier, setCurrentTier] = useState(0);
+  const [subscriptionDays, setSubscriptionDays] = useState(0);
 
   useEffect(() => {
     const handler = () => {
@@ -1957,12 +1972,19 @@ export default function WaysToEarn() {
       }
     };
     const activateProducts = () => setActiveTab("products");
+    const subHandler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.subscribed && detail?.days !== undefined) {
+        setSubscriptionDays(detail.days);
+      }
+    };
     window.addEventListener("highlight-earn-handles", handler);
     window.addEventListener("activate-earn-tab", activateEarn);
     window.addEventListener("activate-products-tab", activateProducts);
     window.addEventListener("points-updated", pointsHandler);
     window.addEventListener("tier-updated", tierHandler);
     window.addEventListener("spend-updated", spendHandler);
+    window.addEventListener("subscription-updated", subHandler);
     return () => {
       window.removeEventListener("highlight-earn-handles", handler);
       window.removeEventListener("activate-earn-tab", activateEarn);
@@ -1970,8 +1992,40 @@ export default function WaysToEarn() {
       window.removeEventListener("points-updated", pointsHandler);
       window.removeEventListener("tier-updated", tierHandler);
       window.removeEventListener("spend-updated", spendHandler);
+      window.removeEventListener("subscription-updated", subHandler);
     };
   }, []);
+
+  /* Auto-complete membership cards based on subscription days */
+  useEffect(() => {
+    if (subscriptionDays <= 0) return;
+    const autoComplete = (index: number) => {
+      if (completedCards.has(index)) return;
+      const next = new Set(completedCards);
+      next.add(index);
+      setCompletedCards(next);
+      const card = earnCards[index];
+      if (card?.points) {
+        const match = card.points.match(/\+\$(\d+(?:\.\d+)?)/);
+        if (match) {
+          const dollars = parseFloat(match[1]);
+          setTotalPoints(prev => {
+            const newTotal = Math.round((prev + dollars) * 100) / 100;
+            setTimeout(() => {
+              window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
+            }, 0);
+            return newTotal;
+          });
+        }
+      }
+    };
+    // Index 0: Sign up for a subscription — immediately on subscribe
+    if (subscriptionDays > 0) autoComplete(0);
+    // Index 1: Be a Member for 90 days
+    if (subscriptionDays >= 90) autoComplete(1);
+    // Index 2: Be a Member for 1 year (365 days)
+    if (subscriptionDays >= 365) autoComplete(2);
+  }, [subscriptionDays, completedCards]);
 
   const handlePointsChange = useCallback((newTotal: number) => {
     setTotalPoints(newTotal);
@@ -2211,6 +2265,7 @@ export default function WaysToEarn() {
                     onComplete={() => handleComplete(i)}
                     highlighted={highlightedCards.has(i)}
                     anyHighlighted={highlightedCards.size > 0}
+                    subscriptionDays={subscriptionDays}
                   />
                 ))}
             </div>
