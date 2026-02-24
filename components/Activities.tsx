@@ -486,6 +486,9 @@ function AchievementCard({
                       border: "1px solid #d4e0df",
                       borderRight: "none",
                       padding: "10px 14px",
+                      minHeight: "52px",
+                      display: "flex",
+                      alignItems: "center",
                       lineHeight: 1,
                       flex: 1,
                     }}
