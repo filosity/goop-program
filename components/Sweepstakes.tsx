@@ -228,7 +228,7 @@ export default function Sweepstakes() {
               border: "1px solid #0C3D3D",
             }}
           >
-            AG1 Limited Edition Bottle Giveaway
+            Join The Sweepstakes
           </button>
           <button
             onClick={() => setActiveTab("past")}
@@ -330,9 +330,9 @@ export default function Sweepstakes() {
                     cursor: "pointer",
                   }}
                 >
-                  AG1 Puffer Jacket
+                  AG1 Limited Edition
                   <br />
-                  Giveaway
+                  Bottle Giveaway
                 </h2>
 
                 {/* Separator */}
@@ -623,7 +623,7 @@ export default function Sweepstakes() {
                 letterSpacing: "-0.01em",
               }}
             >
-              AG1 Puffer Jacket Giveaway
+              AG1 Limited Edition Bottle Giveaway
             </h3>
             <p
               style={{
@@ -900,9 +900,9 @@ export default function Sweepstakes() {
                       cursor: "pointer",
                     }}
                   >
-                    AG1 Puffer Jacket
+                    AG1 Limited Edition
                     <br />
-                    Giveaway
+                    Bottle Giveaway
                   </h2>
                 </div>
               </div>
