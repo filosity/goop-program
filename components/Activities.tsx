@@ -1603,10 +1603,10 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
     const reward = getReward(dayNum);
     if (reward && !claimedRewards.has(dayNum)) {
       setCelebratingReward(dayNum);
-      setTimeout(() => setCelebratingReward(null), 1600);
+      setTimeout(() => setCelebratingReward(null), 2400);
       setTimeout(() => {
         setClaimedRewards((prev) => { const next = new Set(prev); next.add(dayNum); return next; });
-      }, 600);
+      }, 900);
     }
   }, [currentDay, hasCheckedOnce, showCheckedMessage, getReward, claimedRewards]);
 
@@ -1618,8 +1618,8 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
     setTimeout(() => {
       setClaimedRewards((prev) => { const next = new Set(prev); next.add(dayNum); return next; });
       setClaimingReward(null);
-    }, 800);
-    setTimeout(() => setCelebratingReward(null), 1600);
+    }, 1000);
+    setTimeout(() => setCelebratingReward(null), 2400);
   }, [claimedRewards, claimingReward]);
 
   const handleCopyCode = useCallback((code: string, dayNum: number) => {
@@ -2028,11 +2028,11 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                       {/* Confetti */}
                       {day.isCelebrating && (
                         <div style={{ position: "absolute", inset: 0, zIndex: 10, pointerEvents: "none", overflow: "visible" }}>
-                          {Array.from({ length: 25 }).map((_, i) => {
-                            const w = 3 + Math.random() * 4;
-                            const h = i % 4 === 0 ? w : (2 + Math.random() * 3);
+                          {Array.from({ length: 30 }).map((_, i) => {
+                            const w = 5 + Math.random() * 6;
+                            const h = i % 4 === 0 ? w : (3 + Math.random() * 5);
                             const angle = Math.random() * Math.PI * 2;
-                            const dist = 30 + Math.random() * 80;
+                            const dist = 40 + Math.random() * 110;
                             const dx = Math.cos(angle) * dist;
                             const dy = Math.sin(angle) * dist;
                             const spin = 180 + Math.random() * 540;
@@ -2047,7 +2047,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                                   borderRadius: i % 4 === 0 ? "50%" : "1px",
                                   backgroundColor: colors[i % colors.length],
                                   opacity: 0,
-                                  animation: `streakConfetti ${1.2 + Math.random() * 0.4}s cubic-bezier(0.12, 0.8, 0.2, 1) ${i * 0.006}s forwards`,
+                                  animation: `streakConfetti ${1.8 + Math.random() * 0.6}s cubic-bezier(0.08, 0.82, 0.17, 1) ${i * 0.012}s forwards`,
                                   ["--dx" as string]: `${dx.toFixed(1)}px`,
                                   ["--dy" as string]: `${dy.toFixed(1)}px`,
                                   ["--spin" as string]: `${spin}deg`,
