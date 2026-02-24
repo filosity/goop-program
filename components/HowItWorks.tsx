@@ -358,7 +358,7 @@ function RedeemStep({ active, imageSrc }: { active: boolean; index: number; imag
             position: "absolute",
           }}
         >
-          redeem →
+          Redeem →
         </span>
 
         {/* Spinner — visible in loading */}

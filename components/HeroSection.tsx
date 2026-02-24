@@ -266,7 +266,7 @@ function HeroSectionV1() {
                 textDecorationThickness: "0.5px",
               }}
             >
-              View account activity
+              View Account Activity
             </a>
 
           </div>

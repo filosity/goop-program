@@ -386,7 +386,7 @@ export default function Membership() {
             right: 0,
             bottom: 0,
             width: "50%",
-            backgroundColor: sectionHovered ? "rgba(0,0,0,1)" : "rgba(0,0,0,0.75)",
+            backgroundColor: sectionHovered ? "rgba(12,61,61,1)" : "rgba(12,61,61,0.75)",
             transition: "background-color 0.5s ease",
             zIndex: 1,
           }}
@@ -448,36 +448,21 @@ export default function Membership() {
               fontFamily: "var(--font-sans)",
               fontSize: "18px",
               fontWeight: 600,
-              color: "#0C3D3D",
+              color: btnHovered ? "#000000" : "#0C3D3D",
               backgroundColor: btnHovered
-                ? "rgba(255,255,255,0.85)"
+                ? "#46DE46"
                 : "#ffffff",
               minHeight: "52px",
-              padding: btnHovered ? "0 34px 0 32px" : "0 34px",
+              padding: "0 34px",
               borderRadius: "999px",
               textDecoration: "none",
               lineHeight: 1,
               marginBottom: "36px",
-              transition: "background-color 0.2s ease, padding 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+              transition: "background-color 0.2s ease, color 0.2s ease",
               overflow: "hidden",
             }}
           >
-            {/* 6px black dot — bounces in from bottom on hover */}
-            <span
-              style={{
-                display: "inline-block",
-                width: "6px",
-                height: "6px",
-                borderRadius: "50%",
-                backgroundColor: "#0C3D3D",
-                flexShrink: 0,
-                marginRight: btnHovered ? "8px" : "0px",
-                opacity: btnHovered ? 1 : 0,
-                transform: btnHovered ? "translateY(0)" : "translateY(12px)",
-                transition: "margin-right 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
-              }}
-            />
-            subscribe now →
+            Subscribe Now →
           </a>
 
           {/* Top divider before benefits */}

@@ -41,8 +41,8 @@ export default function PillButtons() {
         justifyContent: "center",
       }}
     >
-      <PillButton label="shop now →" />
-      <PillButton label="rewards history →" />
+      <PillButton label="Shop Now →" />
+      <PillButton label="Rewards History →" />
     </div>
   );
 }

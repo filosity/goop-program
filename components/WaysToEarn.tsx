@@ -32,7 +32,7 @@ const earnCards = [
     title: "Connect\nInstagram",
     points: "+$1 AG Credit",
     icon: "instagram",
-    action: "connect",
+    action: "Connect",
     image: "/earn3.jpg",
     input: "Your Instagram handle",
   },
@@ -40,7 +40,7 @@ const earnCards = [
     title: "Connect\nTikTok",
     points: "+$1 AG Credit",
     icon: "tiktok",
-    action: "connect",
+    action: "Connect",
     image: "/earn4.jpg",
     input: "Your TikTok handle",
   },
@@ -48,7 +48,7 @@ const earnCards = [
     title: "Post IG/TikTok\nwith your AG1",
     points: "+$5 AG Credit",
     icon: "instagram",
-    action: "connect",
+    action: "Connect",
     image: "/earn5.jpg",
     input: null,
   },
@@ -56,7 +56,7 @@ const earnCards = [
     title: "Happy\nBirthday",
     points: "+$1 AG Credit",
     icon: "gift",
-    action: "submit",
+    action: "Submit",
     image: "/earn6.jpg",
     input: "birthday",
   },
@@ -64,7 +64,7 @@ const earnCards = [
     title: "Sign up\nfor SMS",
     points: "+$1 AG Credit",
     icon: "phone",
-    action: "submit",
+    action: "Submit",
     image: "/earn7.jpg",
     input: "Your phone number",
   },
@@ -72,7 +72,7 @@ const earnCards = [
     title: "Leave\na Review",
     points: "+$1 AG Credit",
     icon: "star",
-    action: "review",
+    action: "Review",
     image: "/earn8.jpg",
     input: null,
   },
@@ -673,7 +673,7 @@ function RedeemContent({
               opacity: sliderValue > 0 ? 1 : 0.35,
             }}
           >
-            redeem →
+            Redeem →
           </button>
 
           <button
@@ -694,7 +694,7 @@ function RedeemContent({
               transition: "background-color 0.2s ease, color 0.2s ease",
             }}
           >
-            apply to subscription →
+            Apply To Subscription →
           </button>
         </div>
 
@@ -1364,7 +1364,7 @@ function FreeProductsContent({
                         flexShrink: 0,
                       }}
                     >
-                      {phase === "idle" && <span>redeem →</span>}
+                      {phase === "idle" && <span>Redeem →</span>}
                       {phase === "loading" && (
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ animation: "redeemSpin 0.8s linear infinite" }}>
                           <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.3)" strokeWidth="3" />
@@ -1715,7 +1715,7 @@ function UploadReceiptContent() {
               onMouseLeave={() => setSubmitHovered(false)}
               style={{ alignSelf: "flex-start", fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#ffffff", backgroundColor: submitHovered ? "#155050" : "#0C3D3D", border: "1px solid #0C3D3D", minHeight: "52px", padding: "0 40px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
             >
-              submit receipt →
+              Submit Receipt →
             </button>
           </>
         )}
@@ -1796,14 +1796,14 @@ function UploadReceiptContent() {
                 onMouseLeave={() => setNewUploadHovered(false)}
                 style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#ffffff", backgroundColor: newUploadHovered ? "#155050" : "#0C3D3D", border: "1px solid #0C3D3D", minHeight: "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
               >
-                upload another →
+                Upload Another →
               </button>
               <button
                 onMouseEnter={() => setHistoryHovered(true)}
                 onMouseLeave={() => setHistoryHovered(false)}
                 style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: historyHovered ? "#ffffff" : "#0C3D3D", backgroundColor: historyHovered ? "#0C3D3D" : "transparent", border: "1px solid #0C3D3D", minHeight: "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease, color 0.2s ease" }}
               >
-                view history →
+                View History →
               </button>
             </div>
           </>
@@ -2078,7 +2078,7 @@ export default function WaysToEarn() {
               border: activeTab === "earn" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
             }}
           >
-            ways to earn{" "}
+            Ways To Earn{" "}
             <span
               style={{
                 fontWeight: 400,
@@ -2108,7 +2108,7 @@ export default function WaysToEarn() {
               border: activeTab === "exchange" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
             }}
           >
-            exchange AG Credit
+            Exchange AG Credit
           </button>
 
           <button
@@ -2129,7 +2129,7 @@ export default function WaysToEarn() {
               border: activeTab === "products" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
             }}
           >
-            free products
+            Free Products
           </button>
 
           <button
@@ -2150,7 +2150,7 @@ export default function WaysToEarn() {
               border: activeTab === "upload" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
             }}
           >
-            upload receipt
+            Upload Receipt
           </button>
         </div>
 

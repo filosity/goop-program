@@ -203,7 +203,7 @@ function AchievementCard({
                   animation: "achieveClaimIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
                 }}
               >
-                claim →
+                Claim →
               </button>
             )}
           </div>
@@ -509,7 +509,7 @@ function AchievementCard({
                       whiteSpace: "nowrap",
                     }}
                   >
-                    {copied ? "copied!" : "copy"}
+                    {copied ? "Copied!" : "Copy"}
                   </button>
                 </div>
                 {/* Tooltip — above copy button */}
@@ -1295,7 +1295,7 @@ function VotingVersion3({
                 transition: "background-color 0.2s ease",
               }}
             >
-              submit →
+              Submit →
             </button>
           </div>
         </div>
@@ -1889,7 +1889,7 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
               lineHeight: 1,
             }}
           >
-            Check in today →
+            Check In Today →
           </button>
         )}
       </div>
@@ -2014,7 +2014,7 @@ export default function Activities() {
               border: activeTab === "achievements" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
             }}
           >
-            achievements{" "}
+            Achievements{" "}
             <span
               style={{
                 fontWeight: 400,
@@ -2043,7 +2043,7 @@ export default function Activities() {
               border: activeTab === "voting" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
             }}
           >
-            voting{" "}
+            Voting{" "}
             <span
               style={{
                 fontWeight: 400,

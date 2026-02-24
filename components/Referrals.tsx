@@ -294,7 +294,7 @@ export default function Referrals() {
               marginTop: "28px",
             }}
           >
-            send invite →
+            Send Invite →
           </button>
 
           {/* Divider */}
@@ -363,7 +363,7 @@ export default function Referrals() {
                 <path d="M5 15H4a1 1 0 01-1-1V4a1 1 0 011-1h10a1 1 0 011 1v1" />
               </svg>
             )}
-            {copied ? "copied!" : referralLink}
+            {copied ? "Copied!" : referralLink}
           </button>
 
           {/* Social icons */}

@@ -209,7 +209,7 @@ export default function HeroSectionV2() {
                 letterSpacing: "0.02em",
               }}
             >
-              View activity
+              View Activity
             </a>
           </div>
 

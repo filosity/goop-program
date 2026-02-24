@@ -507,7 +507,7 @@ function CommunityFeed() {
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
           >
-            show more
+            Show More
           </button>
         )}
         {visibleCount > 4 && (
@@ -517,7 +517,7 @@ function CommunityFeed() {
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
-            collapse
+            Collapse
           </button>
         )}
       </div>
@@ -667,7 +667,7 @@ function EventCalendarCard({
               display: "inline-block",
             }}
           >
-            {"read more \u2192"}
+            {"Read More \u2192"}
           </a>
         </div>
       </div>
@@ -717,7 +717,7 @@ function EventsFeed() {
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
           >
-            show more
+            Show More
           </button>
         )}
         {visibleCount > 4 && (
@@ -727,7 +727,7 @@ function EventsFeed() {
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
-            collapse
+            Collapse
           </button>
         )}
       </div>
@@ -943,7 +943,7 @@ function FeaturedCard({
                 transition: "background-color 0.2s ease, color 0.2s ease",
               }}
             >
-              {card.button.toLowerCase() + " \u2192"}
+              {card.button.toLowerCase().replace(/\b\w/g, c => c.toUpperCase()) + " \u2192"}
             </a>
           )}
 
@@ -1022,7 +1022,7 @@ function FeaturedCard({
                     whiteSpace: "nowrap",
                   }}
                 >
-                  {copied ? "copied!" : "copy"}
+                  {copied ? "Copied!" : "Copy"}
                 </button>
               </div>
               <p
@@ -1195,7 +1195,7 @@ export default function Featured() {
               border: activeTab === "activity" ? "1px solid #0C3D3D" : featuredHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
             }}
           >
-            featured
+            Featured
           </button>
 
           {/* Community tab */}
@@ -1220,7 +1220,7 @@ export default function Featured() {
               border: activeTab === "community" ? "1px solid #0C3D3D" : communityHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
             }}
           >
-            community
+            Community
             {showDot && (
               <div style={{ display: "inline-block", width: "6px", height: "6px", borderRadius: "50%", backgroundColor: activeTab === "community" ? "#ffffff" : "#e53935", marginLeft: "6px", flexShrink: 0 }} />
             )}
@@ -1249,7 +1249,7 @@ export default function Featured() {
               border: activeTab === "events" ? "1px solid #0C3D3D" : eventsHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
             }}
           >
-            events
+            Events
             {showEventsDot && (
               <div style={{ display: "inline-block", width: "6px", height: "6px", borderRadius: "50%", backgroundColor: activeTab === "events" ? "#ffffff" : "#2196f3", marginLeft: "6px", flexShrink: 0 }} />
             )}

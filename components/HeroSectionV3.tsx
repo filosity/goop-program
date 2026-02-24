@@ -136,7 +136,7 @@ export default function HeroSectionV3() {
                 textDecorationThickness: "0.5px",
               }}
             >
-              View activity
+              View Activity
             </a>
           </div>
           <div style={{ textAlign: "right" }}>

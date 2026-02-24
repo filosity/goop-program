@@ -225,7 +225,7 @@ export default function Sweepstakes() {
               border: "1px solid #0C3D3D",
             }}
           >
-            join the sweepstakes
+            Join The Sweepstakes
           </button>
           <button
             onClick={() => setActiveTab("past")}
@@ -250,7 +250,7 @@ export default function Sweepstakes() {
               border: "1px solid #0C3D3D",
             }}
           >
-            past winners
+            Past Winners
           </button>
         </div>
 
