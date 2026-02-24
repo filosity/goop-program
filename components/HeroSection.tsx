@@ -188,7 +188,7 @@ function HeroSectionV1() {
             transition: "opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s",
           }}
         >
-          AG Credit rewards
+          AG1 rewards
         </p>
 
         {/* Heading */}

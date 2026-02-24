@@ -139,7 +139,7 @@ export default function HeroSectionV2() {
                 lineHeight: 1,
               }}
             >
-              AG Credit rewards
+              AG1 rewards
             </p>
             <p
               style={{
