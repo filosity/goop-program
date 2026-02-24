@@ -2289,18 +2289,16 @@ export default function Activities() {
               backgroundColor: activeTab === "streak" ? "#0C3D3D" : streakTabHovered ? "rgba(12,61,61,0.06)" : "transparent",
               color: activeTab === "streak" ? "#ffffff" : "#0C3D3D",
               border: "1px solid #0C3D3D",
+              display: "inline-flex",
+              alignItems: "center",
+              whiteSpace: "nowrap",
+              gap: "6px",
             }}
           >
-            Daily Streak{" "}
-            <span
-              style={{
-                fontWeight: 400,
-                color: activeTab === "streak" ? "rgba(255,255,255,0.45)" : "#aaaaaa",
-                marginLeft: "6px",
-              }}
-            >
+            Daily Streak
+            <span style={{ fontWeight: 400, color: activeTab === "streak" ? "rgba(255,255,255,0.45)" : "#aaaaaa", display: "inline-flex", alignItems: "center" }}>
               (<span style={{ fontWeight: 600, color: activeTab === "streak" ? "rgba(255,255,255,0.45)" : "#aaaaaa" }}>{streakStreak}</span>
-              <svg width="10" height="10" viewBox="0 0 24 24" fill={activeTab === "streak" ? "rgba(255,255,255,0.45)" : "#aaaaaa"} style={{ marginLeft: "3px", verticalAlign: "middle", position: "relative", top: "-1px" }}>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill={activeTab === "streak" ? "rgba(255,255,255,0.45)" : "#aaaaaa"} style={{ marginLeft: "2px" }}>
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>)
             </span>
