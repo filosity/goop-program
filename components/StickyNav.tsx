@@ -3,7 +3,6 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 
 const sections = [
-  { id: "section-featured", label: "featured" },
   { id: "section-milestones", label: "subscriber milestones" },
   { id: "section-sweepstakes", label: "sweepstakes" },
   { id: "section-ways-to-earn", label: "AG Credit" },
@@ -289,9 +288,9 @@ export default function StickyNav() {
         {/* Rewards box */}
         <div
           style={{
-            marginTop: "12px",
+            marginTop: "16px",
             borderTop: "1px solid #d4e0df",
-            paddingTop: "12px",
+            paddingTop: "20px",
           }}
         >
           <p
@@ -307,7 +306,7 @@ export default function StickyNav() {
               whiteSpace: "nowrap",
             }}
           >
-            rewards available to spend
+            rewards available
           </p>
           <p
             style={{

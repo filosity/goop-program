@@ -1550,6 +1550,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
   const [copiedRewardDay, setCopiedRewardDay] = useState<number | null>(null);
   const [hasCheckedOnce, setHasCheckedOnce] = useState(false);
   const [showCheckedMessage, setShowCheckedMessage] = useState(false);
+  const [earnedDay, setEarnedDay] = useState<number | null>(null);
 
   const currentDay = 1 + checkedCount;
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -1557,6 +1558,17 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
   const dragStartX = useRef(0);
   const dragScrollLeft = useRef(0);
   const hasDragged = useRef(false);
+  const checkinPointsRef = useRef(5);
+
+  // Sync points from other components
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.points !== undefined) checkinPointsRef.current = detail.points;
+    };
+    window.addEventListener("points-updated", handler);
+    return () => window.removeEventListener("points-updated", handler);
+  }, []);
 
   useEffect(() => { onStreakChange(checkedCount); }, [checkedCount, onStreakChange]);
 
@@ -1581,9 +1593,17 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
       setHasCheckedOnce(true);
       setTimeout(() => setShowCheckedMessage(false), 2800);
     }
+    // Award $0.25 AG Credit for each check-in
+    const newTotal = Math.round((checkinPointsRef.current + 0.25) * 100) / 100;
+    checkinPointsRef.current = newTotal;
+    window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
+    setEarnedDay(dayNum);
+    setTimeout(() => setEarnedDay(null), 1800);
     // Auto-claim reward if checking in on a reward day
     const reward = getReward(dayNum);
     if (reward && !claimedRewards.has(dayNum)) {
+      setCelebratingReward(dayNum);
+      setTimeout(() => setCelebratingReward(null), 1600);
       setTimeout(() => {
         setClaimedRewards((prev) => { const next = new Set(prev); next.add(dayNum); return next; });
       }, 600);
@@ -1894,7 +1914,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
             height: "3px",
             backgroundColor: "#0d8b87",
             zIndex: 1,
-            transition: "width 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+            transition: "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
             width: `${progressWidth}px`,
           }} />
 
@@ -1945,7 +1965,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                           : day.isRewardEarned && !day.isRewardClaimed
                             ? "0 0 0 3px rgba(232,145,58,0.2)"
                             : "none",
-                        transition: "border-color 0.3s ease, box-shadow 0.3s ease",
+                        transition: "border-color 0.5s ease, box-shadow 0.5s ease",
                         flexShrink: 0,
                       }}
                     >
@@ -1961,7 +1981,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                           display: "block",
                           filter: day.isChecked ? "none" : "grayscale(0.6)",
                           opacity: day.isChecked ? 1 : 0.4,
-                          transition: "filter 0.4s ease, opacity 0.4s ease",
+                          transition: "filter 0.6s ease, opacity 0.6s ease",
                           pointerEvents: "none",
                         }}
                       />
@@ -2050,7 +2070,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                         border: day.isToday ? "3px solid #0d8b87" : "none",
                         boxShadow: day.isToday ? "0 0 0 3px rgba(13,139,135,0.2)" : "none",
                         cursor: isClickable ? "pointer" : "default",
-                        transition: "background-color 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease",
+                        transition: "background-color 0.5s ease, box-shadow 0.5s ease, width 0.5s ease, height 0.5s ease",
                         flexShrink: 0,
                       }}
                     />
@@ -2060,7 +2080,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                 {/* Day label */}
                 <span style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "14px",
+                  fontSize: "11px",
                   fontWeight: day.isToday ? 700 : 500,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
@@ -2074,11 +2094,30 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                   Day {day.dayNum}
                 </span>
 
+                {/* $0.25 AG Credit for normal checked days */}
+                {!hasReward && (day.isChecked || earnedDay === day.dayNum) && (
+                  <span style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "11px",
+                    fontWeight: 600,
+                    color: "#0d8b87",
+                    lineHeight: 1,
+                    marginTop: "4px",
+                    whiteSpace: "nowrap",
+                    textAlign: "center",
+                    opacity: earnedDay === day.dayNum ? 0 : 1,
+                    transform: earnedDay === day.dayNum ? "translateY(4px)" : "translateY(0)",
+                    animation: earnedDay === day.dayNum ? "streakCreditPop 0.5s ease 0.3s forwards" : "none",
+                  }}>
+                    +$0.25
+                  </span>
+                )}
+
                 {/* Reward info below */}
                 {hasReward ? (
                   day.isRewardClaimed ? (
                     <div style={{ width: "100%", marginTop: "6px" }}>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 600, color: "#0d8b87", textAlign: "center", lineHeight: 1.2, display: "block", marginBottom: "4px" }}>
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#0d8b87", textAlign: "center", lineHeight: 1.2, display: "block", marginBottom: "4px" }}>
                         {day.reward!.name}
                       </span>
                       <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
@@ -2124,13 +2163,13 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                   ) : (
                     <span style={{
                       fontFamily: "var(--font-sans)",
-                      fontSize: "11px",
+                      fontSize: "13px",
                       fontWeight: 600,
                       color: day.isChecked ? "#0d8b87" : "#999",
                       textAlign: "center",
                       lineHeight: 1.2,
                       marginTop: "6px",
-                      maxWidth: "110px",
+                      maxWidth: "120px",
                       transition: "color 0.3s ease",
                     }}>
                       {day.reward!.name}
@@ -2205,6 +2244,10 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
         @keyframes streakTextFade {
           from { opacity: 0; transform: translateY(4px); }
           to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes streakCreditPop {
+          0% { opacity: 0; transform: translateY(4px); }
+          100% { opacity: 1; transform: translateY(0); }
         }
         @keyframes streakConfetti {
           0% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
