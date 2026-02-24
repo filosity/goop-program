@@ -272,8 +272,8 @@ export default function Header() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          height: "48px",
-          padding: "0 32px",
+          height: "90px",
+          padding: "0 40px",
         }}
       >
         {/* ── Left: AG1 Logo ── */}
@@ -286,7 +286,7 @@ export default function Header() {
             }}
             style={{ display: "block", lineHeight: 0 }}
           >
-            <svg viewBox="0 0 123 55" fill="none" style={{ width: "52px", height: "23px" }}>
+            <svg viewBox="0 0 123 55" fill="none" style={{ width: "68px", height: "30px" }}>
               <path fill="#0F2E2F" d="M38.598 36.4008L46.0412 53.8289C46.0742 53.9279 46.1733 53.994 46.2723 53.994H51.9331C52.1147 53.994 52.2467 53.7959 52.1642 53.6308L29.9995 1.7427C29.9665 1.64367 29.8675 1.5777 29.7685 1.5777H23.4144C23.3154 1.5777 23.2164 1.64367 23.1834 1.7427L1.01877 53.6308C0.952759 53.7959 1.06821 53.994 1.24975 53.994H6.91056C7.00958 53.994 7.10863 53.9279 7.14164 53.8289L14.3703 36.9289L13.2316 37.3911H40.2979L38.598 36.4008ZM37.6903 31.6807H15.7896L16.2683 32.4399L26.4677 8.52576H26.6988L37.0466 32.7534L37.6903 31.6807Z" />
               <path fill="#0F2E2F" d="M98.5895 25.9703H93.1267H69.8562C69.7077 25.9703 69.5922 26.0859 69.5922 26.2345V31.4166C69.5922 31.5651 69.7077 31.6807 69.8562 31.6807H93.5557L93.1927 31.2021C93.1927 35.5426 88.9346 49.0263 73.5531 49.0263C60.7461 49.0263 53.0553 39.1239 53.0553 27.5052C53.0553 16.2331 61.1422 6.66081 73.8172 6.66081C82.4652 6.66081 87.994 10.5392 90.8161 16.1836C90.8656 16.2661 90.9482 16.3321 91.0472 16.3321H96.873C97.0546 16.3321 97.1701 16.1506 97.1206 15.9855C94.7441 8.98789 87.6143 1 73.6521 1C57.9899 1 47.2295 12.7838 47.2295 27.5878C47.2295 42.4248 57.1647 54.7036 73.5531 54.7036C88.2085 54.7036 99.0846 44.1576 99.0846 27.8518C99.0846 27.3897 99.0845 26.8121 99.0185 26.4325C98.969 26.1849 98.8865 25.9703 98.5895 25.9703Z" />
               <path fill="#0F2E2F" d="M114.433 1.56118H109.482C109.333 1.56118 109.235 1.67666 109.218 1.8252C108.805 8.03065 104.168 10.4897 100.306 10.4897C100.157 10.4897 100.042 10.6053 100.042 10.7538V15.9525C100.042 16.101 100.157 16.2166 100.306 16.2166C103.821 16.1671 108.03 14.5167 109.581 12.4867L108.954 11.8761V53.7464C108.954 53.8949 109.069 54.0104 109.218 54.0104H114.417C114.565 54.0104 114.681 53.8949 114.681 53.7464V1.85824C114.697 1.6767 114.582 1.56118 114.433 1.56118Z" />
@@ -316,26 +316,26 @@ export default function Header() {
         </div>
 
         {/* ── Right: Nav links + Shop All + icons ── */}
-        <div style={{ display: "flex", alignItems: "center", gap: "28px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
           {/* AG1 for Daily Health */}
           <a href="#" style={navLink}>
             AG1 for Daily Health
           </a>
 
           {/* AGZ for Sleep + NEW badge */}
-          <a href="#" style={{ ...navLink, display: "inline-flex", alignItems: "center", gap: "6px" }}>
+          <a href="#" style={{ ...navLink, display: "inline-flex", alignItems: "center", gap: "8px" }}>
             AGZ for Sleep
             <span
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "7.5px",
+                fontSize: "8px",
                 fontWeight: 700,
                 letterSpacing: "0.04em",
                 textTransform: "uppercase" as const,
                 color: "#ffffff",
                 backgroundColor: "#1a1a1a",
-                borderRadius: "2px",
-                padding: "2px 4px",
+                borderRadius: "3px",
+                padding: "3px 5px",
                 lineHeight: 1,
               }}
             >
@@ -355,16 +355,18 @@ export default function Header() {
             onMouseLeave={() => setShopHov(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
-              color: "#ffffff",
+              color: "#000000",
               textDecoration: "none",
-              backgroundColor: shopHov ? "#359E52" : "#3DAE5A",
+              backgroundColor: shopHov ? "#3fcb3f" : "#46DE46",
               borderRadius: "999px",
-              padding: "9px 20px",
-              lineHeight: 1,
+              height: "54px",
+              padding: "0 28px",
+              lineHeight: "54px",
               whiteSpace: "nowrap" as const,
               transition: "background-color 0.15s ease",
+              display: "inline-block",
             }}
           >
             Shop All
@@ -372,16 +374,14 @@ export default function Header() {
 
           {/* Cart icon */}
           <a href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 01-8 0" />
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+              <path d="M0.75 0.75H1.93213C2.15479 0.75 2.26612 0.75 2.35571 0.79072C2.43466 0.8266 2.50157 0.8843 2.54846 0.95695C2.60166 1.03939 2.6174 1.14899 2.64889 1.36818L3.07725 4.35M3.07725 4.35L4.02926 11.3083C4.15007 12.1913 4.21048 12.6328 4.42276 12.9651C4.60981 13.258 4.87798 13.4908 5.19499 13.6356C5.55475 13.8 6.00282 13.8 6.89896 13.8H14.6442C15.4973 13.8 15.9238 13.8 16.2724 13.6474C16.5797 13.5128 16.8433 13.2959 17.0338 13.0208C17.2498 12.7089 17.3296 12.2922 17.4892 11.4589L18.6872 5.20472C18.7433 4.91143 18.7714 4.76478 18.7307 4.65015C18.695 4.54959 18.6245 4.46492 18.5319 4.41122C18.4263 4.35 18.2761 4.35 17.9759 4.35H3.07725ZM7.9903 17.85C7.9903 18.3471 7.58515 18.75 7.0853 18.75C6.58546 18.75 6.18026 18.3471 6.18026 17.85C6.18026 17.3529 6.58546 16.95 7.0853 16.95C7.58515 16.95 7.9903 17.3529 7.9903 17.85ZM15.2307 17.85C15.2307 18.3471 14.8255 18.75 14.3257 18.75C13.8258 18.75 13.4206 18.3471 13.4206 17.85C13.4206 17.3529 13.8258 16.95 14.3257 16.95C14.8255 16.95 15.2307 17.3529 15.2307 17.85Z" stroke="#1a1a1a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </a>
 
           {/* Account icon */}
           <a href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
               <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
               <circle cx="12" cy="7" r="4" />
             </svg>
@@ -395,7 +395,7 @@ export default function Header() {
 /* ── Shared nav link style ── */
 const navLink: React.CSSProperties = {
   fontFamily: "var(--font-sans)",
-  fontSize: "13px",
+  fontSize: "15.1px",
   fontWeight: 400,
   color: "#1a1a1a",
   textDecoration: "none",
