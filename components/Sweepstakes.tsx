@@ -306,7 +306,7 @@ export default function Sweepstakes() {
                     fontWeight: 600,
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
-                    color: "#6b8a89",
+                    color: "#0C3D3D",
                     margin: "0 0 16px 0",
                     lineHeight: 1,
                   }}
@@ -421,7 +421,7 @@ export default function Sweepstakes() {
                                 fontFamily: "var(--font-sans)",
                                 fontSize: "11px",
                                 fontWeight: 600,
-                                color: "#6b8a89",
+                                color: "#000000",
                                 lineHeight: 1,
                               }}
                             >
@@ -468,7 +468,7 @@ export default function Sweepstakes() {
                             fontFamily: "var(--font-sans)",
                             fontSize: "14px",
                             fontWeight: 400,
-                            color: "#6b8a89",
+                            color: "#000000",
                             margin: 0,
                             lineHeight: 1.5,
                           }}
@@ -512,7 +512,7 @@ export default function Sweepstakes() {
                         fontFamily: "var(--font-sans)",
                         fontSize: "15px",
                         fontWeight: 400,
-                        color: "#6b8a89",
+                        color: "#000000",
                         margin: "0 0 24px 0",
                         lineHeight: 1.6,
                       }}
@@ -572,7 +572,7 @@ export default function Sweepstakes() {
                         fontFamily: "var(--font-sans)",
                         fontSize: "14px",
                         fontWeight: 400,
-                        color: "#6b8a89",
+                        color: "#000000",
                         margin: 0,
                         lineHeight: 1,
                       }}
@@ -630,7 +630,7 @@ export default function Sweepstakes() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "14px",
                 fontWeight: 400,
-                color: "#6b8a89",
+                color: "#000000",
                 textAlign: "center",
                 margin: "0 0 40px 0",
                 lineHeight: 1.4,
@@ -718,7 +718,7 @@ export default function Sweepstakes() {
                           fontFamily: "var(--font-sans)",
                           fontSize: "12px",
                           fontWeight: 600,
-                          color: "#6b8a89",
+                          color: "#000000",
                           lineHeight: 1,
                         }}
                       >
@@ -744,7 +744,7 @@ export default function Sweepstakes() {
                       fontFamily: "var(--font-sans)",
                       fontSize: "14px",
                       fontWeight: 400,
-                      color: "#6b8a89",
+                      color: "#000000",
                       margin: 0,
                       lineHeight: 1.5,
                     }}
@@ -786,7 +786,7 @@ export default function Sweepstakes() {
                     fontFamily: "var(--font-sans)",
                     fontSize: "15px",
                     fontWeight: 400,
-                    color: "#6b8a89",
+                    color: "#000000",
                     margin: 0,
                     lineHeight: 1.6,
                   }}
@@ -1022,7 +1022,7 @@ export default function Sweepstakes() {
                           fontFamily: "var(--font-sans)",
                           fontSize: "12px",
                           fontWeight: 600,
-                          color: "#6b8a89",
+                          color: "#000000",
                           margin: 0,
                           lineHeight: 1,
                         }}
@@ -1049,7 +1049,7 @@ export default function Sweepstakes() {
                       fontFamily: "var(--font-sans)",
                       fontSize: "15px",
                       fontWeight: 400,
-                      color: "#6b8a89",
+                      color: "#000000",
                       margin: 0,
                       lineHeight: 1.5,
                     }}
@@ -1066,7 +1066,7 @@ export default function Sweepstakes() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "14px",
                 fontWeight: 400,
-                color: "#6b8a89",
+                color: "#000000",
                 textAlign: "center",
                 margin: "32px 0 0 0",
                 lineHeight: 1,
@@ -1099,7 +1099,7 @@ export default function Sweepstakes() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "16px",
                 fontWeight: 400,
-                color: "#6b8a89",
+                color: "#000000",
                 textAlign: "center",
                 margin: "0 0 48px 0",
                 lineHeight: 1.4,

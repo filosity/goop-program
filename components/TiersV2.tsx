@@ -276,7 +276,7 @@ export default function TiersV2() {
               fontFamily: "var(--font-sans)",
               fontSize: "14px",
               fontWeight: 400,
-              color: "#6b8a89",
+              color: "#000000",
               margin: "0",
               lineHeight: 1.4,
             }}

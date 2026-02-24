@@ -160,7 +160,7 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
                 fontFamily: "var(--font-sans)",
                 fontSize: "13px",
                 fontWeight: 400,
-                color: "#6b8a89",
+                color: "#000000",
                 margin: "0 0 6px 0",
                 lineHeight: 1.4,
               }}
@@ -173,7 +173,7 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
                 fontFamily: "var(--font-sans)",
                 fontSize: "15px",
                 fontWeight: 500,
-                color: "#6b8a89",
+                color: "#000000",
                 textDecoration: "underline",
                 textUnderlineOffset: "3px",
                 textDecorationThickness: "0.5px",
@@ -201,7 +201,7 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
                 fontFamily: "var(--font-sans)",
                 fontSize: "12px",
                 fontWeight: 400,
-                color: "#6b8a89",
+                color: "#000000",
                 margin: 0,
                 lineHeight: 1.4,
               }}
@@ -242,7 +242,7 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
                 fontFamily: "var(--font-sans)",
                 fontSize: "13px",
                 fontWeight: 400,
-                color: "#6b8a89",
+                color: "#000000",
                 margin: 0,
                 lineHeight: 1.4,
               }}

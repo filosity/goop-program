@@ -67,7 +67,7 @@ export default function Referrals() {
               fontWeight: 600,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "#8cb8b6",
+              color: "#ffffff",
               margin: "0 0 16px 0",
               lineHeight: 1,
             }}
@@ -97,7 +97,7 @@ export default function Referrals() {
               fontSize: "16px",
               fontWeight: 400,
               lineHeight: 1.55,
-              color: "#8cb8b6",
+              color: "#ffffff",
               margin: "0 0 32px 0",
               maxWidth: "400px",
             }}
@@ -311,7 +311,7 @@ export default function Referrals() {
               fontWeight: 600,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "#8cb8b6",
+              color: "#ffffff",
               margin: "0 0 16px 0",
               lineHeight: 1,
             }}

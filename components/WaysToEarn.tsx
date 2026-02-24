@@ -514,7 +514,7 @@ function RedeemContent({
             fontWeight: 600,
             letterSpacing: "0.08em",
             textTransform: "uppercase",
-            color: "#6b8a89",
+            color: "#0C3D3D",
             margin: "0 0 24px 0",
             lineHeight: 1,
           }}
@@ -541,7 +541,7 @@ function RedeemContent({
             fontFamily: "var(--font-sans)",
             fontSize: "16px",
             fontWeight: 400,
-            color: "#6b8a89",
+            color: "#000000",
             margin: "0 0 36px 0",
             lineHeight: 1.6,
           }}
@@ -561,7 +561,7 @@ function RedeemContent({
               fontWeight: 600,
               letterSpacing: "0.06em",
               textTransform: "uppercase",
-              color: "#6b8a89",
+              color: "#0C3D3D",
               lineHeight: 1,
             }}
           >
@@ -605,7 +605,7 @@ function RedeemContent({
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
-            color: "#6b8a89",
+            color: "#0C3D3D",
             margin: "0 0 16px 0",
             lineHeight: 1,
           }}
@@ -1335,7 +1335,7 @@ function FreeProductsContent({
                       fontFamily: "var(--font-sans)",
                       fontSize: "15px",
                       fontWeight: 400,
-                      color: "#6b8a89",
+                      color: "#000000",
                       margin: "6px 0 0 0",
                       lineHeight: 1,
                     }}
@@ -1593,7 +1593,7 @@ function UploadReceiptContent() {
                 fontWeight: 600,
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
-                color: "#6b8a89",
+                color: "#0C3D3D",
                 margin: "0 0 20px 0",
                 lineHeight: 1,
               }}
@@ -1620,7 +1620,7 @@ function UploadReceiptContent() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "16px",
                 fontWeight: 400,
-                color: "#6b8a89",
+                color: "#000000",
                 margin: "0 0 32px 0",
                 lineHeight: 1.6,
               }}
@@ -1686,7 +1686,7 @@ function UploadReceiptContent() {
 
         {phase === "selected" && (
           <>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6b8a89", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
               review &amp; submit
             </span>
 
@@ -1694,7 +1694,7 @@ function UploadReceiptContent() {
               Upload your receipt
             </p>
 
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", margin: "0 0 32px 0", lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#000000", margin: "0 0 32px 0", lineHeight: 1.6 }}>
               Make a photo or scan of your receipt and upload.
             </p>
 
@@ -1740,7 +1740,7 @@ function UploadReceiptContent() {
 
         {phase === "uploading" && (
           <>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6b8a89", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
               uploading
             </span>
 
@@ -1748,7 +1748,7 @@ function UploadReceiptContent() {
               Processing your receipt
             </p>
 
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", margin: "0 0 36px 0", lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#000000", margin: "0 0 36px 0", lineHeight: 1.6 }}>
               Please wait while we verify your receipt.
             </p>
 
@@ -1777,7 +1777,7 @@ function UploadReceiptContent() {
 
         {phase === "success" && (
           <>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6b8a89", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
               complete
             </span>
 
@@ -1803,7 +1803,7 @@ function UploadReceiptContent() {
               Thank you
             </p>
 
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", margin: "0 0 32px 0", lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#000000", margin: "0 0 32px 0", lineHeight: 1.6 }}>
               Once the verification process is finished your AG Credit will be added to your account. You can follow the status in your Rewards History.
             </p>
 

@@ -234,7 +234,7 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
             fontFamily: "var(--font-sans)",
             fontSize: "14px",
             fontWeight: 400,
-            color: "#6b8a89",
+            color: "#000000",
             margin: "8px 0 0 0",
           }}
         >

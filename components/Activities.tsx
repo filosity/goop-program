@@ -455,7 +455,7 @@ function AchievementCard({
                     fontFamily: "var(--font-sans)",
                     fontSize: "15px",
                     fontWeight: 600,
-                    color: "#6b8a89",
+                    color: "#000000",
                     lineHeight: 1,
                   }}
                 >
@@ -949,7 +949,7 @@ function VotingComplete({ totalEarned, questionVisible }: { totalEarned: number;
           fontFamily: "var(--font-sans)",
           fontSize: "16px",
           fontWeight: 400,
-          color: "#6b8a89",
+          color: "#000000",
           textAlign: "center",
           margin: "0 0 24px 0",
         }}
