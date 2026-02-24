@@ -8,6 +8,8 @@ const sections = [
   { id: "section-sweepstakes", label: "sweepstakes" },
   { id: "section-ways-to-earn", label: "AG Credit" },
   { id: "section-activities", label: "activities" },
+  { id: "section-referrals", label: "referrals" },
+  { id: "section-faq", label: "FAQ" },
 ];
 
 const HEADER_HEIGHT = 76;

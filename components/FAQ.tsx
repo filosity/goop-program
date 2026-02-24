@@ -40,6 +40,7 @@ export default function FAQ() {
 
   return (
     <section
+      id="section-faq"
       style={{
         backgroundColor: "#ffffff",
         padding: "100px 48px",
