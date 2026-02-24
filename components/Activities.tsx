@@ -1548,6 +1548,8 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
   const [claimingReward, setClaimingReward] = useState<number | null>(null);
   const [celebratingReward, setCelebratingReward] = useState<number | null>(null);
   const [copiedRewardDay, setCopiedRewardDay] = useState<number | null>(null);
+  const [hasCheckedOnce, setHasCheckedOnce] = useState(false);
+  const [showCheckedMessage, setShowCheckedMessage] = useState(false);
 
   const currentDay = 1 + checkedCount;
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -1570,10 +1572,16 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
   const handleDayClick = useCallback((dayNum: number) => {
     if (hasDragged.current) return;
     if (dayNum !== currentDay) return;
+    if (showCheckedMessage) return;
     setAnimatingDay(dayNum);
     setCheckedCount((c) => c + 1);
     setTimeout(() => setAnimatingDay(null), 700);
-  }, [currentDay]);
+    if (!hasCheckedOnce) {
+      setShowCheckedMessage(true);
+      setHasCheckedOnce(true);
+      setTimeout(() => setShowCheckedMessage(false), 2800);
+    }
+  }, [currentDay, hasCheckedOnce, showCheckedMessage]);
 
   const handleClaimReward = useCallback((dayNum: number) => {
     if (hasDragged.current) return;
@@ -2085,29 +2093,44 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
           })}
         </div>
 
-      {/* Check-in button */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-        <button
-          onClick={() => handleDayClick(currentDay)}
-          onMouseEnter={() => setCheckInHovered(true)}
-          onMouseLeave={() => setCheckInHovered(false)}
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "18px",
-            fontWeight: 600,
-            color: "#ffffff",
-            backgroundColor: checkInHovered ? "#155050" : "#0C3D3D",
-            border: "none",
-            minHeight: "52px",
-            padding: "0 40px",
-            borderRadius: "999px",
-            cursor: "pointer",
-            transition: "background-color 0.2s ease",
-            lineHeight: 1,
-          }}
-        >
-          {"Check In Today →"}
-        </button>
+      {/* Check-in button / confirmation */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", minHeight: "80px", justifyContent: "center" }}>
+        {showCheckedMessage ? (
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", animation: "streakCheckedIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }}>
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style={{ overflow: "visible" }}>
+              <circle cx="20" cy="20" r="19" fill="#0C3D3D" style={{ transformOrigin: "20px 20px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
+              <path d="M12 21L17.5 26.5L28 14" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "streakDrawCheck 0.4s ease 0.25s forwards" }} />
+            </svg>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#0C3D3D", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.3s both" }}>
+              {"Checked in!"}
+            </p>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#6b8a89", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.5s both" }}>
+              Check in again tomorrow
+            </p>
+          </div>
+        ) : (
+          <button
+            onClick={() => handleDayClick(currentDay)}
+            onMouseEnter={() => setCheckInHovered(true)}
+            onMouseLeave={() => setCheckInHovered(false)}
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "18px",
+              fontWeight: 600,
+              color: "#ffffff",
+              backgroundColor: checkInHovered ? "#155050" : "#0C3D3D",
+              border: "none",
+              minHeight: "52px",
+              padding: "0 40px",
+              borderRadius: "999px",
+              cursor: "pointer",
+              transition: "background-color 0.2s ease",
+              lineHeight: 1,
+            }}
+          >
+            {"Check In Today →"}
+          </button>
+        )}
       </div>
 
       <style>{`
@@ -2124,6 +2147,14 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
         @keyframes streakOverlayIn {
           from { opacity: 0; }
           to { opacity: 1; }
+        }
+        @keyframes streakCheckedIn {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes streakTextFade {
+          from { opacity: 0; transform: translateY(4px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         @keyframes streakConfetti {
           0% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
