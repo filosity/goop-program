@@ -1727,7 +1727,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
           <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 6px 0", letterSpacing: "-0.01em" }}>
             Daily Check-in
           </h3>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", margin: 0, lineHeight: 1.5 }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#000000", margin: 0, lineHeight: 1.5 }}>
             Check in daily and unlock milestone rewards.
           </p>
           {checkedCount > 0 && (
@@ -1738,7 +1738,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                 fontFamily: "var(--font-sans)",
                 fontSize: "14px",
                 fontWeight: 500,
-                color: "#6b8a89",
+                color: "#000000",
                 textDecoration: "underline",
                 textUnderlineOffset: "3px",
                 textDecorationThickness: "0.5px",
@@ -1758,7 +1758,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
           </span>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "15px", fontWeight: 600, color: "#6b8a89", letterSpacing: "0.06em", textTransform: "uppercase", lineHeight: 1, marginTop: "6px", display: "block" }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, color: "#000000", letterSpacing: "0.06em", textTransform: "uppercase", lineHeight: 1, marginTop: "6px", display: "block" }}>
             Days streak
           </span>
         </div>
@@ -1789,11 +1789,11 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
               <p
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "16px",
+                  fontSize: "18px",
                   fontWeight: 600,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
-                  color: "#6b8a89",
+                  color: "#000000",
                   margin: "0 0 12px 0",
                   lineHeight: 1,
                 }}
@@ -1841,11 +1841,11 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
             <p
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "16px",
+                fontSize: "18px",
                 fontWeight: 600,
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
-                color: "#6b8a89",
+                color: "#000000",
                 margin: 0,
                 lineHeight: 1,
               }}
@@ -2080,16 +2080,15 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                 {/* Day label */}
                 <span style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
+                  fontSize: "13px",
                   fontWeight: day.isToday ? 700 : 500,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
-                  color: day.isChecked || day.isToday ? "#0d8b87" : "#999999",
+                  color: "#000000",
                   lineHeight: 1,
-                  marginTop: hasReward ? "10px" : "4px",
+                  marginTop: hasReward ? "10px" : "2px",
                   whiteSpace: "nowrap",
                   textAlign: "center",
-                  transition: "color 0.3s ease",
                 }}>
                   Day {day.dayNum}
                 </span>
@@ -2100,7 +2099,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                     fontFamily: "var(--font-sans)",
                     fontSize: "11px",
                     fontWeight: 600,
-                    color: "#0d8b87",
+                    color: "#000000",
                     lineHeight: 1,
                     marginTop: "4px",
                     whiteSpace: "nowrap",
@@ -2117,7 +2116,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                 {hasReward ? (
                   day.isRewardClaimed ? (
                     <div style={{ width: "100%", marginTop: "10px" }}>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#0d8b87", textAlign: "center", lineHeight: 1.2, display: "block", marginBottom: "6px" }}>
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#000000", textAlign: "center", lineHeight: 1.2, display: "block", marginBottom: "6px" }}>
                         {day.reward!.name}
                       </span>
                       <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
@@ -2165,7 +2164,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                       fontFamily: "var(--font-sans)",
                       fontSize: "13px",
                       fontWeight: 600,
-                      color: day.isChecked ? "#0d8b87" : "#999",
+                      color: day.isChecked ? "#000000" : "#999",
                       textAlign: "center",
                       lineHeight: 1.2,
                       marginTop: "6px",
@@ -2190,10 +2189,10 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
               <circle cx="20" cy="20" r="19" fill="#0C3D3D" style={{ transformOrigin: "20px 20px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
               <path d="M12 21L17.5 26.5L28 14" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "streakDrawCheck 0.4s ease 0.25s forwards" }} />
             </svg>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#0C3D3D", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.3s both" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.3s both" }}>
               {"Checked in!"}
             </p>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#6b8a89", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.5s both" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.5s both" }}>
               Check in again tomorrow
             </p>
           </div>

@@ -60,7 +60,7 @@ function MilestoneCard({
       onMouseLeave={() => setHovered(false)}
       style={{
         backgroundColor: "#ffffff",
-        border: isCurrent ? "1.5px solid #0d8b87" : "1px solid #d4e0df",
+        border: isCurrent ? "1.5px solid #0C3D3D" : "1px solid #d4e0df",
         overflow: celebrating ? "visible" : "hidden",
         opacity: isLocked ? 0.45 : 1,
         transition: "opacity 0.5s ease, border-color 0.4s ease",
@@ -201,7 +201,7 @@ function MilestoneCard({
             const dx = Math.cos(angle) * dist;
             const dy = Math.sin(angle) * dist;
             const spin = 180 + Math.random() * 540;
-            const colors = ["#0C3D3D", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#0a3030", "#3da88a", "#276b5d"];
+            const colors = ["#0C3D3D", "#0C3D3D", "#14504F", "#1a6b5a", "#2d8f6f", "#0a3030", "#3da88a", "#276b5d"];
             const delay = i * 0.004;
             const dur = 1.8 + Math.random() * 0.6;
             return (
@@ -242,7 +242,7 @@ function MilestoneCard({
         >
           {isClaimed ? (
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <circle cx="7" cy="7" r="7" fill="#0d8b87" />
+              <circle cx="7" cy="7" r="7" fill="#0C3D3D" />
               <path d="M4 7.2L6 9.2L10 5" stroke="#ffffff" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           ) : isEarned ? (
@@ -260,7 +260,7 @@ function MilestoneCard({
               fontWeight: 600,
               textTransform: "uppercase",
               letterSpacing: "0.08em",
-              color: isCurrent ? "#0d8b87" : "#6b8a89",
+              color: isCurrent ? "#0C3D3D" : "#6b8a89",
             }}
           >
             Month {milestone.month}
@@ -545,7 +545,7 @@ export default function Milestones() {
         {/* ── Timeline ── */}
         <div style={{ position: "relative", padding: "0 0 48px 0" }}>
           <div style={{ position: "absolute", top: "5px", left: "0", right: "0", height: "3px", backgroundColor: "#d4e0df", zIndex: 1 }} />
-          <div style={{ position: "absolute", top: "5px", left: "0", width: `${animatedWidth}%`, height: "3px", backgroundColor: "#0d8b87", zIndex: 2, transition: "width 0.8s cubic-bezier(0.4, 0, 0.2, 1)" }} />
+          <div style={{ position: "absolute", top: "5px", left: "0", width: `${animatedWidth}%`, height: "3px", backgroundColor: "#0C3D3D", zIndex: 2, transition: "width 0.8s cubic-bezier(0.4, 0, 0.2, 1)" }} />
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", position: "relative", zIndex: 3 }}>
             {Array.from({ length: TOTAL_MONTHS }, (_, i) => {
               const month = i + 1;
@@ -605,9 +605,9 @@ export default function Milestones() {
                       width: isCurrent ? "14px" : "10px",
                       height: isCurrent ? "14px" : "10px",
                       borderRadius: "50%",
-                      backgroundColor: isEarned ? "#0d8b87" : "#d4e0df",
+                      backgroundColor: isEarned ? "#0C3D3D" : "#d4e0df",
                       border: isCurrent ? "3px solid #ffffff" : "none",
-                      boxShadow: isCurrent ? "0 0 0 2px #0d8b87" : "none",
+                      boxShadow: isCurrent ? "0 0 0 2px #0C3D3D" : "none",
                       flexShrink: 0,
                       marginTop: isCurrent ? "-0.5px" : "1.5px",
                       transition: "background-color 0.4s ease, box-shadow 0.4s ease",
@@ -620,7 +620,7 @@ export default function Milestones() {
                       fontWeight: isCurrent ? 700 : 500,
                       letterSpacing: "0.06em",
                       textTransform: "uppercase",
-                      color: isEarned ? "#0d8b87" : "#999999",
+                      color: isEarned ? "#0C3D3D" : "#999999",
                       margin: "8px 0 0 0",
                       textAlign: "center",
                       whiteSpace: "nowrap",
