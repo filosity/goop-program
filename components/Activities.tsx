@@ -1912,7 +1912,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
             top: `${8 + 48}px`,
             left: 0,
             height: "3px",
-            backgroundColor: "#0d8b87",
+            backgroundColor: "#0C3D3D",
             zIndex: 1,
             transition: "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
             width: `${progressWidth}px`,
@@ -1953,15 +1953,15 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                         position: "relative",
                         cursor: isClickable || (day.isRewardEarned && !day.isRewardClaimed) ? "pointer" : "default",
                         border: day.isToday
-                          ? "3px solid #0d8b87"
+                          ? "3px solid #0C3D3D"
                           : day.isRewardEarned && !day.isRewardClaimed
                             ? "3px solid #E8913A"
                             : day.isChecked
-                              ? "2px solid #0d8b87"
+                              ? "2px solid #0C3D3D"
                               : "2px solid #d4e0df",
                         backgroundColor: "#ffffff",
                         boxShadow: day.isToday
-                          ? "0 0 0 3px rgba(13,139,135,0.2)"
+                          ? "0 0 0 3px rgba(12,61,61,0.2)"
                           : day.isRewardEarned && !day.isRewardClaimed
                             ? "0 0 0 3px rgba(232,145,58,0.2)"
                             : "none",
@@ -2066,9 +2066,9 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                         width: day.isToday ? "22px" : day.isChecked || day.isAnimating ? "16px" : "14px",
                         height: day.isToday ? "22px" : day.isChecked || day.isAnimating ? "16px" : "14px",
                         borderRadius: "50%",
-                        backgroundColor: day.isChecked || day.isAnimating ? "#0d8b87" : day.isToday ? "#ffffff" : "#d4e0df",
-                        border: day.isToday ? "3px solid #0d8b87" : "none",
-                        boxShadow: day.isToday ? "0 0 0 3px rgba(13,139,135,0.2)" : "none",
+                        backgroundColor: day.isChecked || day.isAnimating ? "#0C3D3D" : day.isToday ? "#ffffff" : "#d4e0df",
+                        border: day.isToday ? "3px solid #0C3D3D" : "none",
+                        boxShadow: day.isToday ? "0 0 0 3px rgba(12,61,61,0.2)" : "none",
                         cursor: isClickable ? "pointer" : "default",
                         transition: "background-color 0.5s ease, box-shadow 0.5s ease, width 0.5s ease, height 0.5s ease",
                         flexShrink: 0,
