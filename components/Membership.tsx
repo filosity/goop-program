@@ -321,15 +321,26 @@ export default function Membership() {
   const [hoveredBenefit, setHoveredBenefit] = useState<number | null>(null);
   const [activeBenefit, setActiveBenefit] = useState<string | null>(null);
   const [sectionHovered, setSectionHovered] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const versionHandler = (e: Event) => {
       const v = (e as CustomEvent).detail?.version;
       if (typeof v === "number" && v >= 1 && v <= 3) setVersion(v);
     };
+    const visibilityHandler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.visible !== undefined) setVisible(detail.visible);
+    };
     window.addEventListener("tiers-version", versionHandler);
-    return () => window.removeEventListener("tiers-version", versionHandler);
+    window.addEventListener("toggle-membership", visibilityHandler);
+    return () => {
+      window.removeEventListener("tiers-version", versionHandler);
+      window.removeEventListener("toggle-membership", visibilityHandler);
+    };
   }, []);
+
+  if (!visible) return null;
 
   if (version === 2) return <MembershipV2 />;
   if (version === 3) return <MembershipV3 />;
