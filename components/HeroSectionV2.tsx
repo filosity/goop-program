@@ -82,7 +82,7 @@ export default function HeroSectionV2() {
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: "url('/background-header.jpg')",
+          backgroundImage: "url('/background-header.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

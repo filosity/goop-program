@@ -479,7 +479,7 @@ export default function Referrals() {
             }}
           >
             <img
-              src="/background-header.jpg"
+              src="/background-header.png"
               alt=""
               style={{
                 width: "100%",
