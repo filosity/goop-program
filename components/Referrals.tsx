@@ -99,7 +99,7 @@ export default function Referrals() {
               lineHeight: 1.55,
               color: "#8cb8b6",
               margin: "0 0 32px 0",
-              maxWidth: "320px",
+              maxWidth: "400px",
             }}
           >
             Your friend gets $15 off their first subscription order, and you
