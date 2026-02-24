@@ -2086,7 +2086,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                   textTransform: "uppercase",
                   color: day.isChecked || day.isToday ? "#0d8b87" : "#999999",
                   lineHeight: 1,
-                  marginTop: "10px",
+                  marginTop: hasReward ? "10px" : "4px",
                   whiteSpace: "nowrap",
                   textAlign: "center",
                   transition: "color 0.3s ease",
@@ -2116,21 +2116,21 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                 {/* Reward info below */}
                 {hasReward ? (
                   day.isRewardClaimed ? (
-                    <div style={{ width: "100%", marginTop: "6px" }}>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#0d8b87", textAlign: "center", lineHeight: 1.2, display: "block", marginBottom: "4px" }}>
+                    <div style={{ width: "100%", marginTop: "10px" }}>
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#0d8b87", textAlign: "center", lineHeight: 1.2, display: "block", marginBottom: "6px" }}>
                         {day.reward!.name}
                       </span>
                       <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
                         <div style={{
                           fontFamily: "var(--font-sans)",
-                          fontSize: "10px",
+                          fontSize: "12px",
                           fontWeight: 600,
                           letterSpacing: "0.04em",
                           color: "#000000",
                           backgroundColor: "#f5f8f8",
                           border: "1px solid #d4e0df",
                           borderRight: "none",
-                          padding: "6px 8px",
+                          padding: "8px 10px",
                           lineHeight: 1,
                           flex: 1,
                           minWidth: 0,
@@ -2144,12 +2144,12 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                           onClick={(e) => { e.stopPropagation(); handleCopyCode(day.reward!.code, day.dayNum); }}
                           style={{
                             fontFamily: "var(--font-sans)",
-                            fontSize: "10px",
+                            fontSize: "12px",
                             fontWeight: 600,
                             color: "#ffffff",
                             backgroundColor: "#0C3D3D",
                             border: "1px solid #0C3D3D",
-                            padding: "6px 10px",
+                            padding: "8px 12px",
                             lineHeight: 1,
                             cursor: "pointer",
                             whiteSpace: "nowrap",

@@ -616,7 +616,7 @@ export default function Milestones() {
                   <p
                     style={{
                       fontFamily: "var(--font-mono)",
-                      fontSize: "11px",
+                      fontSize: "13px",
                       fontWeight: isCurrent ? 700 : 500,
                       letterSpacing: "0.06em",
                       textTransform: "uppercase",
