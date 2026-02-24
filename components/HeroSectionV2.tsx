@@ -112,9 +112,9 @@ export default function HeroSectionV2() {
             <p
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "12px",
+                fontSize: "11px",
                 fontWeight: 600,
-                letterSpacing: "0.08em",
+                letterSpacing: "0.06em",
                 textTransform: "uppercase",
                 color: "#6b8a89",
                 margin: "0 0 10px 0",

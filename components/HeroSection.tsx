@@ -158,9 +158,9 @@ function HeroSectionV1() {
         <p
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "17px",
-            fontWeight: 500,
-            letterSpacing: "0.08em",
+            fontSize: "11px",
+            fontWeight: 600,
+            letterSpacing: "0.06em",
             textTransform: "uppercase",
             color: "rgba(255, 255, 255, 0.85)",
             margin: "0 0 10px 0",

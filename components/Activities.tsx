@@ -827,7 +827,28 @@ const allVotingQuestions: { question: string; options: string[]; images?: string
 const VOTING_DISPLAY_COUNT = 8;
 
 /* ─── Fallback images for voting version 1 ─── */
-const votingImages: string[] = [];
+const votingImages: string[] = [
+  "/featured1.jpg",
+  "/featured2.jpg",
+  "/featured3.jpg",
+  "/featured4.jpg",
+  "/tier1.jpg",
+  "/tier2.jpg",
+  "/tier3.jpg",
+  "/tier4.jpg",
+  "/earn1.jpg",
+  "/earn2.jpg",
+  "/earn3.jpg",
+  "/earn4.jpg",
+  "/earn5.jpg",
+  "/earn6.jpg",
+  "/earn7.jpg",
+  "/earn8.jpg",
+  "/earn10.jpg",
+  "/product-d3k2.jpg",
+  "/product-omega3.jpg",
+  "/product-travelpacks-original.jpg",
+];
 
 /* ─── Shared AG Credit earned animation (black circle, white checkmark) ─── */
 function VotingPointsEarned() {
