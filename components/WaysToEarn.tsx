@@ -837,7 +837,7 @@ function RedeemContent({
               fontFamily: "var(--font-sans)",
               fontSize: "17px",
               fontWeight: 400,
-              color: "#6b8a89",
+              color: "#000000",
               margin: "0 0 40px 0",
               lineHeight: 1.5,
               animation: popup.phase !== "out" ? "redeemTextUp 0.4s ease 0.4s both" : undefined,
