@@ -441,7 +441,7 @@ export default function MembershipV2() {
             <p
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "13px",
+                fontSize: "16px",
                 fontWeight: 600,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",

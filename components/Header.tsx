@@ -447,7 +447,7 @@ export default function Header() {
             <span
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "8px",
+                fontSize: "10px",
                 fontWeight: 700,
                 letterSpacing: "0.04em",
                 textTransform: "uppercase" as const,

@@ -119,7 +119,7 @@ function AchievementCard({
             top: "14px",
             right: "14px",
             fontFamily: "var(--font-mono)",
-            fontSize: "12px",
+            fontSize: "15px",
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
@@ -326,7 +326,7 @@ function AchievementCard({
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "13px",
+                  fontSize: "16px",
                   fontWeight: 600,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
@@ -408,7 +408,7 @@ function AchievementCard({
             <span
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "13px",
+                fontSize: "16px",
                 fontWeight: 600,
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
@@ -1731,7 +1731,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
           </span>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600, color: "#6b8a89", letterSpacing: "0.06em", textTransform: "uppercase", lineHeight: 1, marginTop: "6px", display: "block" }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "15px", fontWeight: 600, color: "#6b8a89", letterSpacing: "0.06em", textTransform: "uppercase", lineHeight: 1, marginTop: "6px", display: "block" }}>
             Days streak
           </span>
         </div>
@@ -1762,7 +1762,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
               <p
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "13px",
+                  fontSize: "16px",
                   fontWeight: 600,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
@@ -1814,7 +1814,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
             <p
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "13px",
+                fontSize: "16px",
                 fontWeight: 600,
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
@@ -2053,7 +2053,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                 {/* Day label */}
                 <span style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
+                  fontSize: "14px",
                   fontWeight: day.isToday ? 700 : 500,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",

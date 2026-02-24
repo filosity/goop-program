@@ -510,7 +510,7 @@ function RedeemContent({
         <span
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "13px",
+            fontSize: "16px",
             fontWeight: 600,
             letterSpacing: "0.08em",
             textTransform: "uppercase",
@@ -557,7 +557,7 @@ function RedeemContent({
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "13px",
+              fontSize: "16px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               textTransform: "uppercase",
@@ -601,7 +601,7 @@ function RedeemContent({
         <p
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "13px",
+            fontSize: "16px",
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
@@ -874,7 +874,7 @@ function RedeemContent({
               <p
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "13px",
+                  fontSize: "16px",
                   fontWeight: 600,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
@@ -918,7 +918,7 @@ function RedeemContent({
               <p
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "13px",
+                  fontSize: "16px",
                   fontWeight: 600,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
@@ -958,7 +958,7 @@ function RedeemContent({
             <span
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "12px",
+                fontSize: "15px",
                 fontWeight: 600,
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
@@ -1292,7 +1292,7 @@ function FreeProductsContent({
                     <span
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: "12px",
+                        fontSize: "15px",
                         fontWeight: 600,
                         color: "#ffffff",
                         textTransform: "uppercase",
@@ -1589,7 +1589,7 @@ function UploadReceiptContent() {
             <span
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "13px",
+                fontSize: "16px",
                 fontWeight: 600,
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
@@ -1686,7 +1686,7 @@ function UploadReceiptContent() {
 
         {phase === "selected" && (
           <>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6b8a89", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6b8a89", margin: "0 0 20px 0", lineHeight: 1 }}>
               review &amp; submit
             </span>
 
@@ -1740,7 +1740,7 @@ function UploadReceiptContent() {
 
         {phase === "uploading" && (
           <>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6b8a89", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6b8a89", margin: "0 0 20px 0", lineHeight: 1 }}>
               uploading
             </span>
 
@@ -1777,7 +1777,7 @@ function UploadReceiptContent() {
 
         {phase === "success" && (
           <>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6b8a89", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6b8a89", margin: "0 0 20px 0", lineHeight: 1 }}>
               complete
             </span>
 

@@ -275,7 +275,7 @@ function ImmersiveShowcase() {
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "12px",
+              fontSize: "15px",
               fontWeight: 600,
               color: "rgba(255,255,255,0.45)",
               letterSpacing: "0.08em",
@@ -573,7 +573,7 @@ function CommunityHero({
         <span
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "13px",
+            fontSize: "16px",
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
@@ -690,7 +690,7 @@ function CommunityGridCard({
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "12px",
+              fontSize: "15px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               color: hasImg ? "rgba(255,255,255,0.8)" : item.type === "instagram" ? "#c13584" : "#6b8a89",
@@ -808,7 +808,7 @@ function CommunityMagazine() {
             onClick={() => setVisibleCount((c) => Math.min(c + 6, communityItems.length))}
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "17px",
+              fontSize: "21px",
               fontWeight: 600,
               letterSpacing: "0.04em",
               color: "#0C3D3D",
@@ -832,7 +832,7 @@ function CommunityMagazine() {
             onClick={() => setVisibleCount(4)}
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "17px",
+              fontSize: "21px",
               fontWeight: 600,
               letterSpacing: "0.04em",
               color: "#0C3D3D",
@@ -925,7 +925,7 @@ function EventCalendarCard({
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "13px",
+              fontSize: "16px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               color: "#ffffff",
@@ -984,7 +984,7 @@ function EventCalendarCard({
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "12px",
+              fontSize: "15px",
               fontWeight: 600,
               letterSpacing: "0.04em",
               textTransform: "uppercase",
@@ -1116,7 +1116,7 @@ function EventsCalendar() {
             onClick={() => setVisibleCount((c) => Math.min(c + 4, eventItems.length))}
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "17px",
+              fontSize: "21px",
               fontWeight: 600,
               letterSpacing: "0.04em",
               color: "#0C3D3D",
@@ -1140,7 +1140,7 @@ function EventsCalendar() {
             onClick={() => setVisibleCount(4)}
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "17px",
+              fontSize: "21px",
               fontWeight: 600,
               letterSpacing: "0.04em",
               color: "#0C3D3D",

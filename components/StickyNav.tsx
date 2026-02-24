@@ -239,7 +239,7 @@ export default function StickyNav() {
             }}
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "13px",
+              fontSize: "16px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               textTransform: "uppercase" as const,
@@ -297,7 +297,7 @@ export default function StickyNav() {
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "12px",
+              fontSize: "15px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               textTransform: "uppercase",

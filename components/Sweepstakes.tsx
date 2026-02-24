@@ -302,7 +302,7 @@ export default function Sweepstakes() {
                 <p
                   style={{
                     fontFamily: "var(--font-mono)",
-                    fontSize: "12px",
+                    fontSize: "15px",
                     fontWeight: 600,
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",

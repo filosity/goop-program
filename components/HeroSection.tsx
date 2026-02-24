@@ -41,7 +41,7 @@ function SectionLabel({ text }: { text: string }) {
       <p
         style={{
           fontFamily: "var(--font-mono)",
-          fontSize: "13px",
+          fontSize: "16px",
           fontWeight: 600,
           letterSpacing: "0.06em",
           textTransform: "uppercase",
@@ -206,7 +206,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
         <p
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "13px",
+            fontSize: "16px",
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
@@ -273,20 +273,6 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
               ${userPoints.toFixed(2)}
             </p>
 
-            {/* AG Credit info */}
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "14px",
-                fontWeight: 400,
-                color: "#1a1a1a",
-                margin: "0 0 6px 0",
-                lineHeight: 1.55,
-              }}
-            >
-              AG Credit
-            </p>
-
             {/* Redemption note */}
             <p
               style={{
@@ -343,7 +329,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                     letterSpacing: "-0.02em",
                   }}
                 >
-                  Active subscriber
+                  Subscribed
                 </p>
                 <p
                   style={{

@@ -63,7 +63,7 @@ export default function Referrals() {
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "13px",
+              fontSize: "16px",
               fontWeight: 600,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
@@ -307,7 +307,7 @@ export default function Referrals() {
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "13px",
+              fontSize: "16px",
               fontWeight: 600,
               letterSpacing: "0.08em",
               textTransform: "uppercase",

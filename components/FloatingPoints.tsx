@@ -89,7 +89,7 @@ export default function FloatingPoints() {
         <p
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "12px",
+            fontSize: "15px",
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",

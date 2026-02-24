@@ -198,20 +198,6 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
             </p>
             <p
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "12px",
-                fontWeight: 600,
-                color: "#6b8a89",
-                margin: "0 0 4px 0",
-                lineHeight: 1.4,
-                textTransform: "uppercase",
-                letterSpacing: "0.06em",
-              }}
-            >
-              {userPoints.toLocaleString()} AG Credit balance
-            </p>
-            <p
-              style={{
                 fontFamily: "var(--font-sans)",
                 fontSize: "12px",
                 fontWeight: 400,
@@ -249,7 +235,7 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
                 letterSpacing: "-0.01em",
               }}
             >
-              Active subscriber
+              Subscribed
             </p>
             <p
               style={{

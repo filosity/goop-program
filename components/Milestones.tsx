@@ -256,7 +256,7 @@ function MilestoneCard({
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "13px",
+              fontSize: "16px",
               fontWeight: 600,
               textTransform: "uppercase",
               letterSpacing: "0.08em",
@@ -440,29 +440,102 @@ export default function Milestones() {
         </p>
       </div>
 
-      {/* Subscribe button */}
+      {/* Subscribe banner */}
       {!subscribed && (
-        <div style={{ textAlign: "left", marginBottom: "48px", maxWidth: "1280px", marginLeft: "auto", marginRight: "auto" }}>
-          <button
-            onClick={handleSubscribe}
-            onMouseEnter={() => setBtnHovered(true)}
-            onMouseLeave={() => setBtnHovered(false)}
+        <div style={{ maxWidth: "1280px", marginLeft: "auto", marginRight: "auto", marginBottom: "48px" }}>
+          <div
             style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "18px",
-              fontWeight: 600,
-              color: btnHovered ? "#000000" : "#ffffff",
-              backgroundColor: btnHovered ? "#46DE46" : "#0C3D3D",
-              border: "none",
-              minHeight: "52px",
-              padding: "0 36px",
-              borderRadius: "999px",
-              cursor: "pointer",
-              transition: "background-color 0.2s ease, color 0.2s ease",
+              display: "flex",
+              border: "1px solid #d4e0df",
+              overflow: "hidden",
+              height: "260px",
             }}
           >
-            Subscribe →
-          </button>
+            <div
+              style={{
+                flex: 1,
+                backgroundColor: "#F6F5F1",
+                padding: "36px 40px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "20px",
+                  fontWeight: 600,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "#6b8a89",
+                  margin: "0 0 12px 0",
+                  lineHeight: 1,
+                }}
+              >
+                Subscribe to unlock
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "28px",
+                  fontWeight: 400,
+                  color: "#000000",
+                  margin: "0 0 8px 0",
+                  lineHeight: 1.2,
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                Subscribe to AG1
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "15px",
+                  fontWeight: 400,
+                  color: "#6b8a89",
+                  margin: "0 0 24px 0",
+                  lineHeight: 1.5,
+                  maxWidth: "380px",
+                }}
+              >
+                Start your subscription to earn AG Credit, unlock exclusive merch rewards, and access all subscriber milestones below.
+              </p>
+              <button
+                onClick={handleSubscribe}
+                onMouseEnter={() => setBtnHovered(true)}
+                onMouseLeave={() => setBtnHovered(false)}
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "18px",
+                  fontWeight: 600,
+                  color: btnHovered ? "#000000" : "#ffffff",
+                  backgroundColor: btnHovered ? "#46DE46" : "#0C3D3D",
+                  border: "none",
+                  minHeight: "52px",
+                  padding: "0 36px",
+                  borderRadius: "999px",
+                  cursor: "pointer",
+                  transition: "background-color 0.2s ease, color 0.2s ease",
+                  alignSelf: "flex-start",
+                }}
+              >
+                Subscribe →
+              </button>
+            </div>
+            <div style={{ width: "480px", maxWidth: "480px", flexShrink: 0 }}>
+              <img
+                src="/milestone-welcome-kit.jpg"
+                alt="Welcome Kit"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
+            </div>
+          </div>
         </div>
       )}
 
@@ -542,7 +615,7 @@ export default function Milestones() {
                   <p
                     style={{
                       fontFamily: "var(--font-mono)",
-                      fontSize: "9px",
+                      fontSize: "11px",
                       fontWeight: isCurrent ? 700 : 500,
                       letterSpacing: "0.06em",
                       textTransform: "uppercase",
