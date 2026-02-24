@@ -2001,8 +2001,8 @@ export default function WaysToEarn() {
     if (subscriptionDays > 0) autoComplete(0);
     // Index 1: Be a Member for 90 days
     if (subscriptionDays >= 90) autoComplete(1);
-    // Index 2: Be a Member for 1 year (365 days)
-    if (subscriptionDays >= 365) autoComplete(2);
+    // Index 2: Be a Member for 1 year (month 12 = 345 days in milestone system)
+    if (subscriptionDays >= 345) autoComplete(2);
   }, [subscriptionDays, completedCards]);
 
   const handlePointsChange = useCallback((newTotal: number) => {
