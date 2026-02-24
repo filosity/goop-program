@@ -597,7 +597,7 @@ export default function HowItWorks() {
       title: "Subscribe",
       description: "Sign up for an AG1 subscription to start earning.",
       component: SignUpStep,
-      imageSrc: "/tier1.jpg",
+      imageSrc: "/howitworks-subscribe.png",
     },
     {
       number: "2",
@@ -611,7 +611,7 @@ export default function HowItWorks() {
       title: "Redeem",
       description: "Use your AG Credit for exclusive merch after 90 days.",
       component: RedeemStep,
-      imageSrc: "/tier3.jpg",
+      imageSrc: "/milestone-merch-store.jpg",
     },
   ];
 
