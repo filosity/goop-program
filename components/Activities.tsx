@@ -1581,7 +1581,14 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
       setHasCheckedOnce(true);
       setTimeout(() => setShowCheckedMessage(false), 2800);
     }
-  }, [currentDay, hasCheckedOnce, showCheckedMessage]);
+    // Auto-claim reward if checking in on a reward day
+    const reward = getReward(dayNum);
+    if (reward && !claimedRewards.has(dayNum)) {
+      setTimeout(() => {
+        setClaimedRewards((prev) => { const next = new Set(prev); next.add(dayNum); return next; });
+      }, 600);
+    }
+  }, [currentDay, hasCheckedOnce, showCheckedMessage, getReward, claimedRewards]);
 
   const handleClaimReward = useCallback((dayNum: number) => {
     if (hasDragged.current) return;
