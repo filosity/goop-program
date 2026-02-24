@@ -119,7 +119,7 @@ function AchievementCard({
             top: "14px",
             right: "14px",
             fontFamily: "var(--font-mono)",
-            fontSize: "10px",
+            fontSize: "12px",
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
@@ -326,7 +326,7 @@ function AchievementCard({
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
+                  fontSize: "13px",
                   fontWeight: 600,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
@@ -408,7 +408,7 @@ function AchievementCard({
             <span
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "11px",
+                fontSize: "13px",
                 fontWeight: 600,
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
@@ -1667,6 +1667,25 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
     return { dayNum, isChecked, isToday, isAnimating, reward, isRewardEarned, isRewardClaimed, isRewardClaiming, isCelebrating };
   });
 
+  // Calculate progress width for timeline bar
+  const REGULAR_WIDTH = 50;
+  const REWARD_WIDTH = 88;
+  const progressWidth = (() => {
+    if (checkedCount === 0) return 0;
+    const lastCheckedIndex = currentDay - 2; // 0-indexed, last checked day
+    if (lastCheckedIndex < 0) return 0;
+    let w = 0;
+    for (let i = 0; i <= lastCheckedIndex; i++) {
+      const dayWidth = days[i].reward ? REWARD_WIDTH : REGULAR_WIDTH;
+      if (i < lastCheckedIndex) {
+        w += dayWidth;
+      } else {
+        w += dayWidth / 2;
+      }
+    }
+    return w;
+  })();
+
   return (
     <div
       style={{
@@ -1712,7 +1731,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
           </span>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", fontWeight: 600, color: "#6b8a89", letterSpacing: "0.06em", textTransform: "uppercase", lineHeight: 1, marginTop: "6px", display: "block" }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600, color: "#6b8a89", letterSpacing: "0.06em", textTransform: "uppercase", lineHeight: 1, marginTop: "6px", display: "block" }}>
             Days streak
           </span>
         </div>
@@ -1743,7 +1762,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
               <p
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
+                  fontSize: "13px",
                   fontWeight: 600,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
@@ -1795,7 +1814,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
             <p
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "11px",
+                fontSize: "13px",
                 fontWeight: 600,
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
@@ -1823,7 +1842,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
         )}
       </div>
 
-      {/* Day grid — drag to scroll */}
+      {/* Timeline — drag to scroll */}
       <div
         ref={scrollRef}
         data-streak-scroll=""
@@ -1832,22 +1851,49 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
         style={{
-          display: "flex",
-          gap: "8px",
           overflowX: "auto",
           scrollBehavior: "smooth",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
           cursor: "grab",
           userSelect: "none",
-          alignItems: "flex-start",
           marginBottom: "36px",
-          paddingBottom: "4px",
         }}
       >
+        <div style={{
+          display: "flex",
+          alignItems: "flex-start",
+          position: "relative",
+          minWidth: "fit-content",
+          paddingTop: "8px",
+          paddingBottom: "8px",
+        }}>
+          {/* Background line */}
+          <div style={{
+            position: "absolute",
+            top: `${8 + 24}px`,
+            left: 0,
+            right: 0,
+            height: "3px",
+            backgroundColor: "#d4e0df",
+            zIndex: 0,
+          }} />
+
+          {/* Progress fill */}
+          <div style={{
+            position: "absolute",
+            top: `${8 + 24}px`,
+            left: 0,
+            height: "3px",
+            backgroundColor: "#0d8b87",
+            zIndex: 1,
+            transition: "width 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+            width: `${progressWidth}px`,
+          }} />
+
           {days.map((day) => {
-            const isClickable = day.isToday;
             const hasReward = day.reward !== null;
+            const isClickable = day.isToday;
 
             return (
               <div
@@ -1856,205 +1902,189 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  gap: "6px",
-                  width: hasReward ? "140px" : "70px",
-                  minWidth: hasReward ? "140px" : "70px",
+                  width: hasReward ? `${REWARD_WIDTH}px` : `${REGULAR_WIDTH}px`,
+                  minWidth: hasReward ? `${REWARD_WIDTH}px` : `${REGULAR_WIDTH}px`,
                   flexShrink: 0,
+                  position: "relative",
+                  zIndex: 2,
                 }}
               >
-                {/* Day label */}
-                <span
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "9px",
-                    fontWeight: 600,
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
-                    color: day.isChecked ? "#0d8b87" : "#6b8a89",
-                    lineHeight: 1,
-                  }}
-                >
-                  DAY {day.dayNum}
-                </span>
-
-                {/* Square — reward days get image + double size */}
-                {hasReward ? (
-                  <div
-                    onClick={() => {
-                      if (isClickable) handleDayClick(day.dayNum);
-                      else if (day.isRewardEarned && !day.isRewardClaimed && !day.isRewardClaiming) handleClaimReward(day.dayNum);
-                    }}
-                    style={{
-                      width: "100%",
-                      aspectRatio: "1 / 1.4",
-                      border: isClickable
-                        ? "2px solid #0d8b87"
-                        : day.isRewardEarned && !day.isRewardClaimed
-                          ? "2px solid #E8913A"
-                          : "1px solid #d4e0df",
-                      backgroundColor: "#ffffff",
-                      overflow: day.isCelebrating ? "visible" : "hidden",
-                      position: "relative",
-                      cursor: isClickable || (day.isRewardEarned && !day.isRewardClaimed) ? "pointer" : "default",
-                    }}
-                  >
-                    <img
-                      src={day.reward!.image}
-                      alt={day.reward!.name}
-                      draggable={false}
+                {/* Circle row — fixed height for line alignment */}
+                <div style={{ height: "48px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  {hasReward ? (
+                    /* Reward day — larger circle with image */
+                    <div
+                      onClick={() => {
+                        if (isClickable) handleDayClick(day.dayNum);
+                        else if (day.isRewardEarned && !day.isRewardClaimed && !day.isRewardClaiming) handleClaimReward(day.dayNum);
+                      }}
                       style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        display: "block",
-                        filter: day.isChecked ? "none" : "grayscale(0.6)",
-                        opacity: day.isChecked ? 1 : 0.4,
-                        transition: "filter 0.4s ease, opacity 0.4s ease",
-                        pointerEvents: "none",
+                        width: "48px",
+                        height: "48px",
+                        borderRadius: "50%",
+                        overflow: day.isCelebrating ? "visible" : "hidden",
+                        position: "relative",
+                        cursor: isClickable || (day.isRewardEarned && !day.isRewardClaimed) ? "pointer" : "default",
+                        border: day.isToday
+                          ? "3px solid #0d8b87"
+                          : day.isRewardEarned && !day.isRewardClaimed
+                            ? "3px solid #E8913A"
+                            : day.isChecked
+                              ? "2px solid #0d8b87"
+                              : "2px solid #d4e0df",
+                        backgroundColor: "#ffffff",
+                        boxShadow: day.isToday
+                          ? "0 0 0 3px rgba(13,139,135,0.2)"
+                          : day.isRewardEarned && !day.isRewardClaimed
+                            ? "0 0 0 3px rgba(232,145,58,0.2)"
+                            : "none",
+                        transition: "border-color 0.3s ease, box-shadow 0.3s ease",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <img
+                        src={day.reward!.image}
+                        alt={day.reward!.name}
+                        draggable={false}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          borderRadius: "50%",
+                          display: "block",
+                          filter: day.isChecked ? "none" : "grayscale(0.6)",
+                          opacity: day.isChecked ? 1 : 0.4,
+                          transition: "filter 0.4s ease, opacity 0.4s ease",
+                          pointerEvents: "none",
+                        }}
+                      />
+
+                      {/* Checked overlay (non-reward-earned) */}
+                      {(day.isChecked || day.isAnimating) && !day.isRewardEarned && (
+                        <div style={{ position: "absolute", inset: 0, borderRadius: "50%", backgroundColor: "rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+                            <circle cx="14" cy="14" r="13" fill="#0C3D3D" style={{ transformOrigin: "14px 14px", animation: day.isAnimating ? "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" : "none" }} />
+                            <path d="M8 14.5L12 18.5L20 9.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 24, strokeDashoffset: day.isAnimating ? 24 : 0, animation: day.isAnimating ? "streakDrawCheck 0.4s ease 0.25s forwards" : "none" }} />
+                          </svg>
+                        </div>
+                      )}
+
+                      {/* Claimable overlay */}
+                      {day.isRewardEarned && !day.isRewardClaimed && !day.isRewardClaiming && (
+                        <div style={{ position: "absolute", inset: 0, borderRadius: "50%", backgroundColor: "rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center", animation: "streakOverlayIn 0.3s ease forwards" }}>
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12l5 5L19 7" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </div>
+                      )}
+
+                      {/* Claiming animation */}
+                      {day.isRewardClaiming && (
+                        <div style={{ position: "absolute", inset: 0, borderRadius: "50%", backgroundColor: "rgba(0,0,0,0.3)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 3 }}>
+                          <svg width="24" height="24" viewBox="0 0 28 28" fill="none" style={{ overflow: "visible" }}>
+                            <circle cx="14" cy="14" r="13" fill="#0C3D3D" style={{ transformOrigin: "14px 14px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
+                            <path d="M8 14.5L12 18.5L20 9.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 24, strokeDashoffset: 24, animation: "streakDrawCheck 0.4s ease 0.25s forwards" }} />
+                          </svg>
+                        </div>
+                      )}
+
+                      {/* Claimed badge */}
+                      {day.isRewardClaimed && (
+                        <div style={{ position: "absolute", bottom: "-2px", right: "-2px", zIndex: 4 }}>
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <circle cx="8" cy="8" r="8" fill="#0C3D3D" />
+                            <path d="M4.5 8.5L7 11L11.5 5.5" stroke="#ffffff" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </div>
+                      )}
+
+                      {/* Confetti */}
+                      {day.isCelebrating && (
+                        <div style={{ position: "absolute", inset: 0, zIndex: 10, pointerEvents: "none", overflow: "visible" }}>
+                          {Array.from({ length: 25 }).map((_, i) => {
+                            const w = 3 + Math.random() * 4;
+                            const h = i % 4 === 0 ? w : (2 + Math.random() * 3);
+                            const angle = Math.random() * Math.PI * 2;
+                            const dist = 30 + Math.random() * 80;
+                            const dx = Math.cos(angle) * dist;
+                            const dy = Math.sin(angle) * dist;
+                            const spin = 180 + Math.random() * 540;
+                            const colors = ["#0C3D3D", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#3da88a"];
+                            return (
+                              <div
+                                key={i}
+                                style={{
+                                  position: "absolute", left: "50%", top: "50%",
+                                  width: `${w}px`, height: `${h}px`,
+                                  marginLeft: `${-w / 2}px`, marginTop: `${-h / 2}px`,
+                                  borderRadius: i % 4 === 0 ? "50%" : "1px",
+                                  backgroundColor: colors[i % colors.length],
+                                  opacity: 0,
+                                  animation: `streakConfetti ${1.2 + Math.random() * 0.4}s cubic-bezier(0.12, 0.8, 0.2, 1) ${i * 0.006}s forwards`,
+                                  ["--dx" as string]: `${dx.toFixed(1)}px`,
+                                  ["--dy" as string]: `${dy.toFixed(1)}px`,
+                                  ["--spin" as string]: `${spin}deg`,
+                                }}
+                              />
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    /* Regular day — small circle */
+                    <div
+                      onClick={() => isClickable && handleDayClick(day.dayNum)}
+                      style={{
+                        width: day.isToday ? "16px" : day.isChecked || day.isAnimating ? "12px" : "10px",
+                        height: day.isToday ? "16px" : day.isChecked || day.isAnimating ? "12px" : "10px",
+                        borderRadius: "50%",
+                        backgroundColor: day.isChecked || day.isAnimating ? "#0d8b87" : day.isToday ? "#ffffff" : "#d4e0df",
+                        border: day.isToday ? "3px solid #0d8b87" : "none",
+                        boxShadow: day.isToday ? "0 0 0 3px rgba(13,139,135,0.2)" : "none",
+                        cursor: isClickable ? "pointer" : "default",
+                        transition: "background-color 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease",
+                        flexShrink: 0,
                       }}
                     />
+                  )}
+                </div>
 
-                    {/* Checked overlay (non-reward-earned) */}
-                    {(day.isChecked || day.isAnimating) && !day.isRewardEarned && (
-                      <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                          <circle cx="14" cy="14" r="13" fill="#0C3D3D" style={{ transformOrigin: "14px 14px", animation: day.isAnimating ? "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" : "none" }} />
-                          <path d="M8 14.5L12 18.5L20 9.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 24, strokeDashoffset: day.isAnimating ? 24 : 0, animation: day.isAnimating ? "streakDrawCheck 0.4s ease 0.25s forwards" : "none" }} />
-                        </svg>
-                      </div>
-                    )}
+                {/* Day label */}
+                <span style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "9px",
+                  fontWeight: day.isToday ? 700 : 500,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: day.isChecked || day.isToday ? "#0d8b87" : "#999999",
+                  lineHeight: 1,
+                  marginTop: "8px",
+                  whiteSpace: "nowrap",
+                  textAlign: "center",
+                  transition: "color 0.3s ease",
+                }}>
+                  {day.dayNum}
+                </span>
 
-                    {/* Claimable overlay */}
-                    {day.isRewardEarned && !day.isRewardClaimed && !day.isRewardClaiming && (
-                      <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.45)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px", animation: "streakOverlayIn 0.3s ease forwards" }}>
-                        <button
-                          onClick={(e) => { e.stopPropagation(); handleClaimReward(day.dayNum); }}
-                          style={{
-                            fontFamily: "var(--font-sans)",
-                            fontSize: "16px",
-                            fontWeight: 600,
-                            color: "#0C3D3D",
-                            backgroundColor: "#ffffff",
-                            border: "none",
-                            minHeight: "44px",
-                            padding: "0 28px",
-                            borderRadius: "999px",
-                            cursor: "pointer",
-                            lineHeight: 1,
-                            transition: "background-color 0.2s ease",
-                          }}
-                        >
-                          {"Claim →"}
-                        </button>
-                      </div>
-                    )}
-
-                    {/* Claiming animation */}
-                    {day.isRewardClaiming && (
-                      <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.3)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 3 }}>
-                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style={{ overflow: "visible" }}>
-                          <circle cx="18" cy="18" r="17" fill="#0C3D3D" style={{ transformOrigin: "18px 18px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
-                          <path d="M11 18.5L15.5 23L25 13" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 24, strokeDashoffset: 24, animation: "streakDrawCheck 0.4s ease 0.25s forwards" }} />
-                        </svg>
-                      </div>
-                    )}
-
-                    {/* Claimed — small check badge top-right */}
-                    {day.isRewardClaimed && (
-                      <div style={{ position: "absolute", top: "8px", right: "8px", zIndex: 4 }}>
-                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                          <circle cx="11" cy="11" r="11" fill="#0C3D3D" />
-                          <path d="M6.5 11.5L9.5 14.5L15.5 8" stroke="#ffffff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
-                    )}
-
-                    {/* Confetti */}
-                    {day.isCelebrating && (
-                      <div style={{ position: "absolute", inset: 0, zIndex: 10, pointerEvents: "none", overflow: "visible" }}>
-                        {Array.from({ length: 30 }).map((_, i) => {
-                          const w = 3 + Math.random() * 5;
-                          const h = i % 4 === 0 ? w : (2 + Math.random() * 4);
-                          const angle = Math.random() * Math.PI * 2;
-                          const dist = 40 + Math.random() * 120;
-                          const dx = Math.cos(angle) * dist;
-                          const dy = Math.sin(angle) * dist;
-                          const spin = 180 + Math.random() * 540;
-                          const colors = ["#0C3D3D", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#3da88a"];
-                          return (
-                            <div
-                              key={i}
-                              style={{
-                                position: "absolute", left: "50%", top: "35%",
-                                width: `${w}px`, height: `${h}px`,
-                                marginLeft: `${-w / 2}px`, marginTop: `${-h / 2}px`,
-                                borderRadius: i % 4 === 0 ? "50%" : "1px",
-                                backgroundColor: colors[i % colors.length],
-                                opacity: 0,
-                                animation: `streakConfetti ${1.4 + Math.random() * 0.5}s cubic-bezier(0.12, 0.8, 0.2, 1) ${i * 0.005}s forwards`,
-                                ["--dx" as string]: `${dx.toFixed(1)}px`,
-                                ["--dy" as string]: `${dy.toFixed(1)}px`,
-                                ["--spin" as string]: `${spin}deg`,
-                              }}
-                            />
-                          );
-                        })}
-                      </div>
-                    )}
-
-                    {/* Sheen */}
-                    {day.isRewardClaiming && (
-                      <div style={{ position: "absolute", inset: 0, zIndex: 7, pointerEvents: "none", overflow: "hidden" }}>
-                        <div style={{ position: "absolute", top: "-100%", left: "-100%", width: "80%", height: "300%", background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%)", transform: "rotate(25deg)", animation: "streakSheen 1.4s ease 0.05s forwards" }} />
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  /* Regular day square */
-                  <div
-                    onClick={() => isClickable && handleDayClick(day.dayNum)}
-                    style={{
-                      width: "100%",
-                      aspectRatio: "1 / 1.4",
-                      border: isClickable ? "2px solid #0d8b87" : "1px solid #d4e0df",
-                      backgroundColor: "#ffffff",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      position: "relative",
-                      cursor: isClickable ? "pointer" : "default",
-                      transition: "border-color 0.2s ease",
-                    }}
-                  >
-                    {day.isChecked || day.isAnimating ? (
-                      <svg width="24" height="24" viewBox="0 0 28 28" fill="none" style={{ overflow: "visible" }}>
-                        <circle cx="14" cy="14" r="13" fill="#0C3D3D" style={{ transformOrigin: "14px 14px", animation: day.isAnimating ? "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" : "none" }} />
-                        <path d="M8 14.5L12 18.5L20 9.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 24, strokeDashoffset: day.isAnimating ? 24 : 0, animation: day.isAnimating ? "streakDrawCheck 0.4s ease 0.25s forwards" : "none" }} />
-                      </svg>
-                    ) : (
-                      <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "#d4e0df" }} />
-                    )}
-                  </div>
-                )}
-
-                {/* Below: reward name, code box if claimed, or spacer */}
+                {/* Reward info below */}
                 {hasReward ? (
                   day.isRewardClaimed ? (
-                    <div style={{ width: "100%" }}>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 600, color: "#0d8b87", textAlign: "center", lineHeight: 1.2, display: "block", marginBottom: "6px" }}>
+                    <div style={{ width: "100%", marginTop: "4px" }}>
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 600, color: "#0d8b87", textAlign: "center", lineHeight: 1.2, display: "block", marginBottom: "4px" }}>
                         {day.reward!.name}
                       </span>
                       <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
                         <div style={{
                           fontFamily: "var(--font-sans)",
-                          fontSize: "11px",
+                          fontSize: "9px",
                           fontWeight: 600,
-                          letterSpacing: "0.06em",
+                          letterSpacing: "0.04em",
                           color: "#000000",
                           backgroundColor: "#f5f8f8",
                           border: "1px solid #d4e0df",
                           borderRight: "none",
-                          padding: "8px 10px",
+                          padding: "5px 6px",
                           lineHeight: 1,
                           flex: 1,
                           minWidth: 0,
@@ -2068,12 +2098,12 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                           onClick={(e) => { e.stopPropagation(); handleCopyCode(day.reward!.code, day.dayNum); }}
                           style={{
                             fontFamily: "var(--font-sans)",
-                            fontSize: "11px",
+                            fontSize: "9px",
                             fontWeight: 600,
                             color: "#ffffff",
                             backgroundColor: "#0C3D3D",
                             border: "1px solid #0C3D3D",
-                            padding: "8px 12px",
+                            padding: "5px 8px",
                             lineHeight: 1,
                             cursor: "pointer",
                             whiteSpace: "nowrap",
@@ -2085,17 +2115,26 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                       </div>
                     </div>
                   ) : (
-                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 600, color: day.isChecked ? "#0d8b87" : "#999", textAlign: "center", lineHeight: 1.2, minHeight: "24px", display: "flex", alignItems: "flex-start", justifyContent: "center", transition: "color 0.3s ease" }}>
+                    <span style={{
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "10px",
+                      fontWeight: 600,
+                      color: day.isChecked ? "#0d8b87" : "#999",
+                      textAlign: "center",
+                      lineHeight: 1.2,
+                      marginTop: "4px",
+                      maxWidth: "80px",
+                      transition: "color 0.3s ease",
+                    }}>
                       {day.reward!.name}
                     </span>
                   )
-                ) : (
-                  <div style={{ minHeight: "24px" }} />
-                )}
+                ) : null}
               </div>
             );
           })}
         </div>
+      </div>
 
       {/* Check-in button / confirmation */}
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", minHeight: "80px", justifyContent: "center" }}>

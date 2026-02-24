@@ -105,6 +105,8 @@ function ProgramDropdown({
   setShowMembership,
   headerBgMode,
   setHeaderBgMode,
+  showFeaturedSection,
+  setShowFeaturedSection,
 }: {
   open: boolean;
   totalSpend: number;
@@ -132,6 +134,8 @@ function ProgramDropdown({
   setShowMembership: (b: boolean) => void;
   headerBgMode: "video" | "static";
   setHeaderBgMode: (m: "video" | "static") => void;
+  showFeaturedSection: boolean;
+  setShowFeaturedSection: (b: boolean) => void;
 }) {
   const handleSimulateSpend = useCallback(
     (amount: number) => {
@@ -249,6 +253,15 @@ function ProgramDropdown({
       <div style={{ borderTop: "1px solid #e8e5e1", margin: "4px 0" }} />
       <DropdownItem
         onClick={() => {
+          const next = !showFeaturedSection;
+          setShowFeaturedSection(next);
+          window.dispatchEvent(new CustomEvent("toggle-featured-section", { detail: { visible: next } }));
+        }}
+      >
+        {showFeaturedSection ? "✓ " : ""}featured section
+      </DropdownItem>
+      <DropdownItem
+        onClick={() => {
           const next = !showFeaturedBtn;
           setShowFeaturedBtn(next);
           window.dispatchEvent(new CustomEvent("toggle-featured-btn", { detail: { visible: next } }));
@@ -304,6 +317,7 @@ export default function Header() {
   const [showEvents, setShowEvents] = useState(false);
   const [showFeaturedBtn, setShowFeaturedBtn] = useState(false);
   const [showMembership, setShowMembership] = useState(false);
+  const [showFeaturedSection, setShowFeaturedSection] = useState(false);
   const [headerBgMode, setHeaderBgMode] = useState<"video" | "static">("video");
   const [shopHov, setShopHov] = useState(false);
 
@@ -417,6 +431,8 @@ export default function Header() {
               setShowMembership={setShowMembership}
               headerBgMode={headerBgMode}
               setHeaderBgMode={setHeaderBgMode}
+              showFeaturedSection={showFeaturedSection}
+              setShowFeaturedSection={setShowFeaturedSection}
             />
           </div>
 

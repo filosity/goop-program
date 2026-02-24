@@ -466,7 +466,7 @@ function CommunityCardV2({
             <span
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "11px",
+                fontSize: "13px",
                 fontWeight: 600,
                 letterSpacing: "0.05em",
                 color: isInstagram ? "#c13584" : "#1a1a1a",
@@ -661,7 +661,7 @@ function TimelineEventCard({
               top: "12px",
               left: "12px",
               fontFamily: "var(--font-mono)",
-              fontSize: "11px",
+              fontSize: "13px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               textTransform: "uppercase",

@@ -256,7 +256,7 @@ function MilestoneCard({
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "11px",
+              fontSize: "13px",
               fontWeight: 600,
               textTransform: "uppercase",
               letterSpacing: "0.08em",

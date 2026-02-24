@@ -573,7 +573,7 @@ function CommunityHero({
         <span
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "11px",
+            fontSize: "13px",
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
@@ -690,7 +690,7 @@ function CommunityGridCard({
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
+              fontSize: "12px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               color: hasImg ? "rgba(255,255,255,0.8)" : item.type === "instagram" ? "#c13584" : "#6b8a89",
@@ -925,7 +925,7 @@ function EventCalendarCard({
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "11px",
+              fontSize: "13px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               color: "#ffffff",
@@ -984,7 +984,7 @@ function EventCalendarCard({
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
+              fontSize: "12px",
               fontWeight: 600,
               letterSpacing: "0.04em",
               textTransform: "uppercase",

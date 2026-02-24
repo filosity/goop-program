@@ -275,7 +275,7 @@ function CommunityHero({
         <span
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "11px",
+            fontSize: "13px",
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
@@ -390,7 +390,7 @@ function CommunityGridCard({
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
+              fontSize: "12px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               color: hasImg ? "rgba(255,255,255,0.8)" : "#6b8a89",
@@ -583,7 +583,7 @@ function EventCalendarCard({
             gap: "4px",
           }}
         >
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", color: "#ffffff", textTransform: "uppercase", lineHeight: 1 }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "13px", fontWeight: 600, letterSpacing: "0.06em", color: "#ffffff", textTransform: "uppercase", lineHeight: 1 }}>
             {monthAbbr}
           </span>
           <span style={{ fontFamily: "var(--font-sans)", fontSize: "22px", fontWeight: 400, color: "#ffffff", lineHeight: 1.1 }}>
@@ -614,7 +614,7 @@ function EventCalendarCard({
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
+              fontSize: "12px",
               fontWeight: 600,
               letterSpacing: "0.04em",
               textTransform: "uppercase",
@@ -1059,6 +1059,7 @@ function FeaturedCard({
 
 export default function Featured() {
   const [version, setVersion] = useState(1);
+  const [visible, setVisible] = useState(false);
   const images = allImages;
   const [activeTab, setActiveTab] = useState<"activity" | "community" | "events">("activity");
   const [showCommunity, setShowCommunity] = useState(false);
@@ -1135,13 +1136,19 @@ export default function Featured() {
       const detail = (e as CustomEvent).detail;
       if (detail?.visible !== undefined) setShowFeaturedBtn(detail.visible);
     };
+    const handleFeaturedSection = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.visible !== undefined) setVisible(detail.visible);
+    };
     window.addEventListener("toggle-community", handleCommunity);
     window.addEventListener("toggle-events", handleEvents);
     window.addEventListener("toggle-featured-btn", handleFeaturedBtn);
+    window.addEventListener("toggle-featured-section", handleFeaturedSection);
     return () => {
       window.removeEventListener("toggle-community", handleCommunity);
       window.removeEventListener("toggle-events", handleEvents);
       window.removeEventListener("toggle-featured-btn", handleFeaturedBtn);
+      window.removeEventListener("toggle-featured-section", handleFeaturedSection);
     };
   }, []);
 
@@ -1150,6 +1157,7 @@ export default function Featured() {
     if (activeTab === "events" && !showEvents) setActiveTab("activity");
   }, [showCommunity, showEvents, activeTab]);
 
+  if (!visible) return null;
   if (version === 2) return <FeaturedV2 />;
   if (version === 3) return <FeaturedV3 />;
 

@@ -239,7 +239,7 @@ export default function StickyNav() {
             }}
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "11px",
+              fontSize: "13px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               textTransform: "uppercase" as const,
@@ -297,7 +297,7 @@ export default function StickyNav() {
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "10px",
+              fontSize: "12px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               textTransform: "uppercase",
@@ -321,18 +321,6 @@ export default function StickyNav() {
             }}
           >
             ${userPoints.toFixed(2)}
-          </p>
-          <p
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "15px",
-              fontWeight: 400,
-              color: "#6b8a89",
-              margin: 0,
-              lineHeight: 1.4,
-            }}
-          >
-            AG Credit
           </p>
         </div>
       </div>

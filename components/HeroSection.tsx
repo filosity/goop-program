@@ -41,7 +41,7 @@ function SectionLabel({ text }: { text: string }) {
       <p
         style={{
           fontFamily: "var(--font-mono)",
-          fontSize: "11px",
+          fontSize: "13px",
           fontWeight: 600,
           letterSpacing: "0.06em",
           textTransform: "uppercase",
@@ -206,7 +206,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
         <p
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "11px",
+            fontSize: "13px",
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
@@ -371,7 +371,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                     letterSpacing: "-0.02em",
                   }}
                 >
-                  Not subscribed
+                  Non-member
                 </p>
                 <button
                   onClick={handleHeroSubscribe}

@@ -70,7 +70,7 @@ function SignUpStep({ active, imageSrc }: { active: boolean; index: number; imag
         <p
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "10px",
+            fontSize: "12px",
             fontWeight: 600,
             textTransform: "uppercase",
             letterSpacing: "0.08em",
@@ -206,7 +206,7 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
         <p
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "10px",
+            fontSize: "12px",
             fontWeight: 600,
             textTransform: "uppercase",
             letterSpacing: "0.08em",

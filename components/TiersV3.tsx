@@ -225,7 +225,7 @@ export default function TiersV3() {
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "11px",
+              fontSize: "13px",
               fontWeight: 600,
               letterSpacing: "0.08em",
               textTransform: "uppercase",

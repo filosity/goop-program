@@ -165,7 +165,7 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
                 lineHeight: 1.4,
               }}
             >
-              {isSubscribed ? "Member since Feb 2026" : "Not yet subscribed"}
+              {isSubscribed ? "Member since Feb 2026" : "Non-member"}
             </p>
             <a
               href="#"
@@ -199,7 +199,7 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
             <p
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "10px",
+                fontSize: "12px",
                 fontWeight: 600,
                 color: "#6b8a89",
                 margin: "0 0 4px 0",
@@ -277,7 +277,7 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
                 letterSpacing: "-0.01em",
               }}
             >
-              Not subscribed
+              Non-member
             </p>
             <button
               onClick={handleHeroSubscribe}

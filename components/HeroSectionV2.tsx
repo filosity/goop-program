@@ -160,7 +160,7 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
             <p
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "11px",
+                fontSize: "13px",
                 fontWeight: 600,
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
@@ -221,7 +221,7 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
             <p
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "10px",
+                fontSize: "12px",
                 fontWeight: 600,
                 color: "#1a1a1a",
                 margin: "0 0 4px 0",
@@ -321,7 +321,7 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
                     letterSpacing: "-0.02em",
                   }}
                 >
-                  Not subscribed
+                  Non-member
                 </p>
                 <button
                   onClick={handleHeroSubscribe}
