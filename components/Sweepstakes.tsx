@@ -20,7 +20,7 @@ const steps = [
     number: 3,
     title: "share on social",
     description:
-      "Repost our video with #goop26 on Tik Tok or Instagram, tag at least 1 friend.",
+      "Repost our video with #AG1 on Tik Tok or Instagram, tag at least 1 friend.",
   },
   {
     number: 4,
@@ -32,44 +32,44 @@ const steps = [
 
 const pastWinners = [
   {
-    product: "Jillian Dempsey Makeup Bag",
+    product: "AG1 Puffer Jacket",
     winner: "casey r.",
-    image: "/product-makeupbag.webp",
+    image: "/featured1.jpg",
   },
   {
-    product: "Bathorium Boreal Fog Bath Bomb",
+    product: "AG1 Pajamas",
     winner: "jake k.",
-    image: "/product-bath-bomb.webp",
+    image: "/featured2.jpg",
   },
   {
-    product: "Corpus Body Wash",
+    product: "AG1 Stanley Cup",
     winner: "sam o.",
-    image: "/product-corpus-bodywash.webp",
+    image: "/featured3.jpg",
   },
   {
-    product: "goop beauty Afterglow Body Oil",
+    product: "AG1 Travel Packs (30ct)",
     winner: "mia t.",
-    image: "/product-afterglow-bodyoil.webp",
+    image: "/product-travelpacks-original.jpg",
   },
   {
-    product: "Surya Love Bath Heart-Opening Soak",
+    product: "AG1 Shaker Bottle",
     winner: "alex d.",
-    image: "/product-love-bath-soak.webp",
+    image: "/featured4.jpg",
   },
   {
-    product: "Kate McLeod Amber & Vanilla Pebble",
+    product: "AG1 Duffel Bag",
     winner: "riley p.",
-    image: "/product-amber-pebble.webp",
+    image: "/earn3.jpg",
   },
   {
-    product: "Maison Louis Marie No.14 Icila Body Lotion",
+    product: "AG1 Sweatshirt",
     winner: "jordan w.",
-    image: "/product-icila-bodylotion.webp",
+    image: "/earn5.jpg",
   },
   {
-    product: "Rahua Aloe Vera Shampoo & Conditioner Duo",
+    product: "AG1 Hat",
     winner: "taylor m.",
-    image: "/product-aloe-vera-duo.webp",
+    image: "/earn7.jpg",
   },
 ];
 
@@ -187,7 +187,7 @@ export default function Sweepstakes() {
       {/* Beige container */}
       <div
         style={{
-          backgroundColor: "#f9f7f5",
+          backgroundColor: "#f5f8f8",
           maxWidth: "1280px",
           margin: "0 auto",
           padding: "32px 0 48px",
@@ -212,17 +212,17 @@ export default function Sweepstakes() {
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease",
               backgroundColor:
                 activeTab === "join"
-                  ? "#000000"
+                  ? "#0f2e2f"
                   : joinHovered
                     ? "rgba(0,0,0,0.08)"
                     : "transparent",
               color: activeTab === "join" ? "#ffffff" : "#000000",
-              border: "1px solid #000000",
+              border: "1px solid #0f2e2f",
             }}
           >
             join the sweepstakes
@@ -237,17 +237,17 @@ export default function Sweepstakes() {
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease",
               backgroundColor:
                 activeTab === "past"
-                  ? "#000000"
+                  ? "#0f2e2f"
                   : pastHovered
                     ? "rgba(0,0,0,0.08)"
                     : "transparent",
               color: activeTab === "past" ? "#ffffff" : "#000000",
-              border: "1px solid #000000",
+              border: "1px solid #0f2e2f",
             }}
           >
             past winners
@@ -275,7 +275,7 @@ export default function Sweepstakes() {
                 }}
               >
                 <img
-                  src="/sweepstakes_hero.jpg"
+                  src="/background-header.jpg"
                   alt="Sweepstakes prize"
                   style={{
                     width: "100%",
@@ -298,12 +298,12 @@ export default function Sweepstakes() {
                 {/* Top label */}
                 <p
                   style={{
-                    fontFamily: "var(--font-sans)",
+                    fontFamily: "var(--font-mono)",
                     fontSize: "10px",
                     fontWeight: 600,
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
-                    color: "#888888",
+                    color: "#6b8a89",
                     margin: "0 0 16px 0",
                     lineHeight: 1,
                   }}
@@ -327,9 +327,9 @@ export default function Sweepstakes() {
                     cursor: "pointer",
                   }}
                 >
-                  Microderm Instant Glow
+                  AG1 Puffer Jacket
                   <br />
-                  Body Polish
+                  Giveaway
                 </h2>
 
                 {/* Separator */}
@@ -337,7 +337,7 @@ export default function Sweepstakes() {
                   style={{
                     width: "100%",
                     height: "1px",
-                    backgroundColor: "#e5e2de",
+                    backgroundColor: "#d4e0df",
                     margin: "0 0 28px 0",
                   }}
                 />
@@ -386,11 +386,11 @@ export default function Sweepstakes() {
                             borderRadius: "50%",
                             border:
                               handlesConnected && step.number === 1
-                                ? "1px solid #000000"
+                                ? "1px solid #0f2e2f"
                                 : "1px solid #b8b4ae",
                             backgroundColor:
                               handlesConnected && step.number === 1
-                                ? "#000000"
+                                ? "#0f2e2f"
                                 : "transparent",
                             display: "flex",
                             alignItems: "center",
@@ -418,7 +418,7 @@ export default function Sweepstakes() {
                                 fontFamily: "var(--font-sans)",
                                 fontSize: "11px",
                                 fontWeight: 600,
-                                color: "#888888",
+                                color: "#6b8a89",
                                 lineHeight: 1,
                               }}
                             >
@@ -465,7 +465,7 @@ export default function Sweepstakes() {
                             fontFamily: "var(--font-sans)",
                             fontSize: "12.5px",
                             fontWeight: 400,
-                            color: "#888888",
+                            color: "#6b8a89",
                             margin: 0,
                             lineHeight: 1.5,
                           }}
@@ -483,7 +483,7 @@ export default function Sweepstakes() {
                     style={{
                       width: "100%",
                       height: "1px",
-                      backgroundColor: "#e5e2de",
+                      backgroundColor: "#d4e0df",
                       margin: "0 0 20px 0",
                     }}
                   />
@@ -509,7 +509,7 @@ export default function Sweepstakes() {
                         fontFamily: "var(--font-sans)",
                         fontSize: "13px",
                         fontWeight: 400,
-                        color: "#888888",
+                        color: "#6b8a89",
                         margin: "0 0 24px 0",
                         lineHeight: 1.6,
                       }}
@@ -569,7 +569,7 @@ export default function Sweepstakes() {
                         fontFamily: "var(--font-sans)",
                         fontSize: "12px",
                         fontWeight: 400,
-                        color: "#888888",
+                        color: "#6b8a89",
                         margin: 0,
                         lineHeight: 1,
                       }}
@@ -597,7 +597,7 @@ export default function Sweepstakes() {
               }}
             >
               <img
-                src="/sweepstakes_hero.jpg"
+                src="/background-header.jpg"
                 alt="Sweepstakes prize"
                 style={{
                   width: "100%",
@@ -620,14 +620,14 @@ export default function Sweepstakes() {
                 letterSpacing: "-0.01em",
               }}
             >
-              Microderm Instant Glow Body Polish
+              AG1 Puffer Jacket Giveaway
             </h3>
             <p
               style={{
                 fontFamily: "var(--font-sans)",
                 fontSize: "12px",
                 fontWeight: 400,
-                color: "#888888",
+                color: "#6b8a89",
                 textAlign: "center",
                 margin: "0 0 40px 0",
                 lineHeight: 1.4,
@@ -671,7 +671,7 @@ export default function Sweepstakes() {
                         top: "25%",
                         height: "50%",
                         width: "1px",
-                        backgroundColor: "#e5e2de",
+                        backgroundColor: "#d4e0df",
                       }}
                     />
                   )}
@@ -683,11 +683,11 @@ export default function Sweepstakes() {
                       borderRadius: "50%",
                       border:
                         handlesConnected && step.number === 1
-                          ? "1.5px solid #000000"
+                          ? "1.5px solid #0f2e2f"
                           : "1.5px solid #d8d5d0",
                       backgroundColor:
                         handlesConnected && step.number === 1
-                          ? "#000000"
+                          ? "#0f2e2f"
                           : "transparent",
                       display: "flex",
                       alignItems: "center",
@@ -715,7 +715,7 @@ export default function Sweepstakes() {
                           fontFamily: "var(--font-sans)",
                           fontSize: "12px",
                           fontWeight: 600,
-                          color: "#888888",
+                          color: "#6b8a89",
                           lineHeight: 1,
                         }}
                       >
@@ -741,7 +741,7 @@ export default function Sweepstakes() {
                       fontFamily: "var(--font-sans)",
                       fontSize: "12px",
                       fontWeight: 400,
-                      color: "#888888",
+                      color: "#6b8a89",
                       margin: 0,
                       lineHeight: 1.5,
                     }}
@@ -760,7 +760,7 @@ export default function Sweepstakes() {
                 justifyContent: "space-between",
                 maxWidth: "960px",
                 margin: "0 auto",
-                borderTop: "1px solid #e5e2de",
+                borderTop: "1px solid #d4e0df",
                 paddingTop: "20px",
               }}
             >
@@ -783,7 +783,7 @@ export default function Sweepstakes() {
                     fontFamily: "var(--font-sans)",
                     fontSize: "13px",
                     fontWeight: 400,
-                    color: "#888888",
+                    color: "#6b8a89",
                     margin: 0,
                     lineHeight: 1.6,
                   }}
@@ -856,7 +856,7 @@ export default function Sweepstakes() {
                   }}
                 >
                   <img
-                    src="/sweepstakes_hero.jpg"
+                    src="/background-header.jpg"
                     alt="Sweepstakes prize"
                     style={{
                       width: "100%",
@@ -897,9 +897,9 @@ export default function Sweepstakes() {
                       cursor: "pointer",
                     }}
                   >
-                    microderm instant glow
+                    AG1 Puffer Jacket
                     <br />
-                    body polish
+                    Giveaway
                   </h2>
                 </div>
               </div>
@@ -982,7 +982,7 @@ export default function Sweepstakes() {
                 gridTemplateColumns: "repeat(4, 1fr)",
                 gap: "1px",
                 margin: "40px 48px 0",
-                backgroundColor: "#e5e2de",
+                backgroundColor: "#d4e0df",
               }}
             >
               {steps.map((step) => (
@@ -1019,7 +1019,7 @@ export default function Sweepstakes() {
                           fontFamily: "var(--font-sans)",
                           fontSize: "12px",
                           fontWeight: 600,
-                          color: "#888888",
+                          color: "#6b8a89",
                           margin: 0,
                           lineHeight: 1,
                         }}
@@ -1046,7 +1046,7 @@ export default function Sweepstakes() {
                       fontFamily: "var(--font-sans)",
                       fontSize: "13px",
                       fontWeight: 400,
-                      color: "#888888",
+                      color: "#6b8a89",
                       margin: 0,
                       lineHeight: 1.5,
                     }}
@@ -1063,7 +1063,7 @@ export default function Sweepstakes() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "12px",
                 fontWeight: 400,
-                color: "#888888",
+                color: "#6b8a89",
                 textAlign: "center",
                 margin: "32px 0 0 0",
                 lineHeight: 1,
@@ -1096,7 +1096,7 @@ export default function Sweepstakes() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "14px",
                 fontWeight: 400,
-                color: "#888888",
+                color: "#6b8a89",
                 textAlign: "center",
                 margin: "0 0 48px 0",
                 lineHeight: 1.4,

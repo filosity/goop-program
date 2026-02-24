@@ -4,8 +4,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { ArrowLeft, ArrowRight } from "@vectoricons/atlas-icons-react";
 
-const TIER3_THRESHOLD = 500;
-
 const FeaturedV2 = dynamic(() => import("./FeaturedV2"), { ssr: false });
 const FeaturedV3 = dynamic(() => import("./FeaturedV3"), { ssr: false });
 
@@ -13,37 +11,46 @@ const allImages = ["/tier1.jpg", "/tier2.jpg", "/tier3.jpg", "/tier4.jpg", "/fea
 
 const baseCards = [
   {
-    title: "Spend $100 this month and redeem a beauty gift set",
-    subtitle: "ready to redeem",
-    button: "REDEEM",
-    likes: "+1.2K",
-    redeemCode: "GLOW2026",
-    scrollTarget: null as string | null,
-    isLink: false,
-  },
-  {
-    title: "Spend $500 and receive 1,000 goop credit",
-    subtitle: "$450 to go",
+    title: "AG1 Puffer Jacket",
+    subtitle: "$30 AG Credit",
     button: "REDEEM",
     likes: "+3.5K",
-    redeemCode: null,
+    redeemCode: "PUFFER30",
     scrollTarget: null as string | null,
     isLink: false,
   },
   {
-    title: "Complete face mapping quiz",
-    subtitle: "+$5 goop credit",
-    button: "TAKE THE QUIZ",
-    likes: "+1K",
+    title: "AG1 Pajamas",
+    subtitle: "$20 AG Credit",
+    button: "REDEEM",
+    likes: "+2.8K",
+    redeemCode: "PAJAMAS20",
+    scrollTarget: null as string | null,
+    isLink: false,
+  },
+  {
+    title: "AG1 Stanley Cup",
+    subtitle: "$10 AG Credit",
+    button: "REDEEM",
+    likes: "+4.1K",
+    redeemCode: "STANLEY10",
+    scrollTarget: null as string | null,
+    isLink: false,
+  },
+  {
+    title: "Refer a friend and earn $15 AG Credit",
+    subtitle: "+$15 AG Credit per referral",
+    button: "REFER NOW",
+    likes: "+890",
     redeemCode: null,
     scrollTarget: null as string | null,
     isLink: true,
   },
   {
-    title: "Double goop credit on all facial oils and serums",
-    subtitle: "9 days remaining",
-    button: "SHOP SERUMS",
-    likes: "+2.2K",
+    title: "Post your AG1 on Instagram or TikTok",
+    subtitle: "+$5 AG Credit",
+    button: "SHARE",
+    likes: "+1.8K",
     redeemCode: null,
     scrollTarget: null as string | null,
     isLink: true,
@@ -58,99 +65,90 @@ const baseCards = [
     isLink: false,
   },
   {
-    title: "Refer a friend and earn bonus goop credit",
-    subtitle: "+$10 goop credit per referral",
-    button: "REFER NOW",
-    likes: "+890",
+    title: "Leave a product review",
+    subtitle: "+$1 AG Credit",
+    button: "REVIEW",
+    likes: "+1.2K",
     redeemCode: null,
     scrollTarget: null as string | null,
     isLink: true,
   },
   {
-    title: "Try the new Ceramide Barrier Cream",
-    subtitle: "limited edition",
-    button: "SHOP NOW",
-    likes: "+3.1K",
-    redeemCode: null,
-    scrollTarget: null as string | null,
-    isLink: true,
-  },
-  {
-    title: "Share your skincare routine on TikTok",
-    subtitle: "+$4 goop credit",
-    button: "SHARE",
-    likes: "+1.8K",
-    redeemCode: null,
-    scrollTarget: null as string | null,
-    isLink: true,
-  },
-  {
-    title: "Unlock Tier 3 for exclusive early access",
-    subtitle: "$22 goop credit to go",
-    button: "VIEW TIERS",
+    title: "Vote in the weekly poll",
+    subtitle: "+$0.25 AG Credit per vote",
+    button: "VOTE NOW",
     likes: "+2.4K",
     redeemCode: null,
-    scrollTarget: "section-tiers",
-    isLink: false,
+    scrollTarget: null as string | null,
+    isLink: true,
+  },
+  {
+    title: "Sign up for SMS alerts",
+    subtitle: "+$1 AG Credit",
+    button: "SIGN UP",
+    likes: "+1.5K",
+    redeemCode: null,
+    scrollTarget: null as string | null,
+    isLink: true,
   },
 ];
 
 const communityImages = ["/tier1.jpg", "/tier2.jpg", "/tier3.jpg", "/tier4.jpg", "/featured1.jpg", "/featured2.jpg", "/featured3.jpg", "/featured4.jpg"];
 
 const communityItems = [
-  { type: "review" as const, author: "Sarah M.", text: "The Rosehip Radiance oil completely transformed my skin. After just two weeks, my complexion is glowing!", time: "2h ago", stars: 5, hasImage: true },
-  { type: "instagram" as const, author: "@glowright", text: "Morning routine with our best-selling Vitamin C serum. Tag us in your selfies!", time: "3h ago", likes: "1.4K", hasImage: true },
-  { type: "review" as const, author: "Emily R.", text: "I'm obsessed with the Hydra-Glow moisturizer. Lightweight but so hydrating.", time: "4h ago", stars: 5, hasImage: false },
-  { type: "instagram" as const, author: "@glowright", text: "Behind the scenes at our new product photoshoot. Something exciting is coming soon...", time: "5h ago", likes: "2.1K", hasImage: true },
-  { type: "review" as const, author: "Jessica L.", text: "The retinol night cream is gentle but effective. Finally a retinol that doesn't irritate.", time: "6h ago", stars: 4, hasImage: false },
-  { type: "instagram" as const, author: "@glowright", text: "Your top 5 favorite products of 2025, as voted by you! Swipe to see the full list.", time: "8h ago", likes: "3.8K", hasImage: true },
-  { type: "review" as const, author: "Amanda K.", text: "Tier 3 member here — the exclusive early access to new drops is worth it alone!", time: "10h ago", stars: 5, hasImage: true },
-  { type: "instagram" as const, author: "@glowright", text: "Meet our founder's go-to nighttime skincare stack. Link in bio for the full routine.", time: "12h ago", likes: "987", hasImage: false },
-  { type: "review" as const, author: "Priya D.", text: "The clay mask is incredible for my oily skin. Pores look visibly smaller after every use.", time: "14h ago", stars: 5, hasImage: true },
-  { type: "instagram" as const, author: "@glowright", text: "NEW DROP: The Ceramide Barrier Cream is here. Clinically tested, dermatologist approved.", time: "16h ago", likes: "4.2K", hasImage: true },
-  { type: "review" as const, author: "Rachel W.", text: "Ordered the starter kit and I'm already hooked. The packaging is also so beautiful.", time: "18h ago", stars: 4, hasImage: false },
-  { type: "instagram" as const, author: "@glowright", text: "Self-care Sunday rituals with our calming lavender face mist. What's in your routine?", time: "1d ago", likes: "1.9K", hasImage: true },
-  { type: "review" as const, author: "Megan T.", text: "Customer service helped me pick the perfect regimen for my combination skin. So helpful!", time: "1d ago", stars: 5, hasImage: false },
-  { type: "instagram" as const, author: "@glowright", text: "Glow check! Our community members sharing their 30-day transformation results.", time: "1d ago", likes: "5.1K", hasImage: true },
-  { type: "review" as const, author: "Lauren B.", text: "The SPF 50 daily moisturizer doesn't leave a white cast at all. My new holy grail.", time: "1d ago", stars: 5, hasImage: true },
-  { type: "instagram" as const, author: "@glowright", text: "Packing orders with love today. Every order ships with a handwritten thank-you note.", time: "2d ago", likes: "2.7K", hasImage: false },
-  { type: "review" as const, author: "Nina C.", text: "Earned enough goop credit for a free full-size serum. The rewards program is genuinely great.", time: "2d ago", stars: 5, hasImage: false },
-  { type: "instagram" as const, author: "@glowright", text: "Ingredient spotlight: Why bakuchiol is the gentle alternative to retinol your skin needs.", time: "2d ago", likes: "1.3K", hasImage: true },
-  { type: "review" as const, author: "Olivia H.", text: "The exfoliating toner is so gentle. No stinging, just smooth, bright skin every morning.", time: "2d ago", stars: 4, hasImage: false },
-  { type: "instagram" as const, author: "@glowright", text: "We just hit 500K followers! Thank you for being part of this journey with us.", time: "3d ago", likes: "8.4K", hasImage: true },
-  { type: "review" as const, author: "Danielle F.", text: "Bought the bundle deal during the sale — amazing value. Everything smells so luxurious.", time: "3d ago", stars: 5, hasImage: true },
-  { type: "instagram" as const, author: "@glowright", text: "Quick tutorial: How to layer your serums for maximum absorption. Save this for later!", time: "3d ago", likes: "3.3K", hasImage: false },
-  { type: "review" as const, author: "Taylor S.", text: "Three months in and my dark spots have faded significantly. Can't recommend enough.", time: "4d ago", stars: 5, hasImage: true },
-  { type: "instagram" as const, author: "@glowright", text: "Sustainability update: All our packaging is now 100% recyclable. Small steps, big impact.", time: "4d ago", likes: "2.9K", hasImage: true },
-  { type: "review" as const, author: "Aisha J.", text: "The under-eye cream actually works. I look more rested even on my worst sleep days.", time: "5d ago", stars: 4, hasImage: false },
+  { type: "review" as const, author: "Sarah M.", text: "AG1 Morning Routine Challenge completely changed my mornings. I feel so much more energized starting my day with AG1!", time: "2h ago", stars: 5, hasImage: true },
+  { type: "instagram" as const, author: "@drinkag1", text: "Share Your AG1 Recipe! We want to see your favorite AG1 smoothie combos. Tag us for a chance to be featured!", time: "3h ago", likes: "1.4K", hasImage: true },
+  { type: "review" as const, author: "Emily R.", text: "Started the 30-day AG1 challenge and I already feel the difference. More energy, better digestion, and sleeping like a baby.", time: "4h ago", stars: 5, hasImage: false },
+  { type: "instagram" as const, author: "@drinkag1", text: "AG1 Travel Tips: How our community stays on track with their health routine while on the go. Swipe for all the tips!", time: "5h ago", likes: "2.1K", hasImage: true },
+  { type: "review" as const, author: "Jessica L.", text: "Community Wellness Goals have kept me accountable. Love seeing everyone's progress and sharing mine!", time: "6h ago", stars: 4, hasImage: false },
+  { type: "instagram" as const, author: "@drinkag1", text: "Your top 5 favorite AG1 recipes of 2025, as voted by you! Swipe to see the full list.", time: "8h ago", likes: "3.8K", hasImage: true },
+  { type: "review" as const, author: "Amanda K.", text: "The AG1 community is so supportive. Love connecting with others who prioritize their health and wellness every day!", time: "10h ago", stars: 5, hasImage: true },
+  { type: "instagram" as const, author: "@drinkag1", text: "Meet our founder's go-to morning wellness stack. Link in bio for the full routine.", time: "12h ago", likes: "987", hasImage: false },
+  { type: "review" as const, author: "Priya D.", text: "AG1 has been a game changer for my gut health. Three months in and I feel incredible.", time: "14h ago", stars: 5, hasImage: true },
+  { type: "instagram" as const, author: "@drinkag1", text: "NEW: AG1 x Stanley collab is here. Limited edition cups for the AG1 community.", time: "16h ago", likes: "4.2K", hasImage: true },
+  { type: "review" as const, author: "Rachel W.", text: "Ordered my first subscription and I'm already hooked. The packaging is also so well designed.", time: "18h ago", stars: 4, hasImage: false },
+  { type: "instagram" as const, author: "@drinkag1", text: "Sunday reset rituals with AG1. What does your wellness routine look like?", time: "1d ago", likes: "1.9K", hasImage: true },
+  { type: "review" as const, author: "Megan T.", text: "Customer service helped me pick the perfect subscription plan. So helpful and responsive!", time: "1d ago", stars: 5, hasImage: false },
+  { type: "instagram" as const, author: "@drinkag1", text: "Wellness check! Our community members sharing their 30-day transformation results.", time: "1d ago", likes: "5.1K", hasImage: true },
+  { type: "review" as const, author: "Lauren B.", text: "The travel packs are so convenient. I never miss a day of AG1 even when I'm on the road.", time: "1d ago", stars: 5, hasImage: true },
+  { type: "instagram" as const, author: "@drinkag1", text: "Packing orders with love today. Every order ships with a handwritten thank-you note.", time: "2d ago", likes: "2.7K", hasImage: false },
+  { type: "review" as const, author: "Nina C.", text: "Earned enough AG Credit for free merch. The rewards program is genuinely great.", time: "2d ago", stars: 5, hasImage: false },
+  { type: "instagram" as const, author: "@drinkag1", text: "Ingredient spotlight: Why we use 75 vitamins, minerals, and whole-food sourced nutrients in AG1.", time: "2d ago", likes: "1.3K", hasImage: true },
+  { type: "review" as const, author: "Olivia H.", text: "My energy levels are through the roof since starting AG1. No more afternoon crashes!", time: "2d ago", stars: 4, hasImage: false },
+  { type: "instagram" as const, author: "@drinkag1", text: "We just hit 500K followers! Thank you for being part of this journey with us.", time: "3d ago", likes: "8.4K", hasImage: true },
+  { type: "review" as const, author: "Danielle F.", text: "The subscribe-and-save deal is amazing value. AG1 is now a non-negotiable part of my daily routine.", time: "3d ago", stars: 5, hasImage: true },
+  { type: "instagram" as const, author: "@drinkag1", text: "Quick tutorial: The perfect AG1 morning smoothie recipe. Save this for later!", time: "3d ago", likes: "3.3K", hasImage: false },
+  { type: "review" as const, author: "Taylor S.", text: "Three months in and my digestion has improved significantly. Can't recommend AG1 enough.", time: "4d ago", stars: 5, hasImage: true },
+  { type: "instagram" as const, author: "@drinkag1", text: "Sustainability update: All our packaging is now 100% recyclable. Small steps, big impact.", time: "4d ago", likes: "2.9K", hasImage: true },
+  { type: "review" as const, author: "Aisha J.", text: "AG1 actually works. I have more energy and focus even on my worst sleep days.", time: "5d ago", stars: 4, hasImage: false },
 ];
 
-const eventImages = ["/tier1.jpg", "/tier2.jpg", "/tier3.jpg", "/tier4.jpg", "/featured1.jpg", "/featured2.jpg", "/featured3.jpg", "/featured4.jpg", "/earn1.jpg", "/earn2.jpg", "/earn3.jpg", "/earn5.jpg", "/earn9.jpg", "/earn11.jpg"];
+const eventImages = ["/tier1.jpg", "/tier2.jpg", "/tier3.jpg", "/tier4.jpg", "/featured1.jpg", "/featured2.jpg", "/featured3.jpg", "/featured4.jpg", "/earn1.jpg", "/earn2.jpg", "/earn3.jpg", "/earn5.jpg", "/earn7.jpg", "/earn8.jpg"];
 
 const eventItems = [
   {
     type: "in-person" as const,
-    title: "Spring Glow Pop-Up Shop",
-    description: "Join us at our exclusive pop-up in SoHo, NYC for live skin consultations, complimentary mini facials, and first access to our spring collection. RSVP for a free welcome gift bag.",
+    title: "AG1 Wellness Summit 2026",
+    description: "Join us for a full day of wellness talks, nutrition workshops, and live demos from top health experts. RSVP for a free AG1 welcome kit.",
     date: "Mar 15, 2026",
     location: "245 Spring St, New York",
-    points: "+$2.50 goop credit for attending",
+    points: "+$2.50 AG Credit for attending",
   },
   {
     type: "digital" as const,
-    title: "Masterclass: Building Your Night Routine",
-    description: "Our lead aesthetician breaks down the perfect evening skincare stack. Learn layering techniques, ingredient pairing, and get your questions answered live.",
+    title: "Masterclass: Optimizing Your Morning Routine",
+    description: "Our nutrition team breaks down the perfect morning wellness stack. Learn how to pair AG1 with your daily habits and get your questions answered live.",
     date: "Mar 22, 2026",
     location: "Zoom — link sent after RSVP",
-    points: "+$1 goop credit",
+    points: "+$1 AG Credit",
   },
   {
     type: "in-person" as const,
-    title: "VIP Tier 3 Dinner & Preview",
-    description: "An intimate evening for our top-tier members. Preview the summer collection, enjoy a curated dinner, and receive an exclusive gift. Tier 3 members only.",
+    title: "AG1 Community Run",
+    description: "A 5K community run followed by a post-run wellness brunch with AG1 smoothie stations. All fitness levels welcome. Open to all loyalty members.",
     date: "Apr 5, 2026",
-    location: "The Standard, Los Angeles",
-    points: "Tier 3 exclusive",
+    location: "Griffith Park, Los Angeles",
+    points: "+$3 AG Credit for participating",
   },
   {
     type: "digital" as const,
@@ -158,23 +156,23 @@ const eventItems = [
     description: "Ask anything about our brand journey, ingredient sourcing, or upcoming launches. Candid conversation and surprise giveaways for attendees.",
     date: "Apr 12, 2026",
     location: "Instagram Live",
-    points: "+$1 goop credit",
+    points: "+$1 AG Credit",
   },
   {
     type: "in-person" as const,
-    title: "Clean Beauty Workshop",
-    description: "Hands-on workshop where you'll create your own custom serum blend. Take home your creation plus a full-size product of your choice.",
+    title: "AG1 Pop-up Experience",
+    description: "An immersive wellness experience featuring personalized nutrition consultations, exclusive merch drops, and AG1 tastings. First 100 guests receive a limited edition shaker.",
     date: "Apr 19, 2026",
-    location: "Goop Lab, Santa Monica",
-    points: "+$4 goop credit",
+    location: "AG1 Studio, Santa Monica",
+    points: "+$4 AG Credit",
   },
   {
     type: "digital" as const,
-    title: "Ingredient Deep-Dive: Retinol vs Bakuchiol",
-    description: "Our dermatologist advisor explains the science behind these powerhouse ingredients. Find out which one is right for your skin type and concerns.",
+    title: "Nutrition Deep-Dive: Gut Health & Immunity",
+    description: "Our nutrition science advisor explains the connection between gut health and immune function. Learn how AG1's ingredients support both.",
     date: "May 3, 2026",
     location: "YouTube Premiere",
-    points: "+$1 goop credit",
+    points: "+$1 AG Credit",
   },
   {
     type: "in-person" as const,
@@ -182,31 +180,31 @@ const eventItems = [
     description: "Celebrate the longest day with a wellness-focused brunch, guided meditation, and exclusive product reveals. Open to all loyalty members.",
     date: "Jun 21, 2026",
     location: "The Line Hotel, Austin",
-    points: "+$3 goop credit",
+    points: "+$3 AG Credit",
   },
   {
     type: "digital" as const,
-    title: "Skincare x Fitness: Morning Routines",
-    description: "A joint session with a fitness trainer and our skin experts on how exercise impacts your skin, plus the best pre and post-workout products.",
+    title: "AG1 x Fitness: Morning Routines",
+    description: "A joint session with a fitness trainer and our nutrition experts on how exercise and AG1 work together for optimal performance and recovery.",
     date: "May 17, 2026",
     location: "Zoom — free for all members",
-    points: "+$1 goop credit",
+    points: "+$1 AG Credit",
   },
   {
     type: "in-person" as const,
-    title: "Flagship Store Grand Opening — London",
-    description: "Be the first to experience our new London flagship. Live music, complimentary treatments, and 2x goop credit on all purchases during opening weekend.",
+    title: "AG1 Pop-up Experience — London",
+    description: "Be the first to experience our new London pop-up. Live music, complimentary wellness consultations, and 2x AG Credit on all purchases during opening weekend.",
     date: "Jun 7, 2026",
     location: "34 King's Road, London",
-    points: "2x goop credit all weekend",
+    points: "2x AG Credit all weekend",
   },
   {
     type: "digital" as const,
     title: "Community Awards: Vote for Your Favorites",
-    description: "Cast your vote for the 2026 Community Choice Awards. Top voters win a curated gift box. Results announced live with prizes and surprises.",
+    description: "Cast your vote for the 2026 Community Choice Awards. Top voters win a curated wellness gift box. Results announced live with prizes and surprises.",
     date: "Jul 1, 2026",
-    location: "goopbeauty.com/awards",
-    points: "+$1.50 goop credit for voting",
+    location: "ag1.com/awards",
+    points: "+$1.50 AG Credit for voting",
   },
 ];
 
@@ -267,7 +265,7 @@ function CommunityHero({
       >
         <span
           style={{
-            fontFamily: "var(--font-sans)",
+            fontFamily: "var(--font-mono)",
             fontSize: "11px",
             fontWeight: 600,
             letterSpacing: "0.06em",
@@ -330,7 +328,7 @@ function CommunityGridCard({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        backgroundColor: hasImg ? "#000000" : "#ffffff",
+        backgroundColor: hasImg ? "#0f2e2f" : "#ffffff",
         overflow: "hidden",
         opacity: 0,
         transform: "translateY(16px)",
@@ -382,11 +380,11 @@ function CommunityGridCard({
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span
             style={{
-              fontFamily: "var(--font-sans)",
+              fontFamily: "var(--font-mono)",
               fontSize: "10px",
               fontWeight: 600,
               letterSpacing: "0.06em",
-              color: hasImg ? "rgba(255,255,255,0.8)" : "#888888",
+              color: hasImg ? "rgba(255,255,255,0.8)" : "#6b8a89",
               textTransform: "uppercase",
             }}
           >
@@ -403,7 +401,7 @@ function CommunityGridCard({
               fontFamily: "var(--font-serif)",
               fontSize: "48px",
               lineHeight: "0.8",
-              color: "#e5e2de",
+              color: "#d4e0df",
               userSelect: "none",
             }}
           >
@@ -476,7 +474,7 @@ function CommunityFeed() {
 
   return (
     <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-      <div style={{ border: "1px solid #e5e2de" }}>
+      <div style={{ border: "1px solid #d4e0df" }}>
         {hero && (
           <CommunityHero
             item={hero}
@@ -488,7 +486,7 @@ function CommunityFeed() {
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
             gap: "1px",
-            backgroundColor: "#e5e2de",
+            backgroundColor: "#d4e0df",
           }}
         >
           {gridItems.map((item, i) => (
@@ -505,7 +503,7 @@ function CommunityFeed() {
         {hasMore && (
           <button
             onClick={() => setVisibleCount((c) => Math.min(c + 6, shuffled.length))}
-            style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#1a1a1a", backgroundColor: "transparent", border: "1px solid #1a1a1a", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#1a1a1a", backgroundColor: "transparent", border: "1px solid #1a1a1a", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#1a1a1a"; }}
           >
@@ -515,7 +513,7 @@ function CommunityFeed() {
         {visibleCount > 4 && (
           <button
             onClick={() => setVisibleCount(4)}
-            style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#888", backgroundColor: "transparent", border: "1px solid #d5d5d5", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#6b8a89", backgroundColor: "transparent", border: "1px solid #d5d5d5", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#1a1a1a"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#888"; e.currentTarget.style.borderColor = "#d5d5d5"; }}
           >
@@ -555,7 +553,7 @@ function EventCalendarCard({
       onMouseLeave={() => setHovered(false)}
       style={{
         backgroundColor: "#ffffff",
-        border: "1px solid #e5e2de",
+        border: "1px solid #d4e0df",
         overflow: "hidden",
         opacity: 0,
         transform: "translateY(12px)",
@@ -592,7 +590,7 @@ function EventCalendarCard({
             gap: "4px",
           }}
         >
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", color: "#ffffff", textTransform: "uppercase", lineHeight: 1 }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", color: "#ffffff", textTransform: "uppercase", lineHeight: 1 }}>
             {monthAbbr}
           </span>
           <span style={{ fontFamily: "var(--font-serif)", fontSize: "22px", fontWeight: 400, color: "#ffffff", lineHeight: 1.1 }}>
@@ -604,9 +602,9 @@ function EventCalendarCard({
             position: "absolute",
             top: "14px",
             right: "14px",
-            backgroundColor: "#000000",
+            backgroundColor: "#0f2e2f",
             color: "#ffffff",
-            borderRadius: "40px",
+            borderRadius: "999px",
             padding: "6px 14px",
             fontSize: "11px",
             fontFamily: "var(--font-sans)",
@@ -622,7 +620,7 @@ function EventCalendarCard({
         <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
           <span
             style={{
-              fontFamily: "var(--font-sans)",
+              fontFamily: "var(--font-mono)",
               fontSize: "10px",
               fontWeight: 600,
               letterSpacing: "0.04em",
@@ -631,7 +629,7 @@ function EventCalendarCard({
               padding: "5px 10px",
               borderRadius: "3px",
               flexShrink: 0,
-              backgroundColor: event.type === "in-person" ? "#000000" : "#f5ece3",
+              backgroundColor: event.type === "in-person" ? "#0f2e2f" : "#f5ece3",
               color: event.type === "in-person" ? "#ffffff" : "#8b6e5a",
             }}
           >
@@ -658,10 +656,10 @@ function EventCalendarCard({
               fontSize: "13px",
               fontWeight: 600,
               color: "#ffffff",
-              backgroundColor: btnHov ? "#333333" : "#000000",
+              backgroundColor: btnHov ? "#1a4a4b" : "#0f2e2f",
               padding: "0 22px",
               height: "38px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               textDecoration: "none",
               lineHeight: "38px",
               transition: "background-color 0.2s ease",
@@ -669,7 +667,7 @@ function EventCalendarCard({
               display: "inline-block",
             }}
           >
-            read more
+            {"read more \u2192"}
           </a>
         </div>
       </div>
@@ -715,7 +713,7 @@ function EventsFeed() {
         {hasMore && (
           <button
             onClick={() => setVisibleCount((c) => Math.min(c + 4, eventItems.length))}
-            style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#1a1a1a", backgroundColor: "transparent", border: "1px solid #1a1a1a", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#1a1a1a", backgroundColor: "transparent", border: "1px solid #1a1a1a", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#1a1a1a"; }}
           >
@@ -725,7 +723,7 @@ function EventsFeed() {
         {visibleCount > 4 && (
           <button
             onClick={() => setVisibleCount(4)}
-            style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#888", backgroundColor: "transparent", border: "1px solid #d5d5d5", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#6b8a89", backgroundColor: "transparent", border: "1px solid #d5d5d5", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#1a1a1a"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#888"; e.currentTarget.style.borderColor = "#d5d5d5"; }}
           >
@@ -808,68 +806,23 @@ function SocialDots({ cardIndex }: { cardIndex: number }) {
 }
 
 /* ─── Single featured card ─── */
-const SPEND_CARD_THRESHOLD = 500;
-const SPEND_CARD_POINTS = 1000;
 
 function FeaturedCard({
   card,
   image,
   isFirst,
   cardIndex,
-  isTier3Card,
-  isSpendCard,
 }: {
   card: (typeof baseCards)[0];
   image: string;
   isFirst?: boolean;
   cardIndex: number;
-  isTier3Card?: boolean;
-  isSpendCard?: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [animating, setAnimating] = useState(false);
   const [btnHovered, setBtnHovered] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [tier3Remaining, setTier3Remaining] = useState(TIER3_THRESHOLD - 50);
-  const [spendRemaining, setSpendRemaining] = useState(SPEND_CARD_THRESHOLD - 50);
-  const [spendReady, setSpendReady] = useState(false);
-
-  // Listen for spend updates to track tier 3 progress
-  useEffect(() => {
-    if (!isTier3Card) return;
-    const handler = (e: Event) => {
-      const spend = (e as CustomEvent).detail?.spend;
-      if (typeof spend === "number") {
-        const remaining = Math.max(0, TIER3_THRESHOLD - spend);
-        setTier3Remaining(remaining);
-        if (remaining <= 0 && !completed && !animating) {
-          setAnimating(true);
-          setTimeout(() => {
-            setCompleted(true);
-            setAnimating(false);
-          }, 700);
-        }
-      }
-    };
-    window.addEventListener("spend-updated", handler);
-    return () => window.removeEventListener("spend-updated", handler);
-  }, [isTier3Card, completed, animating]);
-
-  // Listen for spend updates for spend card
-  useEffect(() => {
-    if (!isSpendCard) return;
-    const handler = (e: Event) => {
-      const spend = (e as CustomEvent).detail?.spend;
-      if (typeof spend === "number") {
-        const remaining = Math.max(0, SPEND_CARD_THRESHOLD - spend);
-        setSpendRemaining(remaining);
-        if (remaining <= 0) setSpendReady(true);
-      }
-    };
-    window.addEventListener("spend-updated", handler);
-    return () => window.removeEventListener("spend-updated", handler);
-  }, [isSpendCard]);
 
   const handleClick = () => {
     if (card.scrollTarget) {
@@ -881,7 +834,6 @@ function FeaturedCard({
       return;
     }
     if (card.isLink) return;
-    if (isSpendCard && !spendReady) return;
     if (completed || animating) return;
     setAnimating(true);
     setTimeout(() => {
@@ -960,7 +912,7 @@ function FeaturedCard({
             {card.title}
           </h3>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 500, color: "rgba(255,255,255,0.75)", margin: 0, lineHeight: 1.4 }}>
-            {isTier3Card ? (tier3Remaining > 0 ? `$${tier3Remaining} to go` : "Tier 3 unlocked") : isSpendCard ? (spendReady ? "ready to redeem" : `$${spendRemaining} to go`) : card.subtitle}
+            {card.subtitle}
           </p>
         </div>
 
@@ -979,21 +931,19 @@ function FeaturedCard({
                 fontFamily: "var(--font-sans)",
                 fontSize: "13px",
                 fontWeight: 600,
-                color: isSpendCard && !spendReady ? "rgba(255,255,255,0.4)" : "#000000",
-                backgroundColor: isSpendCard && !spendReady
-                  ? "rgba(255,255,255,0.2)"
-                  : btnHovered ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.9)",
+                color: "#000000",
+                backgroundColor: btnHovered ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.9)",
                 height: "38px",
                 padding: "0 22px",
-                borderRadius: "40px",
+                borderRadius: "999px",
                 textDecoration: "none",
                 lineHeight: 1,
                 marginBottom: "20px",
-                cursor: isSpendCard && !spendReady ? "default" : "pointer",
+                cursor: "pointer",
                 transition: "background-color 0.2s ease, color 0.2s ease",
               }}
             >
-              {card.button.toLowerCase()}
+              {card.button.toLowerCase() + " \u2192"}
             </a>
           )}
 
@@ -1084,7 +1034,7 @@ function FeaturedCard({
                   lineHeight: 1.4,
                 }}
               >
-                copy this code in your cart and redeem a beauty gift set with your next order
+                copy this code at checkout to redeem your AG Credit with your next order
               </p>
             </div>
           )}
@@ -1212,12 +1162,12 @@ export default function Featured() {
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "activity" ? "#000000" : "transparent",
+              backgroundColor: activeTab === "activity" ? "#0f2e2f" : "transparent",
               color: activeTab === "activity" ? "#ffffff" : "#000000",
-              border: activeTab === "activity" ? "1px solid #000000" : featuredHovered ? "1px solid #000000" : "1px solid #d5d5d5",
+              border: activeTab === "activity" ? "1px solid #0f2e2f" : featuredHovered ? "1px solid #0f2e2f" : "1px solid #d5d5d5",
             }}
           >
             featured
@@ -1236,12 +1186,12 @@ export default function Featured() {
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "community" ? "#000000" : "transparent",
+              backgroundColor: activeTab === "community" ? "#0f2e2f" : "transparent",
               color: activeTab === "community" ? "#ffffff" : "#000000",
-              border: activeTab === "community" ? "1px solid #000000" : communityHovered ? "1px solid #000000" : "1px solid #d5d5d5",
+              border: activeTab === "community" ? "1px solid #0f2e2f" : communityHovered ? "1px solid #0f2e2f" : "1px solid #d5d5d5",
             }}
           >
             community
@@ -1263,12 +1213,12 @@ export default function Featured() {
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "events" ? "#000000" : "transparent",
+              backgroundColor: activeTab === "events" ? "#0f2e2f" : "transparent",
               color: activeTab === "events" ? "#ffffff" : "#000000",
-              border: activeTab === "events" ? "1px solid #000000" : eventsHovered ? "1px solid #000000" : "1px solid #d5d5d5",
+              border: activeTab === "events" ? "1px solid #0f2e2f" : eventsHovered ? "1px solid #0f2e2f" : "1px solid #d5d5d5",
             }}
           >
             events
@@ -1303,7 +1253,7 @@ export default function Featured() {
             }}
           >
             {baseCards.map((card, i) => (
-              <FeaturedCard key={i} card={card} image={images[i % images.length]} isFirst={i === 0} cardIndex={i} isTier3Card={i === baseCards.length - 1} isSpendCard={i === 1} />
+              <FeaturedCard key={i} card={card} image={images[i % images.length]} isFirst={i === 0} cardIndex={i} />
             ))}
           </div>
 

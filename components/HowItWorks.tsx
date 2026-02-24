@@ -58,7 +58,7 @@ function SignUpStep({ active, imageSrc }: { active: boolean; index: number; imag
         style={{
           backgroundColor: "#ffffff",
           padding: "24px",
-          border: "1px solid #e8e5e1",
+          border: "1px solid #d4e0df",
           borderTop: "none",
           textAlign: "left",
           height: "110px",
@@ -69,7 +69,7 @@ function SignUpStep({ active, imageSrc }: { active: boolean; index: number; imag
       >
         <p
           style={{
-            fontFamily: "var(--font-sans)",
+            fontFamily: "var(--font-mono)",
             fontSize: "10px",
             fontWeight: 600,
             textTransform: "uppercase",
@@ -176,7 +176,7 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
         style={{
           backgroundColor: "#ffffff",
           padding: "24px",
-          border: "1px solid #e8e5e1",
+          border: "1px solid #d4e0df",
           borderTop: "none",
           height: "110px",
           position: "relative",
@@ -205,7 +205,7 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
         ))}
         <p
           style={{
-            fontFamily: "var(--font-sans)",
+            fontFamily: "var(--font-mono)",
             fontSize: "10px",
             fontWeight: 600,
             textTransform: "uppercase",
@@ -214,7 +214,7 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
             margin: "0 0 6px 0",
           }}
         >
-          goop credit earned
+          AG Credit earned
         </p>
         <p
           style={{
@@ -234,11 +234,11 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
             fontFamily: "var(--font-sans)",
             fontSize: "12px",
             fontWeight: 400,
-            color: "#888888",
+            color: "#6b8a89",
             margin: "8px 0 0 0",
           }}
         >
-          {active && points > 0 ? "goop credit" : "10% cashback"}
+          {active && points > 0 ? "AG Credit" : "10% cashback"}
         </p>
       </div>
     </div>
@@ -309,7 +309,7 @@ function RedeemStep({ active, imageSrc }: { active: boolean; index: number; imag
         style={{
           backgroundColor: "#ffffff",
           padding: "24px",
-          border: "1px solid #e8e5e1",
+          border: "1px solid #d4e0df",
           borderTop: "none",
           height: "110px",
           display: "flex",
@@ -330,12 +330,12 @@ function RedeemStep({ active, imageSrc }: { active: boolean; index: number; imag
           color: "#ffffff",
           backgroundColor: active
             ? hovered && phase === "idle"
-              ? "#333333"
-              : "#000000"
+              ? "#1a4a4b"
+              : "#0f2e2f"
             : "#cccccc",
           width: isCircle ? `${btnHeight}px` : "140px",
           height: `${btnHeight}px`,
-          borderRadius: isCircle ? `${btnHeight / 2}px` : "0",
+          borderRadius: isCircle ? `${btnHeight / 2}px` : "999px",
           border: "none",
           cursor: active && phase === "idle" ? "pointer" : "default",
           transition:
@@ -358,7 +358,7 @@ function RedeemStep({ active, imageSrc }: { active: boolean; index: number; imag
             position: "absolute",
           }}
         >
-          redeem
+          redeem →
         </span>
 
         {/* Spinner — visible in loading */}
@@ -594,22 +594,22 @@ export default function HowItWorks() {
   const steps = [
     {
       number: "1",
-      title: "Sign up",
-      description: "Create a free account in seconds.",
+      title: "Subscribe",
+      description: "Sign up for an AG1 subscription to start earning.",
       component: SignUpStep,
       imageSrc: "/tier1.jpg",
     },
     {
       number: "2",
-      title: "Earn goop credit",
-      description: "Earn goop credit on every purchase.",
+      title: "Earn AG Credit",
+      description: "Earn AG Credit per serving and through activities.",
       component: EarnStep,
       imageSrc: "/tier2.jpg",
     },
     {
       number: "3",
       title: "Redeem",
-      description: "Exchange your goop credit for discounts and free products.",
+      description: "Use your AG Credit for exclusive merch after 90 days.",
       component: RedeemStep,
       imageSrc: "/tier3.jpg",
     },
@@ -620,7 +620,7 @@ export default function HowItWorks() {
       id="section-how-it-works"
       ref={sectionRef}
       style={{
-        backgroundColor: "#f5f3f0",
+        backgroundColor: "#f0f5f5",
         padding: collapsed ? "16px 48px 16px" : "36px 48px 80px",
       }}
     >

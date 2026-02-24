@@ -5,7 +5,7 @@ import { DollarSignCircle, GiftBox, DiscountTag, Bolt, DeliveryTruck, User, Star
 
 const benefitDescriptions: Record<string, string> = {
   "10% cashback on all purchases":
-    "Earn 10% back on every purchase as goop credit, automatically applied to your account.",
+    "Earn 10% back on every purchase as AG1 credit, automatically applied to your account.",
   "Birthday gift":
     "Receive a complimentary gift from our curated collection delivered to you during your birthday month.",
   "Member-only sales access":
@@ -307,7 +307,7 @@ export default function Tiers() {
                 flexDirection: "column",
                 overflow: "hidden",
                 cursor: "pointer",
-                borderRight: !isLast ? "1px solid #e5e2de" : "none",
+                borderRight: !isLast ? "1px solid #d4e0df" : "none",
               }}
             >
               {/* Image area */}
@@ -362,15 +362,15 @@ export default function Tiers() {
               {/* Card content */}
               <div
                 style={{
-                  backgroundColor: currentTier === i ? "#ffffff" : "#f9f7f5",
+                  backgroundColor: currentTier === i ? "#ffffff" : "#f5f8f8",
                   padding: "32px 36px 44px",
                   flex: 1,
                   display: "flex",
                   flexDirection: "column",
                   ...(currentTier === i ? { boxShadow: [
-                    i === 0 ? "inset 1px 0 0 0 #e5e2de" : "",
-                    "inset 0 -1px 0 0 #e5e2de",
-                    isLast ? "inset -1px 0 0 0 #e5e2de" : "",
+                    i === 0 ? "inset 1px 0 0 0 #d4e0df" : "",
+                    "inset 0 -1px 0 0 #d4e0df",
+                    isLast ? "inset -1px 0 0 0 #d4e0df" : "",
                   ].filter(Boolean).join(", ") } : {}),
                 }}
               >
@@ -396,7 +396,7 @@ export default function Tiers() {
                     fontFamily: "var(--font-sans)",
                     fontSize: "13px",
                     fontWeight: 400,
-                    color: "#888888",
+                    color: "#6b8a89",
                     margin: "0 0 28px 0",
                     lineHeight: 1.4,
                   }}
@@ -434,7 +434,7 @@ export default function Tiers() {
                           padding: "16px 0",
                           borderTop:
                             !isFirst
-                              ? "1px solid #e5e2de"
+                              ? "1px solid #d4e0df"
                               : "none",
                           opacity: isBenefitDimmed ? 0.35 : 1,
                           transition: "opacity 0.2s ease",

@@ -224,7 +224,7 @@ export default function TiersV3() {
           {/* Small uppercase label */}
           <p
             style={{
-              fontFamily: "var(--font-sans)",
+              fontFamily: "var(--font-mono)",
               fontSize: "11px",
               fontWeight: 600,
               letterSpacing: "0.08em",

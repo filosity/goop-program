@@ -4,10 +4,10 @@ import { useEffect, useRef, useCallback, useState } from "react";
 
 const sections = [
   { id: "section-featured", label: "featured" },
-  { id: "section-tiers", label: "tiers" },
+  { id: "section-milestones", label: "milestones" },
   { id: "section-membership", label: "membership" },
   { id: "section-sweepstakes", label: "sweepstakes" },
-  { id: "section-ways-to-earn", label: "goop credit" },
+  { id: "section-ways-to-earn", label: "AG Credit" },
   { id: "section-activities", label: "activities" },
 ];
 
@@ -180,7 +180,7 @@ export default function StickyNav() {
           padding: "20px 24px",
           gap: "4px",
           boxShadow: "none",
-          border: "1px solid #e0ddd9",
+          border: "1px solid #d4e0df",
         }}
       >
         {/* Arrow toggle — top right */}
@@ -237,10 +237,11 @@ export default function StickyNav() {
               }
             }}
             style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontFamily: "var(--font-mono)",
+              fontSize: "11px",
               fontWeight: 600,
-              letterSpacing: "0.02em",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase" as const,
               color: "#1a1a1a",
               opacity: 0.35,
               background: "none",
@@ -288,16 +289,17 @@ export default function StickyNav() {
         <div
           style={{
             marginTop: "12px",
-            borderTop: "1px solid #e5e2de",
+            borderTop: "1px solid #d4e0df",
             paddingTop: "12px",
           }}
         >
           <p
             style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "12px",
+              fontFamily: "var(--font-mono)",
+              fontSize: "10px",
               fontWeight: 600,
-              letterSpacing: "0.02em",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
               color: "#1a1a1a",
               margin: 0,
               lineHeight: 1,
@@ -324,12 +326,12 @@ export default function StickyNav() {
               fontFamily: "var(--font-sans)",
               fontSize: "13px",
               fontWeight: 400,
-              color: "#888888",
+              color: "#6b8a89",
               margin: 0,
               lineHeight: 1.4,
             }}
           >
-            goop credit
+            AG Credit
           </p>
         </div>
       </div>
@@ -346,7 +348,7 @@ export default function StickyNav() {
             right: "-32px",
             transform: "translateY(-50%)",
             backgroundColor: "#ffffff",
-            border: "1px solid #e0ddd9",
+            border: "1px solid #d4e0df",
             borderLeft: "none",
             width: "32px",
             height: "40px",

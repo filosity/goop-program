@@ -5,99 +5,75 @@ import { User, Instagram, Tiktok, Star, GiftBox, Phone, ShoppingBag, OpenBook, H
 
 const earnCards = [
   {
-    title: "Create an account",
-    points: null,
+    title: "Sign up for\na subscription",
+    points: "+$2 AG Credit",
     icon: "user",
     action: null,
     image: "/earn10.jpg",
     input: null,
   },
   {
-    title: "Tell us your\nInstagram handle",
-    points: "+$1 goop credit",
-    icon: "instagram",
-    action: "connect",
+    title: "Be a Member\nfor 90 days",
+    points: "+$5 AG Credit",
+    icon: "star",
+    action: null,
     image: "/earn1.jpg",
-    input: "Your Instagram handle",
+    input: null,
   },
   {
-    title: "Tell us your\nTik Tok handle",
-    points: "+$1 goop credit",
-    icon: "tiktok",
-    action: "connect",
+    title: "Be a Member\nfor 1 year",
+    points: "+$10 AG Credit",
+    icon: "star",
+    action: null,
     image: "/earn2.jpg",
-    input: "Your Tik Tok handle",
+    input: null,
   },
   {
-    title: "Mention on Instagram\nor Tik Tok story",
-    points: "+$5 goop credit",
+    title: "Connect\nInstagram",
+    points: "+$1 AG Credit",
     icon: "instagram",
     action: "connect",
     image: "/earn3.jpg",
-    input: null,
+    input: "Your Instagram handle",
   },
   {
-    title: "Follow on Instagram",
-    points: "+$1 goop credit",
-    icon: "instagram",
-    action: "follow",
-    image: "/earn4.jpg",
-    input: null,
-  },
-  {
-    title: "Follow on Tik Tok",
-    points: "+$1 goop credit",
+    title: "Connect\nTikTok",
+    points: "+$1 AG Credit",
     icon: "tiktok",
-    action: "follow",
+    action: "connect",
+    image: "/earn4.jpg",
+    input: "Your TikTok handle",
+  },
+  {
+    title: "Post IG/TikTok\nwith your AG1",
+    points: "+$5 AG Credit",
+    icon: "instagram",
+    action: "connect",
     image: "/earn5.jpg",
     input: null,
   },
   {
-    title: "Write a review",
-    points: "+$1 goop credit",
-    icon: "star",
-    action: "review",
-    image: "/earn6.jpg",
-    input: null,
-  },
-  {
-    title: "Birthday celebration",
-    points: "+$1 goop credit",
+    title: "Happy\nBirthday",
+    points: "+$1 AG Credit",
     icon: "gift",
     action: "submit",
-    image: "/earn7.jpg",
+    image: "/earn6.jpg",
     input: "birthday",
   },
   {
-    title: "Join our SMS list",
-    points: "+$2 goop credit",
+    title: "Sign up\nfor SMS",
+    points: "+$1 AG Credit",
     icon: "phone",
     action: "submit",
-    image: "/earn8.jpg",
+    image: "/earn7.jpg",
     input: "Your phone number",
   },
   {
-    title: "Purchase 3 times",
-    points: "+$5 goop credit",
-    icon: "bag",
-    action: "shop",
-    image: "/earn9.jpg",
-    input: null,
-  },
-  {
-    title: "Read our editorial",
-    points: "+$2 goop credit",
-    icon: "book",
-    action: "read",
-    image: "/earn10.jpg",
-    input: null,
-  },
-  {
-    title: "Listen to the podcast",
-    points: "+$2 goop credit",
-    icon: "headphones",
-    action: "listen",
-    image: "/earn11.jpg",
+    title: "Leave\na Review",
+    points: "+$1 AG Credit",
+    icon: "star",
+    action: "review",
+    image: "/earn8.jpg",
     input: null,
   },
 ];
@@ -213,8 +189,8 @@ function EarnCard({
             display: "inline-flex",
             alignItems: "center",
             gap: "8px",
-            backgroundColor: "#000000",
-            borderRadius: "40px",
+            backgroundColor: "#0f2e2f",
+            borderRadius: "999px",
             padding: "8px 16px",
             zIndex: 2,
           }}
@@ -347,14 +323,14 @@ function EarnCard({
                 border: "none",
                 height: "38px",
                 padding: "0 22px",
-                borderRadius: "40px",
+                borderRadius: "999px",
                 cursor: "pointer",
                 transition: "background-color 0.2s ease",
                 lineHeight: 1,
                 alignSelf: "flex-start",
               }}
             >
-              {card.action}
+              {card.action} →
             </button>
           )}
         </div>
@@ -480,7 +456,7 @@ function RedeemContent({
       <div
         style={{
           backgroundColor: "#ffffff",
-          border: "1px solid #e5e2de",
+          border: "1px solid #d4e0df",
           padding: "72px 60px",
           display: "flex",
           flexDirection: "column",
@@ -489,12 +465,12 @@ function RedeemContent({
       >
         <span
           style={{
-            fontFamily: "var(--font-sans)",
+            fontFamily: "var(--font-mono)",
             fontSize: "11px",
             fontWeight: 600,
             letterSpacing: "0.08em",
             textTransform: "uppercase",
-            color: "#888888",
+            color: "#6b8a89",
             margin: "0 0 24px 0",
             lineHeight: 1,
           }}
@@ -513,7 +489,7 @@ function RedeemContent({
             letterSpacing: "-0.01em",
           }}
         >
-          Your goop credit for a discount
+          Your AG Credit for a discount
         </p>
 
         <p
@@ -521,27 +497,27 @@ function RedeemContent({
             fontFamily: "var(--font-sans)",
             fontSize: "14px",
             fontWeight: 400,
-            color: "#888888",
+            color: "#6b8a89",
             margin: "0 0 36px 0",
             lineHeight: 1.6,
           }}
         >
-          Use the slider to choose how many goop credit to convert.
+          Use the slider to choose how many AG Credit to convert.
         </p>
 
         {/* Divider */}
-        <div style={{ height: "1px", backgroundColor: "#e5e2de", margin: "0 0 28px 0" }} />
+        <div style={{ height: "1px", backgroundColor: "#d4e0df", margin: "0 0 28px 0" }} />
 
         {/* Available balance */}
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", margin: "0 0 28px 0" }}>
           <span
             style={{
-              fontFamily: "var(--font-sans)",
+              fontFamily: "var(--font-mono)",
               fontSize: "11px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               textTransform: "uppercase",
-              color: "#888888",
+              color: "#6b8a89",
               lineHeight: 1,
             }}
           >
@@ -566,26 +542,26 @@ function RedeemContent({
       {/* Right column — beige */}
       <div
         style={{
-          backgroundColor: "#f9f7f5",
+          backgroundColor: "#f5f8f8",
           padding: "72px 60px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           textAlign: "center",
-          border: "1px solid #e5e2de",
+          border: "1px solid #d4e0df",
           borderLeft: "none",
         }}
       >
         {/* Hero dollar value */}
         <p
           style={{
-            fontFamily: "var(--font-sans)",
+            fontFamily: "var(--font-mono)",
             fontSize: "11px",
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
-            color: "#888888",
+            color: "#6b8a89",
             margin: "0 0 16px 0",
             lineHeight: 1,
           }}
@@ -631,13 +607,13 @@ function RedeemContent({
           >
             <div
               style={{
-                backgroundColor: "#000000",
+                backgroundColor: "#0f2e2f",
                 color: "#ffffff",
                 fontFamily: "var(--font-sans)",
                 fontSize: "12px",
                 fontWeight: 600,
                 padding: "6px 14px",
-                borderRadius: "40px",
+                borderRadius: "999px",
                 whiteSpace: "nowrap",
                 lineHeight: 1,
                 letterSpacing: "0.01em",
@@ -686,18 +662,18 @@ function RedeemContent({
               fontSize: "13px",
               fontWeight: 600,
               color: "#ffffff",
-              backgroundColor: redeemHovered ? "#222222" : "#000000",
+              backgroundColor: redeemHovered ? "#1a4a4b" : "#0f2e2f",
               border: "none",
               height: "42px",
               padding: "0 28px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               cursor: sliderValue > 0 ? "pointer" : "default",
               lineHeight: 1,
               transition: "background-color 0.2s ease, opacity 0.2s ease",
               opacity: sliderValue > 0 ? 1 : 0.35,
             }}
           >
-            redeem
+            redeem →
           </button>
 
           <button
@@ -712,13 +688,13 @@ function RedeemContent({
               border: "1px solid #000000",
               height: "42px",
               padding: "0 28px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               cursor: "pointer",
               lineHeight: 1,
               transition: "background-color 0.2s ease",
             }}
           >
-            apply to subscription
+            apply to subscription →
           </button>
         </div>
 
@@ -802,7 +778,7 @@ function RedeemContent({
               width: "72px",
               height: "72px",
               borderRadius: "50%",
-              backgroundColor: "#000000",
+              backgroundColor: "#0f2e2f",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -839,7 +815,7 @@ function RedeemContent({
               animation: popup.phase !== "out" ? "redeemTextUp 0.4s ease 0.3s both" : undefined,
             }}
           >
-            goop credit redeemed
+            AG Credit redeemed
           </p>
 
           {/* Subtitle */}
@@ -848,13 +824,13 @@ function RedeemContent({
               fontFamily: "var(--font-sans)",
               fontSize: "15px",
               fontWeight: 400,
-              color: "#888888",
+              color: "#6b8a89",
               margin: "0 0 40px 0",
               lineHeight: 1.5,
               animation: popup.phase !== "out" ? "redeemTextUp 0.4s ease 0.4s both" : undefined,
             }}
           >
-            Your goop credit has been applied.
+            Your AG Credit has been applied.
           </p>
 
           {/* Stats row */}
@@ -874,7 +850,7 @@ function RedeemContent({
             <div style={{ textAlign: "center" }}>
               <p
                 style={{
-                  fontFamily: "var(--font-sans)",
+                  fontFamily: "var(--font-mono)",
                   fontSize: "11px",
                   fontWeight: 600,
                   letterSpacing: "0.08em",
@@ -884,7 +860,7 @@ function RedeemContent({
                   lineHeight: 1,
                 }}
               >
-                goop credit
+                AG Credit
               </p>
               <p
                 style={{
@@ -918,7 +894,7 @@ function RedeemContent({
             <div style={{ textAlign: "center" }}>
               <p
                 style={{
-                  fontFamily: "var(--font-sans)",
+                  fontFamily: "var(--font-mono)",
                   fontSize: "11px",
                   fontWeight: 600,
                   letterSpacing: "0.08em",
@@ -958,7 +934,7 @@ function RedeemContent({
           >
             <span
               style={{
-                fontFamily: "var(--font-sans)",
+                fontFamily: "var(--font-mono)",
                 fontSize: "12px",
                 fontWeight: 600,
                 letterSpacing: "0.06em",
@@ -1069,17 +1045,17 @@ function RedeemContent({
 
 /* ─── Free products data ─── */
 const freeProducts = [
-  { name: "Jillian Dempsey Makeup Bag", points: 11.25, image: "/product-makeupbag.webp", tierRequired: null, discount: "25% off" as string | null },
-  { name: "Bathorium Boreal Fog Bath Bomb", points: 10, image: "/product-bath-bomb.webp", tierRequired: null, discount: null as string | null },
-  { name: "Corpus Body Wash", points: 7.50, image: "/product-corpus-bodywash.webp", tierRequired: null, discount: "25% off" as string | null },
-  { name: "Maison Louis Marie No.14 Icila Body Lotion", points: 37, image: "/product-icila-bodylotion.webp", tierRequired: null, discount: null },
-  { name: "Surya Love Bath Heart-Opening Soak", points: 35, image: "/product-love-bath-soak.webp", tierRequired: null, discount: null },
-  { name: "Bathorium Pomelo Grove Bath Bomb", points: 11, image: "/product-pomelo-bath-bomb.webp", tierRequired: null, discount: null },
-  { name: "goop beauty Afterglow Body Oil", points: 12, image: "/product-afterglow-bodyoil.webp", tierRequired: null, discount: "25% off" },
-  { name: "goop beauty Microderm Instant Glow Body Polish", points: 48, image: "/product-glow-body-polish.webp", tierRequired: null, discount: null },
-  { name: "Surya Cooling Abhyanga Massage Body Oil", points: 12, image: "/product-cooling-body-oil.webp", tierRequired: 2, discount: "25% off" },
-  { name: "Kate McLeod Amber & Vanilla Pebble", points: 65, image: "/product-amber-pebble.webp", tierRequired: 2, discount: null },
-  { name: "Rahua Aloe Vera Shampoo & Conditioner Duo", points: 19, image: "/product-aloe-vera-duo.webp", tierRequired: 3, discount: "25% off" },
+  { name: "AG1 Puffer Jacket", points: 30, image: "/featured1.jpg", tierRequired: null, discount: null as string | null },
+  { name: "AG1 Pajamas", points: 20, image: "/featured2.jpg", tierRequired: null, discount: null as string | null },
+  { name: "AG1 Stanley Cup", points: 10, image: "/featured3.jpg", tierRequired: null, discount: null },
+  { name: "AG1 Travel Packs (30ct)", points: 15, image: "/product-travelpacks-original.jpg", tierRequired: null, discount: null },
+  { name: "AG1 Travel Packs Chocolate", points: 15, image: "/product-travelpacks-chocolate.jpg", tierRequired: null, discount: null },
+  { name: "AG1 Shaker Bottle", points: 8, image: "/featured4.jpg", tierRequired: null, discount: null },
+  { name: "AG1 Duffel Bag", points: 12, image: "/earn3.jpg", tierRequired: null, discount: null },
+  { name: "AG1 Sweatshirt", points: 18, image: "/earn5.jpg", tierRequired: null, discount: null },
+  { name: "AG1 Hat", points: 10, image: "/earn7.jpg", tierRequired: null, discount: null },
+  { name: "AG1 D3+K2", points: 12, image: "/product-d3k2.jpg", tierRequired: null, discount: null },
+  { name: "AG1 Omega-3", points: 14, image: "/product-omega3.jpg", tierRequired: null, discount: null },
 ];
 
 /* ─── Free products tab content (carousel) ─── */
@@ -1193,7 +1169,7 @@ function FreeProductsContent({
                 backgroundColor: "#ffffff",
                 display: "flex",
                 flexDirection: "column",
-                border: "1px solid #e5e2de",
+                border: "1px solid #d4e0df",
                 transition: "box-shadow 0.3s ease",
               }}
             >
@@ -1203,7 +1179,7 @@ function FreeProductsContent({
                   position: "relative",
                   flex: 1,
                   overflow: "hidden",
-                  backgroundColor: "#f5f3f0",
+                  backgroundColor: "#f0f5f5",
                 }}
               >
                 <img
@@ -1227,8 +1203,8 @@ function FreeProductsContent({
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "7px",
-                      backgroundColor: "#000000",
-                      borderRadius: "40px",
+                      backgroundColor: "#0f2e2f",
+                      borderRadius: "999px",
                       padding: "10px 18px",
                       zIndex: 2,
                     }}
@@ -1257,8 +1233,8 @@ function FreeProductsContent({
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "7px",
-                      backgroundColor: "#000000",
-                      borderRadius: "40px",
+                      backgroundColor: "#0f2e2f",
+                      borderRadius: "999px",
                       padding: "10px 18px",
                       zIndex: 2,
                     }}
@@ -1297,7 +1273,7 @@ function FreeProductsContent({
                     </svg>
                     <span
                       style={{
-                        fontFamily: "var(--font-sans)",
+                        fontFamily: "var(--font-mono)",
                         fontSize: "12px",
                         fontWeight: 600,
                         color: "#ffffff",
@@ -1341,12 +1317,12 @@ function FreeProductsContent({
                       fontFamily: "var(--font-sans)",
                       fontSize: "13px",
                       fontWeight: 400,
-                      color: "#888888",
+                      color: "#6b8a89",
                       margin: "6px 0 0 0",
                       lineHeight: 1,
                     }}
                   >
-                    ${product.points} goop credit
+                    ${product.points} AG Credit
                   </p>
                 </div>
 
@@ -1371,12 +1347,12 @@ function FreeProductsContent({
                         fontWeight: 600,
                         lineHeight: 1,
                         height: "38px",
-                        borderRadius: isCircle ? "50%" : "40px",
+                        borderRadius: isCircle ? "50%" : "999px",
                         width: isCircle ? "38px" : "auto",
                         padding: isCircle ? "0" : "0 22px",
                         border: canAfford || phase !== "idle" ? "1px solid #000000" : "1px solid #d5d2ce",
                         cursor: !canAfford || phase !== "idle" ? "default" : "pointer",
-                        backgroundColor: canAfford || phase !== "idle" ? "#000000" : "transparent",
+                        backgroundColor: canAfford || phase !== "idle" ? "#0f2e2f" : "transparent",
                         color: canAfford || phase !== "idle" ? "#ffffff" : "#000000",
                         opacity: !canAfford && phase === "idle" ? 0.3 : 1,
                         transition: "border-radius 0.4s cubic-bezier(0.4,0,0.2,1), width 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, background-color 0.2s ease",
@@ -1388,7 +1364,7 @@ function FreeProductsContent({
                         flexShrink: 0,
                       }}
                     >
-                      {phase === "idle" && <span>redeem</span>}
+                      {phase === "idle" && <span>redeem →</span>}
                       {phase === "loading" && (
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ animation: "redeemSpin 0.8s linear infinite" }}>
                           <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.3)" strokeWidth="3" />
@@ -1421,7 +1397,7 @@ function FreeProductsContent({
                           bottom: "calc(100% + 8px)",
                           left: "50%",
                           transform: "translateX(-50%) translateY(4px)",
-                          backgroundColor: "#000000",
+                          backgroundColor: "#0f2e2f",
                           color: "#ffffff",
                           fontFamily: "var(--font-sans)",
                           fontSize: "11px",
@@ -1435,7 +1411,7 @@ function FreeProductsContent({
                           transition: "opacity 0.2s ease, transform 0.2s ease",
                         }}
                       >
-                        need ${(product.points - totalPoints).toFixed(2)} more goop credit
+                        need ${(product.points - totalPoints).toFixed(2)} more AG Credit
                         <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderTop: "4px solid #000000" }} />
                       </div>
                     )}
@@ -1583,7 +1559,7 @@ function UploadReceiptContent() {
       <div
         style={{
           backgroundColor: "#ffffff",
-          border: "1px solid #e5e2de",
+          border: "1px solid #d4e0df",
           padding: "64px 56px",
           display: "flex",
           flexDirection: "column",
@@ -1594,17 +1570,17 @@ function UploadReceiptContent() {
           <>
             <span
               style={{
-                fontFamily: "var(--font-sans)",
+                fontFamily: "var(--font-mono)",
                 fontSize: "11px",
                 fontWeight: 600,
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
-                color: "#888888",
+                color: "#6b8a89",
                 margin: "0 0 20px 0",
                 lineHeight: 1,
               }}
             >
-              earn goop credit
+              earn AG Credit
             </span>
 
             <p
@@ -1626,7 +1602,7 @@ function UploadReceiptContent() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "14px",
                 fontWeight: 400,
-                color: "#888888",
+                color: "#6b8a89",
                 margin: "0 0 32px 0",
                 lineHeight: 1.6,
               }}
@@ -1662,7 +1638,7 @@ function UploadReceiptContent() {
                   width: "48px",
                   height: "48px",
                   borderRadius: "50%",
-                  backgroundColor: "#000000",
+                  backgroundColor: "#0f2e2f",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -1692,7 +1668,7 @@ function UploadReceiptContent() {
 
         {phase === "selected" && (
           <>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#888888", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6b8a89", margin: "0 0 20px 0", lineHeight: 1 }}>
               review &amp; submit
             </span>
 
@@ -1700,13 +1676,13 @@ function UploadReceiptContent() {
               Upload your receipt
             </p>
 
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#888888", margin: "0 0 32px 0", lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#6b8a89", margin: "0 0 32px 0", lineHeight: 1.6 }}>
               Make a photo or scan of your receipt and upload.
             </p>
 
             {/* File chip */}
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", padding: "14px 18px", border: "1px solid #e5e2de", borderRadius: "10px", marginBottom: "12px", backgroundColor: "#faf9f7" }}>
-              <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "#000000", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "12px", padding: "14px 18px", border: "1px solid #d4e0df", borderRadius: "10px", marginBottom: "12px", backgroundColor: "#faf9f7" }}>
+              <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "#0f2e2f", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M9 1H4C3.44772 1 3 1.44772 3 2V14C3 14.5523 3.44772 15 4 15H12C12.5523 15 13 14.5523 13 14V5L9 1Z" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                   <path d="M9 1V5H13" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -1737,16 +1713,16 @@ function UploadReceiptContent() {
               onClick={handleSubmit}
               onMouseEnter={() => setSubmitHovered(true)}
               onMouseLeave={() => setSubmitHovered(false)}
-              style={{ alignSelf: "flex-start", fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#ffffff", backgroundColor: submitHovered ? "#222222" : "#000000", border: "none", height: "42px", padding: "0 32px", borderRadius: "40px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
+              style={{ alignSelf: "flex-start", fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#ffffff", backgroundColor: submitHovered ? "#1a4a4b" : "#0f2e2f", border: "none", height: "42px", padding: "0 32px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
             >
-              submit receipt
+              submit receipt →
             </button>
           </>
         )}
 
         {phase === "uploading" && (
           <>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#888888", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6b8a89", margin: "0 0 20px 0", lineHeight: 1 }}>
               uploading
             </span>
 
@@ -1754,13 +1730,13 @@ function UploadReceiptContent() {
               Processing your receipt
             </p>
 
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#888888", margin: "0 0 36px 0", lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#6b8a89", margin: "0 0 36px 0", lineHeight: 1.6 }}>
               Please wait while we verify your receipt.
             </p>
 
-            <div style={{ padding: "14px 18px", border: "1px solid #e5e2de", borderRadius: "10px", marginBottom: "20px", backgroundColor: "#faf9f7", overflow: "hidden" }}>
+            <div style={{ padding: "14px 18px", border: "1px solid #d4e0df", borderRadius: "10px", marginBottom: "20px", backgroundColor: "#faf9f7", overflow: "hidden" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
-                <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "#000000", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "#0f2e2f", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M9 1H4C3.44772 1 3 1.44772 3 2V14C3 14.5523 3.44772 15 4 15H12C12.5523 15 13 14.5523 13 14V5L9 1Z" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M9 1V5H13" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -1774,8 +1750,8 @@ function UploadReceiptContent() {
                   {Math.round(uploadProgress)}%
                 </span>
               </div>
-              <div style={{ height: "2px", backgroundColor: "#e5e2de", borderRadius: "1px", overflow: "hidden" }}>
-                <div style={{ height: "100%", width: `${uploadProgress}%`, backgroundColor: "#000000", borderRadius: "1px", transition: "width 0.15s ease-out" }} />
+              <div style={{ height: "2px", backgroundColor: "#d4e0df", borderRadius: "1px", overflow: "hidden" }}>
+                <div style={{ height: "100%", width: `${uploadProgress}%`, backgroundColor: "#0f2e2f", borderRadius: "1px", transition: "width 0.15s ease-out" }} />
               </div>
             </div>
           </>
@@ -1783,7 +1759,7 @@ function UploadReceiptContent() {
 
         {phase === "success" && (
           <>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#888888", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6b8a89", margin: "0 0 20px 0", lineHeight: 1 }}>
               complete
             </span>
 
@@ -1792,7 +1768,7 @@ function UploadReceiptContent() {
                 width: "56px",
                 height: "56px",
                 borderRadius: "50%",
-                backgroundColor: "#000000",
+                backgroundColor: "#0f2e2f",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -1809,8 +1785,8 @@ function UploadReceiptContent() {
               Thank you
             </p>
 
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#888888", margin: "0 0 32px 0", lineHeight: 1.6 }}>
-              Once the verification process is finished your goop credit will be added to your account. You can follow the status in your Rewards History.
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#6b8a89", margin: "0 0 32px 0", lineHeight: 1.6 }}>
+              Once the verification process is finished your AG Credit will be added to your account. You can follow the status in your Rewards History.
             </p>
 
             <div style={{ display: "flex", gap: "10px" }}>
@@ -1818,16 +1794,16 @@ function UploadReceiptContent() {
                 onClick={handleReset}
                 onMouseEnter={() => setNewUploadHovered(true)}
                 onMouseLeave={() => setNewUploadHovered(false)}
-                style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#ffffff", backgroundColor: newUploadHovered ? "#222222" : "#000000", border: "none", height: "42px", padding: "0 28px", borderRadius: "40px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
+                style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#ffffff", backgroundColor: newUploadHovered ? "#1a4a4b" : "#0f2e2f", border: "none", height: "42px", padding: "0 28px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
               >
-                upload another
+                upload another →
               </button>
               <button
                 onMouseEnter={() => setHistoryHovered(true)}
                 onMouseLeave={() => setHistoryHovered(false)}
-                style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#000000", backgroundColor: historyHovered ? "rgba(0,0,0,0.04)" : "transparent", border: "1px solid #000000", height: "42px", padding: "0 28px", borderRadius: "40px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
+                style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#000000", backgroundColor: historyHovered ? "rgba(0,0,0,0.04)" : "transparent", border: "1px solid #000000", height: "42px", padding: "0 28px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
               >
-                view history
+                view history →
               </button>
             </div>
           </>
@@ -1835,7 +1811,7 @@ function UploadReceiptContent() {
       </div>
 
       {/* Right — product image */}
-      <div style={{ position: "relative", overflow: "hidden", border: "1px solid #e5e2de", borderLeft: "none" }}>
+      <div style={{ position: "relative", overflow: "hidden", border: "1px solid #d4e0df", borderLeft: "none" }}>
         <img src="/featured2.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(0,0,0,0.03) 0%, transparent 60%)" }} />
         <div
@@ -1850,7 +1826,7 @@ function UploadReceiptContent() {
             fontWeight: 600,
             letterSpacing: "0.04em",
             padding: "10px 18px",
-            borderRadius: "40px",
+            borderRadius: "999px",
             lineHeight: 1,
             display: "flex",
             alignItems: "center",
@@ -1938,9 +1914,9 @@ export default function WaysToEarn() {
 
   useEffect(() => {
     const handler = () => {
-      setHighlightedCards(new Set([1, 2]));
+      setHighlightedCards(new Set([3, 4]));
       setTimeout(() => setHighlightedCards(new Set()), 2000);
-      // Scroll carousel so both handle cards (index 1 & 2) are visible
+      // Scroll carousel so both handle cards (index 3 & 4) are visible
       setTimeout(() => {
         const carousel = document.querySelector('[data-earn-carousel]') as HTMLElement;
         if (carousel) {
@@ -1980,7 +1956,7 @@ export default function WaysToEarn() {
 
   const handlePointsChange = useCallback((newTotal: number) => {
     setTotalPoints(newTotal);
-    // Only update goop credit balance — tier is based on spend, not goop credit balance
+    // Only update AG Credit balance — tier is based on spend, not AG Credit balance
     window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
   }, []);
 
@@ -2002,7 +1978,7 @@ export default function WaysToEarn() {
         setAnimPhase(null);
         const next = new Set(completedCards).add(index);
         setCompletedCards(next);
-        // Add goop credit from this card
+        // Add AG Credit from this card
         const card = earnCards[index];
         if (card?.points) {
           const match = card.points.match(/\+\$(\d+(?:\.\d+)?)/);
@@ -2017,8 +1993,8 @@ export default function WaysToEarn() {
             });
           }
         }
-        // Notify Sweepstakes when both handles (index 1 & 2) are connected
-        if (next.has(1) && next.has(2)) {
+        // Notify Sweepstakes when both handles (index 3 & 4) are connected
+        if (next.has(3) && next.has(4)) {
           window.dispatchEvent(new Event("handles-connected"));
         }
       }, 500);
@@ -2049,7 +2025,7 @@ export default function WaysToEarn() {
           letterSpacing: "-0.01em",
         }}
       >
-        goop credit
+        AG Credit
       </h2>
 
       {/* Subtext */}
@@ -2058,16 +2034,16 @@ export default function WaysToEarn() {
           fontFamily: "var(--font-sans)",
           fontSize: "14px",
           fontWeight: 400,
-          color: "#888888",
+          color: "#6b8a89",
           textAlign: "center",
           margin: "0 0 40px 0",
           lineHeight: 1.4,
         }}
       >
         {activeTab === "earn" && "Follow us on social media, sign up for SMS and more."}
-        {activeTab === "exchange" && "Exchange your goop credit for a discount."}
-        {activeTab === "products" && "Redeem your goop credit for free products."}
-        {activeTab === "upload" && "Upload your receipt and earn goop credit for every dollar spent."}
+        {activeTab === "exchange" && "Exchange your AG Credit for a discount."}
+        {activeTab === "products" && "Redeem your AG Credit for free products."}
+        {activeTab === "upload" && "Upload your receipt and earn AG Credit for every dollar spent."}
       </p>
 
       <div
@@ -2094,10 +2070,10 @@ export default function WaysToEarn() {
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "earn" ? "#000000" : "transparent",
+              backgroundColor: activeTab === "earn" ? "#0f2e2f" : "transparent",
               color: activeTab === "earn" ? "#ffffff" : "#000000",
               border: activeTab === "earn" ? "1px solid #000000" : earnTabHovered ? "1px solid #000000" : "1px solid #d5d5d5",
             }}
@@ -2124,15 +2100,15 @@ export default function WaysToEarn() {
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "exchange" ? "#000000" : "transparent",
+              backgroundColor: activeTab === "exchange" ? "#0f2e2f" : "transparent",
               color: activeTab === "exchange" ? "#ffffff" : "#000000",
               border: activeTab === "exchange" ? "1px solid #000000" : exchangeTabHovered ? "1px solid #000000" : "1px solid #d5d5d5",
             }}
           >
-            exchange goop credit
+            exchange AG Credit
           </button>
 
           <button
@@ -2145,10 +2121,10 @@ export default function WaysToEarn() {
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "products" ? "#000000" : "transparent",
+              backgroundColor: activeTab === "products" ? "#0f2e2f" : "transparent",
               color: activeTab === "products" ? "#ffffff" : "#000000",
               border: activeTab === "products" ? "1px solid #000000" : productsTabHovered ? "1px solid #000000" : "1px solid #d5d5d5",
             }}
@@ -2166,10 +2142,10 @@ export default function WaysToEarn() {
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "upload" ? "#000000" : "transparent",
+              backgroundColor: activeTab === "upload" ? "#0f2e2f" : "transparent",
               color: activeTab === "upload" ? "#ffffff" : "#000000",
               border: activeTab === "upload" ? "1px solid #000000" : uploadTabHovered ? "1px solid #000000" : "1px solid #d5d5d5",
             }}

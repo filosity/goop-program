@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
-import Tiers from "@/components/Tiers";
+import Milestones from "@/components/Milestones";
 import Membership from "@/components/Membership";
 import Featured from "@/components/Featured";
 import Sweepstakes from "@/components/Sweepstakes";
@@ -18,7 +18,7 @@ export default function Home() {
       <StickyNav />
       <HowItWorks />
       <Featured />
-      <Tiers />
+      <Milestones />
       <Membership />
       <Sweepstakes />
       <WaysToEarn />

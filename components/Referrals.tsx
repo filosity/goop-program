@@ -19,7 +19,7 @@ export default function Referrals() {
   const [friendNameFocused, setFriendNameFocused] = useState(false);
   const [messageFocused, setMessageFocused] = useState(false);
 
-  const referralLink = "goop.com/ref/yourcode123";
+  const referralLink = "drinkag1.com/ref/yourcode123";
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(`https://${referralLink}`);
@@ -38,7 +38,7 @@ export default function Referrals() {
           maxWidth: "1280px",
           margin: "0 auto",
           backgroundColor: "#ffffff",
-          border: "1px solid #e5e2de",
+          border: "1px solid #d4e0df",
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           height: "820px",
@@ -58,12 +58,12 @@ export default function Referrals() {
           {/* Label */}
           <p
             style={{
-              fontFamily: "var(--font-sans)",
+              fontFamily: "var(--font-mono)",
               fontSize: "11px",
               fontWeight: 600,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "#888888",
+              color: "#6b8a89",
               margin: "0 0 16px 0",
               lineHeight: 1,
             }}
@@ -83,7 +83,7 @@ export default function Referrals() {
               letterSpacing: "-0.01em",
             }}
           >
-            Give $10, Get $10
+            Give $15, Get $15
           </h2>
 
           {/* Subtitle */}
@@ -93,13 +93,13 @@ export default function Referrals() {
               fontSize: "14px",
               fontWeight: 400,
               lineHeight: 1.55,
-              color: "#888888",
+              color: "#6b8a89",
               margin: "0 0 32px 0",
               maxWidth: "320px",
             }}
           >
-            Share the beauty. Your friend gets $10 off their first order, and you
-            earn $10 in goop credit.
+            Your friend gets $15 off their first subscription order, and you
+            earn $15 AG Credit.
           </p>
 
           {/* Email input */}
@@ -118,7 +118,7 @@ export default function Referrals() {
               border: "none",
               borderBottom: emailFocused
                 ? "1px solid #000000"
-                : "1px solid #e5e2de",
+                : "1px solid #d4e0df",
               padding: "12px 0",
               backgroundColor: "transparent",
               width: "100%",
@@ -130,7 +130,7 @@ export default function Referrals() {
           {/* ─── Personalize your invite (collapsible accordion) ─── */}
           <div
             style={{
-              border: expanded ? "1px solid #000000" : "1px solid #e5e2de",
+              border: expanded ? "1px solid #000000" : "1px solid #d4e0df",
               backgroundColor: "transparent",
               marginTop: "20px",
               transition: "background-color 0.3s ease, border-color 0.3s ease",
@@ -211,7 +211,7 @@ export default function Referrals() {
                       border: "none",
                       borderBottom: yourNameFocused
                         ? "1px solid #000000"
-                        : "1px solid #e5e2de",
+                        : "1px solid #d4e0df",
                       padding: "12px 0",
                       backgroundColor: "transparent",
                       width: "100%",
@@ -234,7 +234,7 @@ export default function Referrals() {
                       border: "none",
                       borderBottom: friendNameFocused
                         ? "1px solid #000000"
-                        : "1px solid #e5e2de",
+                        : "1px solid #d4e0df",
                       padding: "12px 0",
                       backgroundColor: "transparent",
                       width: "100%",
@@ -260,7 +260,7 @@ export default function Referrals() {
                     border: "none",
                     borderBottom: messageFocused
                       ? "1px solid #000000"
-                      : "1px solid #e5e2de",
+                      : "1px solid #d4e0df",
                     padding: "14px 0",
                     backgroundColor: "transparent",
                     width: "100%",
@@ -283,10 +283,10 @@ export default function Referrals() {
               fontSize: "13px",
               fontWeight: 600,
               color: "#ffffff",
-              backgroundColor: sendHovered ? "#222222" : "#000000",
+              backgroundColor: sendHovered ? "#1a4a4b" : "#0f2e2f",
               border: "none",
               height: "38px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               padding: "0 28px",
               cursor: "pointer",
               transition: "background-color 0.2s ease",
@@ -294,7 +294,7 @@ export default function Referrals() {
               marginTop: "28px",
             }}
           >
-            send invite
+            send invite →
           </button>
 
           {/* Divider */}
@@ -302,7 +302,7 @@ export default function Referrals() {
             style={{
               width: "100%",
               height: "1px",
-              backgroundColor: "#e5e2de",
+              backgroundColor: "#d4e0df",
               margin: "32px 0",
             }}
           />
@@ -310,7 +310,7 @@ export default function Referrals() {
           {/* Or share your link */}
           <p
             style={{
-              fontFamily: "var(--font-sans)",
+              fontFamily: "var(--font-mono)",
               fontSize: "11px",
               fontWeight: 600,
               letterSpacing: "0.08em",
@@ -333,10 +333,10 @@ export default function Referrals() {
               fontSize: "13px",
               fontWeight: 500,
               color: copied ? "#ffffff" : "#000000",
-              backgroundColor: copied ? "#000000" : "transparent",
-              border: copyHovered && !copied ? "1px solid #000000" : "1px solid #e5e2de",
+              backgroundColor: copied ? "#0f2e2f" : "transparent",
+              border: copyHovered && !copied ? "1px solid #000000" : "1px solid #d4e0df",
               height: "38px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               padding: "0 20px",
               cursor: "pointer",
               transition:
@@ -383,7 +383,7 @@ export default function Referrals() {
                 width: "36px",
                 height: "36px",
                 borderRadius: "50%",
-                border: fbHovered ? "1px solid #000000" : "1px solid #e5e2de",
+                border: fbHovered ? "1px solid #000000" : "1px solid #d4e0df",
                 backgroundColor: "transparent",
                 cursor: "pointer",
                 display: "flex",
@@ -406,7 +406,7 @@ export default function Referrals() {
                 width: "36px",
                 height: "36px",
                 borderRadius: "50%",
-                border: xHovered ? "1px solid #000000" : "1px solid #e5e2de",
+                border: xHovered ? "1px solid #000000" : "1px solid #d4e0df",
                 backgroundColor: "transparent",
                 cursor: "pointer",
                 display: "flex",
@@ -431,7 +431,7 @@ export default function Referrals() {
                 borderRadius: "50%",
                 border: emailIconHovered
                   ? "1px solid #000000"
-                  : "1px solid #e5e2de",
+                  : "1px solid #d4e0df",
                 backgroundColor: "transparent",
                 cursor: "pointer",
                 display: "flex",

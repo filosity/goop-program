@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { DollarSignCircle, GiftBox, DiscountTag, Bolt, DeliveryTruck, Headphones, User, Star, PresentBox, Gifts, XmarkCircle } from "@vectoricons/atlas-icons-react";
+import { DollarSignCircle, GiftBox, DiscountTag, Bolt, User, Star, Gifts, XmarkCircle } from "@vectoricons/atlas-icons-react";
 
 const MembershipV2 = dynamic(() => import("./MembershipV2"), { ssr: false });
 const MembershipV3 = dynamic(() => import("./MembershipV3"), { ssr: false });
@@ -16,15 +16,15 @@ const MembershipV3 = dynamic(() => import("./MembershipV3"), { ssr: false });
  *  Section heading:        font-serif, 44px, weight 400, letter-spacing -0.01em, centered
  *  Section max-width:      1280px (centered with margin auto)
  *  Card padding:           32px 36px 44px
- *  Card background:        #f9f7f5 (light) / #000000 (dark/current)
- *  Divider between items:  1px solid #e5e2de (light) / rgba(255,255,255,0.15) (dark)
+ *  Card background:        #f5f8f8 (light) / #000000 (dark/current)
+ *  Divider between items:  1px solid #d4e0df (light) / rgba(255,255,255,0.15) (dark)
  *  Card title:             font-serif, 30px, weight 400, ls -0.01em
- *  Card subtitle/spend:    font-sans, 13px, weight 400, color #888
+ *  Card subtitle/spend:    font-sans, 13px, weight 400, color #6b8a89
  *  Benefit text:           font-sans, 14px, weight 400, color #1a1a1a / rgba(255,255,255,0.85)
  *  Benefit icon:           29px default, 35px popup detail, 26px header popup
  *  Benefit row padding:    16px 0
  *  Benefit gap icon–text:  14px
- *  Pill button:            font-sans, 13px, weight 600, padding 12px 22px, border-radius 40px
+ *  Pill button:            font-sans, 13px, weight 600, padding 12px 22px, border-radius 999px
  *  Popup benefits padding: 20px 32px 28px
  *  Border radius:          0px throughout (except pill buttons 40px, close button circle 50%)
  *  Hover opacity dim:      0.7 (cards), 0.58 (benefits within card)
@@ -40,64 +40,64 @@ const MembershipV3 = dynamic(() => import("./MembershipV3"), { ssr: false });
  */
 
 const benefits = [
-  "10% cashback on all purchases",
-  "Priority Direct With Concierge",
-  "Birthday gift",
-  "Member-only sales access",
+  "AG Credit per serving",
+  "$2 sign-up bonus",
+  "Subscriber milestone rewards",
+  "Exclusive merch access",
+  "Birthday bonus",
+  "Social engagement rewards",
+  "Sweepstakes entry",
+  "Weekly voting rewards",
+  "Referral bonuses",
   "Early access to new products",
-  "Free expedited shipping",
-  "Exclusive quarterly gift",
-  "Annual beauty consultation",
-  "VIP event invitations",
-  "Premium curated boxes",
 ];
 
 const benefitDescriptions: Record<string, string> = {
-  "10% cashback on all purchases":
-    "Earn 10% back on every purchase as goop credit, automatically applied to your account.",
-  "Priority Direct With Concierge":
-    "Get priority access to our dedicated concierge team for personalised product recommendations and styling advice.",
-  "Birthday gift":
-    "Receive a complimentary gift from our curated collection delivered to you during your birthday month.",
-  "Member-only sales access":
-    "Get early and exclusive access to seasonal sales events reserved only for loyalty members.",
+  "AG Credit per serving":
+    "Earn AG Credit with every serving of AG1, automatically added to your balance.",
+  "$2 sign-up bonus":
+    "Get $2 AG Credit just for signing up for your subscription.",
+  "Subscriber milestone rewards":
+    "Unlock exclusive rewards at monthly milestones — from welcome kits to premium merch.",
+  "Exclusive merch access":
+    "Redeem AG Credit for exclusive AG1 merchandise not available anywhere else.",
+  "Birthday bonus":
+    "Receive $1 AG Credit during your birthday month as a thank you.",
+  "Social engagement rewards":
+    "Earn AG Credit by connecting social accounts and posting about your AG1 experience.",
+  "Sweepstakes entry":
+    "Enter weekly sweepstakes for a chance to win AG1 merch and exclusive prizes.",
+  "Weekly voting rewards":
+    "Earn $0.25 AG Credit each time you vote in the weekly community poll.",
+  "Referral bonuses":
+    "Give $15, get $15 — earn AG Credit for every friend who subscribes.",
   "Early access to new products":
-    "Be the first to shop new product launches before they become available to the public.",
-  "Free expedited shipping":
-    "Upgraded shipping at no cost — receive your orders faster with complimentary expedited delivery.",
-  "Exclusive quarterly gift":
-    "Four times a year, receive a surprise luxury gift hand-selected by our beauty editors.",
-  "Annual beauty consultation":
-    "A one-on-one virtual session with our beauty experts to create a personalised skincare and beauty routine.",
-  "VIP event invitations":
-    "Receive invitations to exclusive in-person and virtual events, product launches, and masterclasses.",
-  "Premium curated boxes":
-    "Receive specially curated boxes featuring full-size products from our most coveted collections.",
+    "Be the first to try new AG1 products and limited edition items.",
 };
 
 /* ─── Benefit icon (white icon — for dark bg) ─── */
 function MemberBenefitIcon({ benefit, size = 20 }: { benefit: string; size?: number }) {
   const b = benefit.toLowerCase();
-  if (b.includes("cashback") || b.includes("earn"))
+  if (b.includes("credit per serving") || b.includes("per serving"))
     return <DollarSignCircle size={size} color="#ffffff" />;
-  if (b.includes("concierge"))
-    return <Headphones size={size} color="#ffffff" />;
-  if (b.includes("consultation"))
-    return <User size={size} color="#ffffff" />;
+  if (b.includes("sign-up") || b.includes("bonus"))
+    return <GiftBox size={size} color="#ffffff" />;
+  if (b.includes("milestone"))
+    return <Star size={size} color="#ffffff" />;
+  if (b.includes("merch"))
+    return <Gifts size={size} color="#ffffff" />;
   if (b.includes("birthday"))
     return <GiftBox size={size} color="#ffffff" />;
-  if (b.includes("sales"))
+  if (b.includes("social"))
+    return <User size={size} color="#ffffff" />;
+  if (b.includes("sweepstakes"))
+    return <Bolt size={size} color="#ffffff" />;
+  if (b.includes("voting"))
     return <DiscountTag size={size} color="#ffffff" />;
+  if (b.includes("referral"))
+    return <User size={size} color="#ffffff" />;
   if (b.includes("early access"))
     return <Bolt size={size} color="#ffffff" />;
-  if (b.includes("shipping"))
-    return <DeliveryTruck size={size} color="#ffffff" />;
-  if (b.includes("quarterly"))
-    return <PresentBox size={size} color="#ffffff" />;
-  if (b.includes("vip") || b.includes("event"))
-    return <Star size={size} color="#ffffff" />;
-  if (b.includes("curated") || b.includes("premium"))
-    return <Gifts size={size} color="#ffffff" />;
   // default
   return <DollarSignCircle size={size} color="#ffffff" />;
 }
@@ -105,26 +105,26 @@ function MemberBenefitIcon({ benefit, size = 20 }: { benefit: string; size?: num
 /* ─── Popup icon (white icon — for dark popup) ─── */
 function PopupIcon({ benefit, size = 35 }: { benefit: string; size?: number }) {
   const b = benefit.toLowerCase();
-  if (b.includes("cashback") || b.includes("earn"))
+  if (b.includes("credit per serving") || b.includes("per serving"))
     return <DollarSignCircle size={size} color="#ffffff" />;
-  if (b.includes("concierge"))
-    return <Headphones size={size} color="#ffffff" />;
-  if (b.includes("consultation"))
-    return <User size={size} color="#ffffff" />;
+  if (b.includes("sign-up") || b.includes("bonus"))
+    return <GiftBox size={size} color="#ffffff" />;
+  if (b.includes("milestone"))
+    return <Star size={size} color="#ffffff" />;
+  if (b.includes("merch"))
+    return <Gifts size={size} color="#ffffff" />;
   if (b.includes("birthday"))
     return <GiftBox size={size} color="#ffffff" />;
-  if (b.includes("sales"))
+  if (b.includes("social"))
+    return <User size={size} color="#ffffff" />;
+  if (b.includes("sweepstakes"))
+    return <Bolt size={size} color="#ffffff" />;
+  if (b.includes("voting"))
     return <DiscountTag size={size} color="#ffffff" />;
+  if (b.includes("referral"))
+    return <User size={size} color="#ffffff" />;
   if (b.includes("early access"))
     return <Bolt size={size} color="#ffffff" />;
-  if (b.includes("shipping"))
-    return <DeliveryTruck size={size} color="#ffffff" />;
-  if (b.includes("quarterly"))
-    return <PresentBox size={size} color="#ffffff" />;
-  if (b.includes("vip") || b.includes("event"))
-    return <Star size={size} color="#ffffff" />;
-  if (b.includes("curated") || b.includes("premium"))
-    return <Gifts size={size} color="#ffffff" />;
   // default
   return <DollarSignCircle size={size} color="#ffffff" />;
 }
@@ -418,7 +418,7 @@ export default function Membership() {
               letterSpacing: "-0.01em",
             }}
           >
-            Membership
+            AG1 Subscriber Rewards
           </h2>
 
           {/* Price label */}
@@ -432,7 +432,7 @@ export default function Membership() {
               lineHeight: 1.4,
             }}
           >
-            $75 / month
+            Included with your subscription
           </p>
 
           {/* Join button — white pill, dot appears on hover */}
@@ -454,7 +454,7 @@ export default function Membership() {
                 : "rgba(255,255,255,0.9)",
               height: "38px",
               padding: btnHovered ? "0 22px 0 20px" : "0 22px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               textDecoration: "none",
               lineHeight: 1,
               marginBottom: "36px",
@@ -477,7 +477,7 @@ export default function Membership() {
                 transition: "margin-right 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
               }}
             />
-            join membership
+            subscribe now →
           </a>
 
           {/* Top divider before benefits */}

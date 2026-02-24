@@ -116,18 +116,18 @@ export default function FloatingPoints() {
           $50.00
         </p>
 
-        {/* goop credit */}
+        {/* AG Credit */}
         <p
           style={{
             fontFamily: "var(--font-sans)",
             fontSize: "13px",
             fontWeight: 400,
-            color: "#888888",
+            color: "#6b8a89",
             margin: 0,
             lineHeight: 1.4,
           }}
         >
-          1,000 goop credit
+          1,000 AG Credit
         </p>
       </div>
 

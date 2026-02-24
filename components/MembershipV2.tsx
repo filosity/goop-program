@@ -6,11 +6,8 @@ import {
   GiftBox,
   DiscountTag,
   Bolt,
-  DeliveryTruck,
-  Headphones,
   User,
   Star,
-  PresentBox,
   Gifts,
   XmarkCircle,
 } from "@vectoricons/atlas-icons-react";
@@ -18,54 +15,54 @@ import {
 /* ─── Benefits data ─── */
 const benefits = [
   {
-    title: "10% cashback on all purchases",
+    title: "AG Credit per serving",
     description:
-      "Earn 10% back on every purchase as store credit, automatically applied to your account.",
+      "Earn AG Credit with every serving of AG1, automatically added to your balance.",
   },
   {
-    title: "Priority Direct With Concierge",
+    title: "$2 sign-up bonus",
     description:
-      "Get priority access to our dedicated concierge team for personalised product recommendations and styling advice.",
+      "Get $2 AG Credit just for signing up for your subscription.",
   },
   {
-    title: "Birthday gift",
+    title: "Subscriber milestone rewards",
     description:
-      "Receive a complimentary gift from our curated collection delivered to you during your birthday month.",
+      "Unlock exclusive rewards at monthly milestones — from welcome kits to premium merch.",
   },
   {
-    title: "Member-only sales access",
+    title: "Exclusive merch access",
     description:
-      "Get early and exclusive access to seasonal sales events reserved only for loyalty members.",
+      "Redeem AG Credit for exclusive AG1 merchandise not available anywhere else.",
+  },
+  {
+    title: "Birthday bonus",
+    description:
+      "Receive $1 AG Credit during your birthday month as a thank you.",
+  },
+  {
+    title: "Social engagement rewards",
+    description:
+      "Earn AG Credit by connecting social accounts and posting about your AG1 experience.",
+  },
+  {
+    title: "Sweepstakes entry",
+    description:
+      "Enter weekly sweepstakes for a chance to win AG1 merch and exclusive prizes.",
+  },
+  {
+    title: "Weekly voting rewards",
+    description:
+      "Earn $0.25 AG Credit each time you vote in the weekly community poll.",
+  },
+  {
+    title: "Referral bonuses",
+    description:
+      "Give $15, get $15 — earn AG Credit for every friend who subscribes.",
   },
   {
     title: "Early access to new products",
     description:
-      "Be the first to shop new product launches before they become available to the public.",
-  },
-  {
-    title: "Free expedited shipping",
-    description:
-      "Upgraded shipping at no cost — receive your orders faster with complimentary expedited delivery.",
-  },
-  {
-    title: "Exclusive quarterly gift",
-    description:
-      "Four times a year, receive a surprise luxury gift hand-selected by our beauty editors.",
-  },
-  {
-    title: "Annual beauty consultation",
-    description:
-      "A one-on-one virtual session with our beauty experts to create a personalised skincare and beauty routine.",
-  },
-  {
-    title: "VIP event invitations",
-    description:
-      "Receive invitations to exclusive in-person and virtual events, product launches, and masterclasses.",
-  },
-  {
-    title: "Premium curated boxes",
-    description:
-      "Receive specially curated boxes featuring full-size products from our most coveted collections.",
+      "Be the first to try new AG1 products and limited edition items.",
   },
 ];
 
@@ -80,22 +77,26 @@ function BenefitIcon({
   color?: string;
 }) {
   const b = title.toLowerCase();
-  if (b.includes("cashback") || b.includes("earn"))
+  if (b.includes("credit per serving") || b.includes("per serving"))
     return <DollarSignCircle size={size} color={color} />;
-  if (b.includes("concierge"))
-    return <Headphones size={size} color={color} />;
-  if (b.includes("birthday")) return <GiftBox size={size} color={color} />;
-  if (b.includes("sales")) return <DiscountTag size={size} color={color} />;
-  if (b.includes("early access")) return <Bolt size={size} color={color} />;
-  if (b.includes("shipping"))
-    return <DeliveryTruck size={size} color={color} />;
-  if (b.includes("quarterly"))
-    return <PresentBox size={size} color={color} />;
-  if (b.includes("consultation")) return <User size={size} color={color} />;
-  if (b.includes("vip") || b.includes("event"))
+  if (b.includes("sign-up") || b.includes("bonus"))
+    return <GiftBox size={size} color={color} />;
+  if (b.includes("milestone"))
     return <Star size={size} color={color} />;
-  if (b.includes("curated") || b.includes("premium"))
+  if (b.includes("merch"))
     return <Gifts size={size} color={color} />;
+  if (b.includes("birthday"))
+    return <GiftBox size={size} color={color} />;
+  if (b.includes("social"))
+    return <User size={size} color={color} />;
+  if (b.includes("sweepstakes"))
+    return <Bolt size={size} color={color} />;
+  if (b.includes("voting"))
+    return <DiscountTag size={size} color={color} />;
+  if (b.includes("referral"))
+    return <User size={size} color={color} />;
+  if (b.includes("early access"))
+    return <Bolt size={size} color={color} />;
   return <DollarSignCircle size={size} color={color} />;
 }
 
@@ -365,7 +366,7 @@ export default function MembershipV2() {
                 letterSpacing: "-0.01em",
               }}
             >
-              Membership
+              AG1 Subscriber Rewards
             </h2>
 
             <p
@@ -378,7 +379,7 @@ export default function MembershipV2() {
                 lineHeight: 1.4,
               }}
             >
-              $75 / month
+              Included with your subscription
             </p>
 
             <a
@@ -399,7 +400,7 @@ export default function MembershipV2() {
                   : "rgba(255,255,255,0.9)",
                 height: "38px",
                 padding: btnHovered ? "0 22px 0 20px" : "0 22px",
-                borderRadius: "40px",
+                borderRadius: "999px",
                 textDecoration: "none",
                 lineHeight: 1,
                 transition:
@@ -422,7 +423,7 @@ export default function MembershipV2() {
                     "margin-right 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
                 }}
               />
-              join membership
+              subscribe now →
             </a>
           </div>
 
@@ -439,7 +440,7 @@ export default function MembershipV2() {
             {/* Section label */}
             <p
               style={{
-                fontFamily: "var(--font-sans)",
+                fontFamily: "var(--font-mono)",
                 fontSize: "11px",
                 fontWeight: 600,
                 letterSpacing: "0.1em",
@@ -450,7 +451,7 @@ export default function MembershipV2() {
                 transition: "color 0.5s ease",
               }}
             >
-              Our most exclusive benefits
+              Subscriber benefits
             </p>
 
             {/* Top divider */}

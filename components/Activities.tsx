@@ -6,84 +6,34 @@ import { ArrowLeft, ArrowRight, DollarSignCircle, GiftBox, DiscountTag, Bolt, De
 /* ─── Achievement data ─── */
 const achievements = [
   {
-    id: "first-purchase",
-    title: "First Purchase",
-    description: "Complete your very first purchase to kickstart your beauty journey.",
-    reward: "+$5 goop credit",
-    code: "FIRST25",
-    codeHint: "apply this code at checkout to claim your bonus goop credit",
+    id: "ag-sporting-event",
+    title: "AG at a Sporting Event",
+    description: "Share a photo of you with AG1 at a sporting event.",
+    reward: "+$3 AG Credit",
+    code: "SPORT3",
+    codeHint: "apply this code to claim your $3 AG Credit",
     goal: 1,
-    image: "/model-holding-serum.png",
+    image: "/earn1.jpg",
   },
   {
-    id: "skincare-devotee",
-    title: "Skincare Devotee",
-    description: "Order 5 products from the skincare collection.",
-    reward: "15% off next order",
-    code: "SKIN15",
-    codeHint: "use this code at checkout for 15% off your next skincare order",
-    goal: 5,
-    image: "/goop-moisturizer-collection.png",
+    id: "agz-subscriber",
+    title: "AG1 + AGZ Subscriber",
+    description: "Subscribe to both AG1 and AG1 Zero (AGZ) to unlock this bonus.",
+    reward: "+$5 AG Credit",
+    code: "AGZDUO5",
+    codeHint: "apply this code to claim your $5 AG Credit",
+    goal: 1,
+    image: "/earn2.jpg",
   },
   {
-    id: "beauty-explorer",
-    title: "Beauty Explorer",
-    description: "Try products from 3 different categories to discover your favorites.",
-    reward: "+$10 goop credit",
-    code: "EXPLORE75",
-    codeHint: "apply this code at checkout to claim your bonus goop credit",
-    goal: 3,
-    image: "/goop-full-collection.png",
-  },
-  {
-    id: "loyal-customer",
-    title: "Loyal Customer",
-    description: "Make 10 purchases and unlock a permanent loyalty reward.",
-    reward: "Free shipping forever",
-    code: "LOYAL-SHIP",
-    codeHint: "add this code to your account to unlock permanent free shipping",
-    goal: 10,
-    image: "/luxury-beauty-gift-stack.avif",
-  },
-  {
-    id: "review-maven",
-    title: "Review Maven",
-    description: "Write 5 thoughtful product reviews to help the community.",
-    reward: "+$5 goop credit",
-    code: "REVIEW100",
-    codeHint: "apply this code at checkout to claim your bonus goop credit",
-    goal: 5,
-    image: "/dewy-skin-closeup.avif",
-  },
-  {
-    id: "social-butterfly",
-    title: "Social Butterfly",
-    description: "Connect your Instagram, TikTok, and subscribe to our SMS list.",
-    reward: "Early access to drops",
-    code: "EARLYACCESS",
-    codeHint: "your early access has been activated for all upcoming product drops",
-    goal: 3,
-    image: "/glowing-skin-closeup.avif",
-  },
-  {
-    id: "seasonal-collector",
-    title: "Seasonal Collector",
-    description: "Purchase from 4 seasonal collections throughout the year.",
-    reward: "Curated gift box",
-    code: "GIFTBOX26",
-    codeHint: "use this code at checkout to receive your curated gift box",
-    goal: 4,
-    image: "/goop-retinol-duo.png",
-  },
-  {
-    id: "brand-ambassador",
-    title: "Brand Ambassador",
-    description: "Refer 3 friends who each make their first purchase.",
-    reward: "$25 goop credit",
-    code: "AMBASS50",
-    codeHint: "apply this code at checkout to redeem your $25 goop credit",
-    goal: 3,
-    image: "/model-holding-face-mask.png",
+    id: "refer-review",
+    title: "Refer & Review",
+    description: "Refer a friend and leave a product review.",
+    reward: "+$5 AG Credit",
+    code: "REFREVIEW5",
+    codeHint: "apply this code to claim your $5 AG Credit",
+    goal: 2,
+    image: "/earn3.jpg",
   },
 ];
 
@@ -144,7 +94,7 @@ function AchievementCard({
           position: "relative",
           height: "260px",
           overflow: "hidden",
-          border: "1px solid #e5e2de",
+          border: "1px solid #d4e0df",
           borderBottom: "none",
         }}
       >
@@ -168,15 +118,15 @@ function AchievementCard({
             position: "absolute",
             top: "14px",
             right: "14px",
-            fontFamily: "var(--font-sans)",
+            fontFamily: "var(--font-mono)",
             fontSize: "10px",
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
             lineHeight: 1,
             padding: "6px 12px",
-            borderRadius: "40px",
-            backgroundColor: redeemed || claimed || claimClicked ? "#000000" : isComplete ? "#E8913A" : "rgba(255,255,255,0.92)",
+            borderRadius: "999px",
+            backgroundColor: redeemed || claimed || claimClicked ? "#0f2e2f" : isComplete ? "#E8913A" : "rgba(255,255,255,0.92)",
             color: redeemed || claimed || claimClicked ? "#ffffff" : isComplete ? "#ffffff" : "#1a1a1a",
             backdropFilter: isComplete || redeemed || claimed || claimClicked ? "none" : "blur(8px)",
             transition: "all 0.4s ease",
@@ -210,7 +160,7 @@ function AchievementCard({
                   cx="18"
                   cy="18"
                   r="17"
-                  fill="#000000"
+                  fill="#0f2e2f"
                   style={{
                     transformOrigin: "18px 18px",
                     animation: "achieveCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
@@ -246,14 +196,14 @@ function AchievementCard({
                   border: "none",
                   height: "38px",
                   padding: "0 28px",
-                  borderRadius: "40px",
+                  borderRadius: "999px",
                   cursor: "pointer",
                   lineHeight: 1,
                   transition: "background-color 0.2s ease, opacity 0.2s ease",
                   animation: "achieveClaimIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
                 }}
               >
-                claim
+                claim →
               </button>
             )}
           </div>
@@ -331,7 +281,7 @@ function AchievementCard({
           padding: "28px 24px 26px",
           display: "flex",
           flexDirection: "column",
-          border: "1px solid #e5e2de",
+          border: "1px solid #d4e0df",
           borderTop: "none",
           backgroundColor: "#ffffff",
           flex: 1,
@@ -361,7 +311,7 @@ function AchievementCard({
                 fontSize: "13px",
                 fontWeight: 400,
                 lineHeight: 1.5,
-                color: "#888888",
+                color: "#6b8a89",
                 margin: 0,
               }}
             >
@@ -375,7 +325,7 @@ function AchievementCard({
             <div style={{ marginBottom: "14px" }}>
               <span
                 style={{
-                  fontFamily: "var(--font-sans)",
+                  fontFamily: "var(--font-mono)",
                   fontSize: "11px",
                   fontWeight: 600,
                   letterSpacing: "0.06em",
@@ -421,7 +371,7 @@ function AchievementCard({
               style={{
                 width: "100%",
                 height: "1px",
-                backgroundColor: "#e5e2de",
+                backgroundColor: "#d4e0df",
                 overflow: "hidden",
                 marginBottom: "14px",
               }}
@@ -430,7 +380,7 @@ function AchievementCard({
                 style={{
                   height: "100%",
                   width: `${pct}%`,
-                  backgroundColor: "#000000",
+                  backgroundColor: "#0f2e2f",
                   transition: "width 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
               />
@@ -457,7 +407,7 @@ function AchievementCard({
             {/* Reward label + name */}
             <span
               style={{
-                fontFamily: "var(--font-sans)",
+                fontFamily: "var(--font-mono)",
                 fontSize: "11px",
                 fontWeight: 600,
                 letterSpacing: "0.06em",
@@ -492,12 +442,12 @@ function AchievementCard({
                   alignItems: "center",
                   gap: "10px",
                   padding: "12px 16px",
-                  backgroundColor: "#f4f2ef",
+                  backgroundColor: "#f0f5f5",
                   marginBottom: "8px",
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="11" fill="#888888" />
+                  <circle cx="12" cy="12" r="11" fill="#6b8a89" />
                   <path d="M7.5 12.5L10.5 15.5L16.5 9.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span
@@ -505,7 +455,7 @@ function AchievementCard({
                     fontFamily: "var(--font-sans)",
                     fontSize: "13px",
                     fontWeight: 600,
-                    color: "#888888",
+                    color: "#6b8a89",
                     lineHeight: 1,
                   }}
                 >
@@ -532,8 +482,8 @@ function AchievementCard({
                       fontWeight: 600,
                       letterSpacing: "0.08em",
                       color: "#000000",
-                      backgroundColor: "#f9f7f5",
-                      border: "1px solid #e5e2de",
+                      backgroundColor: "#f5f8f8",
+                      border: "1px solid #d4e0df",
                       borderRight: "none",
                       padding: "10px 14px",
                       lineHeight: 1,
@@ -549,8 +499,8 @@ function AchievementCard({
                       fontSize: "13px",
                       fontWeight: 600,
                       color: "#ffffff",
-                      backgroundColor: "#000000",
-                      border: "1px solid #000000",
+                      backgroundColor: "#0f2e2f",
+                      border: "1px solid #0f2e2f",
                       padding: "10px 14px",
                       cursor: "pointer",
                       lineHeight: 1,
@@ -568,7 +518,7 @@ function AchievementCard({
                     bottom: "calc(100% + 8px)",
                     right: 0,
                     transform: `translateY(${copied ? "0px" : "4px"})`,
-                    backgroundColor: "#f0eeeb",
+                    backgroundColor: "#eaf2f2",
                     color: "#000000",
                     fontFamily: "var(--font-sans)",
                     fontSize: "11px",
@@ -583,7 +533,7 @@ function AchievementCard({
                   }}
                 >
                   add the code to your cart
-                  <div style={{ position: "absolute", top: "100%", right: "16px", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderTop: "4px solid #f0eeeb" }} />
+                  <div style={{ position: "absolute", top: "100%", right: "16px", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderTop: "4px solid #eaf2f2" }} />
                 </div>
               </div>
             )}
@@ -600,21 +550,11 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { o
   const [progress, setProgress] = useState<Record<string, number>>(() => {
     const init: Record<string, number> = {};
     achievements.forEach((a) => { init[a.id] = 0; });
-    init["first-purchase"] = 1;
-    init["skincare-devotee"] = 5;
-    init["beauty-explorer"] = 3;
     return init;
   });
-  const [claimable, setClaimable] = useState<Record<string, boolean>>({
-    "first-purchase": false,
-    "skincare-devotee": false,
-    "beauty-explorer": true,
-  });
-  const [claimed, setClaimed] = useState<Record<string, boolean>>({
-    "first-purchase": true,
-    "skincare-devotee": true,
-  });
-  const [redeemed] = useState<Set<string>>(new Set(["first-purchase"]));
+  const [claimable, setClaimable] = useState<Record<string, boolean>>({});
+  const [claimed, setClaimed] = useState<Record<string, boolean>>({});
+  const [redeemed] = useState<Set<string>>(new Set());
   const [celebratingId, setCelebratingId] = useState<string | null>(null);
 
   const currentPointsRef = useRef(5);
@@ -703,10 +643,10 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { o
   }, [claimed, claimable]);
 
   const handleClaim = useCallback((id: string) => {
-    // Add goop credit from reward if applicable
+    // Add AG Credit from reward if applicable
     const achievement = achievements.find(a => a.id === id);
     if (achievement) {
-      const match = achievement.reward.match(/\+\$(\d+(?:\.\d+)?)\s*goop credit/i);
+      const match = achievement.reward.match(/\+\$(\d+(?:\.\d+)?)\s*AG Credit/i);
       if (match) {
         const dollars = parseFloat(match[1]);
         const newTotal = Math.round((currentPointsRef.current + dollars) * 100) / 100;
@@ -780,7 +720,7 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { o
             height: "36px",
             borderRadius: "50%",
             backgroundColor: "transparent",
-            border: leftArrowHovered ? "1px solid #000000" : "1px solid #d8d5d0",
+            border: leftArrowHovered ? "1px solid #000000" : "1px solid #d4e0df",
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
@@ -800,7 +740,7 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { o
             height: "36px",
             borderRadius: "50%",
             backgroundColor: "transparent",
-            border: rightArrowHovered ? "1px solid #000000" : "1px solid #d8d5d0",
+            border: rightArrowHovered ? "1px solid #000000" : "1px solid #d4e0df",
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
@@ -850,50 +790,45 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { o
 /* ─── Voting data ─── */
 const allVotingQuestions: { question: string; options: string[]; images?: string[] }[] = [
   {
-    question: "Which bath ritual is your go-to?",
-    options: ["Boreal Fog Bath Bomb", "Love Bath Heart-Opening Soak", "Pomelo Grove Bath Bomb"],
-    images: ["/product-bath-bomb.webp", "/product-love-bath-soak.webp", "/product-pomelo-bath-bomb.webp"],
+    question: "How old are you?",
+    options: ["0\u201322", "22\u201330", "30\u201345", "45\u201360", "60+"],
   },
   {
-    question: "Which body care product would you like to try?",
-    options: ["Afterglow Body Oil", "Corpus Body Wash", "No.14 Icila Body Lotion"],
-    images: ["/product-afterglow-bodyoil.webp", "/product-corpus-bodywash.webp", "/product-icila-bodylotion.webp"],
+    question: "When do you take your AG1?",
+    options: ["Morning", "Afternoon", "Evening", "Multiple times"],
   },
   {
-    question: "What should we feature as product of the month?",
-    options: ["Instant Glow Body Polish", "Jillian Dempsey Makeup Bag", "Aloe Vera Shampoo Duo"],
-    images: ["/product-glow-body-polish.webp", "/product-makeupbag.webp", "/product-aloe-vera-duo.webp"],
+    question: "How do you mix your AG1?",
+    options: ["Water", "Smoothie", "Juice", "Other"],
   },
   {
-    question: "Which product would you gift a friend?",
-    options: ["Amber & Vanilla Pebble", "Cooling Massage Body Oil", "Afterglow Body Oil"],
-    images: ["/product-amber-pebble.webp", "/product-cooling-body-oil.webp", "/product-afterglow-bodyoil.webp"],
+    question: "Favorite AG1 benefit?",
+    options: ["Energy", "Digestion", "Immunity", "Focus"],
   },
   {
-    question: "What type of event would you attend?",
-    options: ["In-store Workshop", "Virtual Masterclass", "Pop-up Experience"],
+    question: "How long have you taken AG1?",
+    options: ["Just started", "1-6 months", "6-12 months", "1+ years"],
   },
   {
-    question: "What\u2019s your ideal self-care ritual?",
-    options: ["Morning Skincare Routine", "Evening Bath Soak", "Weekend Spa Day"],
+    question: "Do you travel with AG1?",
+    options: ["Always", "Sometimes", "Never", "Didn\u2019t know I could"],
   },
   {
-    question: "Which beauty trend excites you most?",
-    options: ["Clean Beauty", "Glass Skin", "Ayurvedic Wellness"],
+    question: "Tried AG1 Zero yet?",
+    options: ["Love it", "Not yet", "Prefer original", "Didn\u2019t know about it"],
   },
   {
-    question: "Which product do you prefer?",
-    options: ["Microderm Instant Glow Body Polish", "Cooling Abhyanga Massage Body Oil", "Pomelo Grove Bath Bomb"],
-    images: ["/product-glow-body-polish.webp", "/product-cooling-body-oil.webp", "/product-pomelo-bath-bomb.webp"],
+    question: "How did you hear about AG1?",
+    options: ["Social media", "Friend/family", "Podcast", "Other"],
   },
 ];
 
 const VOTING_DISPLAY_COUNT = 8;
 
 /* ─── Fallback images for voting version 1 ─── */
-const votingImages = ["/product-bath-bomb.webp", "/product-afterglow-bodyoil.webp", "/product-corpus-bodywash.webp", "/product-icila-bodylotion.webp", "/product-glow-body-polish.webp", "/product-makeupbag.webp", "/product-amber-pebble.webp", "/product-cooling-body-oil.webp"];
+const votingImages: string[] = [];
 
-/* ─── Shared goop credit earned animation (black circle, white checkmark) ─── */
+/* ─── Shared AG Credit earned animation (black circle, white checkmark) ─── */
 function VotingPointsEarned() {
   return (
     <div
@@ -917,7 +852,7 @@ function VotingPointsEarned() {
           cx="14"
           cy="14"
           r="14"
-          fill="#000000"
+          fill="#0f2e2f"
           style={{
             transformOrigin: "14px 14px",
             animation: "achieveCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
@@ -945,7 +880,7 @@ function VotingPointsEarned() {
           textAlign: "center",
         }}
       >
-        +$0.25 goop credit earned
+        +$0.25 AG Credit earned
       </span>
     </div>
   );
@@ -983,7 +918,7 @@ function VotingComplete({ totalEarned, questionVisible }: { totalEarned: number;
           fontFamily: "var(--font-sans)",
           fontSize: "14px",
           fontWeight: 400,
-          color: "#888888",
+          color: "#6b8a89",
           textAlign: "center",
           margin: "0 0 24px 0",
         }}
@@ -996,16 +931,16 @@ function VotingComplete({ totalEarned, questionVisible }: { totalEarned: number;
           fontSize: "13px",
           fontWeight: 600,
           color: "#ffffff",
-          backgroundColor: "#000000",
+          backgroundColor: "#0f2e2f",
           padding: "0 22px",
           height: "38px",
-          borderRadius: "40px",
+          borderRadius: "999px",
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        +${totalEarned.toFixed(2)} goop credit earned today
+        +${totalEarned.toFixed(2)} AG Credit earned today
       </span>
     </div>
   );
@@ -1091,7 +1026,7 @@ function VotingVersion1({
                       width: "240px",
                       height: "280px",
                       cursor: selectedOption ? "default" : "pointer",
-                      boxShadow: isSelected ? "inset 0 0 0 1px #000000" : isHovered ? "inset 0 0 0 1px #000000" : "inset 0 0 0 1px #e5e2de",
+                      boxShadow: isSelected ? "inset 0 0 0 1px #0f2e2f" : isHovered ? "inset 0 0 0 1px #000000" : "inset 0 0 0 1px #d4e0df",
                       overflow: "hidden",
                       transition: "box-shadow 0.2s ease",
                       position: "relative",
@@ -1119,11 +1054,11 @@ function VotingVersion1({
                       fontSize: "13px",
                       fontWeight: 600,
                       color: isSelected ? "#ffffff" : "#000000",
-                      backgroundColor: isSelected ? "#000000" : "transparent",
-                      border: isSelected ? "1px solid #000000" : isHovered ? "1px solid #000000" : "1px solid #d5d5d5",
+                      backgroundColor: isSelected ? "#0f2e2f" : "transparent",
+                      border: isSelected ? "1px solid #0f2e2f" : isHovered ? "1px solid #000000" : "1px solid #d5d5d5",
                       height: "38px",
                       padding: "0 22px",
-                      borderRadius: "40px",
+                      borderRadius: "999px",
                       cursor: selectedOption ? "default" : "pointer",
                       transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
                       lineHeight: 1,
@@ -1223,8 +1158,8 @@ function VotingVersion2({
                     fontSize: "14px",
                     fontWeight: 500,
                     color: isSelected ? "#ffffff" : "#000000",
-                    backgroundColor: isSelected ? "#000000" : "#ffffff",
-                    border: isSelected ? "1px solid #000000" : isHovered ? "1px solid #000000" : "1px solid #e5e2de",
+                    backgroundColor: isSelected ? "#0f2e2f" : "#ffffff",
+                    border: isSelected ? "1px solid #0f2e2f" : isHovered ? "1px solid #000000" : "1px solid #d4e0df",
                     padding: "24px 20px",
                     cursor: selectedOption ? "default" : "pointer",
                     textAlign: "center",
@@ -1330,7 +1265,7 @@ function VotingVersion3({
                 fontSize: "14px",
                 fontWeight: 400,
                 border: "none",
-                borderBottom: focused ? "1px solid #000000" : "1px solid #e5e2de",
+                borderBottom: focused ? "1px solid #000000" : "1px solid #d4e0df",
                 padding: "12px 0",
                 backgroundColor: "transparent",
                 width: "100%",
@@ -1349,16 +1284,16 @@ function VotingVersion3({
                 fontSize: "13px",
                 fontWeight: 600,
                 color: "#ffffff",
-                backgroundColor: submitHovered ? "#222222" : "#000000",
+                backgroundColor: submitHovered ? "#1a4a4b" : "#0f2e2f",
                 border: "none",
                 height: "38px",
-                borderRadius: "40px",
+                borderRadius: "999px",
                 padding: "0 22px",
                 cursor: "pointer",
                 transition: "background-color 0.2s ease",
               }}
             >
-              submit
+              submit →
             </button>
           </div>
         </div>
@@ -1561,9 +1496,9 @@ function VotingContent({ onAnsweredCountChange }: { onAnsweredCountChange: (coun
 
 /* ─── Check-in data ─── */
 const checkinRewardCycles = [
-  ["+$0.25 goop credit", "+$0.50 goop credit", "Free sample", "+$0.75 goop credit", "2x goop credit today", "+$1 goop credit", "Mystery gift"],
-  ["+$0.50 goop credit", "Free mini", "+$1 goop credit", "Early access", "+$0.75 goop credit", "Beauty tool", "+$2.50 goop credit"],
-  ["+$0.25 goop credit", "+$0.75 goop credit", "Lip balm", "+$0.50 goop credit", "Free shipping", "+$1.50 goop credit", "Deluxe sample"],
+  ["+$0.25 AG Credit", "+$0.50 AG Credit", "Free travel pack", "+$0.75 AG Credit", "2x AG Credit today", "+$1 AG Credit", "Mystery gift"],
+  ["+$0.50 AG Credit", "Free AG1 sample", "+$1 AG Credit", "Early access", "+$0.75 AG Credit", "AG1 shaker bottle", "+$2.50 AG Credit"],
+  ["+$0.25 AG Credit", "+$0.75 AG Credit", "Free travel pack", "+$0.50 AG Credit", "Free shipping", "+$1.50 AG Credit", "AG1 merch item"],
 ];
 
 const checkinDayIcons = [DollarSignCircle, Star, GiftBox, Bolt, DiscountTag, DeliveryTruck, Headphones];
@@ -1633,7 +1568,7 @@ function CheckInCard({
           >
             <span
               style={{
-                fontFamily: "var(--font-sans)",
+                fontFamily: "var(--font-mono)",
                 fontSize: "11px",
                 fontWeight: 600,
                 letterSpacing: "0.08em",
@@ -1641,7 +1576,7 @@ function CheckInCard({
                 color: isChecked ? "#ffffff" : "#1a1a1a",
                 backgroundColor: isChecked ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.92)",
                 padding: "6px 14px",
-                borderRadius: "40px",
+                borderRadius: "999px",
                 lineHeight: 1,
               }}
             >
@@ -1670,7 +1605,7 @@ function CheckInCard({
                   width: "52px",
                   height: "52px",
                   borderRadius: "50%",
-                  backgroundColor: "#000000",
+                  backgroundColor: "#0f2e2f",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -1722,7 +1657,7 @@ function CheckInCard({
               padding: "24px 16px",
             }}
           >
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", lineHeight: 1 }}>
               Day {dayNum}
             </span>
             <div
@@ -1817,7 +1752,7 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
       setJustCheckedIn(true);
 
       const reward = rewards[checkedDays];
-      const match = reward.match(/\+\$(\d+(?:\.\d+)?)\s*goop credit/i);
+      const match = reward.match(/\+\$(\d+(?:\.\d+)?)\s*AG Credit/i);
       if (match) {
         const dollars = parseFloat(match[1]);
         const newTotal = Math.round((currentPointsRef.current + dollars) * 100) / 100;
@@ -1860,7 +1795,7 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
           <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 6px 0", letterSpacing: "-0.01em" }}>
             Daily Check-in
           </h3>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#888888", margin: 0, lineHeight: 1.5 }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#6b8a89", margin: 0, lineHeight: 1.5 }}>
             Build your streak and unlock daily rewards.
           </p>
         </div>
@@ -1872,14 +1807,14 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
           <span style={{ fontFamily: "var(--font-serif)", fontSize: "32px", fontWeight: 400, color: "#000000", letterSpacing: "-0.01em", lineHeight: 1 }}>
             {streakCount}
           </span>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 400, color: "#888888" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 400, color: "#6b8a89" }}>
             Days<br />Streak
           </span>
         </div>
       </div>
 
       {/* Divider */}
-      <div style={{ height: "1px", backgroundColor: "#e5e2de", margin: "20px 0 32px" }} />
+      <div style={{ height: "1px", backgroundColor: "#d4e0df", margin: "20px 0 32px" }} />
 
       {/* Day cards — draggable, today centered */}
       <div
@@ -1927,7 +1862,7 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
                 Checked in.
               </span>
             </div>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#888888" }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#6b8a89" }}>
               See you tomorrow!
             </span>
           </>
@@ -1942,28 +1877,28 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
               fontSize: "13px",
               fontWeight: 600,
               color: "#ffffff",
-              backgroundColor: isFlipping ? "#444444" : checkInHovered ? "#222222" : "#000000",
+              backgroundColor: isFlipping ? "#1a4a4b" : checkInHovered ? "#1a4a4b" : "#0f2e2f",
               border: "none",
               height: "38px",
               padding: "0 32px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               cursor: isFlipping ? "not-allowed" : "pointer",
               transition: "background-color 0.2s ease",
               lineHeight: 1,
             }}
           >
-            Check in today
+            Check in today →
           </button>
         )}
       </div>
 
       {/* Progress bar */}
-      <div style={{ maxWidth: "480px", margin: "0 auto 10px", height: "3px", backgroundColor: "#e5e2de", borderRadius: "2px", overflow: "hidden" }}>
-        <div style={{ height: "100%", width: `${(checkedDays / 7) * 100}%`, backgroundColor: "#000000", borderRadius: "2px", transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }} />
+      <div style={{ maxWidth: "480px", margin: "0 auto 10px", height: "3px", backgroundColor: "#d4e0df", borderRadius: "2px", overflow: "hidden" }}>
+        <div style={{ height: "100%", width: `${(checkedDays / 7) * 100}%`, backgroundColor: "#0f2e2f", borderRadius: "2px", transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }} />
       </div>
 
       {/* Progress text */}
-      <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#888888", textAlign: "center", margin: 0 }}>
+      <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#6b8a89", textAlign: "center", margin: 0 }}>
         <span style={{ fontWeight: 600, color: "#000000" }}>{checkedDays}</span> of 7 days completed
       </p>
 
@@ -1984,11 +1919,11 @@ export default function Activities() {
   const [achievementsTabHovered, setAchievementsTabHovered] = useState(false);
   const [votingTabHovered, setVotingTabHovered] = useState(false);
   const [checkinTabHovered, setCheckinTabHovered] = useState(false);
-  const [claimedCount, setClaimedCount] = useState(2);
+  const [claimedCount, setClaimedCount] = useState(0);
   const [votingAnsweredCount, setVotingAnsweredCount] = useState(0);
   const [checkinCheckedDays, setCheckinCheckedDays] = useState(0);
   const [checkinStreak, setCheckinStreak] = useState(0);
-  const [hasClaimable, setHasClaimable] = useState(true);
+  const [hasClaimable, setHasClaimable] = useState(false);
 
   // Dispatch event for StickyNav red dot
   useEffect(() => {
@@ -2034,14 +1969,14 @@ export default function Activities() {
           fontFamily: "var(--font-sans)",
           fontSize: "14px",
           fontWeight: 400,
-          color: "#888888",
+          color: "#6b8a89",
           textAlign: "center",
           margin: "0 0 36px 0",
           lineHeight: 1.4,
         }}
       >
-        {activeTab === "achievements" && "Unlock achievements by shopping and engaging with the brand."}
-        {activeTab === "voting" && "Have a say in what happens next and earn +$0.25 goop credit."}
+        {activeTab === "achievements" && "Unlock achievements by engaging with AG1."}
+        {activeTab === "voting" && "Have a say in what happens next and earn +$0.25 AG Credit."}
         {activeTab === "check-in" && "Check in daily to earn rewards and build your streak."}
       </p>
 
@@ -2069,12 +2004,12 @@ export default function Activities() {
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "achievements" ? "#000000" : "transparent",
+              backgroundColor: activeTab === "achievements" ? "#0f2e2f" : "transparent",
               color: activeTab === "achievements" ? "#ffffff" : "#000000",
-              border: activeTab === "achievements" ? "1px solid #000000" : achievementsTabHovered ? "1px solid #000000" : "1px solid #d5d5d5",
+              border: activeTab === "achievements" ? "1px solid #0f2e2f" : achievementsTabHovered ? "1px solid #000000" : "1px solid #d5d5d5",
             }}
           >
             achievements{" "}
@@ -2098,12 +2033,12 @@ export default function Activities() {
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
-              borderRadius: "40px",
+              borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "voting" ? "#000000" : "transparent",
+              backgroundColor: activeTab === "voting" ? "#0f2e2f" : "transparent",
               color: activeTab === "voting" ? "#ffffff" : "#000000",
-              border: activeTab === "voting" ? "1px solid #000000" : votingTabHovered ? "1px solid #000000" : "1px solid #d5d5d5",
+              border: activeTab === "voting" ? "1px solid #0f2e2f" : votingTabHovered ? "1px solid #000000" : "1px solid #d5d5d5",
             }}
           >
             voting{" "}
@@ -2125,7 +2060,7 @@ export default function Activities() {
         {activeTab === "voting" && (
           <div
             style={{
-              border: "1px solid #e5e2de",
+              border: "1px solid #d4e0df",
               backgroundColor: "#ffffff",
             }}
           >
