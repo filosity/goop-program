@@ -73,7 +73,7 @@ function MilestoneCard({
       <div
         style={{
           width: "100%",
-          height: "220px",
+          height: "280px",
           backgroundColor: "#f0f0ef",
           overflow: "hidden",
           position: "relative",
@@ -636,7 +636,7 @@ export default function Milestones() {
         </div>
 
         {/* ── Benefits Grid — 4 columns ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px", marginTop: "16px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px", marginTop: "16px" }}>
           {milestones.map((m) => {
             const isEarned = subscribed && m.month <= currentMonth;
             const isCurrent = subscribed && m.month === currentMonth;
