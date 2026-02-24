@@ -1706,17 +1706,70 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
         </div>
       </div>
 
-      {/* Next reward preview — text left, image right */}
-      {nextReward && (
-        <div
-          style={{
-            display: "flex",
-            marginBottom: "32px",
-            border: "1px solid #d4e0df",
-            overflow: "hidden",
-            minHeight: "200px",
-          }}
-        >
+      {/* Next reward preview — text left, image right (fixed height) */}
+      <div
+        style={{
+          display: "flex",
+          marginBottom: "32px",
+          border: "1px solid #d4e0df",
+          overflow: "hidden",
+          height: "200px",
+        }}
+      >
+        {nextReward ? (
+          <>
+            <div
+              style={{
+                flex: 1,
+                backgroundColor: "#ffffff",
+                padding: "36px 40px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "11px",
+                  fontWeight: 600,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "#6b8a89",
+                  margin: "0 0 12px 0",
+                  lineHeight: 1,
+                }}
+              >
+                {nextReward.daysAway === 0 ? "Today\u2019s reward" : `Unlocks in ${nextReward.daysAway} day${nextReward.daysAway === 1 ? "" : "s"}`}
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "28px",
+                  fontWeight: 400,
+                  color: "#000000",
+                  margin: 0,
+                  lineHeight: 1.2,
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {nextReward.reward.name}
+              </p>
+            </div>
+            <div style={{ width: "510px", maxWidth: "510px", flexShrink: 0 }}>
+              <img
+                src={nextReward.reward.image}
+                alt={nextReward.reward.name}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
+            </div>
+          </>
+        ) : (
           <div
             style={{
               flex: 1,
@@ -1735,11 +1788,11 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
                 color: "#6b8a89",
-                margin: "0 0 12px 0",
+                margin: 0,
                 lineHeight: 1,
               }}
             >
-              {nextReward.daysAway === 0 ? "Today\u2019s reward" : `Unlocks in ${nextReward.daysAway} day${nextReward.daysAway === 1 ? "" : "s"}`}
+              All rewards claimed
             </p>
             <p
               style={{
@@ -1747,28 +1800,16 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                 fontSize: "28px",
                 fontWeight: 400,
                 color: "#000000",
-                margin: 0,
+                margin: "12px 0 0 0",
                 lineHeight: 1.2,
                 letterSpacing: "-0.01em",
               }}
             >
-              {nextReward.reward.name}
+              Keep your streak going!
             </p>
           </div>
-          <div style={{ width: "510px", maxWidth: "510px", flexShrink: 0 }}>
-            <img
-              src={nextReward.reward.image}
-              alt={nextReward.reward.name}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block",
-              }}
-            />
-          </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Day grid — drag to scroll */}
       <div
