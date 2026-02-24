@@ -1170,7 +1170,7 @@ export default function Featured() {
           lineHeight: 1.1,
           color: "#000000",
           textAlign: "left",
-          margin: "0 0 32px 0",
+          margin: "0 0 16px 0",
           letterSpacing: "-0.01em",
           maxWidth: "1280px",
           marginLeft: "auto",
