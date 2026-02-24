@@ -157,10 +157,11 @@ function HeroSectionV1() {
         {/* Eyebrow */}
         <p
           style={{
-            fontFamily: "var(--font-serif)",
+            fontFamily: "var(--font-mono)",
             fontSize: "17px",
             fontWeight: 500,
-            letterSpacing: "0.03em",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
             color: "rgba(255, 255, 255, 0.85)",
             margin: "0 0 10px 0",
             lineHeight: 1,
@@ -212,7 +213,7 @@ function HeroSectionV1() {
             {/* Dollar amount */}
             <p
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "44px",
                 fontWeight: 400,
                 lineHeight: 1,
@@ -227,7 +228,7 @@ function HeroSectionV1() {
             {/* AG Credit info */}
             <p
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "17px",
                 fontWeight: 400,
                 color: "#1a1a1a",
@@ -241,7 +242,7 @@ function HeroSectionV1() {
             {/* Redemption note */}
             <p
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "14px",
                 fontWeight: 400,
                 color: "#6b8a89",
@@ -256,7 +257,7 @@ function HeroSectionV1() {
             <a
               href="#"
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "17px",
                 fontWeight: 400,
                 color: "#1a1a1a",
@@ -284,7 +285,7 @@ function HeroSectionV1() {
             {/* Status */}
             <h2
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "48px",
                 fontWeight: 400,
                 lineHeight: 1,
@@ -299,7 +300,7 @@ function HeroSectionV1() {
             {/* Member since */}
             <p
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "17px",
                 fontWeight: 400,
                 color: "#1a1a1a",

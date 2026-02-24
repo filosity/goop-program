@@ -159,7 +159,7 @@ export default function HeroSectionV2() {
           >
             <p
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "44px",
                 fontWeight: 400,
                 color: "#000000",
@@ -186,7 +186,7 @@ export default function HeroSectionV2() {
             </p>
             <p
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "14px",
                 fontWeight: 400,
                 color: "#6b8a89",
@@ -199,7 +199,7 @@ export default function HeroSectionV2() {
             <a
               href="#"
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "15px",
                 fontWeight: 500,
                 color: "#6b8a89",
@@ -234,7 +234,7 @@ export default function HeroSectionV2() {
           >
             <p
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "44px",
                 fontWeight: 400,
                 color: "#000000",
@@ -248,7 +248,7 @@ export default function HeroSectionV2() {
 
             <p
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "18px",
                 fontWeight: 400,
                 color: "#1a1a1a",

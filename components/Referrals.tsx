@@ -74,7 +74,7 @@ export default function Referrals() {
           {/* Title */}
           <h2
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "44px",
               fontWeight: 400,
               lineHeight: 1.15,
@@ -89,7 +89,7 @@ export default function Referrals() {
           {/* Subtitle */}
           <p
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "16px",
               fontWeight: 400,
               lineHeight: 1.55,

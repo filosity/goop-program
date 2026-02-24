@@ -228,7 +228,7 @@ function EarnCard({
           {/* Title */}
           <p
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "24px",
               fontWeight: 400,
               color: "#ffffff",
@@ -480,7 +480,7 @@ function RedeemContent({
 
         <p
           style={{
-            fontFamily: "var(--font-serif)",
+            fontFamily: "var(--font-sans)",
             fontSize: "32px",
             fontWeight: 400,
             color: "#000000",
@@ -494,7 +494,7 @@ function RedeemContent({
 
         <p
           style={{
-            fontFamily: "var(--font-serif)",
+            fontFamily: "var(--font-sans)",
             fontSize: "16px",
             fontWeight: 400,
             color: "#6b8a89",
@@ -525,7 +525,7 @@ function RedeemContent({
           </span>
           <span
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "28px",
               fontWeight: 400,
               color: "#000000",
@@ -570,7 +570,7 @@ function RedeemContent({
         </p>
         <p
           style={{
-            fontFamily: "var(--font-serif)",
+            fontFamily: "var(--font-sans)",
             fontSize: "64px",
             fontWeight: 400,
             color: "#000000",
@@ -646,8 +646,8 @@ function RedeemContent({
 
           {/* Min/max */}
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
-            <span style={{ fontFamily: "var(--font-serif)", fontSize: "15px", fontWeight: 400, color: "#b0ada8" }}>$0</span>
-            <span style={{ fontFamily: "var(--font-serif)", fontSize: "15px", fontWeight: 400, color: "#b0ada8" }}>${maxPoints.toFixed(2)}</span>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 400, color: "#b0ada8" }}>$0</span>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 400, color: "#b0ada8" }}>${maxPoints.toFixed(2)}</span>
           </div>
         </div>
 
@@ -805,7 +805,7 @@ function RedeemContent({
           {/* Title */}
           <p
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "32px",
               fontWeight: 400,
               color: "#000000",
@@ -821,7 +821,7 @@ function RedeemContent({
           {/* Subtitle */}
           <p
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "17px",
               fontWeight: 400,
               color: "#6b8a89",
@@ -864,7 +864,7 @@ function RedeemContent({
               </p>
               <p
                 style={{
-                  fontFamily: "var(--font-serif)",
+                  fontFamily: "var(--font-sans)",
                   fontSize: "40px",
                   fontWeight: 400,
                   color: "#000000",
@@ -908,7 +908,7 @@ function RedeemContent({
               </p>
               <p
                 style={{
-                  fontFamily: "var(--font-serif)",
+                  fontFamily: "var(--font-sans)",
                   fontSize: "40px",
                   fontWeight: 400,
                   color: "#000000",
@@ -947,7 +947,7 @@ function RedeemContent({
             </span>
             <span
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "24px",
                 fontWeight: 400,
                 color: "#000000",
@@ -1301,7 +1301,7 @@ function FreeProductsContent({
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <p
                     style={{
-                      fontFamily: "var(--font-serif)",
+                      fontFamily: "var(--font-sans)",
                       fontSize: "19px",
                       fontWeight: 400,
                       color: "#000000",
@@ -1314,7 +1314,7 @@ function FreeProductsContent({
                   </p>
                   <p
                     style={{
-                      fontFamily: "var(--font-serif)",
+                      fontFamily: "var(--font-sans)",
                       fontSize: "15px",
                       fontWeight: 400,
                       color: "#6b8a89",
@@ -1585,7 +1585,7 @@ function UploadReceiptContent() {
 
             <p
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "32px",
                 fontWeight: 400,
                 color: "#000000",
@@ -1599,7 +1599,7 @@ function UploadReceiptContent() {
 
             <p
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "16px",
                 fontWeight: 400,
                 color: "#6b8a89",
@@ -1653,11 +1653,11 @@ function UploadReceiptContent() {
                 </svg>
               </div>
 
-              <p style={{ fontFamily: "var(--font-serif)", fontSize: "15px", fontWeight: 500, color: "#000000", margin: "0 0 6px 0", lineHeight: 1 }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "#000000", margin: "0 0 6px 0", lineHeight: 1 }}>
                 Drop your receipt here or{" "}
                 <span style={{ textDecoration: "underline", textUnderlineOffset: "2px" }}>browse</span>
               </p>
-              <p style={{ fontFamily: "var(--font-serif)", fontSize: "13px", fontWeight: 400, color: "#aaaaaa", margin: 0, lineHeight: 1 }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 400, color: "#aaaaaa", margin: 0, lineHeight: 1 }}>
                 JPG, PNG, HEIC, PDF &middot; Max 10MB
               </p>
             </div>
@@ -1672,11 +1672,11 @@ function UploadReceiptContent() {
               review &amp; submit
             </span>
 
-            <p style={{ fontFamily: "var(--font-serif)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
               Upload your receipt
             </p>
 
-            <p style={{ fontFamily: "var(--font-serif)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", margin: "0 0 32px 0", lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", margin: "0 0 32px 0", lineHeight: 1.6 }}>
               Make a photo or scan of your receipt and upload.
             </p>
 
@@ -1705,7 +1705,7 @@ function UploadReceiptContent() {
               </button>
             </div>
 
-            <p style={{ fontFamily: "var(--font-serif)", fontSize: "13px", fontWeight: 400, color: "#bbbbbb", margin: "0 0 28px 0", lineHeight: 1 }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 400, color: "#bbbbbb", margin: "0 0 28px 0", lineHeight: 1 }}>
               Accepted: JPG, PNG, HEIC, PDF &middot; Max 10MB
             </p>
 
@@ -1726,11 +1726,11 @@ function UploadReceiptContent() {
               uploading
             </span>
 
-            <p style={{ fontFamily: "var(--font-serif)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
               Processing your receipt
             </p>
 
-            <p style={{ fontFamily: "var(--font-serif)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", margin: "0 0 36px 0", lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", margin: "0 0 36px 0", lineHeight: 1.6 }}>
               Please wait while we verify your receipt.
             </p>
 
@@ -1781,11 +1781,11 @@ function UploadReceiptContent() {
               </svg>
             </div>
 
-            <p style={{ fontFamily: "var(--font-serif)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
               Thank you
             </p>
 
-            <p style={{ fontFamily: "var(--font-serif)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", margin: "0 0 32px 0", lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", margin: "0 0 32px 0", lineHeight: 1.6 }}>
               Once the verification process is finished your AG Credit will be added to your account. You can follow the status in your Rewards History.
             </p>
 
@@ -2015,7 +2015,7 @@ export default function WaysToEarn() {
       {/* Title */}
       <h2
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
           fontSize: "44px",
           fontWeight: 400,
           lineHeight: 1.1,
@@ -2031,7 +2031,7 @@ export default function WaysToEarn() {
       {/* Subtext */}
       <p
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
           fontSize: "16px",
           fontWeight: 400,
           color: "#6b8a89",

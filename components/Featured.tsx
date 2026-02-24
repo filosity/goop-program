@@ -285,7 +285,7 @@ function CommunityHero({
         )}
         <p
           style={{
-            fontFamily: "var(--font-serif)",
+            fontFamily: "var(--font-sans)",
             fontSize: "24px",
             fontWeight: 400,
             lineHeight: 1.4,
@@ -297,10 +297,10 @@ function CommunityHero({
           {item.text}
         </p>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ fontFamily: "var(--font-serif)", fontSize: "15px", fontWeight: 500, color: "rgba(255,255,255,0.7)" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "rgba(255,255,255,0.7)" }}>
             {item.type === "review" ? `\u2014 ${item.author}` : `${item.likes} likes`}
           </span>
-          <span style={{ fontFamily: "var(--font-serif)", fontSize: "14px", color: "rgba(255,255,255,0.45)" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(255,255,255,0.45)" }}>
             {item.time}
           </span>
         </div>
@@ -390,7 +390,7 @@ function CommunityGridCard({
           >
             {item.type === "instagram" ? "instagram" : "review"}
           </span>
-          <span style={{ fontFamily: "var(--font-serif)", fontSize: "13px", color: hasImg ? "rgba(255,255,255,0.5)" : "#bbb" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: hasImg ? "rgba(255,255,255,0.5)" : "#bbb" }}>
             {item.time}
           </span>
         </div>
@@ -398,7 +398,7 @@ function CommunityGridCard({
         {isReview && (
           <span
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "48px",
               lineHeight: "0.8",
               color: "#d4e0df",
@@ -419,7 +419,7 @@ function CommunityGridCard({
 
         <p
           style={{
-            fontFamily: isReview ? "var(--font-serif)" : "var(--font-serif)",
+            fontFamily: isReview ? "var(--font-sans)" : "var(--font-sans)",
             fontSize: isReview ? "17px" : "16px",
             fontWeight: 400,
             lineHeight: 1.55,
@@ -432,7 +432,7 @@ function CommunityGridCard({
 
         <p
           style={{
-            fontFamily: "var(--font-serif)",
+            fontFamily: "var(--font-sans)",
             fontSize: "14px",
             fontWeight: 500,
             color: hasImg ? "rgba(255,255,255,0.6)" : "#999",
@@ -593,7 +593,7 @@ function EventCalendarCard({
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", color: "#ffffff", textTransform: "uppercase", lineHeight: 1 }}>
             {monthAbbr}
           </span>
-          <span style={{ fontFamily: "var(--font-serif)", fontSize: "22px", fontWeight: 400, color: "#ffffff", lineHeight: 1.1 }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "22px", fontWeight: 400, color: "#ffffff", lineHeight: 1.1 }}>
             {dayNum}
           </span>
         </div>
@@ -636,13 +636,13 @@ function EventCalendarCard({
             {event.type === "in-person" ? "in-person" : "digital"}
           </span>
         </div>
-        <h4 style={{ fontFamily: "var(--font-serif)", fontSize: "20px", fontWeight: 400, lineHeight: 1.3, color: "#1a1a1a", margin: 0, letterSpacing: "-0.01em" }}>
+        <h4 style={{ fontFamily: "var(--font-sans)", fontSize: "20px", fontWeight: 400, lineHeight: 1.3, color: "#1a1a1a", margin: 0, letterSpacing: "-0.01em" }}>
           {event.title}
         </h4>
-        <p style={{ fontFamily: "var(--font-serif)", fontSize: "14px", fontWeight: 500, color: "#999", margin: 0, lineHeight: 1.3 }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#999", margin: 0, lineHeight: 1.3 }}>
           {event.location}
         </p>
-        <p style={{ fontFamily: "var(--font-serif)", fontSize: "16px", fontWeight: 400, lineHeight: 1.55, color: "#777", margin: "4px 0 0 0" }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, lineHeight: 1.55, color: "#777", margin: "4px 0 0 0" }}>
           {event.description}
         </p>
         <div style={{ display: "flex", alignItems: "center", marginTop: "auto", paddingTop: "12px" }}>
@@ -911,7 +911,7 @@ function FeaturedCard({
           <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "24px", fontWeight: 600, color: "#ffffff", margin: "0 0 10px 0", lineHeight: 1.25, letterSpacing: "-0.01em" }}>
             {card.title}
           </h3>
-          <p style={{ fontFamily: "var(--font-serif)", fontSize: "18px", fontWeight: 500, color: "rgba(255,255,255,0.75)", margin: 0, lineHeight: 1.4 }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 500, color: "rgba(255,255,255,0.75)", margin: 0, lineHeight: 1.4 }}>
             {card.subtitle}
           </p>
         </div>
@@ -1027,7 +1027,7 @@ function FeaturedCard({
               </div>
               <p
                 style={{
-                  fontFamily: "var(--font-serif)",
+                  fontFamily: "var(--font-sans)",
                   fontSize: "13px",
                   fontWeight: 400,
                   color: "rgba(255,255,255,0.6)",
@@ -1043,7 +1043,7 @@ function FeaturedCard({
           {/* Social proof row */}
           <div style={{ display: "flex", alignItems: "center" }}>
             <SocialDots cardIndex={cardIndex} />
-            <span style={{ fontFamily: "var(--font-serif)", fontSize: "17px", fontWeight: 500, color: "rgba(255,255,255,0.85)", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "17px", fontWeight: 500, color: "rgba(255,255,255,0.85)", lineHeight: 1 }}>
               {card.likes}
             </span>
           </div>

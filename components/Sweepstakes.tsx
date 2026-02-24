@@ -171,7 +171,7 @@ export default function Sweepstakes() {
       {/* Heading */}
       <h2
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
           fontSize: "44px",
           fontWeight: 400,
           lineHeight: 1.1,
@@ -316,7 +316,7 @@ export default function Sweepstakes() {
                   onMouseEnter={() => setTitleHovered(true)}
                   onMouseLeave={() => setTitleHovered(false)}
                   style={{
-                    fontFamily: "var(--font-serif)",
+                    fontFamily: "var(--font-sans)",
                     fontSize: "36px",
                     fontWeight: 400,
                     lineHeight: 1.15,
@@ -449,7 +449,7 @@ export default function Sweepstakes() {
                       >
                         <h4
                           style={{
-                            fontFamily: "var(--font-serif)",
+                            fontFamily: "var(--font-sans)",
                             fontSize: "17px",
                             fontWeight: 400,
                             color: "#000000",
@@ -462,7 +462,7 @@ export default function Sweepstakes() {
                         </h4>
                         <p
                           style={{
-                            fontFamily: "var(--font-serif)",
+                            fontFamily: "var(--font-sans)",
                             fontSize: "14px",
                             fontWeight: 400,
                             color: "#6b8a89",
@@ -492,7 +492,7 @@ export default function Sweepstakes() {
                   {handlesConnected ? (
                     <p
                       style={{
-                        fontFamily: "var(--font-serif)",
+                        fontFamily: "var(--font-sans)",
                         fontSize: "15px",
                         fontWeight: 500,
                         color: "#1a1a1a",
@@ -506,7 +506,7 @@ export default function Sweepstakes() {
                   ) : (
                     <p
                       style={{
-                        fontFamily: "var(--font-serif)",
+                        fontFamily: "var(--font-sans)",
                         fontSize: "15px",
                         fontWeight: 400,
                         color: "#6b8a89",
@@ -552,7 +552,7 @@ export default function Sweepstakes() {
                       onMouseEnter={() => setTermsHovered(true)}
                       onMouseLeave={() => setTermsHovered(false)}
                       style={{
-                        fontFamily: "var(--font-serif)",
+                        fontFamily: "var(--font-sans)",
                         fontSize: "14px",
                         fontWeight: 400,
                         color: "#000000",
@@ -566,7 +566,7 @@ export default function Sweepstakes() {
                     </a>
                     <p
                       style={{
-                        fontFamily: "var(--font-serif)",
+                        fontFamily: "var(--font-sans)",
                         fontSize: "14px",
                         fontWeight: 400,
                         color: "#6b8a89",
@@ -611,7 +611,7 @@ export default function Sweepstakes() {
             {/* Product title */}
             <h3
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "32px",
                 fontWeight: 400,
                 color: "#000000",
@@ -624,7 +624,7 @@ export default function Sweepstakes() {
             </h3>
             <p
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "14px",
                 fontWeight: 400,
                 color: "#6b8a89",
@@ -725,7 +725,7 @@ export default function Sweepstakes() {
                   </div>
                   <h4
                     style={{
-                      fontFamily: "var(--font-serif)",
+                      fontFamily: "var(--font-sans)",
                       fontSize: "17px",
                       fontWeight: 400,
                       color: "#000000",
@@ -738,7 +738,7 @@ export default function Sweepstakes() {
                   </h4>
                   <p
                     style={{
-                      fontFamily: "var(--font-serif)",
+                      fontFamily: "var(--font-sans)",
                       fontSize: "14px",
                       fontWeight: 400,
                       color: "#6b8a89",
@@ -767,7 +767,7 @@ export default function Sweepstakes() {
               {handlesConnected ? (
                 <p
                   style={{
-                    fontFamily: "var(--font-serif)",
+                    fontFamily: "var(--font-sans)",
                     fontSize: "15px",
                     fontWeight: 500,
                     color: "#1a1a1a",
@@ -780,7 +780,7 @@ export default function Sweepstakes() {
               ) : (
                 <p
                   style={{
-                    fontFamily: "var(--font-serif)",
+                    fontFamily: "var(--font-sans)",
                     fontSize: "15px",
                     fontWeight: 400,
                     color: "#6b8a89",
@@ -816,7 +816,7 @@ export default function Sweepstakes() {
                 onMouseEnter={() => setTermsHovered(true)}
                 onMouseLeave={() => setTermsHovered(false)}
                 style={{
-                  fontFamily: "var(--font-serif)",
+                  fontFamily: "var(--font-sans)",
                   fontSize: "14px",
                   fontWeight: 400,
                   color: "#000000",
@@ -886,7 +886,7 @@ export default function Sweepstakes() {
                     onMouseEnter={() => setTitleHovered(true)}
                     onMouseLeave={() => setTitleHovered(false)}
                     style={{
-                      fontFamily: "var(--font-serif)",
+                      fontFamily: "var(--font-sans)",
                       fontSize: "38px",
                       fontWeight: 400,
                       lineHeight: 1.15,
@@ -909,7 +909,7 @@ export default function Sweepstakes() {
                 {handlesConnected ? (
                   <p
                     style={{
-                      fontFamily: "var(--font-serif)",
+                      fontFamily: "var(--font-sans)",
                       fontSize: "16px",
                       fontWeight: 500,
                       color: "#1a1a1a",
@@ -923,7 +923,7 @@ export default function Sweepstakes() {
                 ) : (
                   <p
                     style={{
-                      fontFamily: "var(--font-serif)",
+                      fontFamily: "var(--font-sans)",
                       fontSize: "16px",
                       fontWeight: 400,
                       color: "#666666",
@@ -959,7 +959,7 @@ export default function Sweepstakes() {
                     onMouseEnter={() => setTermsHovered(true)}
                     onMouseLeave={() => setTermsHovered(false)}
                     style={{
-                      fontFamily: "var(--font-serif)",
+                      fontFamily: "var(--font-sans)",
                       fontSize: "16px",
                       fontWeight: 400,
                       color: "#000000",
@@ -1030,7 +1030,7 @@ export default function Sweepstakes() {
                   </div>
                   <h4
                     style={{
-                      fontFamily: "var(--font-serif)",
+                      fontFamily: "var(--font-sans)",
                       fontSize: "20px",
                       fontWeight: 400,
                       color: "#000000",
@@ -1043,7 +1043,7 @@ export default function Sweepstakes() {
                   </h4>
                   <p
                     style={{
-                      fontFamily: "var(--font-serif)",
+                      fontFamily: "var(--font-sans)",
                       fontSize: "15px",
                       fontWeight: 400,
                       color: "#6b8a89",
@@ -1060,7 +1060,7 @@ export default function Sweepstakes() {
             {/* Footer */}
             <p
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "14px",
                 fontWeight: 400,
                 color: "#6b8a89",
@@ -1079,7 +1079,7 @@ export default function Sweepstakes() {
           <div style={{ padding: "0 48px" }}>
             <h2
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "44px",
                 fontWeight: 400,
                 lineHeight: 1.1,
@@ -1093,7 +1093,7 @@ export default function Sweepstakes() {
             </h2>
             <p
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "16px",
                 fontWeight: 400,
                 color: "#6b8a89",
@@ -1159,7 +1159,7 @@ export default function Sweepstakes() {
                   <div style={{ padding: "20px 24px 24px" }}>
                     <h4
                       style={{
-                        fontFamily: "var(--font-serif)",
+                        fontFamily: "var(--font-sans)",
                         fontSize: "22px",
                         fontWeight: 400,
                         color: "#000000",
@@ -1172,7 +1172,7 @@ export default function Sweepstakes() {
                     </h4>
                     <p
                       style={{
-                        fontFamily: "var(--font-serif)",
+                        fontFamily: "var(--font-sans)",
                         fontSize: "15px",
                         fontWeight: 700,
                         color: "#000000",

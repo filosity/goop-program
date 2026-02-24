@@ -310,7 +310,7 @@ export default function StickyNav() {
           </p>
           <p
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "32px",
               fontWeight: 400,
               lineHeight: 1,
@@ -323,7 +323,7 @@ export default function StickyNav() {
           </p>
           <p
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "15px",
               fontWeight: 400,
               color: "#6b8a89",

@@ -201,7 +201,7 @@ function MemberBenefitPopup({
         {/* Benefit name */}
         <h4
           style={{
-            fontFamily: "var(--font-serif)",
+            fontFamily: "var(--font-sans)",
             fontSize: "24px",
             fontWeight: 400,
             color: "#ffffff",
@@ -216,7 +216,7 @@ function MemberBenefitPopup({
         {/* Description */}
         <p
           style={{
-            fontFamily: "var(--font-serif)",
+            fontFamily: "var(--font-sans)",
             fontSize: "17px",
             fontWeight: 400,
             color: "rgba(255,255,255,0.6)",
@@ -289,7 +289,7 @@ function MemberBenefitRow({
       {/* Text */}
       <span
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
           fontSize: "16px",
           fontWeight: 400,
           color: "rgba(255,255,255,0.85)",
@@ -409,7 +409,7 @@ export default function Membership() {
           {/* Heading */}
           <h2
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "38px",
               fontWeight: 400,
               lineHeight: 1.1,
@@ -424,7 +424,7 @@ export default function Membership() {
           {/* Price label */}
           <p
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "17px",
               fontWeight: 500,
               color: "rgba(255,255,255,0.55)",

@@ -218,7 +218,7 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
         </p>
         <p
           style={{
-            fontFamily: "var(--font-serif)",
+            fontFamily: "var(--font-sans)",
             fontSize: "32px",
             fontWeight: 400,
             color: "#000000",
@@ -231,7 +231,7 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
         </p>
         <p
           style={{
-            fontFamily: "var(--font-serif)",
+            fontFamily: "var(--font-sans)",
             fontSize: "14px",
             fontWeight: 400,
             color: "#6b8a89",
@@ -486,7 +486,7 @@ function StepColumn({
       >
         <p
           style={{
-            fontFamily: "var(--font-serif)",
+            fontFamily: "var(--font-sans)",
             fontSize: "14px",
             fontWeight: 400,
             color: "#000000",
@@ -502,7 +502,7 @@ function StepColumn({
       {/* Title */}
       <p
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
           fontSize: "19px",
           fontWeight: 700,
           color: "#000000",
@@ -516,7 +516,7 @@ function StepColumn({
       {/* Description — fixed height so interactive boxes align */}
       <p
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
           fontSize: "17px",
           fontWeight: 400,
           color: "#444444",
@@ -675,7 +675,7 @@ export default function HowItWorks() {
       >
         <h2
           style={{
-            fontFamily: collapsed ? "var(--font-sans)" : "var(--font-serif)",
+            fontFamily: "var(--font-sans)",
             fontSize: collapsed ? "13px" : "36px",
             fontWeight: collapsed ? 600 : 400,
             fontStyle: "normal",

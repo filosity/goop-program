@@ -28,7 +28,7 @@ export default function Milestones() {
       {/* Heading */}
       <h2
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
           fontSize: "44px",
           fontWeight: 400,
           lineHeight: 1.1,
@@ -44,7 +44,7 @@ export default function Milestones() {
       {/* Subtitle */}
       <p
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
           fontSize: "16px",
           fontWeight: 400,
           color: "#6b8a89",
@@ -252,7 +252,7 @@ export default function Milestones() {
                   {/* Reward text */}
                   <p
                     style={{
-                      fontFamily: "var(--font-serif)",
+                      fontFamily: "var(--font-sans)",
                       fontSize: "16px",
                       fontWeight: 500,
                       color: "#1a1a1a",

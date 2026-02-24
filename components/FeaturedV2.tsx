@@ -227,7 +227,7 @@ function GridCard({
         <div>
           <h3
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "22px",
               fontWeight: 400,
               color: "#ffffff",
@@ -240,7 +240,7 @@ function GridCard({
           </h3>
           <p
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "16px",
               fontWeight: 500,
               color: "rgba(255,255,255,0.75)",
@@ -361,7 +361,7 @@ function GridCard({
                   {copied ? "copied!" : "copy"}
                 </button>
               </div>
-              <p style={{ fontFamily: "var(--font-serif)", fontSize: "13px", fontWeight: 400, color: "rgba(255,255,255,0.6)", margin: "8px 0 0 0", lineHeight: 1.4 }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 400, color: "rgba(255,255,255,0.6)", margin: "8px 0 0 0", lineHeight: 1.4 }}>
                 copy this code at checkout to redeem your AG Credit with your next order
               </p>
             </div>
@@ -370,7 +370,7 @@ function GridCard({
           {/* Social proof row */}
           <div style={{ display: "flex", alignItems: "center" }}>
             <SocialDots cardIndex={cardIndex} />
-            <span style={{ fontFamily: "var(--font-serif)", fontSize: "17px", fontWeight: 500, color: "rgba(255,255,255,0.85)", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "17px", fontWeight: 500, color: "rgba(255,255,255,0.85)", lineHeight: 1 }}>
               {card.likes}
             </span>
           </div>
@@ -487,19 +487,19 @@ function CommunityCardV2({
               </div>
             )}
           </div>
-          <span style={{ fontFamily: "var(--font-serif)", fontSize: "14px", color: "#bbb", display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#bbb", display: "flex", alignItems: "center", gap: "6px" }}>
             {item.time}
             {index === 0 && <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "#e53935", flexShrink: 0 }} />}
           </span>
         </div>
 
         {/* Text */}
-        <p style={{ fontFamily: "var(--font-serif)", fontSize: "17px", fontWeight: 400, lineHeight: 1.5, color: "#1a1a1a", margin: 0, flex: 1 }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "17px", fontWeight: 400, lineHeight: 1.5, color: "#1a1a1a", margin: 0, flex: 1 }}>
           {item.text}
         </p>
 
         {/* Author / likes */}
-        <p style={{ fontFamily: "var(--font-serif)", fontSize: "14px", fontWeight: 500, color: "#999", margin: 0 }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#999", margin: 0 }}>
           {item.type === "review" ? `\u2014 ${item.author}` : `${item.likes} likes`}
         </p>
       </div>
@@ -719,18 +719,18 @@ function TimelineEventCard({
             <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 600, color: "#1a1a1a" }}>
               {event.date}
             </span>
-            <span style={{ fontFamily: "var(--font-serif)", fontSize: "14px", color: "#999" }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#999" }}>
               {event.location}
             </span>
           </div>
 
           {/* Title */}
-          <h4 style={{ fontFamily: "var(--font-serif)", fontSize: "20px", fontWeight: 400, lineHeight: 1.3, color: "#1a1a1a", margin: "0 0 6px 0", letterSpacing: "-0.01em" }}>
+          <h4 style={{ fontFamily: "var(--font-sans)", fontSize: "20px", fontWeight: 400, lineHeight: 1.3, color: "#1a1a1a", margin: "0 0 6px 0", letterSpacing: "-0.01em" }}>
             {event.title}
           </h4>
 
           {/* Description */}
-          <p style={{ fontFamily: "var(--font-serif)", fontSize: "16px", fontWeight: 400, lineHeight: 1.55, color: "#777", margin: "0 0 6px 0" }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, lineHeight: 1.55, color: "#777", margin: "0 0 6px 0" }}>
             {event.description}
           </p>
 

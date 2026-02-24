@@ -290,7 +290,7 @@ function AchievementCard({
         {/* Title */}
         <h4
           style={{
-            fontFamily: "var(--font-serif)",
+            fontFamily: "var(--font-sans)",
             fontSize: "22px",
             fontWeight: 400,
             lineHeight: 1.2,
@@ -307,7 +307,7 @@ function AchievementCard({
             {/* Description */}
             <p
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "15px",
                 fontWeight: 400,
                 lineHeight: 1.5,
@@ -340,7 +340,7 @@ function AchievementCard({
               </span>
               <span
                 style={{
-                  fontFamily: "var(--font-serif)",
+                  fontFamily: "var(--font-sans)",
                   fontSize: "17px",
                   fontWeight: 600,
                   color: "#000000",
@@ -389,7 +389,7 @@ function AchievementCard({
             {/* Progress text */}
             <span
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "14px",
                 fontWeight: 400,
                 color: "#aaaaaa",
@@ -422,7 +422,7 @@ function AchievementCard({
             </span>
             <span
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "17px",
                 fontWeight: 600,
                 color: "#000000",
@@ -452,7 +452,7 @@ function AchievementCard({
                 </svg>
                 <span
                   style={{
-                    fontFamily: "var(--font-serif)",
+                    fontFamily: "var(--font-sans)",
                     fontSize: "15px",
                     fontWeight: 600,
                     color: "#6b8a89",
@@ -521,7 +521,7 @@ function AchievementCard({
                     transform: `translateY(${copied ? "0px" : "4px"})`,
                     backgroundColor: "#eaf2f2",
                     color: "#000000",
-                    fontFamily: "var(--font-serif)",
+                    fontFamily: "var(--font-sans)",
                     fontSize: "13px",
                     fontWeight: 500,
                     padding: "6px 12px",
@@ -874,7 +874,7 @@ function VotingPointsEarned() {
       </svg>
       <span
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
           fontSize: "16px",
           fontWeight: 600,
           color: "#000000",
@@ -904,7 +904,7 @@ function VotingComplete({ totalEarned, questionVisible }: { totalEarned: number;
     >
       <h3
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
           fontSize: "22px",
           fontWeight: 400,
           color: "#000000",
@@ -916,7 +916,7 @@ function VotingComplete({ totalEarned, questionVisible }: { totalEarned: number;
       </h3>
       <p
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
           fontSize: "16px",
           fontWeight: 400,
           color: "#6b8a89",
@@ -985,7 +985,7 @@ function VotingVersion1({
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", padding: "20px" }}>
           <h3
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "22px",
               fontWeight: 400,
               color: "#000000",
@@ -1125,7 +1125,7 @@ function VotingVersion2({
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", padding: "20px" }}>
           <h3
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "22px",
               fontWeight: 400,
               color: "#000000",
@@ -1234,7 +1234,7 @@ function VotingVersion3({
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", padding: "20px" }}>
           <h3
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "22px",
               fontWeight: 400,
               color: "#000000",
@@ -1619,7 +1619,7 @@ function CheckInCard({
 
             <span
               style={{
-                fontFamily: "var(--font-serif)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "16px",
                 fontWeight: 500,
                 color: "#ffffff",
@@ -1675,16 +1675,16 @@ function CheckInCard({
             >
               <IconComponent size={22} color="#ffffff" />
             </div>
-            <span style={{ fontFamily: "var(--font-serif)", fontSize: "20px", fontWeight: 400, color: "#ffffff", textAlign: "center", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "20px", fontWeight: 400, color: "#ffffff", textAlign: "center", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
               {reward}
             </span>
             {isChecked && (
-              <span style={{ fontFamily: "var(--font-serif)", fontSize: "14px", fontWeight: 400, color: "rgba(255,255,255,0.45)" }}>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "rgba(255,255,255,0.45)" }}>
                 Claimed
               </span>
             )}
             {isCurrent && (
-              <span style={{ fontFamily: "var(--font-serif)", fontSize: "14px", fontWeight: 500, color: "rgba(255,255,255,0.7)" }}>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "rgba(255,255,255,0.7)" }}>
                 Available today
               </span>
             )}
@@ -1794,10 +1794,10 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
       {/* Header */}
       <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "8px" }}>
         <div>
-          <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 6px 0", letterSpacing: "-0.01em" }}>
+          <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 6px 0", letterSpacing: "-0.01em" }}>
             Daily Check-in
           </h3>
-          <p style={{ fontFamily: "var(--font-serif)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", margin: 0, lineHeight: 1.5 }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", margin: 0, lineHeight: 1.5 }}>
             Build your streak and unlock daily rewards.
           </p>
         </div>
@@ -1806,10 +1806,10 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
             <path d="M12 2C12 2 8.5 7 8.5 11C8.5 13 9.5 14.5 11 15.5C10 14 10.5 12 12 10.5C13.5 12 14 14 13 15.5C14.5 14.5 15.5 13 15.5 11C15.5 7 12 2 12 2Z" fill="#E8913A" />
             <path d="M12 22C8.13 22 5 18.87 5 15C5 11.5 8 7.5 12 2C16 7.5 19 11.5 19 15C19 18.87 15.87 22 12 22Z" stroke="#E8913A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
           </svg>
-          <span style={{ fontFamily: "var(--font-serif)", fontSize: "32px", fontWeight: 400, color: "#000000", letterSpacing: "-0.01em", lineHeight: 1 }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "32px", fontWeight: 400, color: "#000000", letterSpacing: "-0.01em", lineHeight: 1 }}>
             {streakCount}
           </span>
-          <span style={{ fontFamily: "var(--font-serif)", fontSize: "15px", fontWeight: 400, color: "#6b8a89" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 400, color: "#6b8a89" }}>
             Days<br />Streak
           </span>
         </div>
@@ -1860,11 +1860,11 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path d="M6 12.5L10 16.5L18 8.5" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span style={{ fontFamily: "var(--font-serif)", fontSize: "17px", fontWeight: 600, color: "#000000" }}>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "17px", fontWeight: 600, color: "#000000" }}>
                 Checked in.
               </span>
             </div>
-            <span style={{ fontFamily: "var(--font-serif)", fontSize: "16px", fontWeight: 400, color: "#6b8a89" }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#6b8a89" }}>
               See you tomorrow!
             </span>
           </>
@@ -1900,7 +1900,7 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
       </div>
 
       {/* Progress text */}
-      <p style={{ fontFamily: "var(--font-serif)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", textAlign: "center", margin: 0 }}>
+      <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", textAlign: "center", margin: 0 }}>
         <span style={{ fontWeight: 600, color: "#000000" }}>{checkedDays}</span> of 7 days completed
       </p>
 
@@ -1952,7 +1952,7 @@ export default function Activities() {
       {/* Title */}
       <h2
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
           fontSize: "44px",
           fontWeight: 400,
           lineHeight: 1.1,
@@ -1968,7 +1968,7 @@ export default function Activities() {
       {/* Subtext */}
       <p
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
           fontSize: "16px",
           fontWeight: 400,
           color: "#6b8a89",
