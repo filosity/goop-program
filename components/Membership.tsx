@@ -446,14 +446,14 @@ export default function Membership() {
               alignItems: "center",
               alignSelf: "flex-start",
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "18px",
               fontWeight: 600,
               color: "#0C3D3D",
               backgroundColor: btnHovered
                 ? "rgba(255,255,255,0.85)"
                 : "#ffffff",
-              height: "38px",
-              padding: btnHovered ? "0 22px 0 20px" : "0 22px",
+              minHeight: "52px",
+              padding: btnHovered ? "0 34px 0 32px" : "0 34px",
               borderRadius: "999px",
               textDecoration: "none",
               lineHeight: 1,

@@ -14,15 +14,18 @@ function PillButton({ label }: { label: string }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         fontFamily: "var(--font-sans)",
-        fontSize: "15px",
+        fontSize: "18px",
         fontWeight: 600,
         color: hovered ? "#ffffff" : "#0C3D3D",
         backgroundColor: hovered ? "#0C3D3D" : "#ffffff",
         border: "1px solid #0C3D3D",
-        padding: "12px 22px",
+        padding: "12px 34px",
         borderRadius: "999px",
         textDecoration: "none",
         lineHeight: 1,
+        minHeight: "52px",
+        display: "inline-flex",
+        alignItems: "center",
         transition: "background-color 0.2s ease, color 0.2s ease",
       }}
     >

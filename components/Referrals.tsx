@@ -140,12 +140,13 @@ export default function Referrals() {
               onClick={() => setExpanded(!expanded)}
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "13px",
+                fontSize: "16px",
                 fontWeight: 500,
                 color: "#000000",
                 background: "none",
                 border: "none",
-                padding: "16px 20px",
+                padding: "16px 32px",
+                minHeight: "52px",
                 width: "100%",
                 cursor: "pointer",
                 display: "flex",
@@ -280,14 +281,14 @@ export default function Referrals() {
             onMouseLeave={() => setSendHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "17px",
               fontWeight: 600,
               color: sendHovered ? "#ffffff" : "#0C3D3D",
               backgroundColor: sendHovered ? "#0C3D3D" : "#ffffff",
               border: "1px solid #0C3D3D",
-              height: "38px",
+              minHeight: "52px",
               borderRadius: "999px",
-              padding: "0 28px",
+              padding: "0 36px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease",
               alignSelf: "flex-start",
@@ -330,14 +331,14 @@ export default function Referrals() {
             onMouseLeave={() => setCopyHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "17px",
               fontWeight: 500,
               color: copied ? "#ffffff" : "#0C3D3D",
               backgroundColor: copied ? "#0C3D3D" : "transparent",
               border: "1px solid #0C3D3D",
-              height: "38px",
+              minHeight: "52px",
               borderRadius: "999px",
-              padding: "0 20px",
+              padding: "0 28px",
               cursor: "pointer",
               transition:
                 "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
@@ -380,8 +381,8 @@ export default function Referrals() {
               onMouseLeave={() => setFbHovered(false)}
               aria-label="Share on Facebook"
               style={{
-                width: "36px",
-                height: "36px",
+                width: "52px",
+                minHeight: "52px",
                 borderRadius: "50%",
                 border: fbHovered ? "1px solid #000000" : "1px solid #d4e0df",
                 backgroundColor: "transparent",
@@ -403,8 +404,8 @@ export default function Referrals() {
               onMouseLeave={() => setXHovered(false)}
               aria-label="Share on X"
               style={{
-                width: "36px",
-                height: "36px",
+                width: "52px",
+                minHeight: "52px",
                 borderRadius: "50%",
                 border: xHovered ? "1px solid #000000" : "1px solid #d4e0df",
                 backgroundColor: "transparent",
@@ -426,8 +427,8 @@ export default function Referrals() {
               onMouseLeave={() => setEmailIconHovered(false)}
               aria-label="Share via Email"
               style={{
-                width: "36px",
-                height: "36px",
+                width: "52px",
+                minHeight: "52px",
                 borderRadius: "50%",
                 border: emailIconHovered
                   ? "1px solid #000000"

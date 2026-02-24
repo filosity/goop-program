@@ -300,7 +300,7 @@ function RedeemStep({ active, imageSrc }: { active: boolean; index: number; imag
   }, []);
 
   const isCircle = phase === "loading" || phase === "check";
-  const btnHeight = 42;
+  const btnHeight = 52;
 
   return (
     <div>
@@ -325,7 +325,7 @@ function RedeemStep({ active, imageSrc }: { active: boolean; index: number; imag
           onMouseLeave={() => setHovered(false)}
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "15px",
+          fontSize: "18px",
           fontWeight: 600,
           color: "#ffffff",
           backgroundColor: active
@@ -333,7 +333,7 @@ function RedeemStep({ active, imageSrc }: { active: boolean; index: number; imag
               ? "#0E4747"
               : "#0C3D3D"
             : "#cccccc",
-          width: isCircle ? `${btnHeight}px` : "140px",
+          width: isCircle ? `${btnHeight}px` : "160px",
           height: `${btnHeight}px`,
           borderRadius: isCircle ? `${btnHeight / 2}px` : "999px",
           border: "none",

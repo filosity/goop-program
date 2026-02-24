@@ -360,14 +360,14 @@ export default function Header() {
             onMouseLeave={() => setShopHov(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "18px",
               fontWeight: 600,
               color: "#000000",
               textDecoration: "none",
               backgroundColor: shopHov ? "#3fcb3f" : "#46DE46",
               borderRadius: "6px",
               height: "54px",
-              padding: "0 28px",
+              padding: "0 36px",
               lineHeight: "54px",
               whiteSpace: "nowrap" as const,
               transition: "background-color 0.15s ease",

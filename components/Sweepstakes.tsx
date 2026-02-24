@@ -208,10 +208,10 @@ export default function Sweepstakes() {
             onMouseLeave={() => setJoinHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "17px",
               fontWeight: 600,
-              padding: "0 22px",
-              height: "38px",
+              padding: "0 32px",
+              minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease",
@@ -233,10 +233,10 @@ export default function Sweepstakes() {
             onMouseLeave={() => setPastHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "17px",
               fontWeight: 600,
-              padding: "0 22px",
-              height: "38px",
+              padding: "0 32px",
+              minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease",
@@ -1206,8 +1206,8 @@ export default function Sweepstakes() {
                 onMouseLeave={() => setLeftArrowHovered(false)}
                 aria-label="Previous"
                 style={{
-                  width: "36px",
-                  height: "36px",
+                  width: "52px",
+                  minHeight: "52px",
                   borderRadius: "50%",
                   backgroundColor: "transparent",
                   border: leftArrowHovered ? "1px solid #000000" : "1px solid #d8d5d0",
@@ -1230,8 +1230,8 @@ export default function Sweepstakes() {
                 onMouseLeave={() => setRightArrowHovered(false)}
                 aria-label="Next"
                 style={{
-                  width: "36px",
-                  height: "36px",
+                  width: "52px",
+                  minHeight: "52px",
                   borderRadius: "50%",
                   backgroundColor: "transparent",
                   border: rightArrowHovered ? "1px solid #000000" : "1px solid #d8d5d0",

@@ -503,7 +503,7 @@ function CommunityFeed() {
         {hasMore && (
           <button
             onClick={() => setVisibleCount((c) => Math.min(c + 6, shuffled.length))}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "17px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 36px", minHeight: "52px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
           >
@@ -513,7 +513,7 @@ function CommunityFeed() {
         {visibleCount > 4 && (
           <button
             onClick={() => setVisibleCount(4)}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "17px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 36px", minHeight: "52px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
@@ -653,15 +653,15 @@ function EventCalendarCard({
             onMouseLeave={() => setBtnHov(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "18px",
               fontWeight: 600,
               color: "#ffffff",
               backgroundColor: btnHov ? "#14504F" : "#0C3D3D",
-              padding: "0 22px",
-              height: "38px",
+              padding: "0 32px",
+              minHeight: "52px",
               borderRadius: "999px",
               textDecoration: "none",
-              lineHeight: "38px",
+              lineHeight: "52px",
               transition: "background-color 0.2s ease",
               cursor: "pointer",
               display: "inline-block",
@@ -713,7 +713,7 @@ function EventsFeed() {
         {hasMore && (
           <button
             onClick={() => setVisibleCount((c) => Math.min(c + 4, eventItems.length))}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "17px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 36px", minHeight: "52px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
           >
@@ -723,7 +723,7 @@ function EventsFeed() {
         {visibleCount > 4 && (
           <button
             onClick={() => setVisibleCount(4)}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "17px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 36px", minHeight: "52px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
@@ -929,12 +929,12 @@ function FeaturedCard({
                 display: "inline-flex",
                 alignItems: "center",
                 fontFamily: "var(--font-sans)",
-                fontSize: "15px",
+                fontSize: "18px",
                 fontWeight: 600,
                 color: "#0C3D3D",
                 backgroundColor: btnHovered ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.9)",
-                height: "38px",
-                padding: "0 22px",
+                minHeight: "52px",
+                padding: "0 32px",
                 borderRadius: "999px",
                 textDecoration: "none",
                 lineHeight: 1,
@@ -1009,12 +1009,13 @@ function FeaturedCard({
                   onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleCopy(); }}
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "11px",
+                    fontSize: "13px",
                     fontWeight: 600,
                     color: "#000000",
                     backgroundColor: "#ffffff",
                     border: "1px solid rgba(255,255,255,0.3)",
-                    padding: "10px 14px",
+                    padding: "10px 22px",
+                    minHeight: "52px",
                     cursor: "pointer",
                     lineHeight: 1,
                     transition: "background-color 0.2s ease",
@@ -1158,10 +1159,10 @@ export default function Featured() {
             onMouseLeave={() => setFeaturedHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "18px",
               fontWeight: 600,
-              padding: "0 22px",
-              height: "38px",
+              padding: "0 32px",
+              minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
@@ -1182,10 +1183,10 @@ export default function Featured() {
               display: "inline-flex",
               alignItems: "center",
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "18px",
               fontWeight: 600,
-              padding: "0 22px",
-              height: "38px",
+              padding: "0 32px",
+              minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
@@ -1209,10 +1210,10 @@ export default function Featured() {
               display: "inline-flex",
               alignItems: "center",
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "18px",
               fontWeight: 600,
-              padding: "0 22px",
-              height: "38px",
+              padding: "0 32px",
+              minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",

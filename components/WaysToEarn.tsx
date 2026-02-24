@@ -316,13 +316,13 @@ function EarnCard({
               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#ffffff"; }}
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "15px",
+                fontSize: "18px",
                 fontWeight: 600,
                 color: "#0C3D3D",
                 backgroundColor: "#ffffff",
                 border: "none",
-                height: "38px",
-                padding: "0 22px",
+                minHeight: "52px",
+                padding: "0 32px",
                 borderRadius: "999px",
                 cursor: "pointer",
                 transition: "background-color 0.2s ease",
@@ -659,13 +659,13 @@ function RedeemContent({
             onMouseLeave={() => setRedeemHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "18px",
               fontWeight: 600,
               color: "#ffffff",
               backgroundColor: redeemHovered ? "#155050" : "#0C3D3D",
               border: "1px solid #0C3D3D",
-              height: "42px",
-              padding: "0 28px",
+              minHeight: "52px",
+              padding: "0 36px",
               borderRadius: "999px",
               cursor: sliderValue > 0 ? "pointer" : "default",
               lineHeight: 1,
@@ -681,13 +681,13 @@ function RedeemContent({
             onMouseLeave={() => setApplyHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "18px",
               fontWeight: 600,
               color: applyHovered ? "#ffffff" : "#0C3D3D",
               backgroundColor: applyHovered ? "#0C3D3D" : "transparent",
               border: "1px solid #0C3D3D",
-              height: "42px",
-              padding: "0 28px",
+              minHeight: "52px",
+              padding: "0 36px",
               borderRadius: "999px",
               cursor: "pointer",
               lineHeight: 1,
@@ -1343,13 +1343,13 @@ function FreeProductsContent({
                       }}
                       style={{
                         fontFamily: "var(--font-sans)",
-                        fontSize: "15px",
+                        fontSize: "18px",
                         fontWeight: 600,
                         lineHeight: 1,
-                        height: "38px",
+                        minHeight: "52px",
                         borderRadius: isCircle ? "50%" : "999px",
-                        width: isCircle ? "38px" : "auto",
-                        padding: isCircle ? "0" : "0 22px",
+                        width: isCircle ? "52px" : "auto",
+                        padding: isCircle ? "0" : "0 32px",
                         border: canAfford || phase !== "idle" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
                         cursor: !canAfford || phase !== "idle" ? "default" : "pointer",
                         backgroundColor: canAfford || phase !== "idle" ? "#0C3D3D" : "transparent",
@@ -1713,7 +1713,7 @@ function UploadReceiptContent() {
               onClick={handleSubmit}
               onMouseEnter={() => setSubmitHovered(true)}
               onMouseLeave={() => setSubmitHovered(false)}
-              style={{ alignSelf: "flex-start", fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 600, color: "#ffffff", backgroundColor: submitHovered ? "#155050" : "#0C3D3D", border: "1px solid #0C3D3D", height: "42px", padding: "0 32px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
+              style={{ alignSelf: "flex-start", fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#ffffff", backgroundColor: submitHovered ? "#155050" : "#0C3D3D", border: "1px solid #0C3D3D", minHeight: "52px", padding: "0 40px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
             >
               submit receipt →
             </button>
@@ -1794,14 +1794,14 @@ function UploadReceiptContent() {
                 onClick={handleReset}
                 onMouseEnter={() => setNewUploadHovered(true)}
                 onMouseLeave={() => setNewUploadHovered(false)}
-                style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 600, color: "#ffffff", backgroundColor: newUploadHovered ? "#155050" : "#0C3D3D", border: "1px solid #0C3D3D", height: "42px", padding: "0 28px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
+                style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#ffffff", backgroundColor: newUploadHovered ? "#155050" : "#0C3D3D", border: "1px solid #0C3D3D", minHeight: "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
               >
                 upload another →
               </button>
               <button
                 onMouseEnter={() => setHistoryHovered(true)}
                 onMouseLeave={() => setHistoryHovered(false)}
-                style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 600, color: historyHovered ? "#ffffff" : "#0C3D3D", backgroundColor: historyHovered ? "#0C3D3D" : "transparent", border: "1px solid #0C3D3D", height: "42px", padding: "0 28px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease, color 0.2s ease" }}
+                style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: historyHovered ? "#ffffff" : "#0C3D3D", backgroundColor: historyHovered ? "#0C3D3D" : "transparent", border: "1px solid #0C3D3D", minHeight: "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease, color 0.2s ease" }}
               >
                 view history →
               </button>
@@ -2066,10 +2066,10 @@ export default function WaysToEarn() {
             onMouseLeave={() => setEarnTabHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "18px",
               fontWeight: 600,
-              padding: "0 22px",
-              height: "38px",
+              padding: "0 32px",
+              minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
@@ -2096,10 +2096,10 @@ export default function WaysToEarn() {
             onMouseLeave={() => setExchangeTabHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "18px",
               fontWeight: 600,
-              padding: "0 22px",
-              height: "38px",
+              padding: "0 32px",
+              minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
@@ -2117,10 +2117,10 @@ export default function WaysToEarn() {
             onMouseLeave={() => setProductsTabHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "18px",
               fontWeight: 600,
-              padding: "0 22px",
-              height: "38px",
+              padding: "0 32px",
+              minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
@@ -2138,10 +2138,10 @@ export default function WaysToEarn() {
             onMouseLeave={() => setUploadTabHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "18px",
               fontWeight: 600,
-              padding: "0 22px",
-              height: "38px",
+              padding: "0 32px",
+              minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
