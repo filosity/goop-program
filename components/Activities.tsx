@@ -1652,8 +1652,8 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
     return null;
   })();
 
-  // Build all visible days: 1 to currentDay + 9 (max 10 at once)
-  const totalDays = currentDay + 9;
+  // Build all visible days: 1 to currentDay + 30
+  const totalDays = currentDay + 30;
   const days = Array.from({ length: totalDays }, (_, i) => {
     const dayNum = i + 1;
     const isChecked = dayNum < currentDay;
@@ -1668,8 +1668,8 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
   });
 
   // Calculate progress width for timeline bar
-  const REGULAR_WIDTH = 80;
-  const REWARD_WIDTH = 120;
+  const REGULAR_WIDTH = 100;
+  const REWARD_WIDTH = 140;
   const progressWidth = (() => {
     if (checkedCount === 0) return 0;
     const lastCheckedIndex = currentDay - 2; // 0-indexed, last checked day
@@ -1871,7 +1871,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
           {/* Background line */}
           <div style={{
             position: "absolute",
-            top: `${8 + 28}px`,
+            top: `${8 + 48}px`,
             left: 0,
             right: 0,
             height: "3px",
@@ -1882,7 +1882,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
           {/* Progress fill */}
           <div style={{
             position: "absolute",
-            top: `${8 + 28}px`,
+            top: `${8 + 48}px`,
             left: 0,
             height: "3px",
             backgroundColor: "#0d8b87",
@@ -1910,7 +1910,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                 }}
               >
                 {/* Circle row — fixed height for line alignment */}
-                <div style={{ height: "56px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ height: "96px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   {hasReward ? (
                     /* Reward day — larger circle with image */
                     <div
@@ -1919,8 +1919,8 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                         else if (day.isRewardEarned && !day.isRewardClaimed && !day.isRewardClaiming) handleClaimReward(day.dayNum);
                       }}
                       style={{
-                        width: "56px",
-                        height: "56px",
+                        width: "96px",
+                        height: "96px",
                         borderRadius: "50%",
                         overflow: day.isCelebrating ? "visible" : "hidden",
                         position: "relative",

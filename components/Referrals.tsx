@@ -19,7 +19,7 @@ export default function Referrals() {
   const [friendNameFocused, setFriendNameFocused] = useState(false);
   const [messageFocused, setMessageFocused] = useState(false);
 
-  const referralLink = "drinkag1.com/bubblehouse/yourcode123";
+  const referralLink = "referfrnd.io/ag1/384928";
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(`https://${referralLink}`);
@@ -149,7 +149,7 @@ export default function Referrals() {
                 color: "#ffffff",
                 background: "none",
                 border: "none",
-                padding: "16px 32px",
+                padding: "16px 20px",
                 minHeight: "52px",
                 width: "100%",
                 cursor: "pointer",
