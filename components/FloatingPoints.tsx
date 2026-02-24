@@ -88,10 +88,11 @@ export default function FloatingPoints() {
         {/* Label */}
         <p
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "12px",
+            fontFamily: "var(--font-mono)",
+            fontSize: "10px",
             fontWeight: 600,
-            letterSpacing: "0.02em",
+            letterSpacing: "0.06em",
+            textTransform: "uppercase",
             color: "#1a1a1a",
             margin: 0,
             lineHeight: 1,
@@ -119,8 +120,8 @@ export default function FloatingPoints() {
         {/* AG Credit */}
         <p
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "13px",
+            fontFamily: "var(--font-serif)",
+            fontSize: "15px",
             fontWeight: 400,
             color: "#6b8a89",
             margin: 0,

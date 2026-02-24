@@ -360,7 +360,7 @@ export default function Header() {
               color: "#000000",
               textDecoration: "none",
               backgroundColor: shopHov ? "#3fcb3f" : "#46DE46",
-              borderRadius: "999px",
+              borderRadius: "6px",
               height: "54px",
               padding: "0 28px",
               lineHeight: "54px",

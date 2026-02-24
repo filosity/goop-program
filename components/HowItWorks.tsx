@@ -231,8 +231,8 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
         </p>
         <p
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "12px",
+            fontFamily: "var(--font-serif)",
+            fontSize: "14px",
             fontWeight: 400,
             color: "#6b8a89",
             margin: "8px 0 0 0",
@@ -325,13 +325,13 @@ function RedeemStep({ active, imageSrc }: { active: boolean; index: number; imag
           onMouseLeave={() => setHovered(false)}
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "13px",
+          fontSize: "15px",
           fontWeight: 600,
           color: "#ffffff",
           backgroundColor: active
             ? hovered && phase === "idle"
-              ? "#1a4a4b"
-              : "#0f2e2f"
+              ? "#0E4747"
+              : "#0C3D3D"
             : "#cccccc",
           width: isCircle ? `${btnHeight}px` : "140px",
           height: `${btnHeight}px`,
@@ -502,7 +502,7 @@ function StepColumn({
       {/* Title */}
       <p
         style={{
-          fontFamily: "var(--font-sans)",
+          fontFamily: "var(--font-serif)",
           fontSize: "19px",
           fontWeight: 700,
           color: "#000000",
@@ -516,8 +516,8 @@ function StepColumn({
       {/* Description — fixed height so interactive boxes align */}
       <p
         style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: "15.5px",
+          fontFamily: "var(--font-serif)",
+          fontSize: "17px",
           fontWeight: 400,
           color: "#444444",
           margin: 0,

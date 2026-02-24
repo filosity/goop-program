@@ -297,10 +297,10 @@ function CommunityHero({
           {item.text}
         </p>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 500, color: "rgba(255,255,255,0.7)" }}>
+          <span style={{ fontFamily: "var(--font-serif)", fontSize: "15px", fontWeight: 500, color: "rgba(255,255,255,0.7)" }}>
             {item.type === "review" ? `\u2014 ${item.author}` : `${item.likes} likes`}
           </span>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.45)" }}>
+          <span style={{ fontFamily: "var(--font-serif)", fontSize: "14px", color: "rgba(255,255,255,0.45)" }}>
             {item.time}
           </span>
         </div>
@@ -390,7 +390,7 @@ function CommunityGridCard({
           >
             {item.type === "instagram" ? "instagram" : "review"}
           </span>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: hasImg ? "rgba(255,255,255,0.5)" : "#bbb" }}>
+          <span style={{ fontFamily: "var(--font-serif)", fontSize: "13px", color: hasImg ? "rgba(255,255,255,0.5)" : "#bbb" }}>
             {item.time}
           </span>
         </div>
@@ -419,8 +419,8 @@ function CommunityGridCard({
 
         <p
           style={{
-            fontFamily: isReview ? "var(--font-serif)" : "var(--font-sans)",
-            fontSize: isReview ? "15px" : "14px",
+            fontFamily: isReview ? "var(--font-serif)" : "var(--font-serif)",
+            fontSize: isReview ? "17px" : "16px",
             fontWeight: 400,
             lineHeight: 1.55,
             color: hasImg ? "#ffffff" : "#1a1a1a",
@@ -432,8 +432,8 @@ function CommunityGridCard({
 
         <p
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "12px",
+            fontFamily: "var(--font-serif)",
+            fontSize: "14px",
             fontWeight: 500,
             color: hasImg ? "rgba(255,255,255,0.6)" : "#999",
             margin: "auto 0 0 0",
@@ -503,9 +503,9 @@ function CommunityFeed() {
         {hasMore && (
           <button
             onClick={() => setVisibleCount((c) => Math.min(c + 6, shuffled.length))}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#1a1a1a", backgroundColor: "transparent", border: "1px solid #1a1a1a", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#1a1a1a"; }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
           >
             show more
           </button>
@@ -513,9 +513,9 @@ function CommunityFeed() {
         {visibleCount > 4 && (
           <button
             onClick={() => setVisibleCount(4)}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#6b8a89", backgroundColor: "transparent", border: "1px solid #d5d5d5", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#1a1a1a"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#888"; e.currentTarget.style.borderColor = "#d5d5d5"; }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
             collapse
           </button>
@@ -602,7 +602,7 @@ function EventCalendarCard({
             position: "absolute",
             top: "14px",
             right: "14px",
-            backgroundColor: "#0f2e2f",
+            backgroundColor: "#0C3D3D",
             color: "#ffffff",
             borderRadius: "999px",
             padding: "6px 14px",
@@ -629,7 +629,7 @@ function EventCalendarCard({
               padding: "5px 10px",
               borderRadius: "3px",
               flexShrink: 0,
-              backgroundColor: event.type === "in-person" ? "#0f2e2f" : "#f5ece3",
+              backgroundColor: event.type === "in-person" ? "#0C3D3D" : "#f5ece3",
               color: event.type === "in-person" ? "#ffffff" : "#8b6e5a",
             }}
           >
@@ -639,10 +639,10 @@ function EventCalendarCard({
         <h4 style={{ fontFamily: "var(--font-serif)", fontSize: "20px", fontWeight: 400, lineHeight: 1.3, color: "#1a1a1a", margin: 0, letterSpacing: "-0.01em" }}>
           {event.title}
         </h4>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, color: "#999", margin: 0, lineHeight: 1.3 }}>
+        <p style={{ fontFamily: "var(--font-serif)", fontSize: "14px", fontWeight: 500, color: "#999", margin: 0, lineHeight: 1.3 }}>
           {event.location}
         </p>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, lineHeight: 1.55, color: "#777", margin: "4px 0 0 0" }}>
+        <p style={{ fontFamily: "var(--font-serif)", fontSize: "16px", fontWeight: 400, lineHeight: 1.55, color: "#777", margin: "4px 0 0 0" }}>
           {event.description}
         </p>
         <div style={{ display: "flex", alignItems: "center", marginTop: "auto", paddingTop: "12px" }}>
@@ -653,10 +653,10 @@ function EventCalendarCard({
             onMouseLeave={() => setBtnHov(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               color: "#ffffff",
-              backgroundColor: btnHov ? "#1a4a4b" : "#0f2e2f",
+              backgroundColor: btnHov ? "#14504F" : "#0C3D3D",
               padding: "0 22px",
               height: "38px",
               borderRadius: "999px",
@@ -713,9 +713,9 @@ function EventsFeed() {
         {hasMore && (
           <button
             onClick={() => setVisibleCount((c) => Math.min(c + 4, eventItems.length))}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#1a1a1a", backgroundColor: "transparent", border: "1px solid #1a1a1a", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#1a1a1a"; }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
           >
             show more
           </button>
@@ -723,9 +723,9 @@ function EventsFeed() {
         {visibleCount > 4 && (
           <button
             onClick={() => setVisibleCount(4)}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#6b8a89", backgroundColor: "transparent", border: "1px solid #d5d5d5", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#1a1a1a"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#888"; e.currentTarget.style.borderColor = "#d5d5d5"; }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
             collapse
           </button>
@@ -911,7 +911,7 @@ function FeaturedCard({
           <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "24px", fontWeight: 600, color: "#ffffff", margin: "0 0 10px 0", lineHeight: 1.25, letterSpacing: "-0.01em" }}>
             {card.title}
           </h3>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 500, color: "rgba(255,255,255,0.75)", margin: 0, lineHeight: 1.4 }}>
+          <p style={{ fontFamily: "var(--font-serif)", fontSize: "18px", fontWeight: 500, color: "rgba(255,255,255,0.75)", margin: 0, lineHeight: 1.4 }}>
             {card.subtitle}
           </p>
         </div>
@@ -929,9 +929,9 @@ function FeaturedCard({
                 display: "inline-flex",
                 alignItems: "center",
                 fontFamily: "var(--font-sans)",
-                fontSize: "13px",
+                fontSize: "15px",
                 fontWeight: 600,
-                color: "#000000",
+                color: "#0C3D3D",
                 backgroundColor: btnHovered ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.9)",
                 height: "38px",
                 padding: "0 22px",
@@ -1026,8 +1026,8 @@ function FeaturedCard({
               </div>
               <p
                 style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "11px",
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "13px",
                   fontWeight: 400,
                   color: "rgba(255,255,255,0.6)",
                   margin: "8px 0 0 0",
@@ -1042,7 +1042,7 @@ function FeaturedCard({
           {/* Social proof row */}
           <div style={{ display: "flex", alignItems: "center" }}>
             <SocialDots cardIndex={cardIndex} />
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "rgba(255,255,255,0.85)", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-serif)", fontSize: "17px", fontWeight: 500, color: "rgba(255,255,255,0.85)", lineHeight: 1 }}>
               {card.likes}
             </span>
           </div>
@@ -1158,16 +1158,16 @@ export default function Featured() {
             onMouseLeave={() => setFeaturedHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "activity" ? "#0f2e2f" : "transparent",
-              color: activeTab === "activity" ? "#ffffff" : "#000000",
-              border: activeTab === "activity" ? "1px solid #0f2e2f" : featuredHovered ? "1px solid #0f2e2f" : "1px solid #d5d5d5",
+              backgroundColor: activeTab === "activity" ? "#0C3D3D" : "transparent",
+              color: activeTab === "activity" ? "#ffffff" : "#0C3D3D",
+              border: activeTab === "activity" ? "1px solid #0C3D3D" : featuredHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
             }}
           >
             featured
@@ -1182,16 +1182,16 @@ export default function Featured() {
               display: "inline-flex",
               alignItems: "center",
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "community" ? "#0f2e2f" : "transparent",
-              color: activeTab === "community" ? "#ffffff" : "#000000",
-              border: activeTab === "community" ? "1px solid #0f2e2f" : communityHovered ? "1px solid #0f2e2f" : "1px solid #d5d5d5",
+              backgroundColor: activeTab === "community" ? "#0C3D3D" : "transparent",
+              color: activeTab === "community" ? "#ffffff" : "#0C3D3D",
+              border: activeTab === "community" ? "1px solid #0C3D3D" : communityHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
             }}
           >
             community
@@ -1209,16 +1209,16 @@ export default function Featured() {
               display: "inline-flex",
               alignItems: "center",
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "events" ? "#0f2e2f" : "transparent",
-              color: activeTab === "events" ? "#ffffff" : "#000000",
-              border: activeTab === "events" ? "1px solid #0f2e2f" : eventsHovered ? "1px solid #0f2e2f" : "1px solid #d5d5d5",
+              backgroundColor: activeTab === "events" ? "#0C3D3D" : "transparent",
+              color: activeTab === "events" ? "#ffffff" : "#0C3D3D",
+              border: activeTab === "events" ? "1px solid #0C3D3D" : eventsHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
             }}
           >
             events

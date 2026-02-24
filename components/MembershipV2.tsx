@@ -186,8 +186,8 @@ function BenefitPopup({
         {/* Description */}
         <p
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "15px",
+            fontFamily: "var(--font-serif)",
+            fontSize: "17px",
             fontWeight: 400,
             color: "rgba(255,255,255,0.6)",
             margin: 0,
@@ -252,8 +252,8 @@ function BenefitRow({
       {/* Text */}
       <span
         style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: "14px",
+          fontFamily: "var(--font-serif)",
+          fontSize: "16px",
           fontWeight: 400,
           color: "rgba(255,255,255,0.85)",
           lineHeight: 1.5,
@@ -371,8 +371,8 @@ export default function MembershipV2() {
 
             <p
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "15px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "17px",
                 fontWeight: 500,
                 color: "rgba(255,255,255,0.55)",
                 margin: "0 0 28px 0",
@@ -392,12 +392,12 @@ export default function MembershipV2() {
                 alignItems: "center",
                 alignSelf: "flex-start",
                 fontFamily: "var(--font-sans)",
-                fontSize: "13px",
+                fontSize: "15px",
                 fontWeight: 600,
-                color: "#000000",
+                color: "#0C3D3D",
                 backgroundColor: btnHovered
-                  ? "rgba(255,255,255,1)"
-                  : "rgba(255,255,255,0.9)",
+                  ? "rgba(255,255,255,0.85)"
+                  : "#ffffff",
                 height: "38px",
                 padding: btnHovered ? "0 22px 0 20px" : "0 22px",
                 borderRadius: "999px",
@@ -414,7 +414,7 @@ export default function MembershipV2() {
                   width: "6px",
                   height: "6px",
                   borderRadius: "50%",
-                  backgroundColor: "#000000",
+                  backgroundColor: "#0C3D3D",
                   flexShrink: 0,
                   marginRight: btnHovered ? "8px" : "0px",
                   opacity: btnHovered ? 1 : 0,

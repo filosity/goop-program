@@ -323,8 +323,8 @@ export default function StickyNav() {
           </p>
           <p
             style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontFamily: "var(--font-serif)",
+              fontSize: "15px",
               fontWeight: 400,
               color: "#6b8a89",
               margin: 0,

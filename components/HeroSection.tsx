@@ -14,15 +14,16 @@ function PillButton({ label }: { label: string }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         fontFamily: "var(--font-sans)",
-        fontSize: "13px",
+        fontSize: "15px",
         fontWeight: 600,
-        color: "#ffffff",
-        backgroundColor: hovered ? "#1a4a4b" : "#0f2e2f",
+        color: hovered ? "#ffffff" : "#0C3D3D",
+        backgroundColor: hovered ? "#0C3D3D" : "#ffffff",
+        border: "1px solid #0C3D3D",
         padding: "12px 22px",
         borderRadius: "999px",
         textDecoration: "none",
         lineHeight: 1,
-        transition: "background-color 0.2s ease",
+        transition: "background-color 0.2s ease, color 0.2s ease",
       }}
     >
       {label} →
@@ -36,10 +37,11 @@ function SectionLabel({ text }: { text: string }) {
     <div style={{ display: "inline-block", marginBottom: "20px" }}>
       <p
         style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: "13px",
+          fontFamily: "var(--font-mono)",
+          fontSize: "11px",
           fontWeight: 600,
-          letterSpacing: "0.02em",
+          letterSpacing: "0.06em",
+          textTransform: "uppercase",
           color: "#1a1a1a",
           margin: "0 0 10px 0",
           lineHeight: 1,
@@ -152,8 +154,8 @@ function HeroSectionV1() {
         {/* Eyebrow */}
         <p
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "15px",
+            fontFamily: "var(--font-serif)",
+            fontSize: "17px",
             fontWeight: 500,
             letterSpacing: "0.03em",
             color: "rgba(255, 255, 255, 0.85)",
@@ -223,7 +225,7 @@ function HeroSectionV1() {
             <p
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: "15px",
+                fontSize: "17px",
                 fontWeight: 400,
                 color: "#1a1a1a",
                 margin: "0 0 6px 0",
@@ -236,8 +238,8 @@ function HeroSectionV1() {
             {/* Redemption note */}
             <p
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "12px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "14px",
                 fontWeight: 400,
                 color: "#6b8a89",
                 margin: "0 0 12px 0",
@@ -252,7 +254,7 @@ function HeroSectionV1() {
               href="#"
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: "15px",
+                fontSize: "17px",
                 fontWeight: 400,
                 color: "#1a1a1a",
                 textDecoration: "underline",
@@ -295,7 +297,7 @@ function HeroSectionV1() {
             <p
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: "15px",
+                fontSize: "17px",
                 fontWeight: 400,
                 color: "#1a1a1a",
                 margin: "0",

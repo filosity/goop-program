@@ -208,7 +208,7 @@ export default function Sweepstakes() {
             onMouseLeave={() => setJoinHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
@@ -217,12 +217,12 @@ export default function Sweepstakes() {
               transition: "background-color 0.2s ease, color 0.2s ease",
               backgroundColor:
                 activeTab === "join"
-                  ? "#0f2e2f"
+                  ? "#0C3D3D"
                   : joinHovered
-                    ? "rgba(0,0,0,0.08)"
+                    ? "rgba(12,61,61,0.06)"
                     : "transparent",
-              color: activeTab === "join" ? "#ffffff" : "#000000",
-              border: "1px solid #0f2e2f",
+              color: activeTab === "join" ? "#ffffff" : "#0C3D3D",
+              border: "1px solid #0C3D3D",
             }}
           >
             join the sweepstakes
@@ -233,7 +233,7 @@ export default function Sweepstakes() {
             onMouseLeave={() => setPastHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
@@ -242,12 +242,12 @@ export default function Sweepstakes() {
               transition: "background-color 0.2s ease, color 0.2s ease",
               backgroundColor:
                 activeTab === "past"
-                  ? "#0f2e2f"
+                  ? "#0C3D3D"
                   : pastHovered
-                    ? "rgba(0,0,0,0.08)"
+                    ? "rgba(12,61,61,0.06)"
                     : "transparent",
-              color: activeTab === "past" ? "#ffffff" : "#000000",
-              border: "1px solid #0f2e2f",
+              color: activeTab === "past" ? "#ffffff" : "#0C3D3D",
+              border: "1px solid #0C3D3D",
             }}
           >
             past winners
@@ -462,8 +462,8 @@ export default function Sweepstakes() {
                         </h4>
                         <p
                           style={{
-                            fontFamily: "var(--font-sans)",
-                            fontSize: "12.5px",
+                            fontFamily: "var(--font-serif)",
+                            fontSize: "14px",
                             fontWeight: 400,
                             color: "#6b8a89",
                             margin: 0,
@@ -492,8 +492,8 @@ export default function Sweepstakes() {
                   {handlesConnected ? (
                     <p
                       style={{
-                        fontFamily: "var(--font-sans)",
-                        fontSize: "13px",
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "15px",
                         fontWeight: 500,
                         color: "#1a1a1a",
                         margin: "0 0 24px 0",
@@ -506,8 +506,8 @@ export default function Sweepstakes() {
                   ) : (
                     <p
                       style={{
-                        fontFamily: "var(--font-sans)",
-                        fontSize: "13px",
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "15px",
                         fontWeight: 400,
                         color: "#6b8a89",
                         margin: "0 0 24px 0",
@@ -552,8 +552,8 @@ export default function Sweepstakes() {
                       onMouseEnter={() => setTermsHovered(true)}
                       onMouseLeave={() => setTermsHovered(false)}
                       style={{
-                        fontFamily: "var(--font-sans)",
-                        fontSize: "12px",
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "14px",
                         fontWeight: 400,
                         color: "#000000",
                         textDecoration: "underline",
@@ -566,8 +566,8 @@ export default function Sweepstakes() {
                     </a>
                     <p
                       style={{
-                        fontFamily: "var(--font-sans)",
-                        fontSize: "12px",
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "14px",
                         fontWeight: 400,
                         color: "#6b8a89",
                         margin: 0,
@@ -624,8 +624,8 @@ export default function Sweepstakes() {
             </h3>
             <p
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "12px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "14px",
                 fontWeight: 400,
                 color: "#6b8a89",
                 textAlign: "center",
@@ -738,8 +738,8 @@ export default function Sweepstakes() {
                   </h4>
                   <p
                     style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "12px",
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "14px",
                       fontWeight: 400,
                       color: "#6b8a89",
                       margin: 0,
@@ -767,8 +767,8 @@ export default function Sweepstakes() {
               {handlesConnected ? (
                 <p
                   style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "13px",
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "15px",
                     fontWeight: 500,
                     color: "#1a1a1a",
                     margin: 0,
@@ -780,8 +780,8 @@ export default function Sweepstakes() {
               ) : (
                 <p
                   style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "13px",
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "15px",
                     fontWeight: 400,
                     color: "#6b8a89",
                     margin: 0,
@@ -816,8 +816,8 @@ export default function Sweepstakes() {
                 onMouseEnter={() => setTermsHovered(true)}
                 onMouseLeave={() => setTermsHovered(false)}
                 style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "12px",
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "14px",
                   fontWeight: 400,
                   color: "#000000",
                   textDecoration: "underline",
@@ -909,8 +909,8 @@ export default function Sweepstakes() {
                 {handlesConnected ? (
                   <p
                     style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "14px",
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "16px",
                       fontWeight: 500,
                       color: "#1a1a1a",
                       margin: "24px 0 6px 0",
@@ -923,8 +923,8 @@ export default function Sweepstakes() {
                 ) : (
                   <p
                     style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "14px",
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "16px",
                       fontWeight: 400,
                       color: "#666666",
                       margin: "24px 0 6px 0",
@@ -959,8 +959,8 @@ export default function Sweepstakes() {
                     onMouseEnter={() => setTermsHovered(true)}
                     onMouseLeave={() => setTermsHovered(false)}
                     style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "14px",
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "16px",
                       fontWeight: 400,
                       color: "#000000",
                       textDecoration: "underline",
@@ -1043,8 +1043,8 @@ export default function Sweepstakes() {
                   </h4>
                   <p
                     style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "13px",
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "15px",
                       fontWeight: 400,
                       color: "#6b8a89",
                       margin: 0,
@@ -1060,8 +1060,8 @@ export default function Sweepstakes() {
             {/* Footer */}
             <p
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "12px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "14px",
                 fontWeight: 400,
                 color: "#6b8a89",
                 textAlign: "center",
@@ -1093,8 +1093,8 @@ export default function Sweepstakes() {
             </h2>
             <p
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "14px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "16px",
                 fontWeight: 400,
                 color: "#6b8a89",
                 textAlign: "center",
@@ -1172,8 +1172,8 @@ export default function Sweepstakes() {
                     </h4>
                     <p
                       style={{
-                        fontFamily: "var(--font-sans)",
-                        fontSize: "13px",
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "15px",
                         fontWeight: 700,
                         color: "#000000",
                         margin: 0,

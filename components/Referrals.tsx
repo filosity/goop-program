@@ -89,8 +89,8 @@ export default function Referrals() {
           {/* Subtitle */}
           <p
             style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "14px",
+              fontFamily: "var(--font-serif)",
+              fontSize: "16px",
               fontWeight: 400,
               lineHeight: 1.55,
               color: "#6b8a89",
@@ -280,16 +280,16 @@ export default function Referrals() {
             onMouseLeave={() => setSendHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
-              color: "#ffffff",
-              backgroundColor: sendHovered ? "#1a4a4b" : "#0f2e2f",
-              border: "none",
+              color: sendHovered ? "#ffffff" : "#0C3D3D",
+              backgroundColor: sendHovered ? "#0C3D3D" : "#ffffff",
+              border: "1px solid #0C3D3D",
               height: "38px",
               borderRadius: "999px",
               padding: "0 28px",
               cursor: "pointer",
-              transition: "background-color 0.2s ease",
+              transition: "background-color 0.2s ease, color 0.2s ease",
               alignSelf: "flex-start",
               marginTop: "28px",
             }}
@@ -330,11 +330,11 @@ export default function Referrals() {
             onMouseLeave={() => setCopyHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 500,
-              color: copied ? "#ffffff" : "#000000",
-              backgroundColor: copied ? "#0f2e2f" : "transparent",
-              border: copyHovered && !copied ? "1px solid #000000" : "1px solid #d4e0df",
+              color: copied ? "#ffffff" : "#0C3D3D",
+              backgroundColor: copied ? "#0C3D3D" : "transparent",
+              border: "1px solid #0C3D3D",
               height: "38px",
               borderRadius: "999px",
               padding: "0 20px",

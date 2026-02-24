@@ -114,8 +114,8 @@ export default function HeroSectionV3() {
             </p>
             <p
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "13px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "15px",
                 fontWeight: 400,
                 color: "#6b8a89",
                 margin: "0 0 6px 0",
@@ -127,8 +127,8 @@ export default function HeroSectionV3() {
             <a
               href="#"
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "13px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "15px",
                 fontWeight: 500,
                 color: "#6b8a89",
                 textDecoration: "underline",
@@ -155,20 +155,22 @@ export default function HeroSectionV3() {
             </p>
             <p
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "13px",
-                fontWeight: 400,
+                fontFamily: "var(--font-mono)",
+                fontSize: "11px",
+                fontWeight: 600,
                 color: "#6b8a89",
                 margin: "0 0 4px 0",
                 lineHeight: 1.4,
+                textTransform: "uppercase",
+                letterSpacing: "0.06em",
               }}
             >
               {userPoints.toLocaleString()} AG Credit balance
             </p>
             <p
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "11px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "13px",
                 fontWeight: 400,
                 color: "#6b8a89",
                 margin: 0,
@@ -207,8 +209,8 @@ export default function HeroSectionV3() {
 
         <p
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "13px",
+            fontFamily: "var(--font-serif)",
+            fontSize: "15px",
             fontWeight: 400,
             color: "#6b8a89",
             margin: 0,

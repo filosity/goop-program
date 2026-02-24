@@ -126,7 +126,7 @@ function AchievementCard({
             lineHeight: 1,
             padding: "6px 12px",
             borderRadius: "999px",
-            backgroundColor: redeemed || claimed || claimClicked ? "#0f2e2f" : isComplete ? "#E8913A" : "rgba(255,255,255,0.92)",
+            backgroundColor: redeemed || claimed || claimClicked ? "#0C3D3D" : isComplete ? "#E8913A" : "rgba(255,255,255,0.92)",
             color: redeemed || claimed || claimClicked ? "#ffffff" : isComplete ? "#ffffff" : "#1a1a1a",
             backdropFilter: isComplete || redeemed || claimed || claimClicked ? "none" : "blur(8px)",
             transition: "all 0.4s ease",
@@ -160,7 +160,7 @@ function AchievementCard({
                   cx="18"
                   cy="18"
                   r="17"
-                  fill="#0f2e2f"
+                  fill="#0C3D3D"
                   style={{
                     transformOrigin: "18px 18px",
                     animation: "achieveCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
@@ -189,9 +189,9 @@ function AchievementCard({
                 onMouseLeave={() => setClaimHovered(false)}
                 style={{
                   fontFamily: "var(--font-sans)",
-                  fontSize: "13px",
+                  fontSize: "15px",
                   fontWeight: 600,
-                  color: "#000000",
+                  color: "#0C3D3D",
                   backgroundColor: claimHovered ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.9)",
                   border: "none",
                   height: "38px",
@@ -307,8 +307,8 @@ function AchievementCard({
             {/* Description */}
             <p
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "13px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "15px",
                 fontWeight: 400,
                 lineHeight: 1.5,
                 color: "#6b8a89",
@@ -340,8 +340,8 @@ function AchievementCard({
               </span>
               <span
                 style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "15px",
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "17px",
                   fontWeight: 600,
                   color: "#000000",
                   lineHeight: 1,
@@ -380,7 +380,7 @@ function AchievementCard({
                 style={{
                   height: "100%",
                   width: `${pct}%`,
-                  backgroundColor: "#0f2e2f",
+                  backgroundColor: "#0C3D3D",
                   transition: "width 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
               />
@@ -389,8 +389,8 @@ function AchievementCard({
             {/* Progress text */}
             <span
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "12px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "14px",
                 fontWeight: 400,
                 color: "#aaaaaa",
                 lineHeight: 1,
@@ -422,8 +422,8 @@ function AchievementCard({
             </span>
             <span
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "15px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "17px",
                 fontWeight: 600,
                 color: "#000000",
                 lineHeight: 1,
@@ -452,8 +452,8 @@ function AchievementCard({
                 </svg>
                 <span
                   style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "13px",
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "15px",
                     fontWeight: 600,
                     color: "#6b8a89",
                     lineHeight: 1,
@@ -499,8 +499,8 @@ function AchievementCard({
                       fontSize: "13px",
                       fontWeight: 600,
                       color: "#ffffff",
-                      backgroundColor: "#0f2e2f",
-                      border: "1px solid #0f2e2f",
+                      backgroundColor: "#0C3D3D",
+                      border: "1px solid #0C3D3D",
                       padding: "10px 14px",
                       cursor: "pointer",
                       lineHeight: 1,
@@ -520,8 +520,8 @@ function AchievementCard({
                     transform: `translateY(${copied ? "0px" : "4px"})`,
                     backgroundColor: "#eaf2f2",
                     color: "#000000",
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "11px",
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "13px",
                     fontWeight: 500,
                     padding: "6px 12px",
                     borderRadius: "6px",
@@ -852,7 +852,7 @@ function VotingPointsEarned() {
           cx="14"
           cy="14"
           r="14"
-          fill="#0f2e2f"
+          fill="#0C3D3D"
           style={{
             transformOrigin: "14px 14px",
             animation: "achieveCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
@@ -873,8 +873,8 @@ function VotingPointsEarned() {
       </svg>
       <span
         style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: "14px",
+          fontFamily: "var(--font-serif)",
+          fontSize: "16px",
           fontWeight: 600,
           color: "#000000",
           textAlign: "center",
@@ -915,8 +915,8 @@ function VotingComplete({ totalEarned, questionVisible }: { totalEarned: number;
       </h3>
       <p
         style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: "14px",
+          fontFamily: "var(--font-serif)",
+          fontSize: "16px",
           fontWeight: 400,
           color: "#6b8a89",
           textAlign: "center",
@@ -928,10 +928,10 @@ function VotingComplete({ totalEarned, questionVisible }: { totalEarned: number;
       <span
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "13px",
+          fontSize: "15px",
           fontWeight: 600,
           color: "#ffffff",
-          backgroundColor: "#0f2e2f",
+          backgroundColor: "#0C3D3D",
           padding: "0 22px",
           height: "38px",
           borderRadius: "999px",
@@ -1026,7 +1026,7 @@ function VotingVersion1({
                       width: "240px",
                       height: "280px",
                       cursor: selectedOption ? "default" : "pointer",
-                      boxShadow: isSelected ? "inset 0 0 0 1px #0f2e2f" : isHovered ? "inset 0 0 0 1px #000000" : "inset 0 0 0 1px #d4e0df",
+                      boxShadow: isSelected ? "inset 0 0 0 1px #0C3D3D" : isHovered ? "inset 0 0 0 1px #0C3D3D" : "inset 0 0 0 1px #d4e0df",
                       overflow: "hidden",
                       transition: "box-shadow 0.2s ease",
                       position: "relative",
@@ -1051,11 +1051,11 @@ function VotingVersion1({
                     onMouseLeave={() => onHoverOption(null)}
                     style={{
                       fontFamily: "var(--font-sans)",
-                      fontSize: "13px",
+                      fontSize: "15px",
                       fontWeight: 600,
-                      color: isSelected ? "#ffffff" : "#000000",
-                      backgroundColor: isSelected ? "#0f2e2f" : "transparent",
-                      border: isSelected ? "1px solid #0f2e2f" : isHovered ? "1px solid #000000" : "1px solid #d5d5d5",
+                      color: isSelected ? "#ffffff" : "#0C3D3D",
+                      backgroundColor: isSelected ? "#0C3D3D" : "transparent",
+                      border: isSelected ? "1px solid #0C3D3D" : isHovered ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
                       height: "38px",
                       padding: "0 22px",
                       borderRadius: "999px",
@@ -1155,11 +1155,11 @@ function VotingVersion2({
                   onMouseLeave={() => onHoverOption(null)}
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "14px",
+                    fontSize: "15px",
                     fontWeight: 500,
-                    color: isSelected ? "#ffffff" : "#000000",
-                    backgroundColor: isSelected ? "#0f2e2f" : "#ffffff",
-                    border: isSelected ? "1px solid #0f2e2f" : isHovered ? "1px solid #000000" : "1px solid #d4e0df",
+                    color: isSelected ? "#ffffff" : "#0C3D3D",
+                    backgroundColor: isSelected ? "#0C3D3D" : "#ffffff",
+                    border: isSelected ? "1px solid #0C3D3D" : isHovered ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
                     padding: "24px 20px",
                     cursor: selectedOption ? "default" : "pointer",
                     textAlign: "center",
@@ -1281,11 +1281,11 @@ function VotingVersion3({
               style={{
                 marginTop: "24px",
                 fontFamily: "var(--font-sans)",
-                fontSize: "13px",
+                fontSize: "15px",
                 fontWeight: 600,
                 color: "#ffffff",
-                backgroundColor: submitHovered ? "#1a4a4b" : "#0f2e2f",
-                border: "none",
+                backgroundColor: submitHovered ? "#155050" : "#0C3D3D",
+                border: "1px solid #0C3D3D",
                 height: "38px",
                 borderRadius: "999px",
                 padding: "0 22px",
@@ -1605,7 +1605,7 @@ function CheckInCard({
                   width: "52px",
                   height: "52px",
                   borderRadius: "50%",
-                  backgroundColor: "#0f2e2f",
+                  backgroundColor: "#0C3D3D",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -1617,8 +1617,8 @@ function CheckInCard({
 
             <span
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "14px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "16px",
                 fontWeight: 500,
                 color: "#ffffff",
                 textAlign: "center",
@@ -1677,12 +1677,12 @@ function CheckInCard({
               {reward}
             </span>
             {isChecked && (
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 400, color: "rgba(255,255,255,0.45)" }}>
+              <span style={{ fontFamily: "var(--font-serif)", fontSize: "14px", fontWeight: 400, color: "rgba(255,255,255,0.45)" }}>
                 Claimed
               </span>
             )}
             {isCurrent && (
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, color: "rgba(255,255,255,0.7)" }}>
+              <span style={{ fontFamily: "var(--font-serif)", fontSize: "14px", fontWeight: 500, color: "rgba(255,255,255,0.7)" }}>
                 Available today
               </span>
             )}
@@ -1795,7 +1795,7 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
           <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 6px 0", letterSpacing: "-0.01em" }}>
             Daily Check-in
           </h3>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#6b8a89", margin: 0, lineHeight: 1.5 }}>
+          <p style={{ fontFamily: "var(--font-serif)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", margin: 0, lineHeight: 1.5 }}>
             Build your streak and unlock daily rewards.
           </p>
         </div>
@@ -1807,7 +1807,7 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
           <span style={{ fontFamily: "var(--font-serif)", fontSize: "32px", fontWeight: 400, color: "#000000", letterSpacing: "-0.01em", lineHeight: 1 }}>
             {streakCount}
           </span>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 400, color: "#6b8a89" }}>
+          <span style={{ fontFamily: "var(--font-serif)", fontSize: "15px", fontWeight: 400, color: "#6b8a89" }}>
             Days<br />Streak
           </span>
         </div>
@@ -1858,11 +1858,11 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path d="M6 12.5L10 16.5L18 8.5" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 600, color: "#000000" }}>
+              <span style={{ fontFamily: "var(--font-serif)", fontSize: "17px", fontWeight: 600, color: "#000000" }}>
                 Checked in.
               </span>
             </div>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#6b8a89" }}>
+            <span style={{ fontFamily: "var(--font-serif)", fontSize: "16px", fontWeight: 400, color: "#6b8a89" }}>
               See you tomorrow!
             </span>
           </>
@@ -1874,11 +1874,11 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
             disabled={isFlipping}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               color: "#ffffff",
-              backgroundColor: isFlipping ? "#1a4a4b" : checkInHovered ? "#1a4a4b" : "#0f2e2f",
-              border: "none",
+              backgroundColor: isFlipping ? "#155050" : checkInHovered ? "#155050" : "#0C3D3D",
+              border: "1px solid #0C3D3D",
               height: "38px",
               padding: "0 32px",
               borderRadius: "999px",
@@ -1894,11 +1894,11 @@ function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDays
 
       {/* Progress bar */}
       <div style={{ maxWidth: "480px", margin: "0 auto 10px", height: "3px", backgroundColor: "#d4e0df", borderRadius: "2px", overflow: "hidden" }}>
-        <div style={{ height: "100%", width: `${(checkedDays / 7) * 100}%`, backgroundColor: "#0f2e2f", borderRadius: "2px", transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }} />
+        <div style={{ height: "100%", width: `${(checkedDays / 7) * 100}%`, backgroundColor: "#0C3D3D", borderRadius: "2px", transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }} />
       </div>
 
       {/* Progress text */}
-      <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#6b8a89", textAlign: "center", margin: 0 }}>
+      <p style={{ fontFamily: "var(--font-serif)", fontSize: "16px", fontWeight: 400, color: "#6b8a89", textAlign: "center", margin: 0 }}>
         <span style={{ fontWeight: 600, color: "#000000" }}>{checkedDays}</span> of 7 days completed
       </p>
 
@@ -1966,8 +1966,8 @@ export default function Activities() {
       {/* Subtext */}
       <p
         style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: "14px",
+          fontFamily: "var(--font-serif)",
+          fontSize: "16px",
           fontWeight: 400,
           color: "#6b8a89",
           textAlign: "center",
@@ -2000,16 +2000,16 @@ export default function Activities() {
             onMouseLeave={() => setAchievementsTabHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "achievements" ? "#0f2e2f" : "transparent",
-              color: activeTab === "achievements" ? "#ffffff" : "#000000",
-              border: activeTab === "achievements" ? "1px solid #0f2e2f" : achievementsTabHovered ? "1px solid #000000" : "1px solid #d5d5d5",
+              backgroundColor: activeTab === "achievements" ? "#0C3D3D" : achievementsTabHovered ? "rgba(12,61,61,0.06)" : "transparent",
+              color: activeTab === "achievements" ? "#ffffff" : "#0C3D3D",
+              border: activeTab === "achievements" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
             }}
           >
             achievements{" "}
@@ -2029,16 +2029,16 @@ export default function Activities() {
             onMouseLeave={() => setVotingTabHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "voting" ? "#0f2e2f" : "transparent",
-              color: activeTab === "voting" ? "#ffffff" : "#000000",
-              border: activeTab === "voting" ? "1px solid #0f2e2f" : votingTabHovered ? "1px solid #000000" : "1px solid #d5d5d5",
+              backgroundColor: activeTab === "voting" ? "#0C3D3D" : votingTabHovered ? "rgba(12,61,61,0.06)" : "transparent",
+              color: activeTab === "voting" ? "#ffffff" : "#0C3D3D",
+              border: activeTab === "voting" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
             }}
           >
             voting{" "}

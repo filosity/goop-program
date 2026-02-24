@@ -309,8 +309,8 @@ function ImmersiveShowcase() {
           {/* Subtitle */}
           <p
             style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "16px",
+              fontFamily: "var(--font-serif)",
+              fontSize: "18px",
               fontWeight: 500,
               color: "rgba(255,255,255,0.65)",
               margin: "0 0 24px 0",
@@ -332,9 +332,9 @@ function ImmersiveShowcase() {
                 alignItems: "center",
                 alignSelf: "flex-start",
                 fontFamily: "var(--font-sans)",
-                fontSize: "13px",
+                fontSize: "15px",
                 fontWeight: 600,
-                color: "#000000",
+                color: "#0C3D3D",
                 backgroundColor: btnHov ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.9)",
                 height: "38px",
                 padding: "0 22px",
@@ -429,8 +429,8 @@ function ImmersiveShowcase() {
               </div>
               <p
                 style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "13px",
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "15px",
                   fontWeight: 400,
                   color: "rgba(255,255,255,0.55)",
                   margin: "8px 0 0 0",
@@ -447,8 +447,8 @@ function ImmersiveShowcase() {
             <SocialDots cardIndex={current} />
             <span
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "15px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "17px",
                 fontWeight: 500,
                 color: "rgba(255,255,255,0.85)",
                 lineHeight: 1,
@@ -607,10 +607,10 @@ function CommunityHero({
           {item.text}
         </p>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 500, color: "rgba(255,255,255,0.7)" }}>
+          <span style={{ fontFamily: "var(--font-serif)", fontSize: "15px", fontWeight: 500, color: "rgba(255,255,255,0.7)" }}>
             {item.type === "review" ? `\u2014 ${item.author}` : `${item.likes} likes`}
           </span>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(255,255,255,0.45)" }}>
+          <span style={{ fontFamily: "var(--font-serif)", fontSize: "14px", color: "rgba(255,255,255,0.45)" }}>
             {item.time}
           </span>
         </div>
@@ -702,7 +702,7 @@ function CommunityGridCard({
           >
             {item.type === "instagram" ? "instagram" : "review"}
           </span>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: hasImg ? "rgba(255,255,255,0.5)" : "#bbb" }}>
+          <span style={{ fontFamily: "var(--font-serif)", fontSize: "13px", color: hasImg ? "rgba(255,255,255,0.5)" : "#bbb" }}>
             {item.time}
           </span>
         </div>
@@ -734,8 +734,8 @@ function CommunityGridCard({
         {/* Text */}
         <p
           style={{
-            fontFamily: isReview ? "var(--font-serif)" : "var(--font-sans)",
-            fontSize: isReview ? "15px" : "14px",
+            fontFamily: isReview ? "var(--font-serif)" : "var(--font-serif)",
+            fontSize: isReview ? "17px" : "16px",
             fontWeight: 400,
             lineHeight: 1.55,
             color: hasImg ? "#ffffff" : "#1a1a1a",
@@ -748,8 +748,8 @@ function CommunityGridCard({
         {/* Author / likes */}
         <p
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "12px",
+            fontFamily: "var(--font-serif)",
+            fontSize: "14px",
             fontWeight: 500,
             color: hasImg ? "rgba(255,255,255,0.6)" : "#999",
             margin: "auto 0 0 0",
@@ -827,20 +827,20 @@ function CommunityMagazine() {
             onClick={() => setVisibleCount((c) => Math.min(c + 6, shuffled.length))}
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "12px",
+              fontSize: "14px",
               fontWeight: 600,
               letterSpacing: "0.04em",
-              color: "#1a1a1a",
+              color: "#0C3D3D",
               backgroundColor: "transparent",
-              border: "1px solid #1a1a1a",
+              border: "1px solid #0C3D3D",
               borderRadius: "999px",
               padding: "10px 28px",
               cursor: "pointer",
               textTransform: "uppercase",
               transition: "background-color 0.2s ease, color 0.2s ease",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#1a1a1a"; }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
           >
             show more
           </button>
@@ -850,20 +850,20 @@ function CommunityMagazine() {
             onClick={() => setVisibleCount(4)}
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "12px",
+              fontSize: "14px",
               fontWeight: 600,
               letterSpacing: "0.04em",
-              color: "#6b8a89",
+              color: "#0C3D3D",
               backgroundColor: "transparent",
-              border: "1px solid #d5d5d5",
+              border: "1px solid #0C3D3D",
               borderRadius: "999px",
               padding: "10px 28px",
               cursor: "pointer",
               textTransform: "uppercase",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#1a1a1a"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#888"; e.currentTarget.style.borderColor = "#d5d5d5"; }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
             collapse
           </button>
@@ -971,7 +971,7 @@ function EventCalendarCard({
             position: "absolute",
             top: "14px",
             right: "14px",
-            backgroundColor: "#0f2e2f",
+            backgroundColor: "#0C3D3D",
             color: "#ffffff",
             borderRadius: "999px",
             padding: "6px 14px",
@@ -1009,7 +1009,7 @@ function EventCalendarCard({
               padding: "5px 10px",
               borderRadius: "3px",
               flexShrink: 0,
-              backgroundColor: event.type === "in-person" ? "#0f2e2f" : "#f5ece3",
+              backgroundColor: event.type === "in-person" ? "#0C3D3D" : "#f5ece3",
               color: event.type === "in-person" ? "#ffffff" : "#8b6e5a",
             }}
           >
@@ -1035,8 +1035,8 @@ function EventCalendarCard({
         {/* Location */}
         <p
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "12px",
+            fontFamily: "var(--font-serif)",
+            fontSize: "14px",
             fontWeight: 500,
             color: "#999",
             margin: 0,
@@ -1049,8 +1049,8 @@ function EventCalendarCard({
         {/* Description */}
         <p
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "14px",
+            fontFamily: "var(--font-serif)",
+            fontSize: "16px",
             fontWeight: 400,
             lineHeight: 1.55,
             color: "#777",
@@ -1077,10 +1077,10 @@ function EventCalendarCard({
             onMouseLeave={() => setBtnHov(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               color: "#ffffff",
-              backgroundColor: btnHov ? "#1a4a4b" : "#0f2e2f",
+              backgroundColor: btnHov ? "#14504F" : "#0C3D3D",
               padding: "0 22px",
               height: "38px",
               borderRadius: "999px",
@@ -1142,20 +1142,20 @@ function EventsCalendar() {
             onClick={() => setVisibleCount((c) => Math.min(c + 4, eventItems.length))}
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "12px",
+              fontSize: "14px",
               fontWeight: 600,
               letterSpacing: "0.04em",
-              color: "#1a1a1a",
+              color: "#0C3D3D",
               backgroundColor: "transparent",
-              border: "1px solid #1a1a1a",
+              border: "1px solid #0C3D3D",
               borderRadius: "999px",
               padding: "10px 28px",
               cursor: "pointer",
               textTransform: "uppercase",
               transition: "background-color 0.2s ease, color 0.2s ease",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#1a1a1a"; }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
           >
             show more
           </button>
@@ -1165,20 +1165,20 @@ function EventsCalendar() {
             onClick={() => setVisibleCount(4)}
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "12px",
+              fontSize: "14px",
               fontWeight: 600,
               letterSpacing: "0.04em",
-              color: "#6b8a89",
+              color: "#0C3D3D",
               backgroundColor: "transparent",
-              border: "1px solid #d5d5d5",
+              border: "1px solid #0C3D3D",
               borderRadius: "999px",
               padding: "10px 28px",
               cursor: "pointer",
               textTransform: "uppercase",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#1a1a1a"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#888"; e.currentTarget.style.borderColor = "#d5d5d5"; }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
             collapse
           </button>
@@ -1218,16 +1218,16 @@ export default function FeaturedV3() {
             onMouseLeave={() => setFeaturedHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "featured" ? "#0f2e2f" : "transparent",
-              color: activeTab === "featured" ? "#ffffff" : "#000000",
-              border: activeTab === "featured" ? "1px solid #0f2e2f" : featuredHovered ? "1px solid #0f2e2f" : "1px solid #d5d5d5",
+              backgroundColor: activeTab === "featured" ? "#0C3D3D" : "transparent",
+              color: activeTab === "featured" ? "#ffffff" : "#0C3D3D",
+              border: activeTab === "featured" ? "1px solid #0C3D3D" : featuredHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
             }}
           >
             featured
@@ -1242,16 +1242,16 @@ export default function FeaturedV3() {
               display: "inline-flex",
               alignItems: "center",
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "community" ? "#0f2e2f" : "transparent",
-              color: activeTab === "community" ? "#ffffff" : "#000000",
-              border: activeTab === "community" ? "1px solid #0f2e2f" : communityHovered ? "1px solid #0f2e2f" : "1px solid #d5d5d5",
+              backgroundColor: activeTab === "community" ? "#0C3D3D" : "transparent",
+              color: activeTab === "community" ? "#ffffff" : "#0C3D3D",
+              border: activeTab === "community" ? "1px solid #0C3D3D" : communityHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
             }}
           >
             community
@@ -1269,16 +1269,16 @@ export default function FeaturedV3() {
               display: "inline-flex",
               alignItems: "center",
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "events" ? "#0f2e2f" : "transparent",
-              color: activeTab === "events" ? "#ffffff" : "#000000",
-              border: activeTab === "events" ? "1px solid #0f2e2f" : eventsHovered ? "1px solid #0f2e2f" : "1px solid #d5d5d5",
+              backgroundColor: activeTab === "events" ? "#0C3D3D" : "transparent",
+              color: activeTab === "events" ? "#ffffff" : "#0C3D3D",
+              border: activeTab === "events" ? "1px solid #0C3D3D" : eventsHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
             }}
           >
             events

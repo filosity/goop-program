@@ -240,8 +240,8 @@ function GridCard({
           </h3>
           <p
             style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "14px",
+              fontFamily: "var(--font-serif)",
+              fontSize: "16px",
               fontWeight: 500,
               color: "rgba(255,255,255,0.75)",
               margin: 0,
@@ -265,9 +265,9 @@ function GridCard({
                 display: "inline-flex",
                 alignItems: "center",
                 fontFamily: "var(--font-sans)",
-                fontSize: "13px",
+                fontSize: "15px",
                 fontWeight: 600,
-                color: "#000000",
+                color: "#0C3D3D",
                 backgroundColor: btnHovered ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.9)",
                 height: "38px",
                 padding: "0 22px",
@@ -360,7 +360,7 @@ function GridCard({
                   {copied ? "copied!" : "copy"}
                 </button>
               </div>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 400, color: "rgba(255,255,255,0.6)", margin: "8px 0 0 0", lineHeight: 1.4 }}>
+              <p style={{ fontFamily: "var(--font-serif)", fontSize: "13px", fontWeight: 400, color: "rgba(255,255,255,0.6)", margin: "8px 0 0 0", lineHeight: 1.4 }}>
                 copy this code at checkout to redeem your AG Credit with your next order
               </p>
             </div>
@@ -369,7 +369,7 @@ function GridCard({
           {/* Social proof row */}
           <div style={{ display: "flex", alignItems: "center" }}>
             <SocialDots cardIndex={cardIndex} />
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "rgba(255,255,255,0.85)", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-serif)", fontSize: "17px", fontWeight: 500, color: "rgba(255,255,255,0.85)", lineHeight: 1 }}>
               {card.likes}
             </span>
           </div>
@@ -486,19 +486,19 @@ function CommunityCardV2({
               </div>
             )}
           </div>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#bbb", display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontFamily: "var(--font-serif)", fontSize: "14px", color: "#bbb", display: "flex", alignItems: "center", gap: "6px" }}>
             {item.time}
             {index === 0 && <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "#e53935", flexShrink: 0 }} />}
           </span>
         </div>
 
         {/* Text */}
-        <p style={{ fontFamily: "var(--font-serif)", fontSize: "15px", fontWeight: 400, lineHeight: 1.5, color: "#1a1a1a", margin: 0, flex: 1 }}>
+        <p style={{ fontFamily: "var(--font-serif)", fontSize: "17px", fontWeight: 400, lineHeight: 1.5, color: "#1a1a1a", margin: 0, flex: 1 }}>
           {item.text}
         </p>
 
         {/* Author / likes */}
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, color: "#999", margin: 0 }}>
+        <p style={{ fontFamily: "var(--font-serif)", fontSize: "14px", fontWeight: 500, color: "#999", margin: 0 }}>
           {item.type === "review" ? `\u2014 ${item.author}` : `${item.likes} likes`}
         </p>
       </div>
@@ -551,9 +551,9 @@ function CommunityFeedV2() {
         {hasMore && (
           <button
             onClick={() => setVisibleCount((c) => Math.min(c + 6, shuffled.length))}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#1a1a1a", backgroundColor: "transparent", border: "1px solid #1a1a1a", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#1a1a1a"; }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
           >
             show more
           </button>
@@ -561,9 +561,9 @@ function CommunityFeedV2() {
         {visibleCount > 4 && (
           <button
             onClick={() => setVisibleCount(4)}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#6b8a89", backgroundColor: "transparent", border: "1px solid #d5d5d5", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#1a1a1a"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#888"; e.currentTarget.style.borderColor = "#d5d5d5"; }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
             collapse
           </button>
@@ -701,7 +701,7 @@ function TimelineEventCard({
               fontSize: "11px",
               fontWeight: 600,
               color: "#ffffff",
-              backgroundColor: "#0f2e2f",
+              backgroundColor: "#0C3D3D",
               padding: "6px 14px",
               borderRadius: "999px",
               lineHeight: 1,
@@ -718,7 +718,7 @@ function TimelineEventCard({
             <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 600, color: "#1a1a1a" }}>
               {event.date}
             </span>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#999" }}>
+            <span style={{ fontFamily: "var(--font-serif)", fontSize: "14px", color: "#999" }}>
               {event.location}
             </span>
           </div>
@@ -729,7 +729,7 @@ function TimelineEventCard({
           </h4>
 
           {/* Description */}
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, lineHeight: 1.55, color: "#777", margin: "0 0 6px 0" }}>
+          <p style={{ fontFamily: "var(--font-serif)", fontSize: "16px", fontWeight: 400, lineHeight: 1.55, color: "#777", margin: "0 0 6px 0" }}>
             {event.description}
           </p>
 
@@ -742,10 +742,10 @@ function TimelineEventCard({
               onMouseLeave={() => setBtnHovered(false)}
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "13px",
+                fontSize: "15px",
                 fontWeight: 600,
                 color: "#ffffff",
-                backgroundColor: btnHovered ? "#1a4a4b" : "#0f2e2f",
+                backgroundColor: btnHovered ? "#14504F" : "#0C3D3D",
                 padding: "0 22px",
                 height: "38px",
                 borderRadius: "999px",
@@ -811,9 +811,9 @@ function EventsTimelineV2() {
         {hasMore && (
           <button
             onClick={() => setVisibleCount((c) => Math.min(c + 4, eventItems.length))}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#1a1a1a", backgroundColor: "transparent", border: "1px solid #1a1a1a", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#1a1a1a"; }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
           >
             show more
           </button>
@@ -821,9 +821,9 @@ function EventsTimelineV2() {
         {visibleCount > 4 && (
           <button
             onClick={() => setVisibleCount(4)}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", color: "#6b8a89", backgroundColor: "transparent", border: "1px solid #d5d5d5", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a1a"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#1a1a1a"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#888"; e.currentTarget.style.borderColor = "#d5d5d5"; }}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 28px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
             collapse
           </button>
@@ -860,16 +860,16 @@ export default function FeaturedV2() {
             onMouseLeave={() => setFeaturedHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "activity" ? "#0f2e2f" : "transparent",
-              color: activeTab === "activity" ? "#ffffff" : "#000000",
-              border: activeTab === "activity" ? "1px solid #0f2e2f" : featuredHovered ? "1px solid #0f2e2f" : "1px solid #d5d5d5",
+              backgroundColor: activeTab === "activity" ? "#0C3D3D" : "transparent",
+              color: activeTab === "activity" ? "#ffffff" : "#0C3D3D",
+              border: activeTab === "activity" ? "1px solid #0C3D3D" : featuredHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
             }}
           >
             featured
@@ -884,16 +884,16 @@ export default function FeaturedV2() {
               display: "inline-flex",
               alignItems: "center",
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "community" ? "#0f2e2f" : "transparent",
-              color: activeTab === "community" ? "#ffffff" : "#000000",
-              border: activeTab === "community" ? "1px solid #0f2e2f" : communityHovered ? "1px solid #0f2e2f" : "1px solid #d5d5d5",
+              backgroundColor: activeTab === "community" ? "#0C3D3D" : "transparent",
+              color: activeTab === "community" ? "#ffffff" : "#0C3D3D",
+              border: activeTab === "community" ? "1px solid #0C3D3D" : communityHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
             }}
           >
             community
@@ -911,16 +911,16 @@ export default function FeaturedV2() {
               display: "inline-flex",
               alignItems: "center",
               fontFamily: "var(--font-sans)",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: 600,
               padding: "0 22px",
               height: "38px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "events" ? "#0f2e2f" : "transparent",
-              color: activeTab === "events" ? "#ffffff" : "#000000",
-              border: activeTab === "events" ? "1px solid #0f2e2f" : eventsHovered ? "1px solid #0f2e2f" : "1px solid #d5d5d5",
+              backgroundColor: activeTab === "events" ? "#0C3D3D" : "transparent",
+              color: activeTab === "events" ? "#ffffff" : "#0C3D3D",
+              border: activeTab === "events" ? "1px solid #0C3D3D" : eventsHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
             }}
           >
             events

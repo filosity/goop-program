@@ -63,8 +63,8 @@ export default function Milestones() {
       {/* Subtitle */}
       <p
         style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: "14px",
+          fontFamily: "var(--font-serif)",
+          fontSize: "16px",
           fontWeight: 400,
           color: "#6b8a89",
           textAlign: "center",
@@ -265,8 +265,8 @@ export default function Milestones() {
                       {/* Reward text */}
                       <p
                         style={{
-                          fontFamily: "var(--font-sans)",
-                          fontSize: "14px",
+                          fontFamily: "var(--font-serif)",
+                          fontSize: "16px",
                           fontWeight: 500,
                           color: "#1a1a1a",
                           margin: 0,
@@ -296,8 +296,8 @@ export default function Milestones() {
                   {/* Month number below the line */}
                   <p
                     style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "12px",
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "14px",
                       fontWeight: isCurrent ? 700 : 400,
                       color: isEarned ? "#0d8b87" : "#999999",
                       margin: "10px 0 0 0",

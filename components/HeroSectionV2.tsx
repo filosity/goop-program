@@ -172,20 +172,22 @@ export default function HeroSectionV2() {
             </p>
             <p
               style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: "16px",
-                fontWeight: 400,
+                fontFamily: "var(--font-mono)",
+                fontSize: "11px",
+                fontWeight: 600,
                 color: "#1a1a1a",
                 margin: "0 0 4px 0",
                 lineHeight: 1.4,
+                textTransform: "uppercase",
+                letterSpacing: "0.06em",
               }}
             >
               {userPoints.toLocaleString()} AG Credit balance
             </p>
             <p
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "12px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "14px",
                 fontWeight: 400,
                 color: "#6b8a89",
                 margin: "0 0 8px 0",
@@ -197,8 +199,8 @@ export default function HeroSectionV2() {
             <a
               href="#"
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "13px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "15px",
                 fontWeight: 500,
                 color: "#6b8a89",
                 textDecoration: "underline",
@@ -247,7 +249,7 @@ export default function HeroSectionV2() {
             <p
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: "16px",
+                fontSize: "18px",
                 fontWeight: 400,
                 color: "#1a1a1a",
                 margin: "0",
