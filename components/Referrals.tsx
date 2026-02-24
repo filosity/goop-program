@@ -30,15 +30,14 @@ export default function Referrals() {
   return (
     <section
       style={{
-        padding: "0px 48px 120px",
+        backgroundColor: "#0C3D3D",
+        padding: "0",
       }}
     >
       <div
         style={{
           maxWidth: "1280px",
           margin: "0 auto",
-          backgroundColor: "#ffffff",
-          border: "1px solid #d4e0df",
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           height: "820px",
@@ -47,7 +46,7 @@ export default function Referrals() {
         {/* ─── Left column: form ─── */}
         <div
           style={{
-            backgroundColor: "#ffffff",
+            backgroundColor: "transparent",
             padding: "56px 52px 52px",
             display: "flex",
             flexDirection: "column",
@@ -63,7 +62,7 @@ export default function Referrals() {
               fontWeight: 600,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "#6b8a89",
+              color: "#8cb8b6",
               margin: "0 0 16px 0",
               lineHeight: 1,
             }}
@@ -78,7 +77,7 @@ export default function Referrals() {
               fontSize: "44px",
               fontWeight: 400,
               lineHeight: 1.15,
-              color: "#000000",
+              color: "#ffffff",
               margin: "0 0 14px 0",
               letterSpacing: "-0.01em",
             }}
@@ -93,7 +92,7 @@ export default function Referrals() {
               fontSize: "16px",
               fontWeight: 400,
               lineHeight: 1.55,
-              color: "#6b8a89",
+              color: "#8cb8b6",
               margin: "0 0 32px 0",
               maxWidth: "320px",
             }}
@@ -114,11 +113,11 @@ export default function Referrals() {
               fontFamily: "var(--font-sans)",
               fontSize: "14px",
               fontWeight: 400,
-              color: "#000000",
+              color: "#ffffff",
               border: "none",
               borderBottom: emailFocused
-                ? "1px solid #000000"
-                : "1px solid #d4e0df",
+                ? "1px solid #ffffff"
+                : "1px solid rgba(255,255,255,0.3)",
               padding: "12px 0",
               backgroundColor: "transparent",
               width: "100%",
@@ -130,7 +129,7 @@ export default function Referrals() {
           {/* ─── Personalize your invite (collapsible accordion) ─── */}
           <div
             style={{
-              border: expanded ? "1px solid #000000" : "1px solid #d4e0df",
+              border: expanded ? "1px solid rgba(255,255,255,0.6)" : "1px solid rgba(255,255,255,0.3)",
               backgroundColor: "transparent",
               marginTop: "20px",
               transition: "background-color 0.3s ease, border-color 0.3s ease",
@@ -142,7 +141,7 @@ export default function Referrals() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "16px",
                 fontWeight: 500,
-                color: "#000000",
+                color: "#ffffff",
                 background: "none",
                 border: "none",
                 padding: "16px 32px",
@@ -169,7 +168,7 @@ export default function Referrals() {
               >
                 <path
                   d="M1 3L5 7L9 3"
-                  stroke="#000000"
+                  stroke="#ffffff"
                   strokeWidth="1.3"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -208,11 +207,11 @@ export default function Referrals() {
                       fontFamily: "var(--font-sans)",
                       fontSize: "14px",
                       fontWeight: 400,
-                      color: "#000000",
+                      color: "#ffffff",
                       border: "none",
                       borderBottom: yourNameFocused
-                        ? "1px solid #000000"
-                        : "1px solid #d4e0df",
+                        ? "1px solid #ffffff"
+                        : "1px solid rgba(255,255,255,0.3)",
                       padding: "12px 0",
                       backgroundColor: "transparent",
                       width: "100%",
@@ -231,11 +230,11 @@ export default function Referrals() {
                       fontFamily: "var(--font-sans)",
                       fontSize: "14px",
                       fontWeight: 400,
-                      color: "#000000",
+                      color: "#ffffff",
                       border: "none",
                       borderBottom: friendNameFocused
-                        ? "1px solid #000000"
-                        : "1px solid #d4e0df",
+                        ? "1px solid #ffffff"
+                        : "1px solid rgba(255,255,255,0.3)",
                       padding: "12px 0",
                       backgroundColor: "transparent",
                       width: "100%",
@@ -257,11 +256,11 @@ export default function Referrals() {
                     fontFamily: "var(--font-sans)",
                     fontSize: "14px",
                     fontWeight: 400,
-                    color: "#000000",
+                    color: "#ffffff",
                     border: "none",
                     borderBottom: messageFocused
-                      ? "1px solid #000000"
-                      : "1px solid #d4e0df",
+                      ? "1px solid #ffffff"
+                      : "1px solid rgba(255,255,255,0.3)",
                     padding: "14px 0",
                     backgroundColor: "transparent",
                     width: "100%",
@@ -283,9 +282,9 @@ export default function Referrals() {
               fontFamily: "var(--font-sans)",
               fontSize: "17px",
               fontWeight: 600,
-              color: sendHovered ? "#ffffff" : "#0C3D3D",
-              backgroundColor: sendHovered ? "#0C3D3D" : "#ffffff",
-              border: "1px solid #0C3D3D",
+              color: sendHovered ? "#0C3D3D" : "#ffffff",
+              backgroundColor: sendHovered ? "#ffffff" : "transparent",
+              border: "1px solid #ffffff",
               minHeight: "52px",
               borderRadius: "999px",
               padding: "0 36px",
@@ -303,7 +302,7 @@ export default function Referrals() {
             style={{
               width: "100%",
               height: "1px",
-              backgroundColor: "#d4e0df",
+              backgroundColor: "rgba(255,255,255,0.2)",
               margin: "32px 0",
             }}
           />
@@ -316,7 +315,7 @@ export default function Referrals() {
               fontWeight: 600,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "#aaaaaa",
+              color: "#8cb8b6",
               margin: "0 0 16px 0",
               lineHeight: 1,
             }}
@@ -333,9 +332,9 @@ export default function Referrals() {
               fontFamily: "var(--font-sans)",
               fontSize: "17px",
               fontWeight: 500,
-              color: copied ? "#ffffff" : "#0C3D3D",
-              backgroundColor: copied ? "#0C3D3D" : "transparent",
-              border: "1px solid #0C3D3D",
+              color: "#ffffff",
+              backgroundColor: copied ? "rgba(255,255,255,0.15)" : "transparent",
+              border: "1px solid rgba(255,255,255,0.4)",
               minHeight: "52px",
               borderRadius: "999px",
               padding: "0 28px",
@@ -384,7 +383,7 @@ export default function Referrals() {
                 width: "52px",
                 minHeight: "52px",
                 borderRadius: "50%",
-                border: fbHovered ? "1px solid #000000" : "1px solid #d4e0df",
+                border: fbHovered ? "1px solid #ffffff" : "1px solid rgba(255,255,255,0.3)",
                 backgroundColor: "transparent",
                 cursor: "pointer",
                 display: "flex",
@@ -393,7 +392,7 @@ export default function Referrals() {
                 transition: "border-color 0.2s ease",
               }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#000000">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff">
                 <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
               </svg>
             </button>
@@ -407,7 +406,7 @@ export default function Referrals() {
                 width: "52px",
                 minHeight: "52px",
                 borderRadius: "50%",
-                border: xHovered ? "1px solid #000000" : "1px solid #d4e0df",
+                border: xHovered ? "1px solid #ffffff" : "1px solid rgba(255,255,255,0.3)",
                 backgroundColor: "transparent",
                 cursor: "pointer",
                 display: "flex",
@@ -416,7 +415,7 @@ export default function Referrals() {
                 transition: "border-color 0.2s ease",
               }}
             >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="#000000">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#ffffff">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
             </button>
@@ -431,8 +430,8 @@ export default function Referrals() {
                 minHeight: "52px",
                 borderRadius: "50%",
                 border: emailIconHovered
-                  ? "1px solid #000000"
-                  : "1px solid #d4e0df",
+                  ? "1px solid #ffffff"
+                  : "1px solid rgba(255,255,255,0.3)",
                 backgroundColor: "transparent",
                 cursor: "pointer",
                 display: "flex",
@@ -446,7 +445,7 @@ export default function Referrals() {
                 height="14"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#000000"
+                stroke="#ffffff"
                 strokeWidth="1.8"
                 strokeLinecap="round"
                 strokeLinejoin="round"

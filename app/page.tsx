@@ -8,6 +8,7 @@ import Sweepstakes from "@/components/Sweepstakes";
 import WaysToEarn from "@/components/WaysToEarn";
 import Activities from "@/components/Activities";
 import Referrals from "@/components/Referrals";
+import FAQ from "@/components/FAQ";
 import StickyNav from "@/components/StickyNav";
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
       <WaysToEarn />
       <Activities />
       <Referrals />
+      <FAQ />
     </>
   );
 }
