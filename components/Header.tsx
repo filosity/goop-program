@@ -95,6 +95,10 @@ function ProgramDropdown({
   setActiveSweepstakes,
   activeHeader,
   setActiveHeader,
+  showCommunity,
+  setShowCommunity,
+  showEvents,
+  setShowEvents,
 }: {
   open: boolean;
   totalSpend: number;
@@ -112,6 +116,10 @@ function ProgramDropdown({
   setActiveSweepstakes: (n: number) => void;
   activeHeader: number;
   setActiveHeader: (n: number) => void;
+  showCommunity: boolean;
+  setShowCommunity: (b: boolean) => void;
+  showEvents: boolean;
+  setShowEvents: (b: boolean) => void;
 }) {
   const handleSimulateSpend = useCallback(
     (amount: number) => {
@@ -200,6 +208,26 @@ function ProgramDropdown({
       {versionMenu("featured", "featured", "featured-version", activeFeatured, setActiveFeatured)}
       {versionMenu("membership", "tiers", "tiers-version", activeMembership, setActiveMembership)}
       {versionMenu("sweepstakes", "sweepstakes", "sweepstakes-version", activeSweepstakes, setActiveSweepstakes)}
+      {/* Visibility toggles */}
+      <div style={{ borderTop: "1px solid #e8e5e1", margin: "4px 0" }} />
+      <DropdownItem
+        onClick={() => {
+          const next = !showCommunity;
+          setShowCommunity(next);
+          window.dispatchEvent(new CustomEvent("toggle-community", { detail: { visible: next } }));
+        }}
+      >
+        {showCommunity ? "✓ " : ""}community tab
+      </DropdownItem>
+      <DropdownItem
+        onClick={() => {
+          const next = !showEvents;
+          setShowEvents(next);
+          window.dispatchEvent(new CustomEvent("toggle-events", { detail: { visible: next } }));
+        }}
+      >
+        {showEvents ? "✓ " : ""}events tab
+      </DropdownItem>
     </div>
   );
 }
@@ -217,6 +245,8 @@ export default function Header() {
   const [activeMembership, setActiveMembership] = useState(1);
   const [activeSweepstakes, setActiveSweepstakes] = useState(1);
   const [activeHeader, setActiveHeader] = useState(1);
+  const [showCommunity, setShowCommunity] = useState(false);
+  const [showEvents, setShowEvents] = useState(false);
   const [shopHov, setShopHov] = useState(false);
 
   const logoRef = useRef<HTMLDivElement>(null);
@@ -319,6 +349,10 @@ export default function Header() {
               setActiveSweepstakes={setActiveSweepstakes}
               activeHeader={activeHeader}
               setActiveHeader={setActiveHeader}
+              showCommunity={showCommunity}
+              setShowCommunity={setShowCommunity}
+              showEvents={showEvents}
+              setShowEvents={setShowEvents}
             />
           </div>
 

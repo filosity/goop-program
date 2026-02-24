@@ -1067,6 +1067,8 @@ export default function Featured() {
   const [version, setVersion] = useState(1);
   const [images, setImages] = useState(allImages);
   const [activeTab, setActiveTab] = useState<"activity" | "community" | "events">("activity");
+  const [showCommunity, setShowCommunity] = useState(false);
+  const [showEvents, setShowEvents] = useState(false);
   const [showDot, setShowDot] = useState(true);
   const [showEventsDot, setShowEventsDot] = useState(true);
   const [featuredHovered, setFeaturedHovered] = useState(false);
@@ -1133,6 +1135,28 @@ export default function Featured() {
     return () => window.removeEventListener("featured-version", handler);
   }, []);
 
+  useEffect(() => {
+    const handleCommunity = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.visible !== undefined) setShowCommunity(detail.visible);
+    };
+    const handleEvents = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.visible !== undefined) setShowEvents(detail.visible);
+    };
+    window.addEventListener("toggle-community", handleCommunity);
+    window.addEventListener("toggle-events", handleEvents);
+    return () => {
+      window.removeEventListener("toggle-community", handleCommunity);
+      window.removeEventListener("toggle-events", handleEvents);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (activeTab === "community" && !showCommunity) setActiveTab("activity");
+    if (activeTab === "events" && !showEvents) setActiveTab("activity");
+  }, [showCommunity, showEvents, activeTab]);
+
   if (version === 2) return <FeaturedV2 />;
   if (version === 3) return <FeaturedV3 />;
 
@@ -1175,6 +1199,7 @@ export default function Featured() {
           </button>
 
           {/* Community tab */}
+          {showCommunity && (
           <button
             onClick={() => { setActiveTab("community"); setShowDot(false); }}
             onMouseEnter={() => setCommunityHovered(true)}
@@ -1200,8 +1225,10 @@ export default function Featured() {
               <div style={{ display: "inline-block", width: "6px", height: "6px", borderRadius: "50%", backgroundColor: activeTab === "community" ? "#ffffff" : "#e53935", marginLeft: "6px", flexShrink: 0 }} />
             )}
           </button>
+          )}
 
           {/* Events tab */}
+          {showEvents && (
           <button
             onClick={() => { setActiveTab("events"); setShowEventsDot(false); }}
             onMouseEnter={() => setEventsHovered(true)}
@@ -1227,6 +1254,7 @@ export default function Featured() {
               <div style={{ display: "inline-block", width: "6px", height: "6px", borderRadius: "50%", backgroundColor: activeTab === "events" ? "#ffffff" : "#2196f3", marginLeft: "6px", flexShrink: 0 }} />
             )}
           </button>
+          )}
         </div>
 
       </div>
@@ -1303,8 +1331,8 @@ export default function Featured() {
           </div>
         </>
       )}
-      {activeTab === "community" && <CommunityFeed />}
-      {activeTab === "events" && <EventsFeed />}
+      {activeTab === "community" && showCommunity && <CommunityFeed />}
+      {activeTab === "events" && showEvents && <EventsFeed />}
 
       <style>{`
         div::-webkit-scrollbar { display: none; }

@@ -1204,6 +1204,30 @@ export default function FeaturedV3() {
   const [featuredHovered, setFeaturedHovered] = useState(false);
   const [communityHovered, setCommunityHovered] = useState(false);
   const [eventsHovered, setEventsHovered] = useState(false);
+  const [showCommunity, setShowCommunity] = useState(false);
+  const [showEvents, setShowEvents] = useState(false);
+
+  useEffect(() => {
+    const handleCommunity = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.visible !== undefined) setShowCommunity(detail.visible);
+    };
+    const handleEvents = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.visible !== undefined) setShowEvents(detail.visible);
+    };
+    window.addEventListener("toggle-community", handleCommunity);
+    window.addEventListener("toggle-events", handleEvents);
+    return () => {
+      window.removeEventListener("toggle-community", handleCommunity);
+      window.removeEventListener("toggle-events", handleEvents);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (activeTab === "community" && !showCommunity) setActiveTab("featured");
+    if (activeTab === "events" && !showEvents) setActiveTab("featured");
+  }, [showCommunity, showEvents, activeTab]);
 
   return (
     <section
@@ -1239,6 +1263,7 @@ export default function FeaturedV3() {
           </button>
 
           {/* Community tab */}
+          {showCommunity && (
           <button
             onClick={() => { setActiveTab("community"); setShowDot(false); }}
             onMouseEnter={() => setCommunityHovered(true)}
@@ -1264,8 +1289,10 @@ export default function FeaturedV3() {
               <div style={{ display: "inline-block", width: "6px", height: "6px", borderRadius: "50%", backgroundColor: activeTab === "community" ? "#ffffff" : "#e53935", marginLeft: "6px", flexShrink: 0 }} />
             )}
           </button>
+          )}
 
           {/* Events tab */}
+          {showEvents && (
           <button
             onClick={() => { setActiveTab("events"); setShowEventsDot(false); }}
             onMouseEnter={() => setEventsHovered(true)}
@@ -1291,13 +1318,14 @@ export default function FeaturedV3() {
               <div style={{ display: "inline-block", width: "6px", height: "6px", borderRadius: "50%", backgroundColor: activeTab === "events" ? "#ffffff" : "#2196f3", marginLeft: "6px", flexShrink: 0 }} />
             )}
           </button>
+          )}
         </div>
       </div>
 
       {/* Tab content */}
       {activeTab === "featured" && <ImmersiveShowcase />}
-      {activeTab === "community" && <CommunityMagazine />}
-      {activeTab === "events" && <EventsCalendar />}
+      {activeTab === "community" && showCommunity && <CommunityMagazine />}
+      {activeTab === "events" && showEvents && <EventsCalendar />}
 
       {/* CSS Animations */}
       <style>{`
