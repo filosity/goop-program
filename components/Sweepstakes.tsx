@@ -190,7 +190,7 @@ export default function Sweepstakes() {
       {/* Beige container */}
       <div
         style={{
-          backgroundColor: "#EEEBE4",
+          backgroundColor: "#F6F5F1",
           maxWidth: "1280px",
           margin: "0 auto",
           padding: "32px 0 48px",
