@@ -535,7 +535,7 @@ export default function Milestones() {
                       border: isCurrent ? "3px solid #ffffff" : "none",
                       boxShadow: isCurrent ? "0 0 0 2px #0d8b87" : "none",
                       flexShrink: 0,
-                      marginTop: isCurrent ? "-2.5px" : "-0.5px",
+                      marginTop: isCurrent ? "-0.5px" : "1.5px",
                       transition: "background-color 0.4s ease, box-shadow 0.4s ease",
                     }}
                   />

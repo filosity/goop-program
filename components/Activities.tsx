@@ -1542,25 +1542,21 @@ const streakRewards = [
 /* ─── Daily Streak Content ─── */
 function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: number) => void }) {
   const [checkedCount, setCheckedCount] = useState(0);
-  const [viewStart, setViewStart] = useState(1);
-  const [viewingHistory, setViewingHistory] = useState(false);
   const [checkInHovered, setCheckInHovered] = useState(false);
   const [animatingDay, setAnimatingDay] = useState<number | null>(null);
   const [claimedRewards, setClaimedRewards] = useState<Set<number>>(new Set());
   const [claimingReward, setClaimingReward] = useState<number | null>(null);
   const [celebratingReward, setCelebratingReward] = useState<number | null>(null);
-  const [leftNavHovered, setLeftNavHovered] = useState(false);
-  const [rightNavHovered, setRightNavHovered] = useState(false);
   const [copiedRewardDay, setCopiedRewardDay] = useState<number | null>(null);
 
   const currentDay = 1 + checkedCount;
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const dragScrollLeft = useRef(0);
+  const hasDragged = useRef(false);
 
   useEffect(() => { onStreakChange(checkedCount); }, [checkedCount, onStreakChange]);
-
-  // Auto-advance view to keep currentDay visible
-  useEffect(() => {
-    if (!viewingHistory) setViewStart(currentDay);
-  }, [currentDay, viewingHistory]);
 
   // Get reward for a given day (every 7th day)
   const getReward = useCallback((dayNum: number): typeof streakRewards[0] | null => {
@@ -1572,6 +1568,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
   }, []);
 
   const handleDayClick = useCallback((dayNum: number) => {
+    if (hasDragged.current) return;
     if (dayNum !== currentDay) return;
     setAnimatingDay(dayNum);
     setCheckedCount((c) => c + 1);
@@ -1579,6 +1576,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
   }, [currentDay]);
 
   const handleClaimReward = useCallback((dayNum: number) => {
+    if (hasDragged.current) return;
     if (claimedRewards.has(dayNum) || claimingReward !== null) return;
     setClaimingReward(dayNum);
     setCelebratingReward(dayNum);
@@ -1595,37 +1593,45 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
     setTimeout(() => setCopiedRewardDay(null), 2000);
   }, []);
 
-  const isViewingCurrent = !viewingHistory;
-  const canGoLeft = viewStart > 1;
-  const canGoRight = viewingHistory;
-
-  // Navigation
-  const handleNavLeft = useCallback(() => {
-    setViewingHistory(true);
-    setViewStart((v) => Math.max(1, v - 7));
+  // Drag scroll handlers
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    isDragging.current = true;
+    hasDragged.current = false;
+    dragStartX.current = e.pageX - el.offsetLeft;
+    dragScrollLeft.current = el.scrollLeft;
+    el.style.scrollBehavior = "auto";
+    el.style.cursor = "grabbing";
   }, []);
-  const handleNavRight = useCallback(() => {
-    setViewStart((v) => {
-      const next = v + 7;
-      if (next >= currentDay) {
-        setViewingHistory(false);
-        return currentDay;
-      }
-      return next;
-    });
-  }, [currentDay]);
-  const handleBackToCurrent = useCallback(() => {
-    setViewingHistory(false);
-    setViewStart(currentDay);
-  }, [currentDay]);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!isDragging.current) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - dragStartX.current) * 1.5;
+    if (Math.abs(walk) > 5) hasDragged.current = true;
+    el.scrollLeft = dragScrollLeft.current - walk;
+  }, []);
+
+  const handleMouseUp = useCallback(() => {
+    isDragging.current = false;
+    const el = scrollRef.current;
+    if (el) {
+      el.style.scrollBehavior = "smooth";
+      el.style.cursor = "grab";
+    }
+  }, []);
+
   const handleShowHistory = useCallback(() => {
-    setViewingHistory(true);
-    setViewStart(1);
+    const el = scrollRef.current;
+    if (el) el.scrollTo({ left: 0, behavior: "smooth" });
   }, []);
 
   // Find next reward from current position
   const nextReward = (() => {
-    for (let d = currentDay; d <= currentDay + 14; d++) {
+    for (let d = currentDay; d <= currentDay + 30; d++) {
       const r = getReward(d);
       if (r && !claimedRewards.has(d)) {
         return { reward: r, dayNum: d, daysAway: d - currentDay };
@@ -1634,11 +1640,12 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
     return null;
   })();
 
-  // Build 7 visible days
-  const days = Array.from({ length: 7 }, (_, i) => {
-    const dayNum = viewStart + i;
+  // Build all visible days: 1 to currentDay + 30
+  const totalDays = currentDay + 30;
+  const days = Array.from({ length: totalDays }, (_, i) => {
+    const dayNum = i + 1;
     const isChecked = dayNum < currentDay;
-    const isToday = dayNum === currentDay && isViewingCurrent;
+    const isToday = dayNum === currentDay;
     const isAnimating = dayNum === animatingDay;
     const reward = getReward(dayNum);
     const isRewardEarned = isChecked && reward !== null;
@@ -1696,7 +1703,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
       </div>
 
       {/* Next reward preview — text left, image right */}
-      {nextReward && isViewingCurrent && (
+      {nextReward && (
         <div
           style={{
             display: "flex",
@@ -1744,7 +1751,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
               {nextReward.reward.name}
             </p>
           </div>
-          <div style={{ width: "300px", maxWidth: "300px", flexShrink: 0 }}>
+          <div style={{ width: "390px", maxWidth: "390px", flexShrink: 0 }}>
             <img
               src={nextReward.reward.image}
               alt={nextReward.reward.name}
@@ -1759,61 +1766,28 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
         </div>
       )}
 
-      {/* Viewing history badge + back button */}
-      {!isViewingCurrent && (
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "16px" }}>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "#6b8a89" }}>
-            Days {viewStart}\u2013{viewStart + 6}
-          </span>
-          <a
-            href="#"
-            onClick={(e) => { e.preventDefault(); handleBackToCurrent(); }}
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "13px",
-              fontWeight: 600,
-              color: "#0d8b87",
-              textDecoration: "underline",
-              textUnderlineOffset: "3px",
-              textDecorationThickness: "0.5px",
-            }}
-          >
-            Back to current →
-          </a>
-        </div>
-      )}
-
-      {/* Day squares grid with nav arrows — 7 days */}
-      <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", marginBottom: "36px" }}>
-        {/* Left arrow */}
-        <button
-          onClick={handleNavLeft}
-          onMouseEnter={() => setLeftNavHovered(true)}
-          onMouseLeave={() => setLeftNavHovered(false)}
-          disabled={!canGoLeft}
-          style={{
-            width: "32px",
-            height: "32px",
-            borderRadius: "50%",
-            backgroundColor: "transparent",
-            border: !canGoLeft ? "1px solid #e0e0e0" : leftNavHovered ? "1px solid #000" : "1px solid #d4e0df",
-            cursor: !canGoLeft ? "default" : "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-            opacity: !canGoLeft ? 0.3 : 1,
-            transition: "border-color 0.2s ease, opacity 0.2s ease",
-            marginTop: "22px",
-          }}
-        >
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-            <path d="M6.5 1.5L3 5L6.5 8.5" stroke="#000000" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
-
-        {/* Days */}
-        <div style={{ display: "flex", gap: "8px", flex: 1, alignItems: "flex-start" }}>
+      {/* Day grid — drag to scroll */}
+      <div
+        ref={scrollRef}
+        data-streak-scroll=""
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        style={{
+          display: "flex",
+          gap: "8px",
+          overflowX: "auto",
+          scrollBehavior: "smooth",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          cursor: "grab",
+          userSelect: "none",
+          alignItems: "flex-start",
+          marginBottom: "36px",
+          paddingBottom: "4px",
+        }}
+      >
           {days.map((day) => {
             const isClickable = day.isToday;
             const hasReward = day.reward !== null;
@@ -1826,8 +1800,9 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                   flexDirection: "column",
                   alignItems: "center",
                   gap: "6px",
-                  flex: hasReward ? "2 1 0" : "1 1 0",
-                  minWidth: 0,
+                  width: hasReward ? "140px" : "70px",
+                  minWidth: hasReward ? "140px" : "70px",
+                  flexShrink: 0,
                 }}
               >
                 {/* Day label */}
@@ -1910,7 +1885,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                             transition: "background-color 0.2s ease",
                           }}
                         >
-                          Claim \u2192
+                          {"Claim →"}
                         </button>
                       </div>
                     )}
@@ -1951,7 +1926,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                             <div
                               key={i}
                               style={{
-                                position: "absolute", left: "50%", top: "50%",
+                                position: "absolute", left: "50%", top: "35%",
                                 width: `${w}px`, height: `${h}px`,
                                 marginLeft: `${-w / 2}px`, marginTop: `${-h / 2}px`,
                                 borderRadius: i % 4 === 0 ? "50%" : "1px",
@@ -2063,62 +2038,33 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
           })}
         </div>
 
-        {/* Right arrow */}
+      {/* Check-in button */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
         <button
-          onClick={handleNavRight}
-          onMouseEnter={() => setRightNavHovered(true)}
-          onMouseLeave={() => setRightNavHovered(false)}
-          disabled={!canGoRight}
+          onClick={() => handleDayClick(currentDay)}
+          onMouseEnter={() => setCheckInHovered(true)}
+          onMouseLeave={() => setCheckInHovered(false)}
           style={{
-            width: "32px",
-            height: "32px",
-            borderRadius: "50%",
-            backgroundColor: "transparent",
-            border: !canGoRight ? "1px solid #e0e0e0" : rightNavHovered ? "1px solid #000" : "1px solid #d4e0df",
-            cursor: !canGoRight ? "default" : "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-            opacity: !canGoRight ? 0.3 : 1,
-            transition: "border-color 0.2s ease, opacity 0.2s ease",
-            marginTop: "22px",
+            fontFamily: "var(--font-sans)",
+            fontSize: "18px",
+            fontWeight: 600,
+            color: "#ffffff",
+            backgroundColor: checkInHovered ? "#155050" : "#0C3D3D",
+            border: "none",
+            minHeight: "52px",
+            padding: "0 40px",
+            borderRadius: "999px",
+            cursor: "pointer",
+            transition: "background-color 0.2s ease",
+            lineHeight: 1,
           }}
         >
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-            <path d="M3.5 1.5L7 5L3.5 8.5" stroke="#000000" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          {"Check In Today →"}
         </button>
       </div>
 
-      {/* Check-in button — only on current view */}
-      {isViewingCurrent && (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-          <button
-            onClick={() => handleDayClick(currentDay)}
-            onMouseEnter={() => setCheckInHovered(true)}
-            onMouseLeave={() => setCheckInHovered(false)}
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "18px",
-              fontWeight: 600,
-              color: "#ffffff",
-              backgroundColor: checkInHovered ? "#155050" : "#0C3D3D",
-              border: "none",
-              minHeight: "52px",
-              padding: "0 40px",
-              borderRadius: "999px",
-              cursor: "pointer",
-              transition: "background-color 0.2s ease",
-              lineHeight: 1,
-            }}
-          >
-            Check In Today \u2192
-          </button>
-        </div>
-      )}
-
       <style>{`
+        [data-streak-scroll]::-webkit-scrollbar { display: none; }
         @keyframes streakCirclePop {
           0% { transform: scale(0); opacity: 0; }
           100% { transform: scale(1); opacity: 1; }

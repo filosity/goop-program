@@ -165,7 +165,7 @@ export default function Sweepstakes() {
       id="section-sweepstakes"
       style={{
         backgroundColor: "#ffffff",
-        padding: "20px 48px 90px",
+        padding: "0px 48px 90px",
       }}
     >
       {/* Heading */}
