@@ -175,7 +175,6 @@ function ProgramDropdown({
         borderRadius: "8px",
         boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
         zIndex: 200,
-        overflow: "hidden",
         paddingTop: "4px",
         paddingBottom: "4px",
       }}
