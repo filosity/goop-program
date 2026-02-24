@@ -796,8 +796,14 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { o
 /* ─── Voting data ─── */
 const allVotingQuestions: { question: string; options: string[]; images?: string[] }[] = [
   {
-    question: "How old are you?",
-    options: ["0\u201322", "22\u201330", "30\u201345", "45\u201360", "60+"],
+    question: "Which AG1 merch would you want most?",
+    options: ["Puffer Jacket", "Stanley Cup", "Tote Bag", "Pajamas"],
+    images: ["/featured-puffer.jpg", "/featured-stanley.jpg", "/milestone-tote.jpg", "/featured-pajamas.jpg"],
+  },
+  {
+    question: "Which AG1 supplement interests you?",
+    options: ["D3+K2", "Omega-3", "Travel Packs", "AG1 Original"],
+    images: ["/product-d3k2.jpg", "/product-omega3.jpg", "/product-travelpacks-original.jpg", "/featured1.jpg"],
   },
   {
     question: "When do you take your AG1?",
@@ -808,12 +814,9 @@ const allVotingQuestions: { question: string; options: string[]; images?: string
     options: ["Water", "Smoothie", "Juice", "Other"],
   },
   {
-    question: "Favorite AG1 benefit?",
-    options: ["Energy", "Digestion", "Immunity", "Focus"],
-  },
-  {
-    question: "How long have you taken AG1?",
-    options: ["Just started", "1-6 months", "6-12 months", "1+ years"],
+    question: "Pick your ideal AG1 moment",
+    options: ["Morning routine", "Post-workout", "On the go", "Outdoors"],
+    images: ["/earn3.jpg", "/earn5.jpg", "/product-travelpacks-original.jpg", "/earn7.jpg"],
   },
   {
     question: "Do you travel with AG1?",
@@ -824,8 +827,9 @@ const allVotingQuestions: { question: string; options: string[]; images?: string
     options: ["Love it", "Not yet", "Prefer original", "Didn\u2019t know about it"],
   },
   {
-    question: "How did you hear about AG1?",
-    options: ["Social media", "Friend/family", "Podcast", "Other"],
+    question: "What\u2019s your go-to AG1 gear?",
+    options: ["Shaker Bottle", "Travel Packs", "Hat", "Duffel Bag"],
+    images: ["/featured-stanley.jpg", "/earn1.jpg", "/milestone-hat.jpg", "/milestone-duffel.jpg"],
   },
 ];
 
