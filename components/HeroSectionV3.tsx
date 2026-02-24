@@ -88,6 +88,16 @@ export default function HeroSectionV3() {
         }}
       />
 
+      {/* 30% black overlay */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundColor: "rgba(0,0,0,0.3)",
+          zIndex: 1,
+        }}
+      />
+
       {/* Single white card */}
       <div
         style={{

@@ -29,6 +29,7 @@ export default function Referrals() {
 
   return (
     <section
+      id="section-referrals"
       style={{
         backgroundColor: "#0C3D3D",
         padding: "0",
@@ -41,7 +42,7 @@ export default function Referrals() {
           margin: "0 auto",
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          height: "820px",
+          height: "920px",
           position: "relative",
         }}
       >
@@ -77,7 +78,7 @@ export default function Referrals() {
           {/* Title */}
           <h2
             style={{
-              fontFamily: "var(--font-sans)",
+              fontFamily: "var(--font-serif)",
               fontSize: "44px",
               fontWeight: 400,
               lineHeight: 1.15,
@@ -301,17 +302,8 @@ export default function Referrals() {
             Send Invite →
           </button>
 
-          {/* Divider */}
-          <div
-            style={{
-              width: "100%",
-              height: "1px",
-              backgroundColor: "rgba(255,255,255,0.2)",
-              margin: "32px 0",
-            }}
-          />
-
           {/* Or share your link */}
+          <div style={{ marginTop: "32px" }} />
           <p
             style={{
               fontFamily: "var(--font-mono)",
@@ -479,7 +471,7 @@ export default function Referrals() {
             }}
           >
             <img
-              src="/background-header.png"
+              src="/background-header.jpg"
               alt=""
               style={{
                 width: "100%",

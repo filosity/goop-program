@@ -246,9 +246,10 @@ function MilestoneCard({
               <path d="M4 7.2L6 9.2L10 5" stroke="#ffffff" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           ) : isEarned ? (
-            <div style={{ width: "14px", height: "14px", borderRadius: "50%", backgroundColor: "#E8913A", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <span style={{ color: "#ffffff", fontSize: "10px", fontWeight: 700, lineHeight: 1 }}>!</span>
-            </div>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="7" fill="#E8913A" />
+              <path d="M4 7.2L6 9.2L10 5" stroke="#ffffff" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           ) : (
             <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "#d4e0df", flexShrink: 0 }} />
           )}
@@ -534,7 +535,7 @@ export default function Milestones() {
                       border: isCurrent ? "3px solid #ffffff" : "none",
                       boxShadow: isCurrent ? "0 0 0 2px #0d8b87" : "none",
                       flexShrink: 0,
-                      marginTop: isCurrent ? "-1.5px" : "0.5px",
+                      marginTop: isCurrent ? "-2.5px" : "-0.5px",
                       transition: "background-color 0.4s ease, box-shadow 0.4s ease",
                     }}
                   />

@@ -17,6 +17,7 @@ const baseCards = [
     likes: "+3.5K",
     redeemCode: null,
     scrollTarget: "section-ways-to-earn" as string | null,
+    tabSwitch: null as string | null,
     isLink: false,
   },
   {
@@ -26,6 +27,7 @@ const baseCards = [
     likes: "+2.8K",
     redeemCode: null,
     scrollTarget: "section-ways-to-earn" as string | null,
+    tabSwitch: null as string | null,
     isLink: false,
   },
   {
@@ -35,6 +37,7 @@ const baseCards = [
     likes: "+4.1K",
     redeemCode: null,
     scrollTarget: "section-ways-to-earn" as string | null,
+    tabSwitch: null as string | null,
     isLink: false,
   },
   {
@@ -43,8 +46,9 @@ const baseCards = [
     button: "REFER NOW",
     likes: "+890",
     redeemCode: null,
-    scrollTarget: null as string | null,
-    isLink: true,
+    scrollTarget: "section-referrals" as string | null,
+    tabSwitch: null as string | null,
+    isLink: false,
   },
   {
     title: "Post your AG1 on Instagram or TikTok",
@@ -52,8 +56,9 @@ const baseCards = [
     button: "SHARE",
     likes: "+1.8K",
     redeemCode: null,
-    scrollTarget: null as string | null,
-    isLink: true,
+    scrollTarget: "section-activities" as string | null,
+    tabSwitch: "achievements" as string | null,
+    isLink: false,
   },
   {
     title: "Join the Sweepstakes",
@@ -62,6 +67,7 @@ const baseCards = [
     likes: "+2.7K",
     redeemCode: null,
     scrollTarget: "section-sweepstakes",
+    tabSwitch: null as string | null,
     isLink: false,
   },
   {
@@ -70,8 +76,9 @@ const baseCards = [
     button: "REVIEW",
     likes: "+1.2K",
     redeemCode: null,
-    scrollTarget: null as string | null,
-    isLink: true,
+    scrollTarget: "section-activities" as string | null,
+    tabSwitch: "voting" as string | null,
+    isLink: false,
   },
   {
     title: "Keep up your daily streak",
@@ -79,8 +86,9 @@ const baseCards = [
     button: "START STREAK",
     likes: "+2.4K",
     redeemCode: null,
-    scrollTarget: null as string | null,
-    isLink: true,
+    scrollTarget: "section-activities" as string | null,
+    tabSwitch: "streak" as string | null,
+    isLink: false,
   },
   {
     title: "Sign up for SMS alerts",
@@ -88,8 +96,9 @@ const baseCards = [
     button: "SIGN UP",
     likes: "+1.5K",
     redeemCode: null,
-    scrollTarget: null as string | null,
-    isLink: true,
+    scrollTarget: "section-ways-to-earn" as string | null,
+    tabSwitch: null as string | null,
+    isLink: false,
   },
 ];
 
@@ -809,6 +818,11 @@ function FeaturedCard({
       if (card.scrollTarget === "section-ways-to-earn") {
         setTimeout(() => {
           window.dispatchEvent(new Event("activate-products-tab"));
+        }, 600);
+      }
+      if (card.tabSwitch) {
+        setTimeout(() => {
+          window.dispatchEvent(new CustomEvent("activities-tab-switch", { detail: { tab: card.tabSwitch } }));
         }, 600);
       }
       return;

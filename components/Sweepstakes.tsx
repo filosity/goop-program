@@ -278,7 +278,7 @@ export default function Sweepstakes() {
                 }}
               >
                 <img
-                  src="/background-header.png"
+                  src="/background-header.jpg"
                   alt="Sweepstakes prize"
                   style={{
                     width: "100%",
@@ -600,7 +600,7 @@ export default function Sweepstakes() {
               }}
             >
               <img
-                src="/background-header.png"
+                src="/background-header.jpg"
                 alt="Sweepstakes prize"
                 style={{
                   width: "100%",
@@ -859,7 +859,7 @@ export default function Sweepstakes() {
                   }}
                 >
                   <img
-                    src="/background-header.png"
+                    src="/background-header.jpg"
                     alt="Sweepstakes prize"
                     style={{
                       width: "100%",

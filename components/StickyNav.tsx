@@ -4,8 +4,7 @@ import { useEffect, useRef, useCallback, useState } from "react";
 
 const sections = [
   { id: "section-featured", label: "featured" },
-  { id: "section-milestones", label: "milestones" },
-  { id: "section-membership", label: "membership" },
+  { id: "section-milestones", label: "subscriber milestones" },
   { id: "section-sweepstakes", label: "sweepstakes" },
   { id: "section-ways-to-earn", label: "AG Credit" },
   { id: "section-activities", label: "activities" },
