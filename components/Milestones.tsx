@@ -36,12 +36,15 @@ function MilestoneCard({
   const [hovered, setHovered] = useState(false);
   const [copied, setCopied] = useState(false);
   const [claimAnim, setClaimAnim] = useState(false);
+  const [celebrating, setCelebrating] = useState(false);
 
   const handleClaim = useCallback(() => {
     setClaimAnim(true);
     setTimeout(() => {
       onClaim();
       setClaimAnim(false);
+      setCelebrating(true);
+      setTimeout(() => setCelebrating(false), 1400);
     }, 600);
   }, [onClaim]);
 
@@ -61,11 +64,12 @@ function MilestoneCard({
       style={{
         backgroundColor: "#ffffff",
         border: isCurrent ? "1.5px solid #0d8b87" : "1px solid #d4e0df",
-        overflow: "hidden",
+        overflow: celebrating ? "visible" : "hidden",
         opacity: isLocked ? 0.45 : 1,
         transition: "opacity 0.5s ease, border-color 0.4s ease",
         display: "flex",
         flexDirection: "column",
+        position: "relative",
       }}
     >
       {/* Image — with claim overlay */}
@@ -133,7 +137,72 @@ function MilestoneCard({
             )}
           </div>
         )}
+
+        {/* White gradient sheen on claim */}
+        {celebrating && (
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 7,
+              pointerEvents: "none",
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: "-100%",
+                left: "-100%",
+                width: "80%",
+                height: "300%",
+                background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%)",
+                transform: "rotate(25deg)",
+                animation: "milestoneSheen 1.8s ease 0.05s forwards",
+              }}
+            />
+          </div>
+        )}
       </div>
+
+      {/* Confetti — bursts from center of image area, rendered on outer card */}
+      {celebrating && (
+        <div style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "220px", zIndex: 10, pointerEvents: "none", overflow: "visible" }}>
+          {Array.from({ length: 45 }).map((_, i) => {
+            const w = 4 + Math.random() * 3;
+            const h = i % 5 === 0 ? w : (2 + Math.random() * 5);
+            const angle = Math.random() * Math.PI * 2;
+            const dist = 60 + Math.random() * 160;
+            const dx = Math.cos(angle) * dist;
+            const dy = Math.sin(angle) * dist;
+            const spin = 180 + Math.random() * 540;
+            const colors = ["#0C3D3D", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#0a3030", "#3da88a", "#276b5d"];
+            const delay = i * 0.004;
+            const dur = 1.8 + Math.random() * 0.6;
+            return (
+              <div
+                key={i}
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  width: `${w}px`,
+                  height: `${h}px`,
+                  marginLeft: `${-w / 2}px`,
+                  marginTop: `${-h / 2}px`,
+                  borderRadius: i % 4 === 0 ? "50%" : "1px",
+                  backgroundColor: colors[i % colors.length],
+                  opacity: 0,
+                  animation: `milestoneConfetti ${dur}s cubic-bezier(0.12, 0.8, 0.2, 1) ${delay}s forwards`,
+                  ["--dx" as string]: `${dx.toFixed(1)}px`,
+                  ["--dy" as string]: `${dy.toFixed(1)}px`,
+                  ["--spin" as string]: `${spin}deg`,
+                }}
+              />
+            );
+          })}
+        </div>
+      )}
 
       {/* Content — flex-grow to fill equal height */}
       <div style={{ padding: "16px", flex: 1, display: "flex", flexDirection: "column" }}>
@@ -247,6 +316,7 @@ export default function Milestones() {
   const [animatedWidth, setAnimatedWidth] = useState(0);
   const [btnHovered, setBtnHovered] = useState(false);
   const [claimedMonths, setClaimedMonths] = useState<Set<number>>(new Set());
+  const [hoveredMonth, setHoveredMonth] = useState<number | null>(null);
 
   /* Animate progress bar when currentMonth changes */
   useEffect(() => {
@@ -255,7 +325,7 @@ export default function Milestones() {
       return;
     }
     const timeout = setTimeout(() => {
-      setAnimatedWidth(((currentMonth - 1) / (TOTAL_MONTHS - 1)) * 100);
+      setAnimatedWidth(((currentMonth - 1 + 0.5) / (TOTAL_MONTHS - 1)) * 100);
     }, 50);
     return () => clearTimeout(timeout);
   }, [currentMonth]);
@@ -370,12 +440,54 @@ export default function Milestones() {
               const isEarned = subscribed && month <= currentMonth;
               const isCurrent = subscribed && month === currentMonth;
               const isClickable = subscribed && month > currentMonth;
+              const isFuture = subscribed && month > currentMonth;
+              const isPast = subscribed && month < currentMonth;
+              const daysToUnlock = isFuture ? (month - 1) * 30 - 15 : 0;
               return (
                 <div
                   key={month}
                   onClick={() => isClickable && handleCircleClick(month)}
-                  style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "0px", cursor: isClickable ? "pointer" : "default" }}
+                  onMouseEnter={() => subscribed && setHoveredMonth(month)}
+                  onMouseLeave={() => setHoveredMonth(null)}
+                  style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "0px", cursor: isClickable ? "pointer" : "default", position: "relative" }}
                 >
+                  {/* Tooltip */}
+                  {subscribed && hoveredMonth === month && !isCurrent && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: "calc(100% + 6px)",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        backgroundColor: "#0C3D3D",
+                        color: isPast ? "#0d8b87" : "#ffffff",
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "11px",
+                        fontWeight: 500,
+                        padding: "6px 12px",
+                        borderRadius: "6px",
+                        whiteSpace: "nowrap",
+                        lineHeight: 1,
+                        pointerEvents: "none",
+                        zIndex: 10,
+                      }}
+                    >
+                      {isPast ? "Unlocked" : `${daysToUnlock} days to unlock`}
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "100%",
+                          left: "50%",
+                          transform: "translateX(-50%)",
+                          width: 0,
+                          height: 0,
+                          borderLeft: "4px solid transparent",
+                          borderRight: "4px solid transparent",
+                          borderTop: "4px solid #0C3D3D",
+                        }}
+                      />
+                    </div>
+                  )}
                   <div
                     style={{
                       width: isCurrent ? "14px" : "10px",
@@ -432,6 +544,19 @@ export default function Milestones() {
           })}
         </div>
       </div>
+
+      {/* Keyframes for confetti and sheen */}
+      <style>{`
+        @keyframes milestoneConfetti {
+          0% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
+          70% { opacity: 1; }
+          100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--spin)) scale(0); }
+        }
+        @keyframes milestoneSheen {
+          0% { transform: rotate(25deg) translateX(0); }
+          100% { transform: rotate(25deg) translateX(400%); }
+        }
+      `}</style>
     </section>
   );
 }

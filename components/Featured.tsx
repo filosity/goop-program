@@ -450,27 +450,11 @@ function CommunityGridCard({
 /* ─── Community feed with hero + 3-col grid, paginated ─── */
 function CommunityFeed() {
   const [visibleCount, setVisibleCount] = useState(4);
-  const [shuffled, setShuffled] = useState(communityItems);
-  const [shuffledImages, setShuffledImages] = useState(communityImages);
-  const hasShuffled = useRef(false);
 
-  useEffect(() => {
-    if (!hasShuffled.current) {
-      hasShuffled.current = true;
-      const indices = communityItems.map((_, i) => i);
-      for (let i = indices.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [indices[i], indices[j]] = [indices[j], indices[i]];
-      }
-      setShuffled(indices.map(i => communityItems[i]));
-      setShuffledImages([...communityImages].sort(() => 0.5 - Math.random()));
-    }
-  }, []);
-
-  const shown = shuffled.slice(0, visibleCount);
+  const shown = communityItems.slice(0, visibleCount);
   const hero = shown[0];
   const gridItems = shown.slice(1);
-  const hasMore = visibleCount < shuffled.length;
+  const hasMore = visibleCount < communityItems.length;
 
   return (
     <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
@@ -478,7 +462,7 @@ function CommunityFeed() {
         {hero && (
           <CommunityHero
             item={hero}
-            image={shuffledImages[0 % shuffledImages.length]}
+            image={communityImages[0 % communityImages.length]}
           />
         )}
         <div
@@ -493,7 +477,7 @@ function CommunityFeed() {
             <CommunityGridCard
               key={`${item.author}-${item.time}-${i}`}
               item={item}
-              image={shuffledImages[(i + 1) % shuffledImages.length]}
+              image={communityImages[(i + 1) % communityImages.length]}
               index={i + 1}
             />
           ))}
@@ -502,7 +486,7 @@ function CommunityFeed() {
       <div style={{ display: "flex", justifyContent: "center", gap: "12px", marginTop: "28px" }}>
         {hasMore && (
           <button
-            onClick={() => setVisibleCount((c) => Math.min(c + 6, shuffled.length))}
+            onClick={() => setVisibleCount((c) => Math.min(c + 6, communityItems.length))}
             style={{ fontFamily: "var(--font-mono)", fontSize: "17px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 36px", minHeight: "52px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
@@ -678,15 +662,6 @@ function EventCalendarCard({
 /* ─── Events feed — 2-column paginated grid ─── */
 function EventsFeed() {
   const [visibleCount, setVisibleCount] = useState(4);
-  const [shuffledImages, setShuffledImages] = useState(eventImages);
-  const hasShuffled = useRef(false);
-
-  useEffect(() => {
-    if (!hasShuffled.current) {
-      hasShuffled.current = true;
-      setShuffledImages([...eventImages].sort(() => 0.5 - Math.random()));
-    }
-  }, []);
 
   const shown = eventItems.slice(0, visibleCount);
   const hasMore = visibleCount < eventItems.length;
@@ -704,7 +679,7 @@ function EventsFeed() {
           <EventCalendarCard
             key={`${event.title}-${i}`}
             event={event}
-            image={shuffledImages[i % shuffledImages.length]}
+            image={eventImages[i % eventImages.length]}
             index={i}
           />
         ))}
@@ -1070,7 +1045,7 @@ function FeaturedCard({
 
 export default function Featured() {
   const [version, setVersion] = useState(1);
-  const [images, setImages] = useState(allImages);
+  const images = allImages;
   const [activeTab, setActiveTab] = useState<"activity" | "community" | "events">("activity");
   const [showCommunity, setShowCommunity] = useState(false);
   const [showEvents, setShowEvents] = useState(false);
@@ -1083,7 +1058,6 @@ export default function Featured() {
   const [leftArrowHovered, setLeftArrowHovered] = useState(false);
   const [rightArrowHovered, setRightArrowHovered] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const hasShuffled = useRef(false);
   const isDragging = useRef(false);
   const dragStartX = useRef(0);
   const dragScrollLeft = useRef(0);
@@ -1124,13 +1098,6 @@ export default function Featured() {
     document.body.style.userSelect = "";
     document.body.style.webkitUserSelect = "";
   };
-
-  useEffect(() => {
-    if (!hasShuffled.current) {
-      hasShuffled.current = true;
-      setImages([...allImages].sort(() => 0.5 - Math.random()));
-    }
-  }, []);
 
   useEffect(() => {
     const handler = (e: Event) => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 /* ─── Data ─── */
 const allImages = ["/featured-puffer-jacket.jpg", "/milestone-sweatpants.jpg", "/featured-stanley.jpg", "/tier4.jpg", "/featured1.jpg", "/featured2.jpg", "/featured3.jpg", "/featured4.jpg"];
@@ -387,15 +387,7 @@ function GridCard({
 
 /* ─── Featured Masonry Grid ─── */
 function FeaturedGrid() {
-  const [images, setImages] = useState(allImages);
-  const hasShuffled = useRef(false);
-
-  useEffect(() => {
-    if (!hasShuffled.current) {
-      hasShuffled.current = true;
-      setImages([...allImages].sort(() => 0.5 - Math.random()));
-    }
-  }, []);
+  const images = allImages;
 
   return (
     <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
@@ -515,25 +507,9 @@ function CommunityCardV2({
 /* ─── Community feed (2-column cards, paginated) ─── */
 function CommunityFeedV2() {
   const [visibleCount, setVisibleCount] = useState(4);
-  const [shuffled, setShuffled] = useState(communityItems);
-  const [shuffledImages, setShuffledImages] = useState(communityImages);
-  const hasShuffled = useRef(false);
 
-  useEffect(() => {
-    if (!hasShuffled.current) {
-      hasShuffled.current = true;
-      const indices = communityItems.map((_, i) => i);
-      for (let i = indices.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [indices[i], indices[j]] = [indices[j], indices[i]];
-      }
-      setShuffled(indices.map(i => communityItems[i]));
-      setShuffledImages([...communityImages].sort(() => 0.5 - Math.random()));
-    }
-  }, []);
-
-  const shown = shuffled.slice(0, visibleCount);
-  const hasMore = visibleCount < shuffled.length;
+  const shown = communityItems.slice(0, visibleCount);
+  const hasMore = visibleCount < communityItems.length;
 
   return (
     <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
@@ -548,7 +524,7 @@ function CommunityFeedV2() {
           <CommunityCardV2
             key={`${item.author}-${item.time}-${i}`}
             item={item}
-            image={shuffledImages[i % shuffledImages.length]}
+            image={communityImages[i % communityImages.length]}
             index={i}
           />
         ))}
@@ -556,7 +532,7 @@ function CommunityFeedV2() {
       <div style={{ display: "flex", justifyContent: "center", gap: "12px", marginTop: "28px" }}>
         {hasMore && (
           <button
-            onClick={() => setVisibleCount((c) => Math.min(c + 6, shuffled.length))}
+            onClick={() => setVisibleCount((c) => Math.min(c + 6, communityItems.length))}
             style={{ fontFamily: "var(--font-mono)", fontSize: "17px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 36px", minHeight: "52px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
@@ -774,15 +750,6 @@ function TimelineEventCard({
 /* ─── Events timeline (vertical line on left, paginated) ─── */
 function EventsTimelineV2() {
   const [visibleCount, setVisibleCount] = useState(4);
-  const [shuffledImages, setShuffledImages] = useState(eventImages);
-  const hasShuffled = useRef(false);
-
-  useEffect(() => {
-    if (!hasShuffled.current) {
-      hasShuffled.current = true;
-      setShuffledImages([...eventImages].sort(() => 0.5 - Math.random()));
-    }
-  }, []);
 
   const shown = eventItems.slice(0, visibleCount);
   const hasMore = visibleCount < eventItems.length;
@@ -807,7 +774,7 @@ function EventsTimelineV2() {
           <TimelineEventCard
             key={`${event.title}-${i}`}
             event={event}
-            image={shuffledImages[i % shuffledImages.length]}
+            image={eventImages[i % eventImages.length]}
             index={i}
           />
         ))}

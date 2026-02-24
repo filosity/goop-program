@@ -220,7 +220,7 @@ function AchievementCard({
               const dx = Math.cos(angle) * dist;
               const dy = Math.sin(angle) * dist;
               const spin = 180 + Math.random() * 540;
-              const colors = ["#D4AF37", "#FFBF00", "#F7E7CE", "#DAA520", "#E8D5A3", "#C5961A", "#FFD700", "#B8860B"];
+              const colors = ["#0C3D3D", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#0a3030", "#3da88a", "#276b5d"];
               const delay = i * 0.004;
               const dur = 1.8 + Math.random() * 0.6;
               return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ArrowLeft, ArrowRight } from "@vectoricons/atlas-icons-react";
 
 /* ─── Data ─── */
@@ -141,8 +141,7 @@ function SocialDots({ cardIndex }: { cardIndex: number }) {
 
 function ImmersiveShowcase() {
   const [current, setCurrent] = useState(0);
-  const [tierAssignments, setTierAssignments] = useState<number[]>([]);
-  const hasShuffled = useRef(false);
+  const tierAssignments = baseCards.map((_, i) => i % tierImages.length);
   const [leftArrowHov, setLeftArrowHov] = useState(false);
   const [rightArrowHov, setRightArrowHov] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -153,14 +152,6 @@ function ImmersiveShowcase() {
   const [animatingIdx, setAnimatingIdx] = useState<number | null>(null);
   const [btnHov, setBtnHov] = useState(false);
   const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    if (!hasShuffled.current) {
-      hasShuffled.current = true;
-      const assignments = baseCards.map(() => Math.floor(Math.random() * tierImages.length));
-      setTierAssignments(assignments);
-    }
-  }, []);
 
   const goTo = useCallback((idx: number) => {
     if (idx === current) return;
@@ -772,27 +763,11 @@ function CommunityGridCard({
 /* Community feed with hero + 3-col grid, paginated */
 function CommunityMagazine() {
   const [visibleCount, setVisibleCount] = useState(4);
-  const [shuffled, setShuffled] = useState(communityItems);
-  const [shuffledImages, setShuffledImages] = useState(communityImages);
-  const hasShuffled = useRef(false);
 
-  useEffect(() => {
-    if (!hasShuffled.current) {
-      hasShuffled.current = true;
-      const indices = communityItems.map((_, i) => i);
-      for (let i = indices.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [indices[i], indices[j]] = [indices[j], indices[i]];
-      }
-      setShuffled(indices.map(i => communityItems[i]));
-      setShuffledImages([...communityImages].sort(() => 0.5 - Math.random()));
-    }
-  }, []);
-
-  const shown = shuffled.slice(0, visibleCount);
+  const shown = communityItems.slice(0, visibleCount);
   const hero = shown[0];
   const gridItems = shown.slice(1);
-  const hasMore = visibleCount < shuffled.length;
+  const hasMore = visibleCount < communityItems.length;
 
   return (
     <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
@@ -802,7 +777,7 @@ function CommunityMagazine() {
         {hero && (
           <CommunityHero
             item={hero}
-            image={shuffledImages[0 % shuffledImages.length]}
+            image={communityImages[0 % communityImages.length]}
           />
         )}
 
@@ -819,7 +794,7 @@ function CommunityMagazine() {
             <CommunityGridCard
               key={`${item.author}-${item.time}-${i}`}
               item={item}
-              image={shuffledImages[(i + 1) % shuffledImages.length]}
+              image={communityImages[(i + 1) % communityImages.length]}
               index={i + 1}
             />
           ))}
@@ -830,7 +805,7 @@ function CommunityMagazine() {
       <div style={{ display: "flex", justifyContent: "center", gap: "12px", marginTop: "28px" }}>
         {hasMore && (
           <button
-            onClick={() => setVisibleCount((c) => Math.min(c + 6, shuffled.length))}
+            onClick={() => setVisibleCount((c) => Math.min(c + 6, communityItems.length))}
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: "17px",
@@ -1110,15 +1085,6 @@ function EventCalendarCard({
 /* Events feed — 2-column paginated grid */
 function EventsCalendar() {
   const [visibleCount, setVisibleCount] = useState(4);
-  const [shuffledImages, setShuffledImages] = useState(eventImages);
-  const hasShuffled = useRef(false);
-
-  useEffect(() => {
-    if (!hasShuffled.current) {
-      hasShuffled.current = true;
-      setShuffledImages([...eventImages].sort(() => 0.5 - Math.random()));
-    }
-  }, []);
 
   const shown = eventItems.slice(0, visibleCount);
   const hasMore = visibleCount < eventItems.length;
@@ -1137,7 +1103,7 @@ function EventsCalendar() {
           <EventCalendarCard
             key={`${event.title}-${i}`}
             event={event}
-            image={shuffledImages[i % shuffledImages.length]}
+            image={eventImages[i % eventImages.length]}
             index={i}
           />
         ))}
