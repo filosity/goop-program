@@ -1595,6 +1595,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
 
   // Drag scroll handlers
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
     const el = scrollRef.current;
     if (!el) return;
     isDragging.current = true;
@@ -1607,6 +1608,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!isDragging.current) return;
+    e.preventDefault();
     const el = scrollRef.current;
     if (!el) return;
     const x = e.pageX - el.offsetLeft;
