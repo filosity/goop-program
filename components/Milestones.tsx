@@ -338,6 +338,7 @@ function MilestoneCard({
 
 export default function Milestones() {
   const [subscribed, setSubscribed] = useState(false);
+  const [bannerVisible, setBannerVisible] = useState(true);
   const [currentMonth, setCurrentMonth] = useState(0);
   const [animatedWidth, setAnimatedWidth] = useState(0);
   const [btnHovered, setBtnHovered] = useState(false);
@@ -377,8 +378,11 @@ export default function Milestones() {
   }, [subscribed]);
 
   const handleSubscribe = useCallback(() => {
-    setSubscribed(true);
-    setCurrentMonth(1);
+    setBannerVisible(false);
+    setTimeout(() => {
+      setSubscribed(true);
+      setCurrentMonth(1);
+    }, 400);
   }, []);
 
   const handleCircleClick = useCallback((month: number) => {
@@ -405,7 +409,18 @@ export default function Milestones() {
     >
       {/* Subscribe banner — above heading when not subscribed */}
       {!subscribed && (
-        <div style={{ maxWidth: "1280px", marginLeft: "auto", marginRight: "auto", marginBottom: "48px" }}>
+        <div
+          style={{
+            maxWidth: "1280px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginBottom: "48px",
+            opacity: bannerVisible ? 1 : 0,
+            maxHeight: bannerVisible ? "400px" : "0px",
+            overflow: "hidden",
+            transition: "opacity 0.35s ease, max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+          }}
+        >
           <div
             style={{
               display: "flex",
@@ -424,20 +439,6 @@ export default function Milestones() {
                 justifyContent: "center",
               }}
             >
-              <p
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "16px",
-                  fontWeight: 600,
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
-                  color: "#6b8a89",
-                  margin: "0 0 12px 0",
-                  lineHeight: 1,
-                }}
-              >
-                Subscribe to unlock
-              </p>
               <p
                 style={{
                   fontFamily: "var(--font-sans)",
@@ -488,8 +489,8 @@ export default function Milestones() {
             </div>
             <div style={{ width: "672px", maxWidth: "672px", flexShrink: 0 }}>
               <img
-                src="/milestone-welcome-kit.jpg"
-                alt="Welcome Kit"
+                src="/milestone-merch-store.jpg"
+                alt="Limited Edition Merch Store"
                 style={{
                   width: "100%",
                   height: "100%",
