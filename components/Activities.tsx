@@ -798,7 +798,7 @@ const allVotingQuestions: { question: string; options: string[]; images?: string
   {
     question: "Which AG1 merch would you want most?",
     options: ["Puffer Jacket", "Stanley Cup", "Tote Bag", "Pajamas"],
-    images: ["/featured-puffer.jpg", "/featured-stanley.jpg", "/milestone-tote.jpg", "/featured-pajamas.jpg"],
+    images: ["/featured-puffer-jacket.jpg", "/featured-stanley.jpg", "/milestone-tote.jpg", "/milestone-sweatpants.jpg"],
   },
   {
     question: "Which AG1 supplement interests you?",
@@ -829,7 +829,7 @@ const allVotingQuestions: { question: string; options: string[]; images?: string
   {
     question: "What\u2019s your go-to AG1 gear?",
     options: ["Shaker Bottle", "Travel Packs", "Hat", "Duffel Bag"],
-    images: ["/featured-stanley.jpg", "/earn1.jpg", "/milestone-hat.jpg", "/milestone-duffel.jpg"],
+    images: ["/featured-stanley.jpg", "/earn1.jpg", "/milestone-hat.jpg", "/milestone-duffel-bag.jpg"],
   },
 ];
 
@@ -1697,6 +1697,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                 textUnderlineOffset: "3px",
                 textDecorationThickness: "0.5px",
                 marginTop: "8px",
+                marginBottom: "16px",
                 display: "inline-block",
               }}
             >
@@ -1882,7 +1883,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                     }}
                     style={{
                       width: "100%",
-                      aspectRatio: "1",
+                      aspectRatio: "1 / 1.4",
                       border: isClickable
                         ? "2px solid #0d8b87"
                         : day.isRewardEarned && !day.isRewardClaimed
@@ -2011,7 +2012,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                     onClick={() => isClickable && handleDayClick(day.dayNum)}
                     style={{
                       width: "100%",
-                      aspectRatio: "1",
+                      aspectRatio: "1 / 1.4",
                       border: isClickable ? "2px solid #0d8b87" : "1px solid #d4e0df",
                       backgroundColor: "#ffffff",
                       display: "flex",
