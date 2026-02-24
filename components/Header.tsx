@@ -99,6 +99,8 @@ function ProgramDropdown({
   setShowCommunity,
   showEvents,
   setShowEvents,
+  showFeaturedBtn,
+  setShowFeaturedBtn,
 }: {
   open: boolean;
   totalSpend: number;
@@ -120,6 +122,8 @@ function ProgramDropdown({
   setShowCommunity: (b: boolean) => void;
   showEvents: boolean;
   setShowEvents: (b: boolean) => void;
+  showFeaturedBtn: boolean;
+  setShowFeaturedBtn: (b: boolean) => void;
 }) {
   const handleSimulateSpend = useCallback(
     (amount: number) => {
@@ -212,6 +216,15 @@ function ProgramDropdown({
       <div style={{ borderTop: "1px solid #e8e5e1", margin: "4px 0" }} />
       <DropdownItem
         onClick={() => {
+          const next = !showFeaturedBtn;
+          setShowFeaturedBtn(next);
+          window.dispatchEvent(new CustomEvent("toggle-featured-btn", { detail: { visible: next } }));
+        }}
+      >
+        {showFeaturedBtn ? "✓ " : ""}featured button
+      </DropdownItem>
+      <DropdownItem
+        onClick={() => {
           const next = !showCommunity;
           setShowCommunity(next);
           window.dispatchEvent(new CustomEvent("toggle-community", { detail: { visible: next } }));
@@ -247,6 +260,7 @@ export default function Header() {
   const [activeHeader, setActiveHeader] = useState(1);
   const [showCommunity, setShowCommunity] = useState(false);
   const [showEvents, setShowEvents] = useState(false);
+  const [showFeaturedBtn, setShowFeaturedBtn] = useState(false);
   const [shopHov, setShopHov] = useState(false);
 
   const logoRef = useRef<HTMLDivElement>(null);
@@ -353,6 +367,8 @@ export default function Header() {
               setShowCommunity={setShowCommunity}
               showEvents={showEvents}
               setShowEvents={setShowEvents}
+              showFeaturedBtn={showFeaturedBtn}
+              setShowFeaturedBtn={setShowFeaturedBtn}
             />
           </div>
 

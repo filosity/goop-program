@@ -1199,6 +1199,7 @@ function EventsCalendar() {
 
 export default function FeaturedV3() {
   const [activeTab, setActiveTab] = useState<"featured" | "community" | "events">("featured");
+  const [showFeaturedBtn, setShowFeaturedBtn] = useState(false);
   const [showDot, setShowDot] = useState(true);
   const [showEventsDot, setShowEventsDot] = useState(true);
   const [featuredHovered, setFeaturedHovered] = useState(false);
@@ -1216,11 +1217,17 @@ export default function FeaturedV3() {
       const detail = (e as CustomEvent).detail;
       if (detail?.visible !== undefined) setShowEvents(detail.visible);
     };
+    const handleFeaturedBtn = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.visible !== undefined) setShowFeaturedBtn(detail.visible);
+    };
     window.addEventListener("toggle-community", handleCommunity);
     window.addEventListener("toggle-events", handleEvents);
+    window.addEventListener("toggle-featured-btn", handleFeaturedBtn);
     return () => {
       window.removeEventListener("toggle-community", handleCommunity);
       window.removeEventListener("toggle-events", handleEvents);
+      window.removeEventListener("toggle-featured-btn", handleFeaturedBtn);
     };
   }, []);
 
@@ -1237,10 +1244,30 @@ export default function FeaturedV3() {
         padding: "48px 48px 40px",
       }}
     >
+      {/* Section heading */}
+      <h2
+        style={{
+          fontFamily: "var(--font-sans)",
+          fontSize: "44px",
+          fontWeight: 400,
+          lineHeight: 1.1,
+          color: "#000000",
+          textAlign: "center",
+          margin: "0 0 32px 0",
+          letterSpacing: "-0.01em",
+          maxWidth: "1280px",
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      >
+        Featured
+      </h2>
+
       {/* Tab pills */}
       <div style={{ maxWidth: "1280px", margin: "0 auto 24px" }}>
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           {/* Featured tab */}
+          {showFeaturedBtn && (
           <button
             onClick={() => setActiveTab("featured")}
             onMouseEnter={() => setFeaturedHovered(true)}
@@ -1261,6 +1288,7 @@ export default function FeaturedV3() {
           >
             Featured
           </button>
+          )}
 
           {/* Community tab */}
           {showCommunity && (
