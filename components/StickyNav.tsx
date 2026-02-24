@@ -247,7 +247,7 @@ export default function StickyNav() {
               background: "none",
               border: "none",
               cursor: "pointer",
-              padding: "6px 0",
+              padding: "10px 0",
               lineHeight: 1,
               whiteSpace: "nowrap",
               transition: "opacity 0.35s ease",
