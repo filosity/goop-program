@@ -1725,7 +1725,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
           marginBottom: "32px",
           border: "1px solid #d4e0df",
           overflow: "hidden",
-          height: "200px",
+          height: "260px",
         }}
       >
         {nextReward ? (
