@@ -34,42 +34,42 @@ const pastWinners = [
   {
     product: "AG1 Puffer Jacket",
     winner: "casey r.",
-    image: "/featured1.jpg",
+    image: "/featured-puffer-jacket.jpg",
   },
   {
-    product: "AG1 Pajamas",
+    product: "AG1 Pajama Pants",
     winner: "jake k.",
-    image: "/featured2.jpg",
+    image: "/milestone-sweatpants.jpg",
   },
   {
     product: "AG1 Stanley Cup",
     winner: "sam o.",
-    image: "/featured3.jpg",
+    image: "/featured-stanley.jpg",
   },
   {
     product: "AG1 Travel Packs (30ct)",
     winner: "mia t.",
-    image: "/product-travelpacks-original.jpg",
+    image: "/milestone-welcome-kit.jpg",
   },
   {
     product: "AG1 Shaker Bottle",
     winner: "alex d.",
-    image: "/featured4.jpg",
+    image: "/milestone-merch-store.jpg",
   },
   {
     product: "AG1 Duffel Bag",
     winner: "riley p.",
-    image: "/earn3.jpg",
+    image: "/milestone-duffel-bag.jpg",
   },
   {
     product: "AG1 Sweatshirt",
     winner: "jordan w.",
-    image: "/earn5.jpg",
+    image: "/milestone-sweatshirt.jpg",
   },
   {
     product: "AG1 Hat",
     winner: "taylor m.",
-    image: "/earn7.jpg",
+    image: "/milestone-hat.jpg",
   },
 ];
 
@@ -176,9 +176,12 @@ export default function Sweepstakes() {
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
-          textAlign: "center",
+          textAlign: "left",
           margin: "0 0 56px 0",
           letterSpacing: "-0.01em",
+          maxWidth: "1280px",
+          marginLeft: "auto",
+          marginRight: "auto",
         }}
       >
         Sweepstakes

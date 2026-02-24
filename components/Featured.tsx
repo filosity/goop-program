@@ -1155,7 +1155,7 @@ export default function Featured() {
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
-          textAlign: "center",
+          textAlign: "left",
           margin: "0 0 32px 0",
           letterSpacing: "-0.01em",
           maxWidth: "1280px",

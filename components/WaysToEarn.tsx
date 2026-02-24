@@ -11,6 +11,7 @@ const earnCards = [
     action: null,
     image: "/earn10.jpg",
     input: null,
+    description: null,
   },
   {
     title: "Be a Member\nfor 90 days",
@@ -19,6 +20,7 @@ const earnCards = [
     action: null,
     image: "/earn1.jpg",
     input: null,
+    description: "Currently subscribed for 15 days",
   },
   {
     title: "Be a Member\nfor 1 year",
@@ -27,6 +29,7 @@ const earnCards = [
     action: null,
     image: "/earn2.jpg",
     input: null,
+    description: "Currently subscribed for 15 days",
   },
   {
     title: "Connect\nInstagram",
@@ -35,6 +38,7 @@ const earnCards = [
     action: "Connect",
     image: "/earn3.jpg",
     input: "Your Instagram handle",
+    description: null,
   },
   {
     title: "Connect\nTikTok",
@@ -43,6 +47,7 @@ const earnCards = [
     action: "Connect",
     image: "/earn4.jpg",
     input: "Your TikTok handle",
+    description: null,
   },
   {
     title: "Post IG/TikTok\nwith your AG1",
@@ -51,6 +56,7 @@ const earnCards = [
     action: "Connect",
     image: "/earn5.jpg",
     input: null,
+    description: null,
   },
   {
     title: "Happy\nBirthday",
@@ -59,6 +65,7 @@ const earnCards = [
     action: "Submit",
     image: "/earn6.jpg",
     input: "birthday",
+    description: null,
   },
   {
     title: "Sign up\nfor SMS",
@@ -67,6 +74,7 @@ const earnCards = [
     action: "Submit",
     image: "/earn7.jpg",
     input: "Your phone number",
+    description: null,
   },
   {
     title: "Leave\na Review",
@@ -75,6 +83,7 @@ const earnCards = [
     action: "Review",
     image: "/earn8.jpg",
     input: null,
+    description: null,
   },
 ];
 
@@ -240,6 +249,18 @@ function EarnCard({
           >
             {card.title}
           </p>
+          {card.description && (
+            <p style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "12px",
+              fontWeight: 500,
+              color: "rgba(255,255,255,0.6)",
+              margin: "6px 0 0 0",
+              lineHeight: 1.3,
+            }}>
+              {card.description}
+            </p>
+          )}
 
           {/* Input field */}
           {card.input && card.input !== "birthday" && showInteraction && (
@@ -661,9 +682,9 @@ function RedeemContent({
               fontFamily: "var(--font-sans)",
               fontSize: "18px",
               fontWeight: 600,
-              color: "#ffffff",
-              backgroundColor: redeemHovered ? "#155050" : "#0C3D3D",
-              border: "1px solid #0C3D3D",
+              color: "#000000",
+              backgroundColor: redeemHovered ? "#3be03b" : "#46DE46",
+              border: "1px solid #46DE46",
               minHeight: "52px",
               padding: "0 36px",
               borderRadius: "999px",
@@ -673,7 +694,7 @@ function RedeemContent({
               opacity: sliderValue > 0 ? 1 : 0.35,
             }}
           >
-            Redeem →
+            Apply To Subscription →
           </button>
 
           <button
@@ -815,7 +836,7 @@ function RedeemContent({
               animation: popup.phase !== "out" ? "redeemTextUp 0.4s ease 0.3s both" : undefined,
             }}
           >
-            AG Credit redeemed
+            Applied to subscription
           </p>
 
           {/* Subtitle */}
@@ -830,7 +851,7 @@ function RedeemContent({
               animation: popup.phase !== "out" ? "redeemTextUp 0.4s ease 0.4s both" : undefined,
             }}
           >
-            Your AG Credit has been applied.
+            {"Applied $" + popup.credit + " to your subscription as a discount."}
           </p>
 
           {/* Stats row */}
@@ -904,7 +925,7 @@ function RedeemContent({
                   lineHeight: 1,
                 }}
               >
-                redeemed
+                applied
               </p>
               <p
                 style={{
@@ -1231,7 +1252,10 @@ function FreeProductsContent({
                       zIndex: 2,
                     }}
                   >
-                    <GiftBox size={18} color="#ffffff" />
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg>
                     <span
                       style={{
                         fontFamily: "var(--font-sans)",
@@ -1241,7 +1265,7 @@ function FreeProductsContent({
                         lineHeight: 1,
                       }}
                     >
-                      free product
+                      limited time
                     </span>
                   </div>
                 )}
@@ -2015,8 +2039,9 @@ export default function WaysToEarn() {
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
-          textAlign: "center",
-          margin: "0 0 12px 0",
+          textAlign: "left",
+          maxWidth: "1280px",
+          margin: "0 auto 12px",
           letterSpacing: "-0.01em",
         }}
       >
@@ -2030,13 +2055,14 @@ export default function WaysToEarn() {
           fontSize: "16px",
           fontWeight: 400,
           color: "#6b8a89",
-          textAlign: "center",
-          margin: "0 0 40px 0",
+          textAlign: "left",
+          maxWidth: "1280px",
+          margin: "0 auto 40px",
           lineHeight: 1.4,
         }}
       >
         {activeTab === "earn" && "Follow us on social media, sign up for SMS and more."}
-        {activeTab === "exchange" && "Exchange your AG Credit for a discount."}
+        {activeTab === "exchange" && "Apply your AG Credit as a discount on your subscription."}
         {activeTab === "products" && "Redeem your AG Credit for exclusive merch — available for a limited time."}
         {activeTab === "upload" && "Upload your receipt and earn AG Credit for every dollar spent."}
       </p>
@@ -2103,7 +2129,7 @@ export default function WaysToEarn() {
               border: activeTab === "exchange" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
             }}
           >
-            Exchange AG Credit
+            Apply To Subscription
           </button>
 
           <button

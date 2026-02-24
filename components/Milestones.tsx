@@ -365,9 +365,12 @@ export default function Milestones() {
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
-          textAlign: "center",
+          textAlign: "left",
           margin: "0 0 12px 0",
           letterSpacing: "-0.01em",
+          maxWidth: "1280px",
+          marginLeft: "auto",
+          marginRight: "auto",
         }}
       >
         Subscriber Milestones
@@ -380,16 +383,19 @@ export default function Milestones() {
           fontSize: "16px",
           fontWeight: 400,
           color: "#6b8a89",
-          textAlign: "center",
+          textAlign: "left",
           margin: "0 0 20px 0",
           lineHeight: 1.5,
+          maxWidth: "1280px",
+          marginLeft: "auto",
+          marginRight: "auto",
         }}
       >
         Unlock exclusive rewards the longer you stay subscribed.
       </p>
 
       {/* Subscribe button or status */}
-      <div style={{ textAlign: "center", marginBottom: "48px" }}>
+      <div style={{ textAlign: "left", marginBottom: "48px", maxWidth: "1280px", marginLeft: "auto", marginRight: "auto" }}>
         {!subscribed ? (
           <button
             onClick={handleSubscribe}

@@ -1983,9 +1983,12 @@ export default function Activities() {
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
-          textAlign: "center",
+          textAlign: "left",
           margin: "0 0 12px 0",
           letterSpacing: "-0.01em",
+          maxWidth: "1280px",
+          marginLeft: "auto",
+          marginRight: "auto",
         }}
       >
         Activities
