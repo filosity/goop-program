@@ -2086,7 +2086,7 @@ export default function WaysToEarn() {
           fontFamily: "var(--font-sans)",
           fontSize: "16px",
           fontWeight: 400,
-          color: "#6b8a89",
+          color: "#000000",
           textAlign: "left",
           maxWidth: "1280px",
           margin: "0 auto 40px",

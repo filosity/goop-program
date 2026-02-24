@@ -2002,7 +2002,7 @@ export default function Activities() {
           fontFamily: "var(--font-sans)",
           fontSize: "16px",
           fontWeight: 400,
-          color: "#6b8a89",
+          color: "#000000",
           textAlign: "left",
           margin: "0 0 36px 0",
           lineHeight: 1.4,

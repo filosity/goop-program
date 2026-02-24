@@ -428,7 +428,7 @@ export default function Milestones() {
             fontFamily: "var(--font-sans)",
             fontSize: "16px",
             fontWeight: 400,
-            color: "#6b8a89",
+            color: "#000000",
             textAlign: "left",
             margin: subscribed ? "0 0 48px 0" : "0 0 20px 0",
             lineHeight: 1.5,
