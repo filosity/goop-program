@@ -1020,10 +1020,10 @@ function VotingVersion1({
           <div
             style={{
               display: "flex",
-              gap: "20px",
+              gap: "16px",
               justifyContent: "center",
-              flexWrap: "wrap",
-              maxWidth: "820px",
+              width: "100%",
+              maxWidth: "1100px",
             }}
           >
             {questionData.options.map((option) => {
@@ -1037,7 +1037,9 @@ function VotingVersion1({
                     flexDirection: "column",
                     alignItems: "center",
                     gap: "14px",
-                    width: "240px",
+                    flex: "1 1 0",
+                    minWidth: 0,
+                    maxWidth: "220px",
                   }}
                 >
                   <div
@@ -1045,8 +1047,8 @@ function VotingVersion1({
                     onMouseEnter={() => onHoverOption(option)}
                     onMouseLeave={() => onHoverOption(null)}
                     style={{
-                      width: "240px",
-                      height: "280px",
+                      width: "100%",
+                      aspectRatio: "3 / 3.5",
                       cursor: selectedOption ? "default" : "pointer",
                       boxShadow: isSelected ? "inset 0 0 0 1px #0C3D3D" : isHovered ? "inset 0 0 0 1px #0C3D3D" : "inset 0 0 0 1px #d4e0df",
                       overflow: "hidden",
