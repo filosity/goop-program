@@ -35,17 +35,14 @@ function MilestoneCard({
 }) {
   const [hovered, setHovered] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [claimAnim, setClaimAnim] = useState(false);
+  const [claimClicked, setClaimClicked] = useState(false);
   const [celebrating, setCelebrating] = useState(false);
 
   const handleClaim = useCallback(() => {
-    setClaimAnim(true);
-    setTimeout(() => {
-      onClaim();
-      setClaimAnim(false);
-      setCelebrating(true);
-      setTimeout(() => setCelebrating(false), 1400);
-    }, 600);
+    setClaimClicked(true);
+    onClaim();
+    setCelebrating(true);
+    setTimeout(() => setCelebrating(false), 1400);
   }, [onClaim]);
 
   const handleCopy = useCallback(() => {
@@ -54,7 +51,7 @@ function MilestoneCard({
     setTimeout(() => setCopied(false), 2000);
   }, [milestone.code]);
 
-  const showClaimOverlay = isEarned && !isClaimed && !isLocked;
+  const showOverlay = (isEarned && !isClaimed && !isLocked) || claimClicked;
   const showCode = isClaimed;
 
   return (
@@ -95,41 +92,69 @@ function MilestoneCard({
           }}
         />
 
-        {/* Claim overlay */}
-        {showClaimOverlay && (
+        {/* Claim overlay — matches achievement pattern */}
+        {showOverlay && (
           <div
             style={{
               position: "absolute",
               inset: 0,
-              backgroundColor: hovered ? "rgba(12,61,61,0.85)" : "rgba(12,61,61,0.7)",
+              backgroundColor: claimClicked ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0.5)",
               display: "flex",
+              flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              transition: "background-color 0.3s ease",
+              gap: "16px",
+              zIndex: 3,
+              animation: "milestoneOverlayIn 0.3s ease forwards",
+              transition: "background-color 0.8s ease 0.3s",
             }}
           >
-            {claimAnim ? (
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <circle cx="16" cy="16" r="15" stroke="#ffffff" strokeWidth="2" opacity="0.3" />
-                <circle cx="16" cy="16" r="15" stroke="#ffffff" strokeWidth="2" strokeDasharray="94" strokeDashoffset="24" strokeLinecap="round">
-                  <animateTransform attributeName="transform" type="rotate" from="0 16 16" to="360 16 16" dur="0.6s" repeatCount="1" />
-                </circle>
+            {/* Animated circle + checkmark — after claimed */}
+            {claimClicked && (
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style={{ overflow: "visible" }}>
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="17"
+                  fill="#0C3D3D"
+                  style={{
+                    transformOrigin: "18px 18px",
+                    animation: "milestoneCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+                  }}
+                />
+                <path
+                  d="M11 18.5L15.5 23L25 13"
+                  stroke="#ffffff"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    strokeDasharray: 24,
+                    strokeDashoffset: 24,
+                    animation: "milestoneDrawCheck 0.4s ease 0.25s forwards",
+                  }}
+                />
               </svg>
-            ) : (
+            )}
+
+            {/* Claim button — disappears on click */}
+            {!claimClicked && (
               <button
                 onClick={handleClaim}
                 style={{
                   fontFamily: "var(--font-sans)",
-                  fontSize: "16px",
+                  fontSize: "18px",
                   fontWeight: 600,
                   color: "#0C3D3D",
-                  backgroundColor: "#ffffff",
+                  backgroundColor: hovered ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.9)",
                   border: "none",
-                  minHeight: "44px",
-                  padding: "0 28px",
+                  minHeight: "52px",
+                  padding: "0 36px",
                   borderRadius: "999px",
                   cursor: "pointer",
-                  transition: "background-color 0.2s ease",
+                  lineHeight: 1,
+                  transition: "background-color 0.2s ease, opacity 0.2s ease",
+                  animation: "milestoneClaimIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
                 }}
               >
                 Claim →
@@ -139,7 +164,7 @@ function MilestoneCard({
         )}
 
         {/* White gradient sheen on claim */}
-        {celebrating && (
+        {claimClicked && (
           <div
             style={{
               position: "absolute",
@@ -165,11 +190,11 @@ function MilestoneCard({
         )}
       </div>
 
-      {/* Confetti — bursts from center of image area, rendered on outer card */}
+      {/* Confetti — bursts from center of image area */}
       {celebrating && (
-        <div style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "220px", zIndex: 10, pointerEvents: "none", overflow: "visible" }}>
+        <div style={{ position: "absolute", inset: 0, zIndex: 10, pointerEvents: "none", overflow: "visible" }}>
           {Array.from({ length: 45 }).map((_, i) => {
-            const w = 4 + Math.random() * 3;
+            const w = 4 + Math.random() * 7;
             const h = i % 5 === 0 ? w : (2 + Math.random() * 5);
             const angle = Math.random() * Math.PI * 2;
             const dist = 60 + Math.random() * 160;
@@ -384,7 +409,7 @@ export default function Milestones() {
           fontWeight: 400,
           color: "#6b8a89",
           textAlign: "left",
-          margin: "0 0 20px 0",
+          margin: subscribed ? "0 0 48px 0" : "0 0 20px 0",
           lineHeight: 1.5,
           maxWidth: "1280px",
           marginLeft: "auto",
@@ -394,9 +419,9 @@ export default function Milestones() {
         Unlock exclusive rewards the longer you stay subscribed.
       </p>
 
-      {/* Subscribe button or status */}
-      <div style={{ textAlign: "left", marginBottom: "48px", maxWidth: "1280px", marginLeft: "auto", marginRight: "auto" }}>
-        {!subscribed ? (
+      {/* Subscribe button */}
+      {!subscribed && (
+        <div style={{ textAlign: "left", marginBottom: "48px", maxWidth: "1280px", marginLeft: "auto", marginRight: "auto" }}>
           <button
             onClick={handleSubscribe}
             onMouseEnter={() => setBtnHovered(true)}
@@ -417,22 +442,8 @@ export default function Milestones() {
           >
             Subscribe →
           </button>
-        ) : (
-          <p
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "11px",
-              fontWeight: 600,
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-              color: "#0d8b87",
-              margin: 0,
-            }}
-          >
-            Subscribed — Month {currentMonth} of {TOTAL_MONTHS}
-          </p>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Container */}
       <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
@@ -466,7 +477,7 @@ export default function Milestones() {
                         left: "50%",
                         transform: "translateX(-50%)",
                         backgroundColor: "#0C3D3D",
-                        color: isPast ? "#0d8b87" : "#ffffff",
+                        color: "#ffffff",
                         fontFamily: "var(--font-sans)",
                         fontSize: "11px",
                         fontWeight: 500,
@@ -551,8 +562,24 @@ export default function Milestones() {
         </div>
       </div>
 
-      {/* Keyframes for confetti and sheen */}
+      {/* Keyframes — matches achievement animations */}
       <style>{`
+        @keyframes milestoneOverlayIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes milestoneClaimIn {
+          0% { opacity: 0; transform: translateY(8px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes milestoneCirclePop {
+          0% { transform: scale(0); opacity: 0; }
+          100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes milestoneDrawCheck {
+          from { stroke-dashoffset: 24; }
+          to { stroke-dashoffset: 0; }
+        }
         @keyframes milestoneConfetti {
           0% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
           70% { opacity: 1; }
