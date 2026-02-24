@@ -178,6 +178,16 @@ function EarnCard({
           }}
         />
 
+        {/* 20% black overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: "rgba(0,0,0,0.2)",
+            pointerEvents: "none",
+          }}
+        />
+
         {/* Bottom gradient */}
         <div
           style={{
