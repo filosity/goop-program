@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
 /* ─── Data ─── */
-const allImages = ["/tier1.jpg", "/tier2.jpg", "/tier3.jpg", "/tier4.jpg", "/featured1.jpg", "/featured2.jpg", "/featured3.jpg", "/featured4.jpg"];
+const allImages = ["/featured-puffer-jacket.jpg", "/milestone-sweatpants.jpg", "/featured-stanley.jpg", "/tier4.jpg", "/featured1.jpg", "/featured2.jpg", "/featured3.jpg", "/featured4.jpg"];
 
 const baseCards = [
   { title: "AG1 Puffer Jacket", subtitle: "$30 AG Credit", button: "REDEEM", likes: "+3.5K", redeemCode: "PUFFER30" as string | null, scrollTarget: null as string | null, isLink: false },
@@ -13,7 +13,7 @@ const baseCards = [
   { title: "Post your AG1 on Instagram or TikTok", subtitle: "+$5 AG Credit", button: "SHARE", likes: "+1.8K", redeemCode: null as string | null, scrollTarget: null as string | null, isLink: true },
   { title: "Join the Sweepstakes", subtitle: "5 days remaining", button: "ENTER NOW", likes: "+2.7K", redeemCode: null as string | null, scrollTarget: "section-sweepstakes", isLink: false },
   { title: "Leave a product review", subtitle: "+$1 AG Credit", button: "REVIEW", likes: "+1.2K", redeemCode: null as string | null, scrollTarget: null as string | null, isLink: true },
-  { title: "Vote in the weekly poll", subtitle: "+$0.25 AG Credit per vote", button: "VOTE NOW", likes: "+2.4K", redeemCode: null as string | null, scrollTarget: null as string | null, isLink: true },
+  { title: "Keep up your daily streak", subtitle: "+$0.25 AG Credit per day", button: "START STREAK", likes: "+2.4K", redeemCode: null as string | null, scrollTarget: null as string | null, isLink: true },
   { title: "Sign up for SMS alerts", subtitle: "+$1 AG Credit", button: "SIGN UP", likes: "+1.5K", redeemCode: null as string | null, scrollTarget: null as string | null, isLink: true },
 ];
 

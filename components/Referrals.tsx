@@ -32,6 +32,7 @@ export default function Referrals() {
       style={{
         backgroundColor: "#0C3D3D",
         padding: "0",
+        overflow: "hidden",
       }}
     >
       <div
@@ -41,6 +42,7 @@ export default function Referrals() {
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           height: "820px",
+          position: "relative",
         }}
       >
         {/* ─── Left column: form ─── */}
@@ -52,6 +54,8 @@ export default function Referrals() {
             flexDirection: "column",
             justifyContent: "center",
             overflow: "hidden",
+            position: "relative",
+            zIndex: 2,
           }}
         >
           {/* Label */}
@@ -457,33 +461,44 @@ export default function Referrals() {
           </div>
         </div>
 
-        {/* ─── Right column: image ─── */}
+        {/* ─── Right column: image (extends full width to the right edge) ─── */}
         <div
           style={{
             position: "relative",
-            overflow: "hidden",
+            overflow: "visible",
           }}
         >
-          <img
-            src="/background-header.jpg"
-            alt=""
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              display: "block",
-            }}
-          />
-          {/* Subtle overlay */}
           <div
             style={{
               position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(to right, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0) 30%)",
-              pointerEvents: "none",
+              top: 0,
+              left: 0,
+              right: "-50vw",
+              bottom: 0,
+              overflow: "hidden",
             }}
-          />
+          >
+            <img
+              src="/background-header.jpg"
+              alt=""
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
+            {/* Subtle overlay */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(to right, rgba(12,61,61,0.15) 0%, rgba(0,0,0,0) 30%)",
+                pointerEvents: "none",
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>

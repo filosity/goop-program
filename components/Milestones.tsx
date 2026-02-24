@@ -284,7 +284,7 @@ export default function Milestones() {
       id="section-milestones"
       style={{
         backgroundColor: "#ffffff",
-        padding: "80px 48px 120px",
+        padding: "40px 48px 120px",
       }}
     >
       {/* Heading */}

@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowRight } from "@vectoricons/atlas-icons-react";
 const FeaturedV2 = dynamic(() => import("./FeaturedV2"), { ssr: false });
 const FeaturedV3 = dynamic(() => import("./FeaturedV3"), { ssr: false });
 
-const allImages = ["/tier1.jpg", "/tier2.jpg", "/tier3.jpg", "/tier4.jpg", "/featured1.jpg", "/featured2.jpg", "/featured3.jpg", "/featured4.jpg"];
+const allImages = ["/featured-puffer-jacket.jpg", "/milestone-sweatpants.jpg", "/featured-stanley.jpg", "/tier4.jpg", "/featured1.jpg", "/featured2.jpg", "/featured3.jpg", "/featured4.jpg"];
 
 const baseCards = [
   {
@@ -74,9 +74,9 @@ const baseCards = [
     isLink: true,
   },
   {
-    title: "Vote in the weekly poll",
-    subtitle: "+$0.25 AG Credit per vote",
-    button: "VOTE NOW",
+    title: "Keep up your daily streak",
+    subtitle: "+$0.25 AG Credit per day",
+    button: "START STREAK",
     likes: "+2.4K",
     redeemCode: null,
     scrollTarget: null as string | null,
