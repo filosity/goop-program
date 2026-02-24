@@ -6,9 +6,9 @@ import { useState, useEffect, useRef, useCallback } from "react";
 const allImages = ["/featured-puffer-jacket.jpg", "/milestone-sweatpants.jpg", "/featured-stanley.jpg", "/tier4.jpg", "/featured1.jpg", "/featured2.jpg", "/featured3.jpg", "/featured4.jpg"];
 
 const baseCards = [
-  { title: "AG1 Puffer Jacket", subtitle: "$30 AG Credit", button: "REDEEM", likes: "+3.5K", redeemCode: "PUFFER30" as string | null, scrollTarget: null as string | null, isLink: false },
-  { title: "AG1 Pajamas", subtitle: "$20 AG Credit", button: "REDEEM", likes: "+2.8K", redeemCode: "PAJAMAS20" as string | null, scrollTarget: null as string | null, isLink: false },
-  { title: "AG1 Stanley Cup", subtitle: "$10 AG Credit", button: "REDEEM", likes: "+4.1K", redeemCode: "STANLEY10" as string | null, scrollTarget: null as string | null, isLink: false },
+  { title: "AG1 Puffer Jacket", subtitle: "$30 AG Credit", button: "REDEEM", likes: "+3.5K", redeemCode: null as string | null, scrollTarget: "section-ways-to-earn" as string | null, isLink: false },
+  { title: "AG1 Pajama Pants", subtitle: "$20 AG Credit", button: "REDEEM", likes: "+2.8K", redeemCode: null as string | null, scrollTarget: "section-ways-to-earn" as string | null, isLink: false },
+  { title: "AG1 Stanley Cup", subtitle: "$10 AG Credit", button: "REDEEM", likes: "+4.1K", redeemCode: null as string | null, scrollTarget: "section-ways-to-earn" as string | null, isLink: false },
   { title: "Refer a friend and earn $15 AG Credit", subtitle: "+$15 AG Credit per referral", button: "REFER NOW", likes: "+890", redeemCode: null as string | null, scrollTarget: null as string | null, isLink: true },
   { title: "Post your AG1 on Instagram or TikTok", subtitle: "+$5 AG Credit", button: "SHARE", likes: "+1.8K", redeemCode: null as string | null, scrollTarget: null as string | null, isLink: true },
   { title: "Join the Sweepstakes", subtitle: "5 days remaining", button: "ENTER NOW", likes: "+2.7K", redeemCode: null as string | null, scrollTarget: "section-sweepstakes", isLink: false },
@@ -146,6 +146,11 @@ function GridCard({
       if (el) {
         const top = el.getBoundingClientRect().top + window.scrollY - 76 - 60;
         window.scrollTo({ top, behavior: "smooth" });
+      }
+      if (card.scrollTarget === "section-ways-to-earn") {
+        setTimeout(() => {
+          window.dispatchEvent(new Event("activate-products-tab"));
+        }, 600);
       }
       return;
     }

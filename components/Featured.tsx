@@ -15,17 +15,17 @@ const baseCards = [
     subtitle: "$30 AG Credit",
     button: "REDEEM",
     likes: "+3.5K",
-    redeemCode: "PUFFER30",
-    scrollTarget: null as string | null,
+    redeemCode: null,
+    scrollTarget: "section-ways-to-earn" as string | null,
     isLink: false,
   },
   {
-    title: "AG1 Pajamas",
+    title: "AG1 Pajama Pants",
     subtitle: "$20 AG Credit",
     button: "REDEEM",
     likes: "+2.8K",
-    redeemCode: "PAJAMAS20",
-    scrollTarget: null as string | null,
+    redeemCode: null,
+    scrollTarget: "section-ways-to-earn" as string | null,
     isLink: false,
   },
   {
@@ -33,8 +33,8 @@ const baseCards = [
     subtitle: "$10 AG Credit",
     button: "REDEEM",
     likes: "+4.1K",
-    redeemCode: "STANLEY10",
-    scrollTarget: null as string | null,
+    redeemCode: null,
+    scrollTarget: "section-ways-to-earn" as string | null,
     isLink: false,
   },
   {
@@ -830,6 +830,11 @@ function FeaturedCard({
       if (el) {
         const top = el.getBoundingClientRect().top + window.scrollY - 76 - 60;
         window.scrollTo({ top, behavior: "smooth" });
+      }
+      if (card.scrollTarget === "section-ways-to-earn") {
+        setTimeout(() => {
+          window.dispatchEvent(new Event("activate-products-tab"));
+        }, 600);
       }
       return;
     }

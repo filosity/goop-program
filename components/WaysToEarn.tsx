@@ -1043,19 +1043,11 @@ function RedeemContent({
   );
 }
 
-/* ─── Free products data ─── */
+/* ─── Exclusive merch data ─── */
 const freeProducts = [
-  { name: "AG1 Puffer Jacket", points: 30, image: "/featured1.jpg", tierRequired: null, discount: null as string | null },
-  { name: "AG1 Pajamas", points: 20, image: "/featured2.jpg", tierRequired: null, discount: null as string | null },
-  { name: "AG1 Stanley Cup", points: 10, image: "/featured3.jpg", tierRequired: null, discount: null },
-  { name: "AG1 Travel Packs (30ct)", points: 15, image: "/product-travelpacks-original.jpg", tierRequired: null, discount: null },
-  { name: "AG1 Travel Packs Chocolate", points: 15, image: "/product-travelpacks-chocolate.jpg", tierRequired: null, discount: null },
-  { name: "AG1 Shaker Bottle", points: 8, image: "/featured4.jpg", tierRequired: null, discount: null },
-  { name: "AG1 Duffel Bag", points: 12, image: "/earn3.jpg", tierRequired: null, discount: null },
-  { name: "AG1 Sweatshirt", points: 18, image: "/earn5.jpg", tierRequired: null, discount: null },
-  { name: "AG1 Hat", points: 10, image: "/earn7.jpg", tierRequired: null, discount: null },
-  { name: "AG1 D3+K2", points: 12, image: "/product-d3k2.jpg", tierRequired: null, discount: null },
-  { name: "AG1 Omega-3", points: 14, image: "/product-omega3.jpg", tierRequired: null, discount: null },
+  { name: "AG1 Puffer Jacket", points: 30, image: "/featured-puffer-jacket.jpg", tierRequired: null, discount: null as string | null },
+  { name: "AG1 Pajama Pants", points: 20, image: "/milestone-sweatpants.jpg", tierRequired: null, discount: null as string | null },
+  { name: "AG1 Stanley Cup", points: 10, image: "/featured-stanley.jpg", tierRequired: null, discount: null },
 ];
 
 /* ─── Free products tab content (carousel) ─── */
@@ -1940,14 +1932,17 @@ export default function WaysToEarn() {
         setCurrentTier(newTier);
       }
     };
+    const activateProducts = () => setActiveTab("products");
     window.addEventListener("highlight-earn-handles", handler);
     window.addEventListener("activate-earn-tab", activateEarn);
+    window.addEventListener("activate-products-tab", activateProducts);
     window.addEventListener("points-updated", pointsHandler);
     window.addEventListener("tier-updated", tierHandler);
     window.addEventListener("spend-updated", spendHandler);
     return () => {
       window.removeEventListener("highlight-earn-handles", handler);
       window.removeEventListener("activate-earn-tab", activateEarn);
+      window.removeEventListener("activate-products-tab", activateProducts);
       window.removeEventListener("points-updated", pointsHandler);
       window.removeEventListener("tier-updated", tierHandler);
       window.removeEventListener("spend-updated", spendHandler);
@@ -2042,7 +2037,7 @@ export default function WaysToEarn() {
       >
         {activeTab === "earn" && "Follow us on social media, sign up for SMS and more."}
         {activeTab === "exchange" && "Exchange your AG Credit for a discount."}
-        {activeTab === "products" && "Redeem your AG Credit for free products."}
+        {activeTab === "products" && "Redeem your AG Credit for exclusive merch — available for a limited time."}
         {activeTab === "upload" && "Upload your receipt and earn AG Credit for every dollar spent."}
       </p>
 
@@ -2129,7 +2124,7 @@ export default function WaysToEarn() {
               border: activeTab === "products" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
             }}
           >
-            Free Products
+            Exclusive Merch
           </button>
 
           <button
