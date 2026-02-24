@@ -77,8 +77,8 @@ function AchievementCard({
       onMouseLeave={() => setHovered(false)}
       onClick={onClick}
       style={{
-        width: "300px",
-        minWidth: "300px",
+        width: "360px",
+        minWidth: "360px",
         flexShrink: 0,
         display: "flex",
         flexDirection: "column",
@@ -92,7 +92,7 @@ function AchievementCard({
       <div
         style={{
           position: "relative",
-          height: "260px",
+          height: "300px",
           overflow: "hidden",
           border: "1px solid #d4e0df",
           borderBottom: "none",
@@ -308,10 +308,10 @@ function AchievementCard({
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "15px",
+                fontSize: "16px",
                 fontWeight: 400,
                 lineHeight: 1.5,
-                color: "#6b8a89",
+                color: "#000000",
                 margin: 0,
               }}
             >
@@ -390,9 +390,9 @@ function AchievementCard({
             <span
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "14px",
+                fontSize: "15px",
                 fontWeight: 400,
-                color: "#aaaaaa",
+                color: "#000000",
                 lineHeight: 1,
               }}
             >
