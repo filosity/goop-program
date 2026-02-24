@@ -1706,8 +1706,11 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
           )}
         </div>
         <div style={{ textAlign: "center", flexShrink: 0 }}>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "36px", fontWeight: 400, color: "#000000", letterSpacing: "-0.02em", lineHeight: 1, display: "block" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "36px", fontWeight: 400, color: "#000000", letterSpacing: "-0.02em", lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px" }}>
             {checkedCount}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8913A" style={{ flexShrink: 0 }}>
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
           </span>
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", fontWeight: 600, color: "#6b8a89", letterSpacing: "0.06em", textTransform: "uppercase", lineHeight: 1, marginTop: "6px", display: "block" }}>
             Days streak
@@ -2288,6 +2291,9 @@ export default function Activities() {
               border: "1px solid #0C3D3D",
             }}
           >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill={activeTab === "streak" ? "#ffffff" : "#0C3D3D"} style={{ marginRight: "4px", flexShrink: 0, verticalAlign: "middle" }}>
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
             Daily Streak{" "}
             <span
               style={{
