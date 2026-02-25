@@ -2092,7 +2092,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                   textTransform: "uppercase",
                   color: "#000000",
                   lineHeight: 1,
-                  marginTop: hasReward ? "6px" : "1px",
+                  marginTop: hasReward ? "6px" : "-2px",
                   whiteSpace: "nowrap",
                   textAlign: "center",
                 }}>
@@ -2107,7 +2107,8 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                     fontWeight: 600,
                     color: "#000000",
                     lineHeight: 1,
-                    marginTop: "1px",
+                    marginTop: "0px",
+                    marginBottom: "6px",
                     whiteSpace: "nowrap",
                     textAlign: "center",
                     opacity: earnedDay === day.dayNum ? 0 : 1,
