@@ -242,7 +242,7 @@ export default function StickyNav() {
             }}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "16px",
+              fontSize: "14px",
               fontWeight: 600,
               color: "#1a1a1a",
               opacity: 0.35,
@@ -298,7 +298,7 @@ export default function StickyNav() {
           <p
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "15px",
+              fontSize: "13px",
               fontWeight: 600,
               color: "#1a1a1a",
               margin: 0,
@@ -311,7 +311,7 @@ export default function StickyNav() {
           <p
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "32px",
+              fontSize: "28px",
               fontWeight: 400,
               lineHeight: 1,
               color: "#000000",

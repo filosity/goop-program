@@ -108,6 +108,8 @@ function ProgramDropdown({
   setHeaderBgMode,
   showFeaturedSection,
   setShowFeaturedSection,
+  activeActivities,
+  setActiveActivities,
 }: {
   open: boolean;
   totalSpend: number;
@@ -137,6 +139,8 @@ function ProgramDropdown({
   setHeaderBgMode: (m: "video" | "static") => void;
   showFeaturedSection: boolean;
   setShowFeaturedSection: (b: boolean) => void;
+  activeActivities: number;
+  setActiveActivities: (n: number) => void;
 }) {
   const handleSimulateSpend = useCallback(
     (amount: number) => {
@@ -225,6 +229,7 @@ function ProgramDropdown({
       {versionMenu("featured", "featured", "featured-version", activeFeatured, setActiveFeatured)}
       {versionMenu("membership", "tiers", "tiers-version", activeMembership, setActiveMembership)}
       {versionMenu("sweepstakes", "sweepstakes", "sweepstakes-version", activeSweepstakes, setActiveSweepstakes)}
+      {versionMenu("activities", "activities", "activities-version", activeActivities, setActiveActivities)}
       {/* Header background mode */}
       <div
         style={{ position: "relative" }}
@@ -321,6 +326,7 @@ export default function Header() {
   const [showMembership, setShowMembership] = useState(false);
   const [showFeaturedSection, setShowFeaturedSection] = useState(false);
   const [headerBgMode, setHeaderBgMode] = useState<"video" | "static">("video");
+  const [activeActivities, setActiveActivities] = useState(1);
   const [shopHov, setShopHov] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -437,6 +443,8 @@ export default function Header() {
                 setHeaderBgMode={setHeaderBgMode}
                 showFeaturedSection={showFeaturedSection}
                 setShowFeaturedSection={setShowFeaturedSection}
+                activeActivities={activeActivities}
+                setActiveActivities={setActiveActivities}
               />
             </div>
           )}
@@ -599,6 +607,8 @@ export default function Header() {
                 setHeaderBgMode={setHeaderBgMode}
                 showFeaturedSection={showFeaturedSection}
                 setShowFeaturedSection={setShowFeaturedSection}
+                activeActivities={activeActivities}
+                setActiveActivities={setActiveActivities}
               />
             </div>
             <a href="#" style={{ ...navLink, fontSize: "16px" }}>AG1 for Daily Health</a>

@@ -1537,7 +1537,374 @@ const streakRewards = [
   { name: "AG1 Tote", image: "/milestone-tote.jpg", code: "TOTE42" },
 ];
 
-/* ─── Daily Check-in Content ─── */
+/* ─── Streak rewards V1 (every 30 days) ─── */
+const streakRewardsV1 = [
+  { name: "AG1 Shaker Bottle", image: "/featured-stanley.jpg", code: "SHAKER30" },
+  { name: "Travel Packs", image: "/earn1.jpg", code: "TRAVEL60" },
+  { name: "$5 AG Credit", image: "/featured1.jpg", code: "STREAK5" },
+  { name: "AG1 Hat", image: "/milestone-hat.jpg", code: "HAT120" },
+  { name: "AG1 Tote", image: "/milestone-tote.jpg", code: "TOTE150" },
+  { name: "Free Shipping", image: "/earn2.jpg", code: "FREESHIP180" },
+];
+
+/* ─── Daily Check-in V1 — Multiplier Progress Bar ─── */
+function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: number) => void; isMobile: boolean }) {
+  const [checkedCount, setCheckedCount] = useState(0);
+  const [checkInHovered, setCheckInHovered] = useState(false);
+  const [showCheckedMessage, setShowCheckedMessage] = useState(false);
+  const [hasCheckedOnce, setHasCheckedOnce] = useState(false);
+  const [hoveredDot, setHoveredDot] = useState<number | null>(null);
+  const [animatingBar, setAnimatingBar] = useState(false);
+  const checkinPointsRef = useRef(5);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.points !== undefined) checkinPointsRef.current = detail.points;
+    };
+    window.addEventListener("points-updated", handler);
+    return () => window.removeEventListener("points-updated", handler);
+  }, []);
+
+  useEffect(() => { onStreakChange(checkedCount); }, [checkedCount, onStreakChange]);
+
+  const currentDay = 1 + checkedCount;
+
+  // Multiplier tiers
+  const getTier = (day: number) => {
+    if (day >= 20) return { multiplier: "3x", rate: 0.75 };
+    if (day >= 10) return { multiplier: "2x", rate: 0.50 };
+    return { multiplier: "1x", rate: 0.25 };
+  };
+
+  const tier = getTier(currentDay);
+
+  // Progress within current 30-day cycle
+  const cycleDay = ((currentDay - 1) % 30) + 1;
+
+  // Next reward
+  const nextRewardIdx = Math.floor((currentDay - 1) / 30);
+  const nextRewardDay = (nextRewardIdx + 1) * 30;
+  const daysUntilReward = nextRewardDay - currentDay;
+  const reward = streakRewardsV1[nextRewardIdx % streakRewardsV1.length];
+
+  // Bar progress (0-100) based on position within 30-day cycle
+  const barProgress = Math.min(((cycleDay - 1) / 29) * 100, 100);
+
+  // Milestones at day 1, 10, 20 within cycle → positions 0%, 31%, 65.5%
+  const milestones = [
+    { label: "1x", dayInCycle: 1, position: 0, rate: "$0.25/day", absoluteDay: Math.floor((currentDay - 1) / 30) * 30 + 1 },
+    { label: "2x", dayInCycle: 10, position: 31, rate: "$0.50/day", absoluteDay: Math.floor((currentDay - 1) / 30) * 30 + 10 },
+    { label: "3x", dayInCycle: 20, position: 65.5, rate: "$0.75/day", absoluteDay: Math.floor((currentDay - 1) / 30) * 30 + 20 },
+  ];
+
+  const handleCheckIn = useCallback(() => {
+    if (showCheckedMessage) return;
+    setAnimatingBar(true);
+    setCheckedCount((c) => c + 1);
+
+    const rate = getTier(currentDay).rate;
+    const newTotal = Math.round((checkinPointsRef.current + rate) * 100) / 100;
+    checkinPointsRef.current = newTotal;
+    window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
+
+    if (!hasCheckedOnce) {
+      setShowCheckedMessage(true);
+      setHasCheckedOnce(true);
+      setTimeout(() => setShowCheckedMessage(false), 2800);
+    }
+    setTimeout(() => setAnimatingBar(false), 800);
+  }, [showCheckedMessage, currentDay, hasCheckedOnce]);
+
+  return (
+    <div
+      style={{
+        border: "1px solid #d4e0df",
+        backgroundColor: "#ffffff",
+        padding: isMobile ? "24px 16px" : "48px",
+      }}
+    >
+      {/* Next reward preview */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          marginBottom: "32px",
+          border: "1px solid #d4e0df",
+          overflow: "hidden",
+          height: isMobile ? "auto" : "260px",
+        }}
+      >
+        <div
+          style={{
+            flex: 1,
+            backgroundColor: "#ffffff",
+            padding: "36px 40px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "18px",
+              fontWeight: 600,
+              color: "#000000",
+              margin: "0 0 12px 0",
+              lineHeight: 1,
+            }}
+          >
+            {daysUntilReward === 0 ? "Today\u2019s reward" : `Unlocks in ${daysUntilReward} day${daysUntilReward === 1 ? "" : "s"}`}
+          </p>
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "28px",
+              fontWeight: 400,
+              color: "#000000",
+              margin: 0,
+              lineHeight: 1.2,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            {reward.name}
+          </p>
+        </div>
+        <div style={{ width: isMobile ? "100%" : "510px", maxWidth: isMobile ? "100%" : "510px", height: isMobile ? "200px" : "auto", flexShrink: 0 }}>
+          <img
+            src={reward.image}
+            alt={reward.name}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Day counter + multiplier label */}
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "24px" }}>
+        <div>
+          <span
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "36px",
+              fontWeight: 400,
+              color: "#000000",
+              letterSpacing: "-0.02em",
+              lineHeight: 1,
+            }}
+          >
+            Day {currentDay}
+          </span>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <span
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "18px",
+              fontWeight: 600,
+              color: "#0C3D3D",
+              lineHeight: 1,
+            }}
+          >
+            {tier.multiplier}
+          </span>
+          <span
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "16px",
+              fontWeight: 400,
+              color: "#000000",
+              lineHeight: 1,
+            }}
+          >
+            ${tier.rate.toFixed(2)}/day
+          </span>
+        </div>
+      </div>
+
+      {/* Multiplier progress bar */}
+      <div style={{ position: "relative", marginBottom: "48px", padding: "0 6px" }}>
+        {/* Bar background */}
+        <div
+          style={{
+            height: "6px",
+            backgroundColor: "#e8eeed",
+            borderRadius: "3px",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          {/* Bar fill */}
+          <div
+            style={{
+              height: "100%",
+              width: `${barProgress}%`,
+              backgroundColor: "#0C3D3D",
+              borderRadius: "3px",
+              transition: animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none",
+            }}
+          />
+        </div>
+
+        {/* Milestone dots */}
+        {milestones.map((m, i) => {
+          const isReached = cycleDay >= m.dayInCycle;
+          const daysToReach = m.dayInCycle - cycleDay;
+          const tooltipText = isReached
+            ? `${m.rate} earned`
+            : `${daysToReach} day${daysToReach === 1 ? "" : "s"} until ${m.rate}`;
+
+          return (
+            <div
+              key={i}
+              onMouseEnter={() => setHoveredDot(i)}
+              onMouseLeave={() => setHoveredDot(null)}
+              style={{
+                position: "absolute",
+                left: `${m.position}%`,
+                top: "-5px",
+                transform: "translateX(-50%)",
+                cursor: "default",
+              }}
+            >
+              {/* Dot */}
+              <div
+                style={{
+                  width: "16px",
+                  height: "16px",
+                  borderRadius: "50%",
+                  backgroundColor: isReached ? "#0C3D3D" : "#d4e0df",
+                  border: isReached ? "3px solid #0C3D3D" : "3px solid #ffffff",
+                  boxShadow: "0 0 0 1px #d4e0df",
+                  transition: "background-color 0.5s ease",
+                }}
+              />
+              {/* Label below */}
+              <span
+                style={{
+                  position: "absolute",
+                  top: "22px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "13px",
+                  fontWeight: isReached ? 700 : 500,
+                  color: isReached ? "#0C3D3D" : "#999",
+                  whiteSpace: "nowrap",
+                  lineHeight: 1,
+                }}
+              >
+                {m.label}
+              </span>
+              {/* Tooltip */}
+              {hoveredDot === i && (
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: "calc(100% + 8px)",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    backgroundColor: "#1a1a1a",
+                    color: "#ffffff",
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "12px",
+                    fontWeight: 500,
+                    padding: "6px 10px",
+                    borderRadius: "6px",
+                    whiteSpace: "nowrap",
+                    lineHeight: 1,
+                    zIndex: 10,
+                  }}
+                >
+                  {tooltipText}
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "100%",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      width: 0,
+                      height: 0,
+                      borderLeft: "4px solid transparent",
+                      borderRight: "4px solid transparent",
+                      borderTop: "4px solid #1a1a1a",
+                    }}
+                  />
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Check-in button / confirmation */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", minHeight: "80px", justifyContent: "center" }}>
+        {showCheckedMessage ? (
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", animation: "streakCheckedIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }}>
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style={{ overflow: "visible" }}>
+              <circle cx="20" cy="20" r="19" fill="#0C3D3D" style={{ transformOrigin: "20px 20px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
+              <path d="M12 21L17.5 26.5L28 14" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "streakDrawCheck 0.4s ease 0.25s forwards" }} />
+            </svg>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.3s both" }}>
+              +${tier.rate.toFixed(2)} AG Credit earned
+            </p>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.5s both" }}>
+              Check in again tomorrow
+            </p>
+          </div>
+        ) : (
+          <button
+            onClick={handleCheckIn}
+            onMouseEnter={() => setCheckInHovered(true)}
+            onMouseLeave={() => setCheckInHovered(false)}
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "18px",
+              fontWeight: 600,
+              color: "#ffffff",
+              backgroundColor: checkInHovered ? "#155050" : "#0C3D3D",
+              border: "none",
+              minHeight: "52px",
+              padding: "0 40px",
+              borderRadius: "999px",
+              cursor: "pointer",
+              transition: "background-color 0.2s ease",
+              lineHeight: 1,
+            }}
+          >
+            {"Check In Today \u2192"}
+          </button>
+        )}
+      </div>
+
+      <style>{`
+        @keyframes streakCirclePop {
+          0% { transform: scale(0); opacity: 0; }
+          100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes streakDrawCheck {
+          from { stroke-dashoffset: 24; }
+          to { stroke-dashoffset: 0; }
+        }
+        @keyframes streakCheckedIn {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes streakTextFade {
+          from { opacity: 0; transform: translateY(4px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+/* ─── Daily Check-in Content (V2) ─── */
 function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (streak: number) => void; isMobile: boolean }) {
   const [checkedCount, setCheckedCount] = useState(0);
   const [checkInHovered, setCheckInHovered] = useState(false);
@@ -2261,6 +2628,17 @@ export default function Activities() {
   const [votingAnsweredCount, setVotingAnsweredCount] = useState(0);
   const [streakStreak, setStreakStreak] = useState(0);
   const [hasClaimable, setHasClaimable] = useState(false);
+  const [streakVersion, setStreakVersion] = useState(1);
+
+  // Listen for version switching from Header dropdown
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const version = (e as CustomEvent).detail?.version;
+      if (version === 1 || version === 2) setStreakVersion(version);
+    };
+    window.addEventListener("activities-version", handler);
+    return () => window.removeEventListener("activities-version", handler);
+  }, []);
 
   // Dispatch event for StickyNav red dot
   useEffect(() => {
@@ -2447,7 +2825,10 @@ export default function Activities() {
 
         {/* Tab content */}
         <div style={{ display: activeTab === "streak" ? "block" : "none" }}>
-          <DailyStreakContent onStreakChange={setStreakStreak} isMobile={isMobile} />
+          {streakVersion === 1
+            ? <DailyStreakV1 onStreakChange={setStreakStreak} isMobile={isMobile} />
+            : <DailyStreakContent onStreakChange={setStreakStreak} isMobile={isMobile} />
+          }
         </div>
         {activeTab === "achievements" && <AchievementsContent onClaimedCountChange={setClaimedCount} onHasClaimableChange={setHasClaimable} isMobile={isMobile} />}
         {activeTab === "voting" && (
