@@ -227,7 +227,6 @@ export default function TiersV3() {
               fontFamily: "var(--font-sans)",
               fontSize: "16px",
               fontWeight: 600,
-              letterSpacing: "0.08em",
               color: "rgba(255,255,255,0.6)",
               margin: "0 0 16px 0",
               lineHeight: 1,
@@ -430,7 +429,6 @@ export default function TiersV3() {
               fontFamily: "var(--font-sans)",
               fontSize: "12px",
               fontWeight: 600,
-              letterSpacing: "0.04em",
               color: "#000000",
               zIndex: 3,
             }}

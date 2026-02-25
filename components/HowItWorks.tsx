@@ -74,7 +74,6 @@ function SignUpStep({ active, imageSrc }: { active: boolean; index: number; imag
             fontFamily: "var(--font-sans)",
             fontSize: "15px",
             fontWeight: 600,
-            letterSpacing: "0.08em",
             color: "#999999",
             margin: "0 0 8px 0",
           }}
@@ -209,7 +208,6 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
             fontFamily: "var(--font-sans)",
             fontSize: "15px",
             fontWeight: 600,
-            letterSpacing: "0.08em",
             color: "#999999",
             margin: "0 0 6px 0",
           }}

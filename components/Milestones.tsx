@@ -261,7 +261,6 @@ function MilestoneCard({
               fontFamily: "var(--font-sans)",
               fontSize: "16px",
               fontWeight: 600,
-              letterSpacing: "0.08em",
               color: isCurrent ? "#0C3D3D" : "#6b8a89",
             }}
           >
@@ -293,7 +292,6 @@ function MilestoneCard({
                   fontFamily: "var(--font-sans)",
                   fontSize: "12px",
                   fontWeight: 600,
-                  letterSpacing: "0.06em",
                   color: "#000000",
                   backgroundColor: "#f5f8f8",
                   border: "1px solid #d4e0df",
@@ -622,7 +620,6 @@ export default function Milestones() {
                       fontFamily: "var(--font-sans)",
                       fontSize: "13px",
                       fontWeight: isCurrent ? 700 : 500,
-                      letterSpacing: "0.06em",
                       color: isEarned ? "#0C3D3D" : "#999999",
                       margin: "8px 0 0 0",
                       textAlign: "center",

@@ -278,7 +278,6 @@ function ImmersiveShowcase() {
               fontSize: "15px",
               fontWeight: 600,
               color: "rgba(255,255,255,0.45)",
-              letterSpacing: "0.08em",
               marginBottom: "14px",
             }}
           >
@@ -392,7 +391,6 @@ function ImmersiveShowcase() {
                     fontFamily: "var(--font-sans)",
                     fontSize: "14px",
                     fontWeight: 600,
-                    letterSpacing: "0.08em",
                     color: "#ffffff",
                     backgroundColor: "rgba(255,255,255,0.12)",
                     border: "1px solid rgba(255,255,255,0.3)",
@@ -574,7 +572,6 @@ function CommunityHero({
             fontFamily: "var(--font-sans)",
             fontSize: "16px",
             fontWeight: 600,
-            letterSpacing: "0.06em",
             color: item.type === "instagram" ? "#e1306c" : "rgba(255,255,255,0.8)",
             marginBottom: "8px",
           }}
@@ -690,7 +687,6 @@ function CommunityGridCard({
               fontFamily: "var(--font-sans)",
               fontSize: "15px",
               fontWeight: 600,
-              letterSpacing: "0.06em",
               color: hasImg ? "rgba(255,255,255,0.8)" : item.type === "instagram" ? "#c13584" : "#6b8a89",
             }}
           >
@@ -807,7 +803,6 @@ function CommunityMagazine() {
               fontFamily: "var(--font-sans)",
               fontSize: "21px",
               fontWeight: 600,
-              letterSpacing: "0.04em",
               color: "#0C3D3D",
               backgroundColor: "transparent",
               border: "1px solid #0C3D3D",
@@ -830,7 +825,6 @@ function CommunityMagazine() {
               fontFamily: "var(--font-sans)",
               fontSize: "21px",
               fontWeight: 600,
-              letterSpacing: "0.04em",
               color: "#0C3D3D",
               backgroundColor: "transparent",
               border: "1px solid #0C3D3D",
@@ -922,7 +916,6 @@ function EventCalendarCard({
               fontFamily: "var(--font-sans)",
               fontSize: "16px",
               fontWeight: 600,
-              letterSpacing: "0.06em",
               color: "#ffffff",
               lineHeight: 1,
             }}
@@ -980,7 +973,6 @@ function EventCalendarCard({
               fontFamily: "var(--font-sans)",
               fontSize: "15px",
               fontWeight: 600,
-              letterSpacing: "0.04em",
               lineHeight: 1,
               padding: "5px 10px",
               borderRadius: "3px",
@@ -1111,7 +1103,6 @@ function EventsCalendar() {
               fontFamily: "var(--font-sans)",
               fontSize: "21px",
               fontWeight: 600,
-              letterSpacing: "0.04em",
               color: "#0C3D3D",
               backgroundColor: "transparent",
               border: "1px solid #0C3D3D",
@@ -1134,7 +1125,6 @@ function EventsCalendar() {
               fontFamily: "var(--font-sans)",
               fontSize: "21px",
               fontWeight: 600,
-              letterSpacing: "0.04em",
               color: "#0C3D3D",
               backgroundColor: "transparent",
               border: "1px solid #0C3D3D",

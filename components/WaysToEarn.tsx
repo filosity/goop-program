@@ -517,7 +517,6 @@ function RedeemContent({
             fontFamily: "var(--font-sans)",
             fontSize: "16px",
             fontWeight: 600,
-            letterSpacing: "0.08em",
             color: "#0C3D3D",
             margin: "0 0 24px 0",
             lineHeight: 1,
@@ -563,7 +562,6 @@ function RedeemContent({
               fontFamily: "var(--font-sans)",
               fontSize: "16px",
               fontWeight: 600,
-              letterSpacing: "0.06em",
               color: "#0C3D3D",
               lineHeight: 1,
             }}
@@ -607,7 +605,6 @@ function RedeemContent({
             fontFamily: "var(--font-sans)",
             fontSize: "16px",
             fontWeight: 600,
-            letterSpacing: "0.06em",
             color: "#0C3D3D",
             margin: "0 0 16px 0",
             lineHeight: 1,
@@ -880,7 +877,6 @@ function RedeemContent({
                   fontFamily: "var(--font-sans)",
                   fontSize: "16px",
                   fontWeight: 600,
-                  letterSpacing: "0.08em",
                   color: "#aaaaaa",
                   margin: "0 0 10px 0",
                   lineHeight: 1,
@@ -923,7 +919,6 @@ function RedeemContent({
                   fontFamily: "var(--font-sans)",
                   fontSize: "16px",
                   fontWeight: 600,
-                  letterSpacing: "0.08em",
                   color: "#aaaaaa",
                   margin: "0 0 10px 0",
                   lineHeight: 1,
@@ -962,7 +957,6 @@ function RedeemContent({
                 fontFamily: "var(--font-sans)",
                 fontSize: "15px",
                 fontWeight: 600,
-                letterSpacing: "0.06em",
                 color: "#aaaaaa",
                 lineHeight: 1,
               }}
@@ -1298,7 +1292,6 @@ function FreeProductsContent({
                         fontSize: "15px",
                         fontWeight: 600,
                         color: "#ffffff",
-                        letterSpacing: "0.08em",
                       }}
                     >
                       Tier {product.tierRequired} required
@@ -1593,7 +1586,6 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
                 fontFamily: "var(--font-sans)",
                 fontSize: "16px",
                 fontWeight: 600,
-                letterSpacing: "0.08em",
                 color: "#0C3D3D",
                 margin: "0 0 20px 0",
                 lineHeight: 1,
@@ -1687,7 +1679,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
 
         {phase === "selected" && (
           <>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
               review &amp; submit
             </span>
 
@@ -1741,7 +1733,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
 
         {phase === "uploading" && (
           <>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
               uploading
             </span>
 
@@ -1778,7 +1770,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
 
         {phase === "success" && (
           <>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
               complete
             </span>
 
@@ -1843,7 +1835,6 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
             fontFamily: "var(--font-sans)",
             fontSize: "11px",
             fontWeight: 600,
-            letterSpacing: "0.04em",
             padding: "10px 18px",
             borderRadius: "999px",
             lineHeight: 1,

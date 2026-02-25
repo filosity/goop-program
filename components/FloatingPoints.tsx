@@ -91,7 +91,6 @@ export default function FloatingPoints() {
             fontFamily: "var(--font-sans)",
             fontSize: "15px",
             fontWeight: 600,
-            letterSpacing: "0.06em",
             color: "#1a1a1a",
             margin: 0,
             lineHeight: 1,

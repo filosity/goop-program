@@ -443,7 +443,6 @@ export default function MembershipV2() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "16px",
                 fontWeight: 600,
-                letterSpacing: "0.1em",
                 color: sectionHovered ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.4)",
                 margin: "0 0 24px 0",
                 lineHeight: 1,

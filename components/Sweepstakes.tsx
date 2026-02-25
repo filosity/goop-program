@@ -309,7 +309,6 @@ export default function Sweepstakes() {
                     fontFamily: "var(--font-sans)",
                     fontSize: "15px",
                     fontWeight: 600,
-                    letterSpacing: "0.12em",
                     color: "#0C3D3D",
                     margin: "0 0 16px 0",
                     lineHeight: 1,
