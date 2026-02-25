@@ -1759,15 +1759,37 @@ const multiplierKeyframes = `
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.06); }
   }
+  @keyframes streakPillPop {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.15); }
+    60% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+  @keyframes streakConfettiBurst {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    20% { opacity: 1; }
+    100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.6); opacity: 0; }
+  }
 `;
 
 /* ─── Daily Check-in V1 — Clean Progress ─── */
 function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: number) => void; isMobile: boolean }) {
   const s = useStreakCheckin(onStreakChange);
   const [hoveredDot, setHoveredDot] = useState<number | null>(null);
+  const [celebrated, setCelebrated] = useState(false);
+  const [celebrating, setCelebrating] = useState(false);
 
   const v1Tier = getStreakTierV1(s.currentDay);
   const v1BarProgress = getStreakBarProgressV1(s.currentDay);
+
+  const handleV1CheckIn = useCallback(() => {
+    s.handleCheckIn(v1Tier.rate);
+    if (!celebrated) {
+      setCelebrating(true);
+      setCelebrated(true);
+      setTimeout(() => setCelebrating(false), 1600);
+    }
+  }, [s, v1Tier.rate, celebrated]);
 
   const milestones = [
     { label: "1x", rate: "$0.25/day", absoluteDay: 1 },
@@ -1781,13 +1803,57 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
 
       {/* Streak pill — centered above progress bar */}
       <div style={{ display: "flex", justifyContent: "center", marginBottom: "24px" }}>
-        <div style={{ display: "inline-flex", alignItems: "center", gap: isMobile ? "8px" : "10px", backgroundColor: "#0C3D3D", borderRadius: "999px", padding: isMobile ? "10px 20px" : "12px 24px" }}>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "20px" : "22px", fontWeight: 600, color: "#ffffff", lineHeight: 1 }}>
-            {s.checkedCount}
-          </span>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "14px" : "15px", fontWeight: 500, color: "rgba(255,255,255,0.8)", lineHeight: 1 }}>
-            day streak
-          </span>
+        <div style={{ position: "relative" }}>
+          <div style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: isMobile ? "8px" : "10px",
+            backgroundColor: "#0C3D3D",
+            borderRadius: "999px",
+            padding: isMobile ? "10px 20px" : "12px 24px",
+            animation: celebrating ? "streakPillPop 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none",
+          }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "20px" : "22px", fontWeight: 600, color: "#ffffff", lineHeight: 1 }}>
+              {s.checkedCount}
+            </span>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "14px" : "15px", fontWeight: 500, color: "rgba(255,255,255,0.8)", lineHeight: 1 }}>
+              day streak
+            </span>
+          </div>
+          {/* Confetti burst on first check-in */}
+          {celebrating && (
+            <div style={{ position: "absolute", inset: 0, pointerEvents: "none", overflow: "visible", zIndex: 5 }}>
+              {Array.from({ length: 30 }).map((_, i) => {
+                const w = 3 + Math.random() * 5;
+                const h = i % 4 === 0 ? w : 2 + Math.random() * 4;
+                const angle = Math.random() * Math.PI * 2;
+                const dist = 40 + Math.random() * 100;
+                const dx = Math.cos(angle) * dist;
+                const dy = Math.sin(angle) * dist;
+                const colors = ["#0C3D3D", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#3da88a", "#276b5d", "#E8913A"];
+                const delay = i * 0.008;
+                const dur = 1.0 + Math.random() * 0.5;
+                return (
+                  <div
+                    key={i}
+                    style={{
+                      position: "absolute",
+                      left: "50%",
+                      top: "50%",
+                      width: `${w}px`,
+                      height: `${h}px`,
+                      borderRadius: i % 3 === 0 ? "50%" : "1px",
+                      backgroundColor: colors[i % colors.length],
+                      opacity: 0,
+                      animation: `streakConfettiBurst ${dur}s cubic-bezier(0.12, 0.8, 0.2, 1) ${delay}s forwards`,
+                      ["--dx" as string]: `${dx.toFixed(1)}px`,
+                      ["--dy" as string]: `${dy.toFixed(1)}px`,
+                    }}
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
 
@@ -1831,7 +1897,7 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
         })}
       </div>
 
-      <CheckInButton onCheckIn={() => s.handleCheckIn(v1Tier.rate)} showChecked={s.showCheckedMessage} rate={v1Tier.rate} checkInHovered={s.checkInHovered} setCheckInHovered={s.setCheckInHovered} />
+      <CheckInButton onCheckIn={handleV1CheckIn} showChecked={s.showCheckedMessage} rate={v1Tier.rate} checkInHovered={s.checkInHovered} setCheckInHovered={s.setCheckInHovered} />
       <style>{multiplierKeyframes}</style>
     </div>
   );
