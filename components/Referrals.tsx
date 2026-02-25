@@ -59,6 +59,7 @@ export default function Referrals() {
             overflow: "hidden",
             position: "relative",
             zIndex: 2,
+            order: isMobile ? 2 : 1,
           }}
         >
           {/* Label */}
@@ -462,6 +463,7 @@ export default function Referrals() {
             position: "relative",
             overflow: "visible",
             height: isMobile ? "250px" : undefined,
+            order: isMobile ? 1 : 2,
           }}
         >
           <div

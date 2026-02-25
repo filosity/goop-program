@@ -641,7 +641,7 @@ export default function Milestones() {
         </div>
 
         {/* ── Benefits Grid — 4 columns ── */}
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: "12px", marginTop: "16px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(3, 1fr)" : "repeat(4, 1fr)", gap: "12px", marginTop: "16px" }}>
           {milestones.map((m) => {
             const isEarned = subscribed && m.month <= currentMonth;
             const isCurrent = subscribed && m.month === currentMonth;

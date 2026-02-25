@@ -1208,7 +1208,7 @@ export default function Featured() {
           margin: "0 auto 24px",
         }}
       >
-        <div style={{ display: "flex", gap: "10px", alignItems: "center", overflowX: isMobile ? "auto" as const : "visible" as const, scrollbarWidth: "none" as const }}>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: isMobile ? "wrap" as const : "nowrap" as const, scrollbarWidth: "none" as const }}>
           {/* Featured tab */}
           {showFeaturedBtn && (
           <button

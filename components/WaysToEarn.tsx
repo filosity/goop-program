@@ -2132,10 +2132,10 @@ export default function WaysToEarn() {
             display: "flex",
             gap: isMobile ? "8px" : "10px",
             marginBottom: isMobile ? "24px" : "32px",
-            overflowX: isMobile ? "auto" : "visible",
+            flexWrap: isMobile ? "wrap" : "nowrap",
+            overflowX: "visible",
             scrollbarWidth: "none",
             msOverflowStyle: "none",
-            WebkitOverflowScrolling: "touch",
             paddingBottom: isMobile ? "4px" : "0",
           }}
         >
