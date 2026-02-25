@@ -1779,8 +1779,8 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
     <div style={{ border: "1px solid #d4e0df", backgroundColor: "#ffffff", padding: isMobile ? "24px 16px" : "48px" }}>
       <RewardPreview reward={s.reward} daysUntilReward={s.daysUntilReward} isMobile={isMobile} />
 
-      {/* Streak pill */}
-      <div style={{ marginBottom: "32px" }}>
+      {/* Streak pill — centered above progress bar */}
+      <div style={{ display: "flex", justifyContent: "center", marginBottom: "24px" }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: isMobile ? "8px" : "10px", backgroundColor: "#0C3D3D", borderRadius: "999px", padding: isMobile ? "10px 20px" : "12px 24px" }}>
           <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "20px" : "22px", fontWeight: 600, color: "#ffffff", lineHeight: 1 }}>
             {s.checkedCount}
