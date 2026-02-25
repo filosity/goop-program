@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function Referrals() {
+  const isMobile = useIsMobile();
   const [email, setEmail] = useState("");
   const [yourName, setYourName] = useState("");
   const [friendName, setFriendName] = useState("");
@@ -41,8 +43,8 @@ export default function Referrals() {
           maxWidth: "1280px",
           margin: "0 auto",
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          height: "920px",
+          gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+          height: isMobile ? "auto" : "920px",
           position: "relative",
         }}
       >
@@ -50,7 +52,7 @@ export default function Referrals() {
         <div
           style={{
             backgroundColor: "transparent",
-            padding: "56px 52px 52px",
+            padding: isMobile ? "32px 20px" : "56px 52px 52px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -79,7 +81,7 @@ export default function Referrals() {
           <h2
             style={{
               fontFamily: "var(--font-serif)",
-              fontSize: "44px",
+              fontSize: isMobile ? "32px" : "44px",
               fontWeight: 400,
               lineHeight: 1.15,
               color: "#ffffff",
@@ -295,7 +297,7 @@ export default function Referrals() {
               padding: "0 36px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease",
-              alignSelf: "flex-start",
+              alignSelf: isMobile ? "stretch" : "flex-start",
               marginTop: "28px",
             }}
           >
@@ -340,7 +342,8 @@ export default function Referrals() {
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
-              alignSelf: "flex-start",
+              alignSelf: isMobile ? "stretch" : "flex-start",
+              justifyContent: isMobile ? "center" : undefined,
             }}
           >
             {/* Copy icon */}
@@ -458,16 +461,18 @@ export default function Referrals() {
           style={{
             position: "relative",
             overflow: "visible",
+            height: isMobile ? "250px" : undefined,
           }}
         >
           <div
             style={{
-              position: "absolute",
+              position: isMobile ? "relative" : "absolute",
               top: 0,
               left: 0,
-              right: "calc(-1 * (50vw - 640px))",
+              right: isMobile ? 0 : "calc(-1 * (50vw - 640px))",
               bottom: 0,
               overflow: "hidden",
+              height: isMobile ? "250px" : undefined,
             }}
           >
             <img

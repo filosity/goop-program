@@ -1,16 +1,18 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { ArrowDown } from "@vectoricons/atlas-icons-react";
 
 /* ─── Step image component — rendered above interactive area ─── */
 function StepImage({ src }: { src: string }) {
+  const isMobile = useIsMobile();
   return (
     <div
       style={{
-        marginTop: "20px",
+        marginTop: isMobile ? "16px" : "20px",
         overflow: "hidden",
-        height: "160px",
+        height: isMobile ? "200px" : "160px",
       }}
     >
       <img
@@ -429,12 +431,14 @@ function StepColumn({
   isActive,
   autoPlaying,
   onActivate,
+  isMobile,
 }: {
   step: { number: string; title: string; description: string; imageSrc: string; component: React.ComponentType<{ active: boolean; index: number; imageSrc: string }> };
   index: number;
   isActive: boolean;
   autoPlaying: boolean;
   onActivate: () => void;
+  isMobile: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const StepComponent = step.component;
@@ -446,9 +450,10 @@ function StepColumn({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        flex: 1,
+        flex: isMobile ? "none" : 1,
+        width: isMobile ? "100%" : "auto",
         textAlign: "center",
-        padding: "0 48px",
+        padding: isMobile ? "0 0 32px 0" : "0 48px",
         cursor: autoPlaying ? "default" : "pointer",
         transition: "transform 0.2s ease",
         position: "relative",
@@ -456,8 +461,8 @@ function StepColumn({
         flexDirection: "column",
       }}
     >
-      {/* Vertical divider — 50% height */}
-      {index > 0 && (
+      {/* Vertical divider — 50% height (hidden on mobile) */}
+      {index > 0 && !isMobile && (
         <div
           style={{
             position: "absolute",
@@ -466,6 +471,17 @@ function StepColumn({
             height: "50%",
             width: "1px",
             backgroundColor: "#d8d5d0",
+          }}
+        />
+      )}
+      {/* Horizontal divider on mobile between steps */}
+      {index > 0 && isMobile && (
+        <div
+          style={{
+            width: "100%",
+            height: "1px",
+            backgroundColor: "#d8d5d0",
+            marginBottom: "24px",
           }}
         />
       )}
@@ -503,7 +519,7 @@ function StepColumn({
       <p
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "19px",
+          fontSize: isMobile ? "17px" : "19px",
           fontWeight: 700,
           color: "#000000",
           margin: "0 0 8px 0",
@@ -517,12 +533,12 @@ function StepColumn({
       <p
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "17px",
+          fontSize: isMobile ? "15px" : "17px",
           fontWeight: 400,
           color: "#444444",
           margin: 0,
           lineHeight: 1.55,
-          minHeight: "48px",
+          minHeight: isMobile ? "auto" : "48px",
         }}
       >
         {step.description}
@@ -536,6 +552,7 @@ function StepColumn({
 
 /* ─── Main component ─── */
 export default function HowItWorks() {
+  const isMobile = useIsMobile();
   const [activeStep, setActiveStep] = useState(-1);
   const [autoPlaying, setAutoPlaying] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
@@ -621,7 +638,9 @@ export default function HowItWorks() {
       ref={sectionRef}
       style={{
         backgroundColor: "#F6F5F1",
-        padding: collapsed ? "16px 48px 16px" : "36px 48px 80px",
+        padding: collapsed
+          ? (isMobile ? "16px 16px 16px" : "16px 48px 16px")
+          : (isMobile ? "36px 16px 48px" : "36px 48px 80px"),
       }}
     >
       <style>{`
@@ -676,7 +695,7 @@ export default function HowItWorks() {
         <h2
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: collapsed ? "13px" : "36px",
+            fontSize: collapsed ? "13px" : (isMobile ? "28px" : "36px"),
             fontWeight: collapsed ? 600 : 400,
             fontStyle: "normal",
             lineHeight: 1.1,
@@ -738,7 +757,7 @@ export default function HowItWorks() {
       {/* Steps — collapsible */}
       <div
         style={{
-          maxHeight: collapsed ? "0px" : "900px",
+          maxHeight: collapsed ? "0px" : (isMobile ? "3000px" : "900px"),
           opacity: collapsed ? 0 : 1,
           overflow: "hidden",
         }}
@@ -746,9 +765,10 @@ export default function HowItWorks() {
         <div
           style={{
             display: "flex",
-            maxWidth: "1040px",
+            flexDirection: isMobile ? "column" as const : "row" as const,
+            maxWidth: isMobile ? "100%" : "1040px",
             margin: "0 auto",
-            alignItems: "flex-start",
+            alignItems: isMobile ? "stretch" : "flex-start",
           }}
         >
           {steps.map((step, i) => (
@@ -758,6 +778,7 @@ export default function HowItWorks() {
               index={i}
               isActive={activeStep === i}
               autoPlaying={autoPlaying}
+              isMobile={isMobile}
               onActivate={() => {
                 if (!autoPlaying) {
                   setActiveStep(activeStep === i ? -1 : i);

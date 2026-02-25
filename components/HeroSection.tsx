@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import HeroSectionV2 from "./HeroSectionV2";
 import HeroSectionV3 from "./HeroSectionV3";
 
@@ -64,6 +65,7 @@ function SectionLabel({ text }: { text: string }) {
 }
 
 function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
+  const isMobile = useIsMobile();
   const [visible, setVisible] = useState(false);
   const [userPoints, setUserPoints] = useState(5);
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -197,16 +199,16 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
         style={{
           position: "relative",
           zIndex: 1,
-          padding: "48px 0 40px 48px",
+          padding: isMobile ? "24px 16px 24px 16px" : "48px 0 40px 48px",
           width: "100%",
-          maxWidth: "540px",
+          maxWidth: isMobile ? "100%" : "540px",
         }}
       >
         {/* Eyebrow */}
         <p
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "16px",
+            fontSize: isMobile ? "13px" : "16px",
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
@@ -225,11 +227,11 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
         <h1
           style={{
             fontFamily: "var(--font-serif)",
-            fontSize: "38px",
+            fontSize: isMobile ? "28px" : "38px",
             fontWeight: 400,
             lineHeight: 1.1,
             color: "#ffffff",
-            margin: "0 0 32px 0",
+            margin: isMobile ? "0 0 24px 0" : "0 0 32px 0",
             letterSpacing: "-0.01em",
             opacity: visible ? 1 : 0,
             transform: visible ? "translateY(0)" : "translateY(20px)",
@@ -251,7 +253,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
           <div
             style={{
               backgroundColor: "#f5f3ef",
-              padding: "36px 40px 40px",
+              padding: isMobile ? "24px 20px 28px" : "36px 40px 40px",
               opacity: visible ? 1 : 0,
               transition: "opacity 0.5s ease",
             }}
@@ -309,7 +311,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
           <div
             style={{
               backgroundColor: "#f5f3ef",
-              padding: "36px 40px 32px",
+              padding: isMobile ? "24px 20px 24px" : "36px 40px 32px",
               opacity: visible ? 1 : 0,
               transition: "opacity 0.5s ease",
             }}

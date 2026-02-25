@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useCallback, useState } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const sections = [
   { id: "section-milestones", label: "subscriber milestones" },
@@ -14,6 +15,7 @@ const sections = [
 const HEADER_HEIGHT = 76;
 
 export default function StickyNav() {
+  const isMobile = useIsMobile();
   const navRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const btnRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -153,6 +155,8 @@ export default function StickyNav() {
       }, 800);
     }
   }, [setActive]);
+
+  if (isMobile) return null;
 
   return (
     <nav

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const milestones = [
   { month: 1, reward: "Welcome Kit + Original Sampler", image: "/milestone-welcome-kit.jpg", code: "WELCOME-AG1-KIT" },
@@ -25,6 +26,7 @@ function MilestoneCard({
   isLocked,
   isClaimed,
   onClaim,
+  isMobile,
 }: {
   milestone: typeof milestones[0];
   isEarned: boolean;
@@ -32,6 +34,7 @@ function MilestoneCard({
   isLocked: boolean;
   isClaimed: boolean;
   onClaim: () => void;
+  isMobile: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -73,7 +76,7 @@ function MilestoneCard({
       <div
         style={{
           width: "100%",
-          height: "280px",
+          height: isMobile ? "180px" : "280px",
           backgroundColor: "#f0f0ef",
           overflow: "hidden",
           position: "relative",
@@ -337,6 +340,7 @@ function MilestoneCard({
 }
 
 export default function Milestones() {
+  const isMobile = useIsMobile();
   const [subscribed, setSubscribed] = useState(false);
   const [bannerVisible, setBannerVisible] = useState(true);
   const [currentMonth, setCurrentMonth] = useState(0);
@@ -404,7 +408,7 @@ export default function Milestones() {
       id="section-milestones"
       style={{
         backgroundColor: "#ffffff",
-        padding: "40px 48px 120px",
+        padding: isMobile ? "24px 16px 60px" : "40px 48px 120px",
       }}
     >
       {/* Subscribe banner — above heading when not subscribed */}
@@ -424,16 +428,17 @@ export default function Milestones() {
           <div
             style={{
               display: "flex",
+              flexDirection: isMobile ? "column" as const : "row" as const,
               border: "1px solid #d4e0df",
               overflow: "hidden",
-              height: "320px",
+              height: isMobile ? "auto" : "320px",
             }}
           >
             <div
               style={{
                 flex: 1,
                 backgroundColor: "#F6F5F1",
-                padding: "40px 44px",
+                padding: isMobile ? "24px 20px" : "40px 44px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -487,7 +492,7 @@ export default function Milestones() {
                 Subscribe →
               </button>
             </div>
-            <div style={{ width: "672px", maxWidth: "672px", flexShrink: 0 }}>
+            <div style={{ width: isMobile ? "100%" : "672px", maxWidth: isMobile ? "100%" : "672px", height: isMobile ? "200px" : "auto", flexShrink: 0 }}>
               <img
                 src="/milestone-merch-store.jpg"
                 alt="Limited Edition Merch Store"
@@ -507,7 +512,7 @@ export default function Milestones() {
       <h2
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "44px",
+          fontSize: isMobile ? "28px" : "44px",
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
@@ -636,7 +641,7 @@ export default function Milestones() {
         </div>
 
         {/* ── Benefits Grid — 4 columns ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px", marginTop: "16px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: "12px", marginTop: "16px" }}>
           {milestones.map((m) => {
             const isEarned = subscribed && m.month <= currentMonth;
             const isCurrent = subscribed && m.month === currentMonth;
@@ -651,6 +656,7 @@ export default function Milestones() {
                 isLocked={isLocked}
                 isClaimed={isClaimed}
                 onClaim={() => handleClaim(m.month)}
+                isMobile={isMobile}
               />
             );
           })}

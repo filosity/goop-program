@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { DollarSignCircle, GiftBox, DiscountTag, Bolt, User, Star, Gifts, XmarkCircle } from "@vectoricons/atlas-icons-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const MembershipV2 = dynamic(() => import("./MembershipV2"), { ssr: false });
 const MembershipV3 = dynamic(() => import("./MembershipV3"), { ssr: false });
@@ -316,6 +317,7 @@ function MemberBenefitRow({
 }
 
 export default function Membership() {
+  const isMobile = useIsMobile();
   const [version, setVersion] = useState(1);
   const [btnHovered, setBtnHovered] = useState(false);
   const [hoveredBenefit, setHoveredBenefit] = useState<number | null>(null);
@@ -351,7 +353,7 @@ export default function Membership() {
       onMouseEnter={() => setSectionHovered(true)}
       onMouseLeave={() => setSectionHovered(false)}
       style={{
-        padding: "1px 48px 48px",
+        padding: isMobile ? "1px 16px 32px" : "1px 48px 48px",
       }}
     >
       <div
@@ -396,8 +398,10 @@ export default function Membership() {
             top: 0,
             right: 0,
             bottom: 0,
-            width: "50%",
-            backgroundColor: sectionHovered ? "rgba(12,61,61,1)" : "rgba(12,61,61,0.75)",
+            width: isMobile ? "100%" : "50%",
+            backgroundColor: isMobile
+              ? "rgba(12,61,61,0.9)"
+              : sectionHovered ? "rgba(12,61,61,1)" : "rgba(12,61,61,0.75)",
             transition: "background-color 0.5s ease",
             zIndex: 1,
           }}
@@ -408,20 +412,20 @@ export default function Membership() {
           style={{
             position: "relative",
             zIndex: 2,
-            marginLeft: "50%",
-            width: "50%",
-            padding: "56px 56px",
+            marginLeft: isMobile ? 0 : "50%",
+            width: isMobile ? "100%" : "50%",
+            padding: isMobile ? "36px 24px" : "56px 56px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            minHeight: "520px",
+            minHeight: isMobile ? undefined : "520px",
           }}
         >
           {/* Heading */}
           <h2
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "38px",
+              fontSize: isMobile ? "28px" : "38px",
               fontWeight: 400,
               lineHeight: 1.1,
               color: "#ffffff",
@@ -488,7 +492,7 @@ export default function Membership() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
+              gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
               columnGap: "32px",
             }}
           >

@@ -183,3 +183,9 @@ body {
   font-weight: 400;
   letter-spacing: 0.03em;
 }
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+}

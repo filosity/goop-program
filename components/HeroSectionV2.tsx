@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" | "static" }) {
+  const isMobile = useIsMobile();
   const [userPoints, setUserPoints] = useState(50);
   const [visible, setVisible] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -126,7 +128,7 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
         style={{
           position: "relative",
           zIndex: 1,
-          padding: "20px 48px 32px",
+          padding: isMobile ? "16px 16px 20px" : "20px 48px 32px",
           width: "100%",
           display: "flex",
           justifyContent: "center",
@@ -139,9 +141,10 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
             backgroundColor: "rgba(245,243,239,0.92)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
-            padding: "40px 56px 40px 48px",
+            padding: isMobile ? "24px 20px" : "40px 56px 40px 48px",
             display: "flex",
-            alignItems: "stretch",
+            flexDirection: isMobile ? "column" as const : "row" as const,
+            alignItems: isMobile ? "flex-start" : "stretch",
             gap: "0",
             opacity: visible ? 1 : 0,
             animation: visible ? "heroV2CardSlide 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" : "none",
@@ -150,17 +153,19 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
           {/* Column 1: Welcome */}
           <div
             style={{
-              flex: 1,
+              flex: isMobile ? "none" : 1,
+              width: isMobile ? "100%" : "auto",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              paddingRight: "40px",
+              paddingRight: isMobile ? "0" : "40px",
+              paddingBottom: isMobile ? "16px" : "0",
             }}
           >
             <p
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "16px",
+                fontSize: isMobile ? "13px" : "16px",
                 fontWeight: 600,
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
@@ -174,7 +179,7 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
             <p
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: "30px",
+                fontSize: isMobile ? "24px" : "30px",
                 fontWeight: 400,
                 color: "#000000",
                 margin: 0,
@@ -189,7 +194,8 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
           {/* Divider 1 */}
           <div
             style={{
-              width: "1px",
+              width: isMobile ? "100%" : "1px",
+              height: isMobile ? "1px" : "auto",
               backgroundColor: "#d4e0df",
               alignSelf: "stretch",
             }}
@@ -198,17 +204,18 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
           {/* Column 2: AG Credit balance */}
           <div
             style={{
-              flex: 1,
+              flex: isMobile ? "none" : 1,
+              width: isMobile ? "100%" : "auto",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              padding: "0 40px",
+              padding: isMobile ? "16px 0" : "0 40px",
             }}
           >
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "32px",
+                fontSize: isMobile ? "26px" : "32px",
                 fontWeight: 400,
                 color: "#000000",
                 margin: "0 0 4px 0",
@@ -250,7 +257,8 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
           {/* Divider 2 */}
           <div
             style={{
-              width: "1px",
+              width: isMobile ? "100%" : "1px",
+              height: isMobile ? "1px" : "auto",
               backgroundColor: "#d4e0df",
               alignSelf: "stretch",
             }}
@@ -259,11 +267,13 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
           {/* Column 3: Subscription status */}
           <div
             style={{
-              flex: 1.4,
+              flex: isMobile ? "none" : 1.4,
+              width: isMobile ? "100%" : "auto",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              paddingLeft: "40px",
+              paddingLeft: isMobile ? "0" : "40px",
+              paddingTop: isMobile ? "16px" : "0",
             }}
           >
             {isSubscribed ? (
@@ -271,7 +281,7 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
                 <p
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "32px",
+                    fontSize: isMobile ? "26px" : "32px",
                     fontWeight: 400,
                     color: "#000000",
                     margin: "0 0 4px 0",
@@ -299,7 +309,7 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
                 <p
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "32px",
+                    fontSize: isMobile ? "26px" : "32px",
                     fontWeight: 400,
                     color: "#000000",
                     margin: "0 0 20px 0",

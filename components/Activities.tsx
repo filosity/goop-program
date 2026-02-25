@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "@vectoricons/atlas-icons-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 /* ─── Achievement data ─── */
 const achievements = [
@@ -47,6 +48,7 @@ function AchievementCard({
   celebrating,
   onClick,
   onClaim,
+  isMobile,
 }: {
   achievement: (typeof achievements)[number];
   progress: number;
@@ -56,6 +58,7 @@ function AchievementCard({
   celebrating: boolean;
   onClick: () => void;
   onClaim: () => void;
+  isMobile: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -77,8 +80,8 @@ function AchievementCard({
       onMouseLeave={() => setHovered(false)}
       onClick={onClick}
       style={{
-        width: "360px",
-        minWidth: "360px",
+        width: isMobile ? "100%" : "360px",
+        minWidth: isMobile ? "100%" : "360px",
         flexShrink: 0,
         display: "flex",
         flexDirection: "column",
@@ -550,7 +553,7 @@ function AchievementCard({
 }
 
 /* ─── Achievements Content (carousel) ─── */
-function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { onClaimedCountChange: (count: number) => void; onHasClaimableChange: (has: boolean) => void }) {
+function AchievementsContent({ onClaimedCountChange, onHasClaimableChange, isMobile }: { onClaimedCountChange: (count: number) => void; onHasClaimableChange: (has: boolean) => void; isMobile: boolean }) {
   const [progress, setProgress] = useState<Record<string, number>>(() => {
     const init: Record<string, number> = {};
     achievements.forEach((a) => { init[a.id] = 0; });
@@ -680,12 +683,13 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { o
         onMouseLeave={handleMouseUp}
         style={{
           display: "flex",
+          flexDirection: isMobile ? "column" as const : "row" as const,
           gap: "16px",
-          overflowX: "auto",
+          overflowX: isMobile ? "visible" as const : "auto" as const,
           scrollBehavior: "smooth",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
-          cursor: "grab",
+          cursor: isMobile ? "default" : "grab",
           userSelect: "none",
           paddingBottom: "4px",
         }}
@@ -701,6 +705,7 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { o
             celebrating={celebratingId === a.id}
             onClick={() => handleCardClick(a.id, a.goal)}
             onClaim={() => handleClaim(a.id)}
+            isMobile={isMobile}
           />
         ))}
       </div>
@@ -1540,7 +1545,7 @@ const streakRewards = [
 ];
 
 /* ─── Daily Check-in Content ─── */
-function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: number) => void }) {
+function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (streak: number) => void; isMobile: boolean }) {
   const [checkedCount, setCheckedCount] = useState(0);
   const [checkInHovered, setCheckInHovered] = useState(false);
   const [animatingDay, setAnimatingDay] = useState<number | null>(null);
@@ -1718,7 +1723,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
       style={{
         border: "1px solid #d4e0df",
         backgroundColor: "#ffffff",
-        padding: "48px",
+        padding: isMobile ? "24px 16px" : "48px",
       }}
     >
       {/* Header row */}
@@ -1768,10 +1773,11 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
       <div
         style={{
           display: "flex",
+          flexDirection: isMobile ? "column" as const : "row" as const,
           marginBottom: "32px",
           border: "1px solid #d4e0df",
           overflow: "hidden",
-          height: "260px",
+          height: isMobile ? "auto" : "260px",
         }}
       >
         {nextReward ? (
@@ -1814,7 +1820,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                 {nextReward.reward.name}
               </p>
             </div>
-            <div style={{ width: "510px", maxWidth: "510px", flexShrink: 0 }}>
+            <div style={{ width: isMobile ? "100%" : "510px", maxWidth: isMobile ? "100%" : "510px", height: isMobile ? "200px" : "auto", flexShrink: 0 }}>
               <img
                 src={nextReward.reward.image}
                 alt={nextReward.reward.name}
@@ -1898,7 +1904,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
           {/* Background line */}
           <div style={{
             position: "absolute",
-            top: `${8 + 49}px`,
+            top: `${8 + 47}px`,
             left: 0,
             right: 0,
             height: "3px",
@@ -1909,7 +1915,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
           {/* Progress fill */}
           <div style={{
             position: "absolute",
-            top: `${8 + 49}px`,
+            top: `${8 + 47}px`,
             left: 0,
             height: "3px",
             backgroundColor: "#0C3D3D",
@@ -2086,7 +2092,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                   textTransform: "uppercase",
                   color: "#000000",
                   lineHeight: 1,
-                  marginTop: hasReward ? "10px" : "3px",
+                  marginTop: hasReward ? "6px" : "1px",
                   whiteSpace: "nowrap",
                   textAlign: "center",
                 }}>
@@ -2115,7 +2121,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                 {/* Reward info below */}
                 {hasReward ? (
                   day.isRewardClaimed ? (
-                    <div style={{ width: "100%", marginTop: "10px" }}>
+                    <div style={{ width: "100%", marginTop: "14px" }}>
                       <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#000000", textAlign: "center", lineHeight: 1.2, display: "block", marginBottom: "6px" }}>
                         {day.reward!.name}
                       </span>
@@ -2167,7 +2173,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
                       color: day.isChecked ? "#000000" : "#999",
                       textAlign: "center",
                       lineHeight: 1.2,
-                      marginTop: "6px",
+                      marginTop: "12px",
                       maxWidth: "120px",
                       transition: "color 0.3s ease",
                     }}>
@@ -2264,6 +2270,7 @@ function DailyStreakContent({ onStreakChange }: { onStreakChange: (streak: numbe
 
 /* ─── Activities Section ─── */
 export default function Activities() {
+  const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState<"streak" | "achievements" | "voting">("streak");
   const [streakTabHovered, setStreakTabHovered] = useState(false);
   const [achievementsTabHovered, setAchievementsTabHovered] = useState(false);
@@ -2303,7 +2310,7 @@ export default function Activities() {
     <section
       id="section-activities"
       style={{
-        padding: "0px 48px 100px",
+        padding: isMobile ? "0px 16px 40px" : "0px 48px 100px",
         marginTop: "-30px",
       }}
     >
@@ -2311,7 +2318,7 @@ export default function Activities() {
       <h2
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "44px",
+          fontSize: isMobile ? "28px" : "44px",
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
@@ -2358,6 +2365,9 @@ export default function Activities() {
             display: "flex",
             gap: "10px",
             marginBottom: "24px",
+            overflowX: isMobile ? "auto" as const : "visible" as const,
+            scrollbarWidth: "none" as const,
+            msOverflowStyle: "none" as const,
           }}
         >
           {/* Daily Check-in tab (first) */}
@@ -2367,9 +2377,9 @@ export default function Activities() {
             onMouseLeave={() => setStreakTabHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "18px",
+              fontSize: isMobile ? "15px" : "18px",
               fontWeight: 600,
-              padding: "0 32px",
+              padding: isMobile ? "0 20px" : "0 32px",
               minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
@@ -2398,9 +2408,9 @@ export default function Activities() {
             onMouseLeave={() => setAchievementsTabHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "18px",
+              fontSize: isMobile ? "15px" : "18px",
               fontWeight: 600,
-              padding: "0 32px",
+              padding: isMobile ? "0 20px" : "0 32px",
               minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
@@ -2428,9 +2438,9 @@ export default function Activities() {
             onMouseLeave={() => setVotingTabHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "18px",
+              fontSize: isMobile ? "15px" : "18px",
               fontWeight: 600,
-              padding: "0 32px",
+              padding: isMobile ? "0 20px" : "0 32px",
               minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
@@ -2455,9 +2465,9 @@ export default function Activities() {
 
         {/* Tab content */}
         <div style={{ display: activeTab === "streak" ? "block" : "none" }}>
-          <DailyStreakContent onStreakChange={setStreakStreak} />
+          <DailyStreakContent onStreakChange={setStreakStreak} isMobile={isMobile} />
         </div>
-        {activeTab === "achievements" && <AchievementsContent onClaimedCountChange={setClaimedCount} onHasClaimableChange={setHasClaimable} />}
+        {activeTab === "achievements" && <AchievementsContent onClaimedCountChange={setClaimedCount} onHasClaimableChange={setHasClaimable} isMobile={isMobile} />}
         {activeTab === "voting" && (
           <div
             style={{

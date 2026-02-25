@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" | "static" }) {
+  const isMobile = useIsMobile();
   const [userPoints, setUserPoints] = useState(50);
   const [visible, setVisible] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -123,10 +125,10 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
         style={{
           position: "relative",
           zIndex: 2,
-          margin: "0 0 0 48px",
+          margin: isMobile ? "0 16px" : "0 0 0 48px",
           backgroundColor: "#f5f3ef",
-          padding: "36px 44px 32px",
-          maxWidth: "560px",
+          padding: isMobile ? "24px 20px 24px" : "36px 44px 32px",
+          maxWidth: isMobile ? "100%" : "560px",
           width: "100%",
           opacity: visible ? 1 : 0,
           animation: visible ? "heroV3SlideUp 0.5s ease 0.35s both" : "none",
@@ -145,7 +147,7 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
             <p
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: "28px",
+                fontSize: isMobile ? "22px" : "28px",
                 fontWeight: 400,
                 color: "#000000",
                 margin: "0 0 6px 0",
@@ -186,7 +188,7 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "30px",
+                fontSize: isMobile ? "24px" : "30px",
                 fontWeight: 400,
                 color: "#000000",
                 margin: "0 0 4px 0",
@@ -227,7 +229,7 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "22px",
+                fontSize: isMobile ? "18px" : "22px",
                 fontWeight: 400,
                 color: "#000000",
                 margin: "0 0 6px 0",
@@ -251,11 +253,11 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
             </p>
           </>
         ) : (
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: isMobile ? "wrap" as const : "nowrap" as const, gap: isMobile ? "12px" : "0" }}>
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "22px",
+                fontSize: isMobile ? "18px" : "22px",
                 fontWeight: 400,
                 color: "#000000",
                 margin: 0,

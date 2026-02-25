@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -34,6 +34,11 @@ const ag1Mono = localFont({
 export const metadata: Metadata = {
   title: "AG1 Rewards",
   description: "AG1 loyalty rewards program",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

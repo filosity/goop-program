@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { ArrowLeft, ArrowRight } from "@vectoricons/atlas-icons-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const FeaturedV2 = dynamic(() => import("./FeaturedV2"), { ssr: false });
 const FeaturedV3 = dynamic(() => import("./FeaturedV3"), { ssr: false });
@@ -221,9 +222,11 @@ const eventItems = [
 function CommunityHero({
   item,
   image,
+  isMobile,
 }: {
   item: (typeof communityItems)[0];
   image: string;
+  isMobile: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
 
@@ -234,7 +237,7 @@ function CommunityHero({
       style={{
         position: "relative",
         width: "100%",
-        height: "400px",
+        height: isMobile ? "280px" : "400px",
         overflow: "hidden",
         opacity: 0,
         transform: "translateY(16px)",
@@ -269,7 +272,7 @@ function CommunityHero({
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
-          padding: "40px 44px",
+          padding: isMobile ? "24px 20px" : "40px 44px",
         }}
       >
         <span
@@ -295,7 +298,7 @@ function CommunityHero({
         <p
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "24px",
+            fontSize: isMobile ? "18px" : "24px",
             fontWeight: 400,
             lineHeight: 1.4,
             color: "#ffffff",
@@ -323,10 +326,12 @@ function CommunityGridCard({
   item,
   image,
   index,
+  isMobile,
 }: {
   item: (typeof communityItems)[0];
   image: string;
   index: number;
+  isMobile: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const isReview = item.type === "review";
@@ -457,7 +462,7 @@ function CommunityGridCard({
 }
 
 /* ─── Community feed with hero + 3-col grid, paginated ─── */
-function CommunityFeed() {
+function CommunityFeed({ isMobile }: { isMobile: boolean }) {
   const [visibleCount, setVisibleCount] = useState(4);
 
   const shown = communityItems.slice(0, visibleCount);
@@ -472,12 +477,13 @@ function CommunityFeed() {
           <CommunityHero
             item={hero}
             image={communityImages[0 % communityImages.length]}
+            isMobile={isMobile}
           />
         )}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
             gap: "1px",
             backgroundColor: "#d4e0df",
           }}
@@ -488,6 +494,7 @@ function CommunityFeed() {
               item={item}
               image={communityImages[(i + 1) % communityImages.length]}
               index={i + 1}
+              isMobile={isMobile}
             />
           ))}
         </div>
@@ -528,10 +535,12 @@ function EventCalendarCard({
   event,
   image,
   index,
+  isMobile,
 }: {
   event: (typeof eventItems)[0];
   image: string;
   index: number;
+  isMobile: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const [btnHov, setBtnHov] = useState(false);
@@ -669,7 +678,7 @@ function EventCalendarCard({
 }
 
 /* ─── Events feed — 2-column paginated grid ─── */
-function EventsFeed() {
+function EventsFeed({ isMobile }: { isMobile: boolean }) {
   const [visibleCount, setVisibleCount] = useState(4);
 
   const shown = eventItems.slice(0, visibleCount);
@@ -680,8 +689,8 @@ function EventsFeed() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gap: "20px",
+          gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
+          gap: isMobile ? "16px" : "20px",
         }}
       >
         {shown.map((event, i) => (
@@ -690,6 +699,7 @@ function EventsFeed() {
             event={event}
             image={eventImages[i % eventImages.length]}
             index={i}
+            isMobile={isMobile}
           />
         ))}
       </div>
@@ -796,11 +806,13 @@ function FeaturedCard({
   image,
   isFirst,
   cardIndex,
+  isMobile,
 }: {
   card: (typeof baseCards)[0];
   image: string;
   isFirst?: boolean;
   cardIndex: number;
+  isMobile: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const [completed, setCompleted] = useState(false);
@@ -854,9 +866,9 @@ function FeaturedCard({
       onMouseLeave={() => setHovered(false)}
       style={{
         position: "relative",
-        minWidth: isFirst ? "450px" : "320px",
-        maxWidth: isFirst ? "450px" : "320px",
-        height: "500px",
+        minWidth: isMobile ? "260px" : isFirst ? "450px" : "320px",
+        maxWidth: isMobile ? "260px" : isFirst ? "450px" : "320px",
+        height: isMobile ? "380px" : "500px",
         overflow: "hidden",
         cursor: "default",
         flexShrink: 0,
@@ -897,12 +909,12 @@ function FeaturedCard({
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: "24px 32px 28px",
+          padding: isMobile ? "20px 20px 24px" : "24px 32px 28px",
         }}
       >
         {/* Top — title & subtitle */}
         <div>
-          <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "24px", fontWeight: 600, color: "#ffffff", margin: "0 0 10px 0", lineHeight: 1.25, letterSpacing: "-0.01em" }}>
+          <h3 style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "18px" : "24px", fontWeight: 600, color: "#ffffff", margin: "0 0 10px 0", lineHeight: 1.25, letterSpacing: "-0.01em" }}>
             {card.title}
           </h3>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 500, color: "rgba(255,255,255,0.75)", margin: 0, lineHeight: 1.4 }}>
@@ -1058,6 +1070,7 @@ function FeaturedCard({
 }
 
 export default function Featured() {
+  const isMobile = useIsMobile();
   const [version, setVersion] = useState(1);
   const [visible, setVisible] = useState(false);
   const images = allImages;
@@ -1166,14 +1179,14 @@ export default function Featured() {
       id="section-featured"
       style={{
         backgroundColor: "#ffffff",
-        padding: "48px 48px 40px",
+        padding: isMobile ? "24px 16px 24px" : "48px 48px 40px",
       }}
     >
       {/* Section heading */}
       <h2
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "44px",
+          fontSize: isMobile ? "28px" : "44px",
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
@@ -1195,7 +1208,7 @@ export default function Featured() {
           margin: "0 auto 24px",
         }}
       >
-        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center", overflowX: isMobile ? "auto" as const : "visible" as const, scrollbarWidth: "none" as const }}>
           {/* Featured tab */}
           {showFeaturedBtn && (
           <button
@@ -1204,9 +1217,9 @@ export default function Featured() {
             onMouseLeave={() => setFeaturedHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "18px",
+              fontSize: isMobile ? "15px" : "18px",
               fontWeight: 600,
-              padding: "0 32px",
+              padding: isMobile ? "0 20px" : "0 32px",
               minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
@@ -1230,9 +1243,9 @@ export default function Featured() {
               display: "inline-flex",
               alignItems: "center",
               fontFamily: "var(--font-sans)",
-              fontSize: "18px",
+              fontSize: isMobile ? "15px" : "18px",
               fontWeight: 600,
-              padding: "0 32px",
+              padding: isMobile ? "0 20px" : "0 32px",
               minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
@@ -1259,9 +1272,9 @@ export default function Featured() {
               display: "inline-flex",
               alignItems: "center",
               fontFamily: "var(--font-sans)",
-              fontSize: "18px",
+              fontSize: isMobile ? "15px" : "18px",
               fontWeight: 600,
-              padding: "0 32px",
+              padding: isMobile ? "0 20px" : "0 32px",
               minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
@@ -1304,7 +1317,7 @@ export default function Featured() {
             }}
           >
             {baseCards.map((card, i) => (
-              <FeaturedCard key={i} card={card} image={images[i % images.length]} isFirst={i === 0} cardIndex={i} />
+              <FeaturedCard key={i} card={card} image={images[i % images.length]} isFirst={i === 0} cardIndex={i} isMobile={isMobile} />
             ))}
           </div>
 
@@ -1353,8 +1366,8 @@ export default function Featured() {
           </div>
         </>
       )}
-      {activeTab === "community" && showCommunity && <CommunityFeed />}
-      {activeTab === "events" && showEvents && <EventsFeed />}
+      {activeTab === "community" && showCommunity && <CommunityFeed isMobile={isMobile} />}
+      {activeTab === "events" && showEvents && <EventsFeed isMobile={isMobile} />}
 
       <style>{`
         div::-webkit-scrollbar { display: none; }

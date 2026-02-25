@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { User, Instagram, Tiktok, Star, GiftBox, Phone, ShoppingBag, OpenBook, Headphones, ArrowLeft, ArrowRight, DiscountTag } from "@vectoricons/atlas-icons-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const earnCards = [
   {
@@ -123,6 +124,7 @@ function EarnCard({
   highlighted,
   anyHighlighted,
   subscriptionDays = 0,
+  isMobile = false,
 }: {
   card: (typeof earnCards)[0];
   index: number;
@@ -132,6 +134,7 @@ function EarnCard({
   highlighted: boolean;
   anyHighlighted: boolean;
   subscriptionDays?: number;
+  isMobile?: boolean;
 }) {
   const isDone = completed;
   const isChecking = phase === "check";
@@ -144,9 +147,9 @@ function EarnCard({
     <div
       data-earn-index={index}
       style={{
-        minWidth: isExiting ? "0px" : "calc(25% - 12px)",
-        maxWidth: isExiting ? "0px" : "calc(25% - 12px)",
-        marginRight: isExiting ? "0px" : "16px",
+        minWidth: isExiting ? "0px" : isMobile ? "calc(75% - 8px)" : "calc(25% - 12px)",
+        maxWidth: isExiting ? "0px" : isMobile ? "calc(75% - 8px)" : "calc(25% - 12px)",
+        marginRight: isExiting ? "0px" : isMobile ? "12px" : "16px",
         opacity: isExiting ? 0 : dimmed ? 0.5 : 1,
         transform: isExiting ? "scale(0.92)" : "scale(1)",
         transition: "min-width 0.45s cubic-bezier(0.4,0,0.2,1), max-width 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, transform 0.3s ease, margin-right 0.45s cubic-bezier(0.4,0,0.2,1)",
@@ -157,8 +160,8 @@ function EarnCard({
       <div
         style={{
           position: "relative",
-          height: "480px",
-          minWidth: "260px",
+          height: isMobile ? "400px" : "480px",
+          minWidth: isMobile ? "200px" : "260px",
           overflow: "hidden",
           boxShadow: "none",
         }}
@@ -428,9 +431,11 @@ function EarnCard({
 function RedeemContent({
   totalPoints,
   onPointsChange,
+  isMobile = false,
 }: {
   totalPoints: number;
   onPointsChange: (newTotal: number) => void;
+  isMobile?: boolean;
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [redeemHovered, setRedeemHovered] = useState(false);
@@ -491,8 +496,8 @@ function RedeemContent({
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        minHeight: "520px",
+        gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+        minHeight: isMobile ? "auto" : "520px",
         width: "100%",
       }}
     >
@@ -501,7 +506,7 @@ function RedeemContent({
         style={{
           backgroundColor: "#ffffff",
           border: "1px solid #d4e0df",
-          padding: "72px 60px",
+          padding: isMobile ? "40px 24px" : "72px 60px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -525,7 +530,7 @@ function RedeemContent({
         <p
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "32px",
+            fontSize: isMobile ? "24px" : "32px",
             fontWeight: 400,
             color: "#000000",
             margin: "0 0 14px 0",
@@ -587,14 +592,15 @@ function RedeemContent({
       <div
         style={{
           backgroundColor: "#F6F5F1",
-          padding: "72px 60px",
+          padding: isMobile ? "40px 24px" : "72px 60px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           textAlign: "center",
           border: "1px solid #d4e0df",
-          borderLeft: "none",
+          borderLeft: isMobile ? "1px solid #d4e0df" : "none",
+          borderTop: isMobile ? "none" : "1px solid #d4e0df",
         }}
       >
         {/* Hero dollar value */}
@@ -615,7 +621,7 @@ function RedeemContent({
         <p
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "64px",
+            fontSize: isMobile ? "48px" : "64px",
             fontWeight: 400,
             color: "#000000",
             margin: 0,
@@ -750,9 +756,10 @@ function RedeemContent({
           style={{
             position: "relative",
             backgroundColor: "#ffffff",
-            padding: "64px 72px",
-            minWidth: "440px",
-            maxWidth: "480px",
+            padding: isMobile ? "40px 24px" : "64px 72px",
+            minWidth: isMobile ? "0" : "440px",
+            maxWidth: isMobile ? "calc(100% - 32px)" : "480px",
+            width: isMobile ? "calc(100% - 32px)" : "auto",
             textAlign: "center",
             display: "flex",
             flexDirection: "column",
@@ -829,7 +836,7 @@ function RedeemContent({
           <p
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "32px",
+              fontSize: isMobile ? "24px" : "32px",
               fontWeight: 400,
               color: "#000000",
               margin: "0 0 10px 0",
@@ -862,10 +869,10 @@ function RedeemContent({
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              gap: "40px",
+              gap: isMobile ? "20px" : "40px",
               width: "100%",
-              padding: "28px 0",
-              marginBottom: "32px",
+              padding: isMobile ? "20px 0" : "28px 0",
+              marginBottom: isMobile ? "24px" : "32px",
               animation: popup.phase !== "out" ? "redeemTextUp 0.4s ease 0.5s both" : undefined,
             }}
           >
@@ -888,7 +895,7 @@ function RedeemContent({
               <p
                 style={{
                   fontFamily: "var(--font-sans)",
-                  fontSize: "40px",
+                  fontSize: isMobile ? "28px" : "40px",
                   fontWeight: 400,
                   color: "#000000",
                   margin: 0,
@@ -932,7 +939,7 @@ function RedeemContent({
               <p
                 style={{
                   fontFamily: "var(--font-sans)",
-                  fontSize: "40px",
+                  fontSize: isMobile ? "28px" : "40px",
                   fontWeight: 400,
                   color: "#000000",
                   margin: 0,
@@ -1078,10 +1085,12 @@ function FreeProductsContent({
   totalPoints,
   onPointsChange,
   currentTier,
+  isMobile = false,
 }: {
   totalPoints: number;
   onPointsChange: (newTotal: number) => void;
   currentTier: number;
+  isMobile?: boolean;
 }) {
   const [phases, setPhases] = useState<Record<number, "idle" | "loading" | "check" | "done">>(
     () => Object.fromEntries(freeProducts.map((_, i) => [i, "idle"]))
@@ -1177,9 +1186,9 @@ function FreeProductsContent({
               key={i}
               style={{
                 position: "relative",
-                minWidth: "calc(34% - 10px)",
-                maxWidth: "calc(34% - 10px)",
-                height: "480px",
+                minWidth: isMobile ? "calc(80% - 8px)" : "calc(34% - 10px)",
+                maxWidth: isMobile ? "calc(80% - 8px)" : "calc(34% - 10px)",
+                height: isMobile ? "400px" : "480px",
                 flexShrink: 0,
                 backgroundColor: "#ffffff",
                 display: "flex",
@@ -1497,7 +1506,7 @@ function FreeProductsContent({
 /* ─── Upload Receipt tab content ─── */
 type UploadPhase = "idle" | "selected" | "uploading" | "success";
 
-function UploadReceiptContent() {
+function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
   const [phase, setPhase] = useState<UploadPhase>("idle");
   const [fileName, setFileName] = useState("");
   const [fileSize, setFileSize] = useState("");
@@ -1568,8 +1577,8 @@ function UploadReceiptContent() {
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        minHeight: "480px",
+        gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+        minHeight: isMobile ? "auto" : "480px",
         width: "100%",
       }}
     >
@@ -1578,7 +1587,7 @@ function UploadReceiptContent() {
         style={{
           backgroundColor: "#ffffff",
           border: "1px solid #d4e0df",
-          padding: "64px 56px",
+          padding: isMobile ? "40px 24px" : "64px 56px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -1604,7 +1613,7 @@ function UploadReceiptContent() {
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "32px",
+                fontSize: isMobile ? "24px" : "32px",
                 fontWeight: 400,
                 color: "#000000",
                 margin: "0 0 14px 0",
@@ -1690,11 +1699,11 @@ function UploadReceiptContent() {
               review &amp; submit
             </span>
 
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "24px" : "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
               Upload your receipt
             </p>
 
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#000000", margin: "0 0 32px 0", lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "14px" : "16px", fontWeight: 400, color: "#000000", margin: "0 0 32px 0", lineHeight: 1.6 }}>
               Make a photo or scan of your receipt and upload.
             </p>
 
@@ -1744,7 +1753,7 @@ function UploadReceiptContent() {
               uploading
             </span>
 
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "24px" : "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
               Processing your receipt
             </p>
 
@@ -1799,7 +1808,7 @@ function UploadReceiptContent() {
               </svg>
             </div>
 
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "24px" : "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
               Thank you
             </p>
 
@@ -1807,19 +1816,19 @@ function UploadReceiptContent() {
               Once the verification process is finished your AG Credit will be added to your account. You can follow the status in your Rewards History.
             </p>
 
-            <div style={{ display: "flex", gap: "10px" }}>
+            <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: "10px", width: isMobile ? "100%" : "auto" }}>
               <button
                 onClick={handleReset}
                 onMouseEnter={() => setNewUploadHovered(true)}
                 onMouseLeave={() => setNewUploadHovered(false)}
-                style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#ffffff", backgroundColor: newUploadHovered ? "#155050" : "#0C3D3D", border: "1px solid #0C3D3D", minHeight: "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
+                style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "16px" : "18px", fontWeight: 600, color: "#ffffff", backgroundColor: newUploadHovered ? "#155050" : "#0C3D3D", border: "1px solid #0C3D3D", minHeight: isMobile ? "48px" : "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
               >
                 Upload Another →
               </button>
               <button
                 onMouseEnter={() => setHistoryHovered(true)}
                 onMouseLeave={() => setHistoryHovered(false)}
-                style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: historyHovered ? "#ffffff" : "#0C3D3D", backgroundColor: historyHovered ? "#0C3D3D" : "transparent", border: "1px solid #0C3D3D", minHeight: "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease, color 0.2s ease" }}
+                style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "16px" : "18px", fontWeight: 600, color: historyHovered ? "#ffffff" : "#0C3D3D", backgroundColor: historyHovered ? "#0C3D3D" : "transparent", border: "1px solid #0C3D3D", minHeight: isMobile ? "48px" : "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease, color 0.2s ease" }}
               >
                 View History →
               </button>
@@ -1829,7 +1838,7 @@ function UploadReceiptContent() {
       </div>
 
       {/* Right — product image */}
-      <div style={{ position: "relative", overflow: "hidden", border: "1px solid #d4e0df", borderLeft: "none" }}>
+      <div style={{ position: "relative", overflow: "hidden", border: "1px solid #d4e0df", borderLeft: isMobile ? "1px solid #d4e0df" : "none", borderTop: isMobile ? "none" : "1px solid #d4e0df", minHeight: isMobile ? "240px" : "auto" }}>
         <img src="/featured2.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(0,0,0,0.03) 0%, transparent 60%)" }} />
         <div
@@ -1874,6 +1883,7 @@ function UploadReceiptContent() {
 }
 
 export default function WaysToEarn() {
+  const isMobile = useIsMobile();
   const [completedCards, setCompletedCards] = useState<Set<number>>(new Set([0]));
   const [animPhase, setAnimPhase] = useState<{ index: number; phase: "check" | "exit" } | null>(null);
   const [highlightedCards, setHighlightedCards] = useState<Set<number>>(new Set());
@@ -2070,14 +2080,14 @@ export default function WaysToEarn() {
     <section
       id="section-ways-to-earn"
       style={{
-        padding: "0px 48px 100px",
+        padding: isMobile ? "0px 16px 60px" : "0px 48px 100px",
       }}
     >
       {/* Title */}
       <h2
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "44px",
+          fontSize: isMobile ? "28px" : "44px",
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
@@ -2117,10 +2127,16 @@ export default function WaysToEarn() {
       >
         {/* Tab buttons */}
         <div
+          data-earn-tabs=""
           style={{
             display: "flex",
-            gap: "10px",
-            marginBottom: "32px",
+            gap: isMobile ? "8px" : "10px",
+            marginBottom: isMobile ? "24px" : "32px",
+            overflowX: isMobile ? "auto" : "visible",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+            WebkitOverflowScrolling: "touch",
+            paddingBottom: isMobile ? "4px" : "0",
           }}
         >
           <button
@@ -2129,12 +2145,14 @@ export default function WaysToEarn() {
             onMouseLeave={() => setEarnTabHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "18px",
+              fontSize: isMobile ? "14px" : "18px",
               fontWeight: 600,
-              padding: "0 32px",
-              minHeight: "52px",
+              padding: isMobile ? "0 18px" : "0 32px",
+              minHeight: isMobile ? "44px" : "52px",
               borderRadius: "999px",
               cursor: "pointer",
+              flexShrink: 0,
+              whiteSpace: "nowrap",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
               backgroundColor: activeTab === "earn" ? "#0C3D3D" : earnTabHovered ? "rgba(12,61,61,0.06)" : "transparent",
               color: activeTab === "earn" ? "#ffffff" : "#0C3D3D",
@@ -2159,12 +2177,14 @@ export default function WaysToEarn() {
             onMouseLeave={() => setExchangeTabHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "18px",
+              fontSize: isMobile ? "14px" : "18px",
               fontWeight: 600,
-              padding: "0 32px",
-              minHeight: "52px",
+              padding: isMobile ? "0 18px" : "0 32px",
+              minHeight: isMobile ? "44px" : "52px",
               borderRadius: "999px",
               cursor: "pointer",
+              flexShrink: 0,
+              whiteSpace: "nowrap",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
               backgroundColor: activeTab === "exchange" ? "#0C3D3D" : exchangeTabHovered ? "rgba(12,61,61,0.06)" : "transparent",
               color: activeTab === "exchange" ? "#ffffff" : "#0C3D3D",
@@ -2180,12 +2200,14 @@ export default function WaysToEarn() {
             onMouseLeave={() => setProductsTabHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "18px",
+              fontSize: isMobile ? "14px" : "18px",
               fontWeight: 600,
-              padding: "0 32px",
-              minHeight: "52px",
+              padding: isMobile ? "0 18px" : "0 32px",
+              minHeight: isMobile ? "44px" : "52px",
               borderRadius: "999px",
               cursor: "pointer",
+              flexShrink: 0,
+              whiteSpace: "nowrap",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
               backgroundColor: activeTab === "products" ? "#0C3D3D" : productsTabHovered ? "rgba(12,61,61,0.06)" : "transparent",
               color: activeTab === "products" ? "#ffffff" : "#0C3D3D",
@@ -2201,11 +2223,13 @@ export default function WaysToEarn() {
             onMouseLeave={() => setUploadTabHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "18px",
+              fontSize: isMobile ? "14px" : "18px",
               fontWeight: 600,
-              padding: "0 32px",
-              minHeight: "52px",
+              padding: isMobile ? "0 18px" : "0 32px",
+              minHeight: isMobile ? "44px" : "52px",
               borderRadius: "999px",
+              flexShrink: 0,
+              whiteSpace: "nowrap",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
               backgroundColor: activeTab === "upload" ? "#0C3D3D" : uploadTabHovered ? "rgba(12,61,61,0.06)" : "transparent",
@@ -2254,6 +2278,7 @@ export default function WaysToEarn() {
                     highlighted={highlightedCards.has(i)}
                     anyHighlighted={highlightedCards.size > 0}
                     subscriptionDays={subscriptionDays}
+                    isMobile={isMobile}
                   />
                 ))}
             </div>
@@ -2322,16 +2347,17 @@ export default function WaysToEarn() {
         )}
 
         {/* ═══ EXCHANGE TAB ═══ */}
-        {activeTab === "exchange" && <RedeemContent totalPoints={totalPoints} onPointsChange={handlePointsChange} />}
+        {activeTab === "exchange" && <RedeemContent totalPoints={totalPoints} onPointsChange={handlePointsChange} isMobile={isMobile} />}
 
         {/* ═══ FREE PRODUCTS TAB ═══ */}
-        {activeTab === "products" && <FreeProductsContent totalPoints={totalPoints} onPointsChange={handlePointsChange} currentTier={currentTier} />}
+        {activeTab === "products" && <FreeProductsContent totalPoints={totalPoints} onPointsChange={handlePointsChange} currentTier={currentTier} isMobile={isMobile} />}
 
         {/* ═══ UPLOAD RECEIPT TAB ═══ */}
-        {activeTab === "upload" && <UploadReceiptContent />}
+        {activeTab === "upload" && <UploadReceiptContent isMobile={isMobile} />}
       </div>
 
       <style>{`
+        [data-earn-tabs]::-webkit-scrollbar { display: none; }
         @keyframes earnOverlayIn {
           from { opacity: 0; }
           to { opacity: 1; }

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "@vectoricons/atlas-icons-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const steps = [
   {
@@ -87,6 +88,7 @@ function scrollToEarn() {
 }
 
 export default function Sweepstakes() {
+  const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState<"join" | "past">("join");
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const [hoveredWinner, setHoveredWinner] = useState<number | null>(null);
@@ -165,19 +167,19 @@ export default function Sweepstakes() {
       id="section-sweepstakes"
       style={{
         backgroundColor: "#ffffff",
-        padding: "0px 48px 90px",
+        padding: isMobile ? "0px 16px 60px" : "0px 48px 90px",
       }}
     >
       {/* Heading */}
       <h2
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "44px",
+          fontSize: isMobile ? "28px" : "44px",
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
           textAlign: "left",
-          margin: "0 0 56px 0",
+          margin: isMobile ? "0 0 32px 0" : "0 0 56px 0",
           letterSpacing: "-0.01em",
           maxWidth: "1280px",
           marginLeft: "auto",
@@ -201,8 +203,9 @@ export default function Sweepstakes() {
           style={{
             display: "flex",
             justifyContent: "center",
-            gap: "12px",
-            marginBottom: "36px",
+            gap: isMobile ? "8px" : "12px",
+            marginBottom: isMobile ? "24px" : "36px",
+            padding: isMobile ? "0 16px" : undefined,
           }}
         >
           <button
@@ -211,10 +214,10 @@ export default function Sweepstakes() {
             onMouseLeave={() => setJoinHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "17px",
+              fontSize: isMobile ? "14px" : "17px",
               fontWeight: 600,
-              padding: "0 32px",
-              minHeight: "52px",
+              padding: isMobile ? "0 18px" : "0 32px",
+              minHeight: isMobile ? "44px" : "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease",
@@ -236,10 +239,10 @@ export default function Sweepstakes() {
             onMouseLeave={() => setPastHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "17px",
+              fontSize: isMobile ? "14px" : "17px",
               fontWeight: 600,
-              padding: "0 32px",
-              minHeight: "52px",
+              padding: isMobile ? "0 18px" : "0 32px",
+              minHeight: isMobile ? "44px" : "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease",
@@ -259,19 +262,21 @@ export default function Sweepstakes() {
 
         {/* ═══ JOIN TAB — new version (editorial split) ═══ */}
         {activeTab === "join" && version === 1 && (
-          <div style={{ padding: "0 48px" }}>
+          <div style={{ padding: isMobile ? "0 16px" : "0 48px" }}>
             <div
               style={{
                 display: "flex",
+                flexDirection: isMobile ? "column" : "row",
                 backgroundColor: "#ffffff",
                 overflow: "hidden",
-                minHeight: "520px",
+                minHeight: isMobile ? undefined : "520px",
               }}
             >
               {/* Left — hero image */}
               <div
                 style={{
-                  width: "45%",
+                  width: isMobile ? "100%" : "45%",
+                  height: isMobile ? "200px" : undefined,
                   flexShrink: 0,
                   overflow: "hidden",
                   position: "relative",
@@ -293,7 +298,7 @@ export default function Sweepstakes() {
               <div
                 style={{
                   flex: 1,
-                  padding: "48px 52px 44px",
+                  padding: isMobile ? "28px 20px 32px" : "48px 52px 44px",
                   display: "flex",
                   flexDirection: "column",
                 }}
@@ -545,9 +550,11 @@ export default function Sweepstakes() {
                   <div
                     style={{
                       display: "flex",
-                      alignItems: "center",
+                      flexDirection: isMobile ? "column" : "row",
+                      alignItems: isMobile ? "flex-start" : "center",
                       justifyContent: "space-between",
-                      marginTop: "36px",
+                      marginTop: isMobile ? "24px" : "36px",
+                      gap: isMobile ? "12px" : undefined,
                     }}
                   >
                     <a
@@ -588,12 +595,12 @@ export default function Sweepstakes() {
 
         {/* ═══ JOIN TAB — alternative version (card grid) ═══ */}
         {activeTab === "join" && version === 2 && (
-          <div style={{ padding: "0 48px" }}>
+          <div style={{ padding: isMobile ? "0 16px" : "0 48px" }}>
             {/* Hero image — narrower */}
             <div
               style={{
-                width: "60%",
-                height: "280px",
+                width: isMobile ? "100%" : "60%",
+                height: isMobile ? "200px" : "280px",
                 overflow: "hidden",
                 marginBottom: "40px",
                 margin: "0 auto 40px",
@@ -643,7 +650,7 @@ export default function Sweepstakes() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(4, 1fr)",
+                gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
                 gap: "0",
                 maxWidth: "960px",
                 margin: "0 auto 40px",
@@ -759,12 +766,14 @@ export default function Sweepstakes() {
             <div
               style={{
                 display: "flex",
-                alignItems: "center",
+                flexDirection: isMobile ? "column" : "row",
+                alignItems: isMobile ? "flex-start" : "center",
                 justifyContent: "space-between",
                 maxWidth: "960px",
                 margin: "0 auto",
                 borderTop: "1px solid #d4e0df",
                 paddingTop: "20px",
+                gap: isMobile ? "12px" : undefined,
               }}
             >
               {handlesConnected ? (
@@ -839,7 +848,7 @@ export default function Sweepstakes() {
         {/* ═══ JOIN TAB — old version (centered card + grid) ═══ */}
         {activeTab === "join" && version === 3 && (
           <>
-            <div style={{ padding: "0 48px" }}>
+            <div style={{ padding: isMobile ? "0 16px" : "0 48px" }}>
               {/* White card — hero image + text */}
               <div
                 style={{
@@ -982,9 +991,9 @@ export default function Sweepstakes() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(4, 1fr)",
+                gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
                 gap: "1px",
-                margin: "40px 48px 0",
+                margin: isMobile ? "24px 16px 0" : "40px 48px 0",
                 backgroundColor: "#d4e0df",
               }}
             >
@@ -1079,11 +1088,11 @@ export default function Sweepstakes() {
 
         {/* ═══ PAST WINNERS TAB ═══ */}
         {activeTab === "past" && (
-          <div style={{ padding: "0 48px" }}>
+          <div style={{ padding: isMobile ? "0 16px" : "0 48px" }}>
             <h2
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "44px",
+                fontSize: isMobile ? "28px" : "44px",
                 fontWeight: 400,
                 lineHeight: 1.1,
                 color: "#000000",
@@ -1134,8 +1143,8 @@ export default function Sweepstakes() {
                   onMouseLeave={() => setHoveredWinner(null)}
                   style={{
                     backgroundColor: "#ffffff",
-                    minWidth: "280px",
-                    maxWidth: "280px",
+                    minWidth: isMobile ? "200px" : "280px",
+                    maxWidth: isMobile ? "200px" : "280px",
                     flexShrink: 0,
                     opacity: hoveredWinner !== null && hoveredWinner !== i ? 0.75 : 1,
                     transition: "opacity 0.3s ease",

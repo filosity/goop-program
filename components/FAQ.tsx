@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const faqs = [
   {
@@ -36,6 +37,7 @@ const faqs = [
 ];
 
 export default function FAQ() {
+  const isMobile = useIsMobile();
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
@@ -43,7 +45,7 @@ export default function FAQ() {
       id="section-faq"
       style={{
         backgroundColor: "#ffffff",
-        padding: "100px 48px",
+        padding: isMobile ? "60px 20px" : "100px 48px",
       }}
     >
       <div
@@ -51,8 +53,8 @@ export default function FAQ() {
           maxWidth: "1280px",
           margin: "0 auto",
           display: "grid",
-          gridTemplateColumns: "1fr 1.4fr",
-          gap: "80px",
+          gridTemplateColumns: isMobile ? "1fr" : "1fr 1.4fr",
+          gap: isMobile ? "32px" : "80px",
           alignItems: "start",
         }}
       >
@@ -60,7 +62,7 @@ export default function FAQ() {
         <h2
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "44px",
+            fontSize: isMobile ? "28px" : "44px",
             fontWeight: 400,
             lineHeight: 1.15,
             color: "#000000",
