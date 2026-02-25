@@ -1942,8 +1942,8 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                   zIndex: 2,
                 }}
               >
-                {/* Circle row — fixed height for line alignment */}
-                <div style={{ height: "96px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                {/* Circle row */}
+                <div style={{ height: hasReward ? "96px" : "auto", paddingTop: hasReward ? "0" : "40px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   {hasReward ? (
                     /* Reward day — larger circle with image */
                     <div
