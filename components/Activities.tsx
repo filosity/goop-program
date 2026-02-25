@@ -1537,23 +1537,138 @@ const streakRewards = [
   { name: "AG1 Tote", image: "/milestone-tote.jpg", code: "TOTE42" },
 ];
 
-/* ─── Streak rewards V1 (every 30 days) ─── */
-const streakRewardsV1 = [
-  { name: "AG1 Shaker Bottle", image: "/featured-stanley.jpg", code: "SHAKER30" },
-  { name: "Travel Packs", image: "/earn1.jpg", code: "TRAVEL60" },
+/* ─── Streak rewards (every 50 days) ─── */
+const streakRewardsMultiplier = [
+  { name: "AG1 Shaker Bottle", image: "/featured-stanley.jpg", code: "SHAKER50" },
+  { name: "Travel Packs", image: "/earn1.jpg", code: "TRAVEL100" },
   { name: "$5 AG Credit", image: "/featured1.jpg", code: "STREAK5" },
-  { name: "AG1 Hat", image: "/milestone-hat.jpg", code: "HAT120" },
-  { name: "AG1 Tote", image: "/milestone-tote.jpg", code: "TOTE150" },
-  { name: "Free Shipping", image: "/earn2.jpg", code: "FREESHIP180" },
+  { name: "AG1 Hat", image: "/milestone-hat.jpg", code: "HAT200" },
+  { name: "AG1 Tote", image: "/milestone-tote.jpg", code: "TOTE250" },
+  { name: "Free Shipping", image: "/earn2.jpg", code: "FREESHIP300" },
 ];
 
-/* ─── Daily Check-in V1 — Multiplier Progress Bar ─── */
-function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: number) => void; isMobile: boolean }) {
+/* ─── Shared multiplier logic ─── */
+const CYCLE_DAYS = 50;
+const TIER_2_START = 17;
+const TIER_3_START = 34;
+
+function getStreakTier(cycleDay: number) {
+  if (cycleDay >= TIER_3_START) return { label: "3x", rate: 0.75, tier: 3 };
+  if (cycleDay >= TIER_2_START) return { label: "2x", rate: 0.50, tier: 2 };
+  return { label: "1x", rate: 0.25, tier: 1 };
+}
+
+function getStreakBarProgress(cycleDay: number) {
+  if (cycleDay >= TIER_3_START) return 100;
+  if (cycleDay >= TIER_2_START) return 50 + ((cycleDay - TIER_2_START) / (TIER_3_START - TIER_2_START)) * 50;
+  return ((cycleDay - 1) / (TIER_2_START - 1)) * 50;
+}
+
+/* ─── Shared streak fire icon ─── */
+function FlameIcon({ size = 20, color = "#E8913A" }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={color} style={{ flexShrink: 0 }}>
+      <path d="M12 2C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2 14h-4v-1h4v1zm1.31-3.04l-.79.58V15h-5.04v-1.46l-.79-.58C6.93 11.84 6 10.51 6 9c0-3.31 2.69-6 6-6s6 2.69 6 6c0 1.51-.93 2.84-2.69 3.96z" />
+    </svg>
+  );
+}
+
+/* ─── Shared reward preview ─── */
+function RewardPreview({ reward, daysUntilReward, isMobile }: { reward: { name: string; image: string }; daysUntilReward: number; isMobile: boolean }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: isMobile ? "column" : "row",
+        marginBottom: "32px",
+        border: "1px solid #d4e0df",
+        overflow: "hidden",
+        height: isMobile ? "auto" : "220px",
+      }}
+    >
+      <div
+        style={{
+          flex: 1,
+          backgroundColor: "#ffffff",
+          padding: isMobile ? "24px 20px" : "32px 40px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 600, color: "#999", margin: "0 0 10px 0", lineHeight: 1, textTransform: "uppercase" as const, letterSpacing: "0.04em" }}>
+          Next reward
+        </p>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "26px", fontWeight: 400, color: "#000000", margin: "0 0 10px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
+          {reward.name}
+        </p>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "#0C3D3D", margin: 0, lineHeight: 1 }}>
+          {daysUntilReward === 0 ? "Unlocked today" : `${daysUntilReward} day${daysUntilReward === 1 ? "" : "s"} away`}
+        </p>
+      </div>
+      <div style={{ width: isMobile ? "100%" : "420px", maxWidth: isMobile ? "100%" : "420px", height: isMobile ? "180px" : "auto", flexShrink: 0 }}>
+        <img src={reward.image} alt={reward.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+      </div>
+    </div>
+  );
+}
+
+/* ─── Shared check-in button + confirmation ─── */
+function CheckInButton({ onCheckIn, showChecked, rate, checkInHovered, setCheckInHovered }: {
+  onCheckIn: () => void;
+  showChecked: boolean;
+  rate: number;
+  checkInHovered: boolean;
+  setCheckInHovered: (h: boolean) => void;
+}) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", minHeight: "80px", justifyContent: "center" }}>
+      {showChecked ? (
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", animation: "streakCheckedIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }}>
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style={{ overflow: "visible" }}>
+            <circle cx="20" cy="20" r="19" fill="#0C3D3D" style={{ transformOrigin: "20px 20px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
+            <path d="M12 21L17.5 26.5L28 14" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "streakDrawCheck 0.4s ease 0.25s forwards" }} />
+          </svg>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.3s both" }}>
+            +${rate.toFixed(2)} AG Credit earned
+          </p>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.5s both" }}>
+            Check in again tomorrow
+          </p>
+        </div>
+      ) : (
+        <button
+          onClick={onCheckIn}
+          onMouseEnter={() => setCheckInHovered(true)}
+          onMouseLeave={() => setCheckInHovered(false)}
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "18px",
+            fontWeight: 600,
+            color: "#ffffff",
+            backgroundColor: checkInHovered ? "#155050" : "#0C3D3D",
+            border: "none",
+            minHeight: "52px",
+            padding: "0 40px",
+            borderRadius: "999px",
+            cursor: "pointer",
+            transition: "background-color 0.2s ease",
+            lineHeight: 1,
+          }}
+        >
+          Check In Today &rarr;
+        </button>
+      )}
+    </div>
+  );
+}
+
+/* ─── Shared check-in hook ─── */
+function useStreakCheckin(onStreakChange: (n: number) => void) {
   const [checkedCount, setCheckedCount] = useState(0);
   const [checkInHovered, setCheckInHovered] = useState(false);
   const [showCheckedMessage, setShowCheckedMessage] = useState(false);
   const [hasCheckedOnce, setHasCheckedOnce] = useState(false);
-  const [hoveredDot, setHoveredDot] = useState<number | null>(null);
   const [animatingBar, setAnimatingBar] = useState(false);
   const checkinPointsRef = useRef(5);
 
@@ -1569,195 +1684,114 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
   useEffect(() => { onStreakChange(checkedCount); }, [checkedCount, onStreakChange]);
 
   const currentDay = 1 + checkedCount;
-
-  // Multiplier tiers
-  const getTier = (day: number) => {
-    if (day >= 20) return { multiplier: "3x", rate: 0.75 };
-    if (day >= 10) return { multiplier: "2x", rate: 0.50 };
-    return { multiplier: "1x", rate: 0.25 };
-  };
-
-  const tier = getTier(currentDay);
-
-  // Progress within current 30-day cycle
-  const cycleDay = ((currentDay - 1) % 30) + 1;
-
-  // Next reward
-  const nextRewardIdx = Math.floor((currentDay - 1) / 30);
-  const nextRewardDay = (nextRewardIdx + 1) * 30;
+  const cycleDay = ((currentDay - 1) % CYCLE_DAYS) + 1;
+  const tier = getStreakTier(cycleDay);
+  const barProgress = getStreakBarProgress(cycleDay);
+  const nextRewardIdx = Math.floor((currentDay - 1) / CYCLE_DAYS);
+  const nextRewardDay = (nextRewardIdx + 1) * CYCLE_DAYS;
   const daysUntilReward = nextRewardDay - currentDay;
-  const reward = streakRewardsV1[nextRewardIdx % streakRewardsV1.length];
-
-  // Bar progress (0-100) based on position within 30-day cycle
-  const barProgress = Math.min(((cycleDay - 1) / 29) * 100, 100);
-
-  // Milestones at day 1, 10, 20 within cycle → positions 0%, 31%, 65.5%
-  const milestones = [
-    { label: "1x", dayInCycle: 1, position: 0, rate: "$0.25/day", absoluteDay: Math.floor((currentDay - 1) / 30) * 30 + 1 },
-    { label: "2x", dayInCycle: 10, position: 31, rate: "$0.50/day", absoluteDay: Math.floor((currentDay - 1) / 30) * 30 + 10 },
-    { label: "3x", dayInCycle: 20, position: 65.5, rate: "$0.75/day", absoluteDay: Math.floor((currentDay - 1) / 30) * 30 + 20 },
-  ];
+  const reward = streakRewardsMultiplier[nextRewardIdx % streakRewardsMultiplier.length];
 
   const handleCheckIn = useCallback(() => {
     if (showCheckedMessage) return;
     setAnimatingBar(true);
     setCheckedCount((c) => c + 1);
-
-    const rate = getTier(currentDay).rate;
+    const rate = getStreakTier(cycleDay).rate;
     const newTotal = Math.round((checkinPointsRef.current + rate) * 100) / 100;
     checkinPointsRef.current = newTotal;
     window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
-
     if (!hasCheckedOnce) {
       setShowCheckedMessage(true);
       setHasCheckedOnce(true);
       setTimeout(() => setShowCheckedMessage(false), 2800);
     }
     setTimeout(() => setAnimatingBar(false), 800);
-  }, [showCheckedMessage, currentDay, hasCheckedOnce]);
+  }, [showCheckedMessage, cycleDay, hasCheckedOnce]);
+
+  return { checkedCount, currentDay, cycleDay, tier, barProgress, reward, daysUntilReward, animatingBar, showCheckedMessage, checkInHovered, setCheckInHovered, handleCheckIn };
+}
+
+/* ─── Shared multiplier keyframes ─── */
+const multiplierKeyframes = `
+  @keyframes streakCirclePop {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes streakDrawCheck {
+    from { stroke-dashoffset: 24; }
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes streakCheckedIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes streakTextFade {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes streakPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+  }
+`;
+
+/* ─── Daily Check-in V1 — Clean Progress ─── */
+function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: number) => void; isMobile: boolean }) {
+  const s = useStreakCheckin(onStreakChange);
+  const [hoveredDot, setHoveredDot] = useState<number | null>(null);
+
+  const milestones = [
+    { label: "1x", rate: "$0.25/day", dayInCycle: 1 },
+    { label: "2x", rate: "$0.50/day", dayInCycle: TIER_2_START },
+    { label: "3x", rate: "$0.75/day", dayInCycle: TIER_3_START },
+  ];
 
   return (
-    <div
-      style={{
-        border: "1px solid #d4e0df",
-        backgroundColor: "#ffffff",
-        padding: isMobile ? "24px 16px" : "48px",
-      }}
-    >
-      {/* Next reward preview */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: isMobile ? "column" : "row",
-          marginBottom: "32px",
-          border: "1px solid #d4e0df",
-          overflow: "hidden",
-          height: isMobile ? "auto" : "260px",
-        }}
-      >
-        <div
-          style={{
-            flex: 1,
-            backgroundColor: "#ffffff",
-            padding: "36px 40px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "18px",
-              fontWeight: 600,
-              color: "#000000",
-              margin: "0 0 12px 0",
-              lineHeight: 1,
-            }}
-          >
-            {daysUntilReward === 0 ? "Today\u2019s reward" : `Unlocks in ${daysUntilReward} day${daysUntilReward === 1 ? "" : "s"}`}
-          </p>
-          <p
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "28px",
-              fontWeight: 400,
-              color: "#000000",
-              margin: 0,
-              lineHeight: 1.2,
-              letterSpacing: "-0.01em",
-            }}
-          >
-            {reward.name}
-          </p>
+    <div style={{ border: "1px solid #d4e0df", backgroundColor: "#ffffff", padding: isMobile ? "24px 16px" : "48px" }}>
+      <RewardPreview reward={s.reward} daysUntilReward={s.daysUntilReward} isMobile={isMobile} />
+
+      {/* Streak hero */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "28px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <div style={{ width: "48px", height: "48px", borderRadius: "50%", backgroundColor: "#FFF5EB", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <FlameIcon size={24} />
+          </div>
+          <div>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "28px", fontWeight: 400, color: "#000000", letterSpacing: "-0.02em", lineHeight: 1, display: "block" }}>
+              {s.checkedCount} day streak
+            </span>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#999", lineHeight: 1, marginTop: "5px", display: "block" }}>
+              Day {s.currentDay} of {CYCLE_DAYS}
+            </span>
+          </div>
         </div>
-        <div style={{ width: isMobile ? "100%" : "510px", maxWidth: isMobile ? "100%" : "510px", height: isMobile ? "200px" : "auto", flexShrink: 0 }}>
-          <img
-            src={reward.image}
-            alt={reward.name}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              display: "block",
-            }}
-          />
+        {/* Current earning badge */}
+        <div style={{ backgroundColor: "#f0f7f7", border: "1px solid #d4e0df", padding: "12px 20px", display: "flex", alignItems: "center", gap: "10px" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "28px", fontWeight: 600, color: "#0C3D3D", lineHeight: 1 }}>
+            {s.tier.label}
+          </span>
+          <div>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#000000", lineHeight: 1, display: "block" }}>
+              ${s.tier.rate.toFixed(2)}
+            </span>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, color: "#999", lineHeight: 1, marginTop: "3px", display: "block" }}>
+              per day
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Day counter + multiplier label */}
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "24px" }}>
-        <div>
-          <span
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "36px",
-              fontWeight: 400,
-              color: "#000000",
-              letterSpacing: "-0.02em",
-              lineHeight: 1,
-            }}
-          >
-            Day {currentDay}
-          </span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <span
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "18px",
-              fontWeight: 600,
-              color: "#0C3D3D",
-              lineHeight: 1,
-            }}
-          >
-            {tier.multiplier}
-          </span>
-          <span
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "16px",
-              fontWeight: 400,
-              color: "#000000",
-              lineHeight: 1,
-            }}
-          >
-            ${tier.rate.toFixed(2)}/day
-          </span>
-        </div>
-      </div>
-
-      {/* Multiplier progress bar */}
-      <div style={{ position: "relative", marginBottom: "48px", padding: "0 6px" }}>
-        {/* Bar background */}
-        <div
-          style={{
-            height: "6px",
-            backgroundColor: "#e8eeed",
-            borderRadius: "3px",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          {/* Bar fill */}
-          <div
-            style={{
-              height: "100%",
-              width: `${barProgress}%`,
-              backgroundColor: "#0C3D3D",
-              borderRadius: "3px",
-              transition: animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none",
-            }}
-          />
+      {/* Progress bar */}
+      <div style={{ position: "relative", marginBottom: "56px", padding: "0 8px" }}>
+        <div style={{ height: "6px", backgroundColor: "#e8eeed", borderRadius: "3px", overflow: "hidden" }}>
+          <div style={{ height: "100%", width: `${s.barProgress}%`, backgroundColor: "#0C3D3D", borderRadius: "3px", transition: s.animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none" }} />
         </div>
 
-        {/* Milestone dots */}
+        {/* Dots — 0%, 50%, 100% aligned to edges */}
         {milestones.map((m, i) => {
-          const isReached = cycleDay >= m.dayInCycle;
-          const daysToReach = m.dayInCycle - cycleDay;
-          const tooltipText = isReached
-            ? `${m.rate} earned`
-            : `${daysToReach} day${daysToReach === 1 ? "" : "s"} until ${m.rate}`;
+          const isReached = s.cycleDay >= m.dayInCycle;
+          const daysToReach = m.dayInCycle - s.cycleDay;
+          const tooltipText = isReached ? `${m.rate} earned` : `${daysToReach} day${daysToReach === 1 ? "" : "s"} until ${m.rate}`;
 
           return (
             <div
@@ -1766,75 +1800,20 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
               onMouseLeave={() => setHoveredDot(null)}
               style={{
                 position: "absolute",
-                left: `${m.position}%`,
                 top: "-5px",
-                transform: "translateX(-50%)",
+                ...(i === 0 ? { left: 0 } : i === 2 ? { right: 0 } : { left: "50%", transform: "translateX(-50%)" }),
                 cursor: "default",
               }}
             >
-              {/* Dot */}
-              <div
-                style={{
-                  width: "16px",
-                  height: "16px",
-                  borderRadius: "50%",
-                  backgroundColor: isReached ? "#0C3D3D" : "#d4e0df",
-                  border: isReached ? "3px solid #0C3D3D" : "3px solid #ffffff",
-                  boxShadow: "0 0 0 1px #d4e0df",
-                  transition: "background-color 0.5s ease",
-                }}
-              />
-              {/* Label below */}
-              <span
-                style={{
-                  position: "absolute",
-                  top: "22px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "13px",
-                  fontWeight: isReached ? 700 : 500,
-                  color: isReached ? "#0C3D3D" : "#999",
-                  whiteSpace: "nowrap",
-                  lineHeight: 1,
-                }}
-              >
-                {m.label}
-              </span>
-              {/* Tooltip */}
+              <div style={{ width: "16px", height: "16px", borderRadius: "50%", backgroundColor: isReached ? "#0C3D3D" : "#d4e0df", border: isReached ? "3px solid #0C3D3D" : "3px solid #ffffff", boxShadow: "0 0 0 1px #d4e0df", transition: "background-color 0.5s ease" }} />
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "absolute", top: "22px", left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: isReached ? 700 : 500, color: isReached ? "#0C3D3D" : "#999", lineHeight: 1 }}>{m.label}</span>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 400, color: "#999", lineHeight: 1, marginTop: "4px" }}>{m.rate}</span>
+              </div>
               {hoveredDot === i && (
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: "calc(100% + 8px)",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    backgroundColor: "#1a1a1a",
-                    color: "#ffffff",
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "12px",
-                    fontWeight: 500,
-                    padding: "6px 10px",
-                    borderRadius: "6px",
-                    whiteSpace: "nowrap",
-                    lineHeight: 1,
-                    zIndex: 10,
-                  }}
-                >
+                <div style={{ position: "absolute", bottom: "calc(100% + 8px)", left: "50%", transform: "translateX(-50%)", backgroundColor: "#1a1a1a", color: "#ffffff", fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, padding: "6px 10px", borderRadius: "6px", whiteSpace: "nowrap", lineHeight: 1, zIndex: 10 }}>
                   {tooltipText}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "100%",
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      width: 0,
-                      height: 0,
-                      borderLeft: "4px solid transparent",
-                      borderRight: "4px solid transparent",
-                      borderTop: "4px solid #1a1a1a",
-                    }}
-                  />
+                  <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderTop: "4px solid #1a1a1a" }} />
                 </div>
               )}
             </div>
@@ -1842,69 +1821,207 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
         })}
       </div>
 
-      {/* Check-in button / confirmation */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", minHeight: "80px", justifyContent: "center" }}>
-        {showCheckedMessage ? (
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", animation: "streakCheckedIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }}>
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style={{ overflow: "visible" }}>
-              <circle cx="20" cy="20" r="19" fill="#0C3D3D" style={{ transformOrigin: "20px 20px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
-              <path d="M12 21L17.5 26.5L28 14" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "streakDrawCheck 0.4s ease 0.25s forwards" }} />
-            </svg>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.3s both" }}>
-              +${tier.rate.toFixed(2)} AG Credit earned
-            </p>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.5s both" }}>
-              Check in again tomorrow
-            </p>
-          </div>
-        ) : (
-          <button
-            onClick={handleCheckIn}
-            onMouseEnter={() => setCheckInHovered(true)}
-            onMouseLeave={() => setCheckInHovered(false)}
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "18px",
-              fontWeight: 600,
-              color: "#ffffff",
-              backgroundColor: checkInHovered ? "#155050" : "#0C3D3D",
-              border: "none",
-              minHeight: "52px",
-              padding: "0 40px",
-              borderRadius: "999px",
-              cursor: "pointer",
-              transition: "background-color 0.2s ease",
-              lineHeight: 1,
-            }}
-          >
-            {"Check In Today \u2192"}
-          </button>
-        )}
-      </div>
-
-      <style>{`
-        @keyframes streakCirclePop {
-          0% { transform: scale(0); opacity: 0; }
-          100% { transform: scale(1); opacity: 1; }
-        }
-        @keyframes streakDrawCheck {
-          from { stroke-dashoffset: 24; }
-          to { stroke-dashoffset: 0; }
-        }
-        @keyframes streakCheckedIn {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes streakTextFade {
-          from { opacity: 0; transform: translateY(4px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
+      <CheckInButton onCheckIn={s.handleCheckIn} showChecked={s.showCheckedMessage} rate={s.tier.rate} checkInHovered={s.checkInHovered} setCheckInHovered={s.setCheckInHovered} />
+      <style>{multiplierKeyframes}</style>
     </div>
   );
 }
 
-/* ─── Daily Check-in Content (V2) ─── */
+/* ─── Daily Check-in V2 — Tier Cards ─── */
+function DailyStreakV2({ onStreakChange, isMobile }: { onStreakChange: (streak: number) => void; isMobile: boolean }) {
+  const s = useStreakCheckin(onStreakChange);
+
+  const tiers = [
+    { label: "1x", rate: 0.25, startDay: 1, endDay: TIER_2_START - 1 },
+    { label: "2x", rate: 0.50, startDay: TIER_2_START, endDay: TIER_3_START - 1 },
+    { label: "3x", rate: 0.75, startDay: TIER_3_START, endDay: CYCLE_DAYS },
+  ];
+
+  return (
+    <div style={{ border: "1px solid #d4e0df", backgroundColor: "#ffffff", padding: isMobile ? "24px 16px" : "48px" }}>
+      <RewardPreview reward={s.reward} daysUntilReward={s.daysUntilReward} isMobile={isMobile} />
+
+      {/* Streak header */}
+      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "28px" }}>
+        <div style={{ width: "44px", height: "44px", borderRadius: "50%", backgroundColor: "#FFF5EB", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <FlameIcon size={22} />
+        </div>
+        <div>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "26px", fontWeight: 400, color: "#000000", letterSpacing: "-0.02em", lineHeight: 1, display: "block" }}>
+            {s.checkedCount} day streak
+          </span>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#999", lineHeight: 1, marginTop: "5px", display: "block" }}>
+            Day {s.currentDay} of {CYCLE_DAYS}
+          </span>
+        </div>
+      </div>
+
+      {/* Tier cards */}
+      <div style={{ display: "flex", gap: isMobile ? "10px" : "16px", marginBottom: "32px", flexDirection: isMobile ? "column" : "row" }}>
+        {tiers.map((t, i) => {
+          const isActive = s.tier.label === t.label;
+          const isPast = s.tier.tier > i + 1;
+          const daysUntil = t.startDay - s.cycleDay;
+
+          return (
+            <div
+              key={t.label}
+              style={{
+                flex: 1,
+                border: isActive ? "2px solid #0C3D3D" : "1px solid #d4e0df",
+                backgroundColor: isActive ? "#0C3D3D" : "#ffffff",
+                padding: isMobile ? "20px" : "28px 24px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+                transition: "all 0.4s ease",
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              {isActive && (
+                <span style={{ position: "absolute", top: "10px", right: "12px", fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase" as const, letterSpacing: "0.06em" }}>
+                  Active
+                </span>
+              )}
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "36px" : "44px", fontWeight: 600, color: isActive ? "#ffffff" : isPast ? "#0C3D3D" : "#d4e0df", lineHeight: 1, letterSpacing: "-0.02em", transition: "color 0.4s ease" }}>
+                {t.label}
+              </span>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 500, color: isActive ? "rgba(255,255,255,0.9)" : "#000000", lineHeight: 1, marginTop: "10px" }}>
+                ${t.rate.toFixed(2)}/day
+              </span>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 500, color: isActive ? "rgba(255,255,255,0.5)" : "#999", lineHeight: 1, marginTop: "10px" }}>
+                {isActive ? "Current tier" : isPast ? "Completed" : daysUntil > 0 ? `Unlocks in ${daysUntil} day${daysUntil === 1 ? "" : "s"}` : ""}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Today's earning — prominent inline */}
+      <div style={{ textAlign: "center", marginBottom: "28px" }}>
+        <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 500, color: "#999", lineHeight: 1 }}>
+          Today&rsquo;s check-in earns{" "}
+        </span>
+        <span style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#0C3D3D", lineHeight: 1 }}>
+          +${s.tier.rate.toFixed(2)} AG Credit
+        </span>
+      </div>
+
+      <CheckInButton onCheckIn={s.handleCheckIn} showChecked={s.showCheckedMessage} rate={s.tier.rate} checkInHovered={s.checkInHovered} setCheckInHovered={s.setCheckInHovered} />
+      <style>{multiplierKeyframes}</style>
+    </div>
+  );
+}
+
+/* ─── Daily Check-in V3 — Hero Multiplier ─── */
+function DailyStreakV3({ onStreakChange, isMobile }: { onStreakChange: (streak: number) => void; isMobile: boolean }) {
+  const s = useStreakCheckin(onStreakChange);
+  const [hoveredDot, setHoveredDot] = useState<number | null>(null);
+
+  const milestones = [
+    { label: "1x", rate: "$0.25/day", dayInCycle: 1 },
+    { label: "2x", rate: "$0.50/day", dayInCycle: TIER_2_START },
+    { label: "3x", rate: "$0.75/day", dayInCycle: TIER_3_START },
+  ];
+
+  // Next tier info
+  const nextTierInfo = s.tier.tier < 3
+    ? { label: s.tier.tier === 1 ? "2x" : "3x", daysAway: (s.tier.tier === 1 ? TIER_2_START : TIER_3_START) - s.cycleDay }
+    : null;
+
+  return (
+    <div style={{ border: "1px solid #d4e0df", backgroundColor: "#ffffff", padding: isMobile ? "24px 16px" : "48px" }}>
+      <RewardPreview reward={s.reward} daysUntilReward={s.daysUntilReward} isMobile={isMobile} />
+
+      {/* Streak badge */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", marginBottom: "28px" }}>
+        <div style={{ width: "36px", height: "36px", borderRadius: "50%", backgroundColor: "#FFF5EB", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <FlameIcon size={18} />
+        </div>
+        <span style={{ fontFamily: "var(--font-sans)", fontSize: "22px", fontWeight: 400, color: "#000000", letterSpacing: "-0.01em", lineHeight: 1 }}>
+          {s.checkedCount} day streak
+        </span>
+      </div>
+
+      {/* Big centered multiplier */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "32px" }}>
+        <div
+          style={{
+            width: isMobile ? "110px" : "130px",
+            height: isMobile ? "110px" : "130px",
+            borderRadius: "50%",
+            backgroundColor: "#0C3D3D",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: "14px",
+          }}
+        >
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "40px" : "48px", fontWeight: 600, color: "#ffffff", lineHeight: 1, letterSpacing: "-0.02em" }}>
+            {s.tier.label}
+          </span>
+        </div>
+        <span style={{ fontFamily: "var(--font-sans)", fontSize: "20px", fontWeight: 500, color: "#000000", lineHeight: 1 }}>
+          ${s.tier.rate.toFixed(2)} per day
+        </span>
+      </div>
+
+      {/* Progress bar with dots */}
+      <div style={{ position: "relative", marginBottom: "24px", padding: "0 8px" }}>
+        <div style={{ height: "6px", backgroundColor: "#e8eeed", borderRadius: "3px", overflow: "hidden" }}>
+          <div style={{ height: "100%", width: `${s.barProgress}%`, backgroundColor: "#0C3D3D", borderRadius: "3px", transition: s.animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none" }} />
+        </div>
+        {milestones.map((m, i) => {
+          const isReached = s.cycleDay >= m.dayInCycle;
+          const daysToReach = m.dayInCycle - s.cycleDay;
+          const tooltipText = isReached ? `${m.rate} earned` : `${daysToReach} day${daysToReach === 1 ? "" : "s"} until ${m.rate}`;
+          return (
+            <div
+              key={i}
+              onMouseEnter={() => setHoveredDot(i)}
+              onMouseLeave={() => setHoveredDot(null)}
+              style={{
+                position: "absolute",
+                top: "-5px",
+                ...(i === 0 ? { left: 0 } : i === 2 ? { right: 0 } : { left: "50%", transform: "translateX(-50%)" }),
+                cursor: "default",
+              }}
+            >
+              <div style={{ width: "16px", height: "16px", borderRadius: "50%", backgroundColor: isReached ? "#0C3D3D" : "#d4e0df", border: isReached ? "3px solid #0C3D3D" : "3px solid #ffffff", boxShadow: "0 0 0 1px #d4e0df", transition: "background-color 0.5s ease" }} />
+              <span style={{ position: "absolute", top: "22px", left: "50%", transform: "translateX(-50%)", fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: isReached ? 700 : 500, color: isReached ? "#0C3D3D" : "#999", whiteSpace: "nowrap", lineHeight: 1 }}>
+                {m.label}
+              </span>
+              {hoveredDot === i && (
+                <div style={{ position: "absolute", bottom: "calc(100% + 8px)", left: "50%", transform: "translateX(-50%)", backgroundColor: "#1a1a1a", color: "#ffffff", fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, padding: "6px 10px", borderRadius: "6px", whiteSpace: "nowrap", lineHeight: 1, zIndex: 10 }}>
+                  {tooltipText}
+                  <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderTop: "4px solid #1a1a1a" }} />
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Day progress text */}
+      <div style={{ textAlign: "center", marginBottom: "28px", marginTop: "40px" }}>
+        <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "#999", lineHeight: 1 }}>
+          Day {s.currentDay} of {CYCLE_DAYS}
+          {nextTierInfo && (
+            <> &middot; {nextTierInfo.label} in {nextTierInfo.daysAway} day{nextTierInfo.daysAway === 1 ? "" : "s"}</>
+          )}
+        </span>
+      </div>
+
+      <CheckInButton onCheckIn={s.handleCheckIn} showChecked={s.showCheckedMessage} rate={s.tier.rate} checkInHovered={s.checkInHovered} setCheckInHovered={s.setCheckInHovered} />
+      <style>{multiplierKeyframes}</style>
+    </div>
+  );
+}
+
+/* ─── Daily Check-in V4 — Day-by-day timeline (original) ─── */
 function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (streak: number) => void; isMobile: boolean }) {
   const [checkedCount, setCheckedCount] = useState(0);
   const [checkInHovered, setCheckInHovered] = useState(false);
@@ -2634,7 +2751,7 @@ export default function Activities() {
   useEffect(() => {
     const handler = (e: Event) => {
       const version = (e as CustomEvent).detail?.version;
-      if (version === 1 || version === 2) setStreakVersion(version);
+      if (version >= 1 && version <= 3) setStreakVersion(version);
     };
     window.addEventListener("activities-version", handler);
     return () => window.removeEventListener("activities-version", handler);
@@ -2825,10 +2942,9 @@ export default function Activities() {
 
         {/* Tab content */}
         <div style={{ display: activeTab === "streak" ? "block" : "none" }}>
-          {streakVersion === 1
-            ? <DailyStreakV1 onStreakChange={setStreakStreak} isMobile={isMobile} />
-            : <DailyStreakContent onStreakChange={setStreakStreak} isMobile={isMobile} />
-          }
+          {streakVersion === 1 && <DailyStreakV1 onStreakChange={setStreakStreak} isMobile={isMobile} />}
+          {streakVersion === 2 && <DailyStreakV2 onStreakChange={setStreakStreak} isMobile={isMobile} />}
+          {streakVersion === 3 && <DailyStreakV3 onStreakChange={setStreakStreak} isMobile={isMobile} />}
         </div>
         {activeTab === "achievements" && <AchievementsContent onClaimedCountChange={setClaimedCount} onHasClaimableChange={setHasClaimable} isMobile={isMobile} />}
         {activeTab === "voting" && (
