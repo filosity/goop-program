@@ -258,10 +258,9 @@ function MilestoneCard({
           )}
           <span
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "16px",
               fontWeight: 600,
-              textTransform: "uppercase",
               letterSpacing: "0.08em",
               color: isCurrent ? "#0C3D3D" : "#6b8a89",
             }}
@@ -620,11 +619,10 @@ export default function Milestones() {
                   />
                   <p
                     style={{
-                      fontFamily: "var(--font-mono)",
+                      fontFamily: "var(--font-sans)",
                       fontSize: "13px",
                       fontWeight: isCurrent ? 700 : 500,
                       letterSpacing: "0.06em",
-                      textTransform: "uppercase",
                       color: isEarned ? "#0C3D3D" : "#999999",
                       margin: "8px 0 0 0",
                       textAlign: "center",

@@ -277,11 +277,10 @@ function CommunityHero({
       >
         <span
           style={{
-            fontFamily: "var(--font-mono)",
+            fontFamily: "var(--font-sans)",
             fontSize: "16px",
             fontWeight: 600,
             letterSpacing: "0.06em",
-            textTransform: "uppercase",
             color: "rgba(255,255,255,0.8)",
             marginBottom: "8px",
           }}
@@ -394,12 +393,11 @@ function CommunityGridCard({
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "15px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               color: hasImg ? "rgba(255,255,255,0.8)" : "#6b8a89",
-              textTransform: "uppercase",
             }}
           >
             {item.type === "instagram" ? "instagram" : "review"}
@@ -503,7 +501,7 @@ function CommunityFeed({ isMobile }: { isMobile: boolean }) {
         {hasMore && (
           <button
             onClick={() => setVisibleCount((c) => Math.min(c + 6, communityItems.length))}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "21px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 36px", minHeight: "52px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
+            style={{ fontFamily: "var(--font-sans)", fontSize: "21px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 36px", minHeight: "52px", cursor: "pointer", transition: "background-color 0.2s ease, color 0.2s ease" }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
           >
@@ -513,7 +511,7 @@ function CommunityFeed({ isMobile }: { isMobile: boolean }) {
         {visibleCount > 4 && (
           <button
             onClick={() => setVisibleCount(4)}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "21px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 36px", minHeight: "52px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
+            style={{ fontFamily: "var(--font-sans)", fontSize: "21px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 36px", minHeight: "52px", cursor: "pointer", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
@@ -592,7 +590,7 @@ function EventCalendarCard({
             gap: "4px",
           }}
         >
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.06em", color: "#ffffff", textTransform: "uppercase", lineHeight: 1 }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.06em", color: "#ffffff", lineHeight: 1 }}>
             {monthAbbr}
           </span>
           <span style={{ fontFamily: "var(--font-sans)", fontSize: "22px", fontWeight: 400, color: "#ffffff", lineHeight: 1.1 }}>
@@ -622,11 +620,10 @@ function EventCalendarCard({
         <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
           <span
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "15px",
               fontWeight: 600,
               letterSpacing: "0.04em",
-              textTransform: "uppercase",
               lineHeight: 1,
               padding: "5px 10px",
               borderRadius: "3px",
@@ -707,7 +704,7 @@ function EventsFeed({ isMobile }: { isMobile: boolean }) {
         {hasMore && (
           <button
             onClick={() => setVisibleCount((c) => Math.min(c + 4, eventItems.length))}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "21px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 36px", minHeight: "52px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease" }}
+            style={{ fontFamily: "var(--font-sans)", fontSize: "21px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 36px", minHeight: "52px", cursor: "pointer", transition: "background-color 0.2s ease, color 0.2s ease" }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
           >
@@ -717,7 +714,7 @@ function EventsFeed({ isMobile }: { isMobile: boolean }) {
         {visibleCount > 4 && (
           <button
             onClick={() => setVisibleCount(4)}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "21px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 36px", minHeight: "52px", cursor: "pointer", textTransform: "uppercase", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
+            style={{ fontFamily: "var(--font-sans)", fontSize: "21px", fontWeight: 600, letterSpacing: "0.04em", color: "#0C3D3D", backgroundColor: "transparent", border: "1px solid #0C3D3D", borderRadius: "999px", padding: "10px 36px", minHeight: "52px", cursor: "pointer", transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease" }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >

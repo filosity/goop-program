@@ -241,11 +241,10 @@ export default function StickyNav() {
               }
             }}
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "16px",
               fontWeight: 600,
               letterSpacing: "0.06em",
-              textTransform: "uppercase" as const,
               color: "#1a1a1a",
               opacity: 0.35,
               background: "none",
@@ -299,11 +298,10 @@ export default function StickyNav() {
         >
           <p
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "15px",
               fontWeight: 600,
               letterSpacing: "0.06em",
-              textTransform: "uppercase",
               color: "#1a1a1a",
               margin: 0,
               lineHeight: 1,

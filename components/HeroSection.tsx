@@ -41,11 +41,10 @@ function SectionLabel({ text }: { text: string }) {
     <div style={{ display: "inline-block", marginBottom: "20px" }}>
       <p
         style={{
-          fontFamily: "var(--font-mono)",
+          fontFamily: "var(--font-sans)",
           fontSize: "16px",
           fontWeight: 600,
           letterSpacing: "0.06em",
-          textTransform: "uppercase",
           color: "#1a1a1a",
           margin: "0 0 10px 0",
           lineHeight: 1,
@@ -207,11 +206,10 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
         {/* Eyebrow */}
         <p
           style={{
-            fontFamily: "var(--font-mono)",
+            fontFamily: "var(--font-sans)",
             fontSize: isMobile ? "13px" : "16px",
             fontWeight: 600,
             letterSpacing: "0.06em",
-            textTransform: "uppercase",
             color: "rgba(255, 255, 255, 0.85)",
             margin: "0 0 10px 0",
             lineHeight: 1,

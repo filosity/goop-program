@@ -98,24 +98,22 @@ body {
   font-weight: 500;
 }
 
-/* H7 — Overline / Eyebrow (Mono, uppercase) */
+/* H7 — Overline / Eyebrow (Sans) */
 .h7 {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   line-height: 1.5;
   font-weight: 500;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
-/* H8 — Micro label (Mono, uppercase) */
+/* H8 — Micro label (Sans) */
 .h8 {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.625rem;
   line-height: 1.5;
   font-weight: 600;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 
 /* Paragraph — Body text */
@@ -156,14 +154,13 @@ body {
   font-weight: 400;
 }
 
-/* Capitalized / Overline text */
+/* Overline text (Sans) */
 .overline {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.6875rem;
   line-height: 1.5;
   font-weight: 500;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 
 /* Nav link style */

@@ -121,11 +121,10 @@ function AchievementCard({
             position: "absolute",
             top: "14px",
             right: "14px",
-            fontFamily: "var(--font-mono)",
+            fontFamily: "var(--font-sans)",
             fontSize: "15px",
             fontWeight: 600,
             letterSpacing: "0.06em",
-            textTransform: "uppercase",
             lineHeight: 1,
             padding: "6px 12px",
             borderRadius: "999px",
@@ -328,11 +327,10 @@ function AchievementCard({
             <div style={{ marginBottom: "14px" }}>
               <span
                 style={{
-                  fontFamily: "var(--font-mono)",
+                  fontFamily: "var(--font-sans)",
                   fontSize: "16px",
                   fontWeight: 600,
                   letterSpacing: "0.06em",
-                  textTransform: "uppercase",
                   color: "#aaaaaa",
                   lineHeight: 1,
                   display: "block",
@@ -410,11 +408,10 @@ function AchievementCard({
             {/* Reward label + name */}
             <span
               style={{
-                fontFamily: "var(--font-mono)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "16px",
                 fontWeight: 600,
                 letterSpacing: "0.06em",
-                textTransform: "uppercase",
                 color: "#aaaaaa",
                 lineHeight: 1,
                 display: "block",
@@ -1763,7 +1760,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
           </span>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, color: "#000000", letterSpacing: "0.06em", textTransform: "uppercase", lineHeight: 1, marginTop: "6px", display: "block" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#000000", letterSpacing: "0.06em", lineHeight: 1, marginTop: "6px", display: "block" }}>
             Days streak
           </span>
         </div>
@@ -1794,11 +1791,10 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
             >
               <p
                 style={{
-                  fontFamily: "var(--font-mono)",
+                  fontFamily: "var(--font-sans)",
                   fontSize: "18px",
                   fontWeight: 600,
                   letterSpacing: "0.06em",
-                  textTransform: "uppercase",
                   color: "#000000",
                   margin: "0 0 12px 0",
                   lineHeight: 1,
@@ -1846,11 +1842,10 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
           >
             <p
               style={{
-                fontFamily: "var(--font-mono)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "18px",
                 fontWeight: 600,
                 letterSpacing: "0.06em",
-                textTransform: "uppercase",
                 color: "#000000",
                 margin: 0,
                 lineHeight: 1,
@@ -2081,11 +2076,10 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
 
                 {/* Day label */}
                 <span style={{
-                  fontFamily: "var(--font-mono)",
+                  fontFamily: "var(--font-sans)",
                   fontSize: "13px",
                   fontWeight: day.isToday ? 700 : 500,
                   letterSpacing: "0.06em",
-                  textTransform: "uppercase",
                   color: "#000000",
                   lineHeight: 1,
                   marginTop: "10px",

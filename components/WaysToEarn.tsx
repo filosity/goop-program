@@ -514,11 +514,10 @@ function RedeemContent({
       >
         <span
           style={{
-            fontFamily: "var(--font-mono)",
+            fontFamily: "var(--font-sans)",
             fontSize: "16px",
             fontWeight: 600,
             letterSpacing: "0.08em",
-            textTransform: "uppercase",
             color: "#0C3D3D",
             margin: "0 0 24px 0",
             lineHeight: 1,
@@ -561,11 +560,10 @@ function RedeemContent({
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", margin: "0 0 28px 0" }}>
           <span
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "16px",
               fontWeight: 600,
               letterSpacing: "0.06em",
-              textTransform: "uppercase",
               color: "#0C3D3D",
               lineHeight: 1,
             }}
@@ -606,11 +604,10 @@ function RedeemContent({
         {/* Hero dollar value */}
         <p
           style={{
-            fontFamily: "var(--font-mono)",
+            fontFamily: "var(--font-sans)",
             fontSize: "16px",
             fontWeight: 600,
             letterSpacing: "0.06em",
-            textTransform: "uppercase",
             color: "#0C3D3D",
             margin: "0 0 16px 0",
             lineHeight: 1,
@@ -880,11 +877,10 @@ function RedeemContent({
             <div style={{ textAlign: "center" }}>
               <p
                 style={{
-                  fontFamily: "var(--font-mono)",
+                  fontFamily: "var(--font-sans)",
                   fontSize: "16px",
                   fontWeight: 600,
                   letterSpacing: "0.08em",
-                  textTransform: "uppercase",
                   color: "#aaaaaa",
                   margin: "0 0 10px 0",
                   lineHeight: 1,
@@ -924,11 +920,10 @@ function RedeemContent({
             <div style={{ textAlign: "center" }}>
               <p
                 style={{
-                  fontFamily: "var(--font-mono)",
+                  fontFamily: "var(--font-sans)",
                   fontSize: "16px",
                   fontWeight: 600,
                   letterSpacing: "0.08em",
-                  textTransform: "uppercase",
                   color: "#aaaaaa",
                   margin: "0 0 10px 0",
                   lineHeight: 1,
@@ -964,11 +959,10 @@ function RedeemContent({
           >
             <span
               style={{
-                fontFamily: "var(--font-mono)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "15px",
                 fontWeight: 600,
                 letterSpacing: "0.06em",
-                textTransform: "uppercase",
                 color: "#aaaaaa",
                 lineHeight: 1,
               }}
@@ -1300,11 +1294,10 @@ function FreeProductsContent({
                     </svg>
                     <span
                       style={{
-                        fontFamily: "var(--font-mono)",
+                        fontFamily: "var(--font-sans)",
                         fontSize: "15px",
                         fontWeight: 600,
                         color: "#ffffff",
-                        textTransform: "uppercase",
                         letterSpacing: "0.08em",
                       }}
                     >
@@ -1597,11 +1590,10 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
           <>
             <span
               style={{
-                fontFamily: "var(--font-mono)",
+                fontFamily: "var(--font-sans)",
                 fontSize: "16px",
                 fontWeight: 600,
                 letterSpacing: "0.08em",
-                textTransform: "uppercase",
                 color: "#0C3D3D",
                 margin: "0 0 20px 0",
                 lineHeight: 1,
@@ -1695,7 +1687,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
 
         {phase === "selected" && (
           <>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
               review &amp; submit
             </span>
 
@@ -1749,7 +1741,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
 
         {phase === "uploading" && (
           <>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
               uploading
             </span>
 
@@ -1786,7 +1778,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
 
         {phase === "success" && (
           <>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
               complete
             </span>
 

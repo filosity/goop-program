@@ -306,11 +306,10 @@ export default function Sweepstakes() {
                 {/* Top label */}
                 <p
                   style={{
-                    fontFamily: "var(--font-mono)",
+                    fontFamily: "var(--font-sans)",
                     fontSize: "15px",
                     fontWeight: 600,
                     letterSpacing: "0.12em",
-                    textTransform: "uppercase",
                     color: "#0C3D3D",
                     margin: "0 0 16px 0",
                     lineHeight: 1,

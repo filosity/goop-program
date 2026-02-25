@@ -224,11 +224,10 @@ export default function TiersV3() {
           {/* Small uppercase label */}
           <p
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "16px",
               fontWeight: 600,
               letterSpacing: "0.08em",
-              textTransform: "uppercase",
               color: "rgba(255,255,255,0.6)",
               margin: "0 0 16px 0",
               lineHeight: 1,

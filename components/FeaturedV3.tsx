@@ -274,12 +274,11 @@ function ImmersiveShowcase() {
           {/* Card counter */}
           <span
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "15px",
               fontWeight: 600,
               color: "rgba(255,255,255,0.45)",
               letterSpacing: "0.08em",
-              textTransform: "uppercase",
               marginBottom: "14px",
             }}
           >
@@ -572,11 +571,10 @@ function CommunityHero({
       >
         <span
           style={{
-            fontFamily: "var(--font-mono)",
+            fontFamily: "var(--font-sans)",
             fontSize: "16px",
             fontWeight: 600,
             letterSpacing: "0.06em",
-            textTransform: "uppercase",
             color: item.type === "instagram" ? "#e1306c" : "rgba(255,255,255,0.8)",
             marginBottom: "8px",
           }}
@@ -689,12 +687,11 @@ function CommunityGridCard({
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "15px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               color: hasImg ? "rgba(255,255,255,0.8)" : item.type === "instagram" ? "#c13584" : "#6b8a89",
-              textTransform: "uppercase",
             }}
           >
             {item.type === "instagram" ? "instagram" : "review"}
@@ -807,7 +804,7 @@ function CommunityMagazine() {
           <button
             onClick={() => setVisibleCount((c) => Math.min(c + 6, communityItems.length))}
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "21px",
               fontWeight: 600,
               letterSpacing: "0.04em",
@@ -818,7 +815,6 @@ function CommunityMagazine() {
               padding: "10px 36px",
               minHeight: "52px",
               cursor: "pointer",
-              textTransform: "uppercase",
               transition: "background-color 0.2s ease, color 0.2s ease",
             }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
@@ -831,7 +827,7 @@ function CommunityMagazine() {
           <button
             onClick={() => setVisibleCount(4)}
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "21px",
               fontWeight: 600,
               letterSpacing: "0.04em",
@@ -842,7 +838,6 @@ function CommunityMagazine() {
               padding: "10px 36px",
               minHeight: "52px",
               cursor: "pointer",
-              textTransform: "uppercase",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
             }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
@@ -924,12 +919,11 @@ function EventCalendarCard({
         >
           <span
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "16px",
               fontWeight: 600,
               letterSpacing: "0.06em",
               color: "#ffffff",
-              textTransform: "uppercase",
               lineHeight: 1,
             }}
           >
@@ -983,11 +977,10 @@ function EventCalendarCard({
         <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
           <span
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "15px",
               fontWeight: 600,
               letterSpacing: "0.04em",
-              textTransform: "uppercase",
               lineHeight: 1,
               padding: "5px 10px",
               borderRadius: "3px",
@@ -1115,7 +1108,7 @@ function EventsCalendar() {
           <button
             onClick={() => setVisibleCount((c) => Math.min(c + 4, eventItems.length))}
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "21px",
               fontWeight: 600,
               letterSpacing: "0.04em",
@@ -1126,7 +1119,6 @@ function EventsCalendar() {
               padding: "10px 36px",
               minHeight: "52px",
               cursor: "pointer",
-              textTransform: "uppercase",
               transition: "background-color 0.2s ease, color 0.2s ease",
             }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
@@ -1139,7 +1131,7 @@ function EventsCalendar() {
           <button
             onClick={() => setVisibleCount(4)}
             style={{
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               fontSize: "21px",
               fontWeight: 600,
               letterSpacing: "0.04em",
@@ -1150,7 +1142,6 @@ function EventsCalendar() {
               padding: "10px 36px",
               minHeight: "52px",
               cursor: "pointer",
-              textTransform: "uppercase",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
             }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
