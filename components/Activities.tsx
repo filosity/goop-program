@@ -1960,17 +1960,13 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                         cursor: isClickable || (day.isRewardEarned && !day.isRewardClaimed) ? "pointer" : "default",
                         border: day.isToday
                           ? "3px solid #0C3D3D"
-                          : day.isRewardEarned && !day.isRewardClaimed
-                            ? "3px solid #E8913A"
-                            : day.isChecked
+                          : day.isChecked
                               ? "3px solid #0C3D3D"
                               : "3px solid #d4e0df",
                         backgroundColor: "#ffffff",
                         boxShadow: day.isToday
                           ? "0 0 0 3px rgba(12,61,61,0.2)"
-                          : day.isRewardEarned && !day.isRewardClaimed
-                            ? "0 0 0 3px rgba(232,145,58,0.2)"
-                            : "none",
+                          : "none",
                         transition: "border-color 0.5s ease, box-shadow 0.5s ease",
                         flexShrink: 0,
                       }}
