@@ -426,7 +426,7 @@ export default function Milestones() {
             style={{
               display: "flex",
               flexDirection: isMobile ? "column" as const : "row" as const,
-              border: "1px solid #d4e0df",
+              border: "none",
               overflow: "hidden",
               height: isMobile ? "auto" : "320px",
             }}

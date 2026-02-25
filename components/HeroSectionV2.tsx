@@ -61,7 +61,7 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
       style={{
         position: "relative",
         width: "100%",
-        minHeight: "50vh",
+        minHeight: isMobile ? "80vh" : "50vh",
         overflow: "hidden",
         display: "flex",
         alignItems: "flex-end",
