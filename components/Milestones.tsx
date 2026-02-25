@@ -545,98 +545,85 @@ export default function Milestones() {
       {/* Container */}
       <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
         {/* ── Timeline ── */}
-        <div style={{ position: "relative", padding: "0 0 48px 0" }}>
-          <div style={{ position: "absolute", top: "5px", left: "0", right: "0", height: "3px", backgroundColor: "#d4e0df", zIndex: 1 }} />
-          <div style={{ position: "absolute", top: "5px", left: "0", width: `${animatedWidth}%`, height: "3px", backgroundColor: "#0C3D3D", zIndex: 2, transition: "width 0.8s cubic-bezier(0.4, 0, 0.2, 1)" }} />
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", position: "relative", zIndex: 3 }}>
-            {Array.from({ length: TOTAL_MONTHS }, (_, i) => {
-              const month = i + 1;
-              const isEarned = subscribed && month <= currentMonth;
-              const isCurrent = subscribed && month === currentMonth;
-              const isClickable = subscribed && month > currentMonth;
-              const isFuture = subscribed && month > currentMonth;
-              const isPast = subscribed && month < currentMonth;
-              const daysToUnlock = isFuture ? (month - 1) * 30 - 15 : 0;
+        {isMobile ? (
+          /* Mobile: 3 rows of 4 months */
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px", paddingBottom: "32px" }}>
+            {[0, 1, 2].map((row) => {
+              const rowStart = row * 4 + 1;
+              let rowProgress = 0;
+              if (currentMonth > rowStart + 3) rowProgress = 100;
+              else if (currentMonth >= rowStart) {
+                rowProgress = Math.min(((currentMonth - rowStart + 0.5) / 3) * 100, 100);
+              }
               return (
-                <div
-                  key={month}
-                  onClick={() => isClickable && handleCircleClick(month)}
-                  onMouseEnter={() => subscribed && setHoveredMonth(month)}
-                  onMouseLeave={() => setHoveredMonth(null)}
-                  style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "0px", cursor: isClickable ? "pointer" : "default", position: "relative" }}
-                >
-                  {/* Tooltip */}
-                  {subscribed && hoveredMonth === month && !isCurrent && (
-                    <div
-                      style={{
-                        position: "absolute",
-                        bottom: "calc(100% + 6px)",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        backgroundColor: "#0C3D3D",
-                        color: "#ffffff",
-                        fontFamily: "var(--font-sans)",
-                        fontSize: "11px",
-                        fontWeight: 500,
-                        padding: "6px 12px",
-                        borderRadius: "6px",
-                        whiteSpace: "nowrap",
-                        lineHeight: 1,
-                        pointerEvents: "none",
-                        zIndex: 10,
-                      }}
-                    >
-                      {isPast ? "Unlocked" : `${daysToUnlock} days to unlock`}
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "100%",
-                          left: "50%",
-                          transform: "translateX(-50%)",
-                          width: 0,
-                          height: 0,
-                          borderLeft: "4px solid transparent",
-                          borderRight: "4px solid transparent",
-                          borderTop: "4px solid #0C3D3D",
-                        }}
-                      />
-                    </div>
-                  )}
-                  <div
-                    style={{
-                      width: isCurrent ? "14px" : "10px",
-                      height: isCurrent ? "14px" : "10px",
-                      borderRadius: "50%",
-                      backgroundColor: isEarned ? "#0C3D3D" : "#d4e0df",
-                      border: isCurrent ? "3px solid #ffffff" : "none",
-                      boxShadow: isCurrent ? "0 0 0 2px #0C3D3D" : "none",
-                      flexShrink: 0,
-                      marginTop: isCurrent ? "-0.5px" : "1.5px",
-                      transition: "background-color 0.4s ease, box-shadow 0.4s ease",
-                    }}
-                  />
-                  <p
-                    style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "13px",
-                      fontWeight: isCurrent ? 700 : 500,
-                      color: isEarned ? "#0C3D3D" : "#999999",
-                      margin: "8px 0 0 0",
-                      textAlign: "center",
-                      whiteSpace: "nowrap",
-                      transition: "color 0.4s ease",
-                    }}
-                  >
-                    Month {month}
-                  </p>
+                <div key={row} style={{ position: "relative", padding: "0 0 36px 0" }}>
+                  <div style={{ position: "absolute", top: "5px", left: "0", right: "0", height: "3px", backgroundColor: "#d4e0df", zIndex: 1 }} />
+                  <div style={{ position: "absolute", top: "5px", left: "0", width: `${rowProgress}%`, height: "3px", backgroundColor: "#0C3D3D", zIndex: 2, transition: "width 0.8s cubic-bezier(0.4, 0, 0.2, 1)" }} />
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", position: "relative", zIndex: 3 }}>
+                    {Array.from({ length: 4 }, (_, i) => {
+                      const month = rowStart + i;
+                      const isEarned = subscribed && month <= currentMonth;
+                      const isCur = subscribed && month === currentMonth;
+                      const isClickable = subscribed && month > currentMonth;
+                      return (
+                        <div
+                          key={month}
+                          onClick={() => isClickable && handleCircleClick(month)}
+                          style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "0px", cursor: isClickable ? "pointer" : "default", position: "relative" }}
+                        >
+                          <div style={{ width: isCur ? "14px" : "10px", height: isCur ? "14px" : "10px", borderRadius: "50%", backgroundColor: isEarned ? "#0C3D3D" : "#d4e0df", border: isCur ? "3px solid #ffffff" : "none", boxShadow: isCur ? "0 0 0 2px #0C3D3D" : "none", flexShrink: 0, marginTop: isCur ? "-0.5px" : "1.5px", transition: "background-color 0.4s ease, box-shadow 0.4s ease" }} />
+                          <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: isCur ? 700 : 500, color: isEarned ? "#0C3D3D" : "#999999", margin: "6px 0 0 0", textAlign: "center", whiteSpace: "nowrap", transition: "color 0.4s ease" }}>
+                            {month}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               );
             })}
           </div>
-        </div>
+        ) : (
+          /* Desktop: single row of 12 months */
+          <div style={{ position: "relative", padding: "0 0 48px 0" }}>
+            <div style={{ position: "absolute", top: "5px", left: "0", right: "0", height: "3px", backgroundColor: "#d4e0df", zIndex: 1 }} />
+            <div style={{ position: "absolute", top: "5px", left: "0", width: `${animatedWidth}%`, height: "3px", backgroundColor: "#0C3D3D", zIndex: 2, transition: "width 0.8s cubic-bezier(0.4, 0, 0.2, 1)" }} />
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", position: "relative", zIndex: 3 }}>
+              {Array.from({ length: TOTAL_MONTHS }, (_, i) => {
+                const month = i + 1;
+                const isEarned = subscribed && month <= currentMonth;
+                const isCurrent = subscribed && month === currentMonth;
+                const isClickable = subscribed && month > currentMonth;
+                const isFuture = subscribed && month > currentMonth;
+                const isPast = subscribed && month < currentMonth;
+                const daysToUnlock = isFuture ? (month - 1) * 30 - 15 : 0;
+                return (
+                  <div
+                    key={month}
+                    onClick={() => isClickable && handleCircleClick(month)}
+                    onMouseEnter={() => subscribed && setHoveredMonth(month)}
+                    onMouseLeave={() => setHoveredMonth(null)}
+                    style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "0px", cursor: isClickable ? "pointer" : "default", position: "relative" }}
+                  >
+                    {subscribed && hoveredMonth === month && !isCurrent && (
+                      <div style={{ position: "absolute", bottom: "calc(100% + 6px)", left: "50%", transform: "translateX(-50%)", backgroundColor: "#0C3D3D", color: "#ffffff", fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 500, padding: "6px 12px", borderRadius: "6px", whiteSpace: "nowrap", lineHeight: 1, pointerEvents: "none", zIndex: 10 }}>
+                        {isPast ? "Unlocked" : `${daysToUnlock} days to unlock`}
+                        <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderTop: "4px solid #0C3D3D" }} />
+                      </div>
+                    )}
+                    <div style={{ width: isCurrent ? "14px" : "10px", height: isCurrent ? "14px" : "10px", borderRadius: "50%", backgroundColor: isEarned ? "#0C3D3D" : "#d4e0df", border: isCurrent ? "3px solid #ffffff" : "none", boxShadow: isCurrent ? "0 0 0 2px #0C3D3D" : "none", flexShrink: 0, marginTop: isCurrent ? "-0.5px" : "1.5px", transition: "background-color 0.4s ease, box-shadow 0.4s ease" }} />
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: isCurrent ? 700 : 500, color: isEarned ? "#0C3D3D" : "#999999", margin: "8px 0 0 0", textAlign: "center", whiteSpace: "nowrap", transition: "color 0.4s ease" }}>
+                      Month {month}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* ── Benefits Grid — 4 columns ── */}
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(3, 1fr)" : "repeat(4, 1fr)", gap: "12px", marginTop: "16px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: "12px", marginTop: "16px" }}>
           {milestones.map((m) => {
             const isEarned = subscribed && m.month <= currentMonth;
             const isCurrent = subscribed && m.month === currentMonth;

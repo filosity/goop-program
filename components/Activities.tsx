@@ -995,10 +995,11 @@ function VotingVersion1({
   onHoverOption: (option: string | null) => void;
   imageMap: Record<string, string>;
 }) {
+  const votingMobile = useIsMobile();
   return (
     <div
       style={{
-        height: "500px",
+        minHeight: votingMobile ? "auto" : "500px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -1007,18 +1008,19 @@ function VotingVersion1({
         transition: "opacity 0.3s ease",
         position: "relative",
         overflow: "hidden",
+        padding: votingMobile ? "24px 0" : 0,
       }}
     >
       {!showPoints ? (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", padding: "20px" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", padding: votingMobile ? "12px" : "20px" }}>
           <h3
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "22px",
+              fontSize: votingMobile ? "18px" : "22px",
               fontWeight: 400,
               color: "#000000",
               textAlign: "center",
-              margin: "0 0 36px 0",
+              margin: "0 0 24px 0",
             }}
           >
             {questionData.question}
@@ -1027,10 +1029,12 @@ function VotingVersion1({
           <div
             style={{
               display: "flex",
-              gap: "16px",
+              flexDirection: votingMobile ? "column" : "row",
+              gap: votingMobile ? "12px" : "16px",
               justifyContent: "center",
+              alignItems: votingMobile ? "center" : "flex-start",
               width: "100%",
-              maxWidth: "1100px",
+              maxWidth: votingMobile ? "280px" : "1100px",
             }}
           >
             {questionData.options.map((option) => {
@@ -1137,10 +1141,11 @@ function VotingVersion2({
   onOptionClick: (option: string) => void;
   onHoverOption: (option: string | null) => void;
 }) {
+  const votingMobile = useIsMobile();
   return (
     <div
       style={{
-        height: "500px",
+        minHeight: votingMobile ? "auto" : "500px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -1149,18 +1154,19 @@ function VotingVersion2({
         transition: "opacity 0.3s ease",
         position: "relative",
         overflow: "hidden",
+        padding: votingMobile ? "24px 0" : 0,
       }}
     >
       {!showPoints ? (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", padding: "20px" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", padding: votingMobile ? "12px" : "20px" }}>
           <h3
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "22px",
+              fontSize: votingMobile ? "18px" : "22px",
               fontWeight: 400,
               color: "#000000",
               textAlign: "center",
-              margin: "0 0 36px 0",
+              margin: "0 0 24px 0",
             }}
           >
             {questionData.question}
@@ -1169,10 +1175,13 @@ function VotingVersion2({
           <div
             style={{
               display: "flex",
-              gap: "16px",
+              flexDirection: votingMobile ? "column" : "row",
+              gap: votingMobile ? "10px" : "16px",
               justifyContent: "center",
-              flexWrap: "wrap",
-              maxWidth: "680px",
+              alignItems: votingMobile ? "stretch" : "center",
+              flexWrap: votingMobile ? "nowrap" : "wrap",
+              maxWidth: votingMobile ? "100%" : "680px",
+              width: "100%",
             }}
           >
             {questionData.options.map((option) => {
@@ -1186,18 +1195,19 @@ function VotingVersion2({
                   onMouseLeave={() => onHoverOption(null)}
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "18px",
+                    fontSize: votingMobile ? "16px" : "18px",
                     fontWeight: 500,
                     color: isSelected ? "#ffffff" : "#0C3D3D",
                     backgroundColor: isSelected ? "#0C3D3D" : "#ffffff",
                     border: isSelected ? "1px solid #0C3D3D" : isHovered ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
-                    padding: "24px 30px",
-                    minHeight: "52px",
+                    padding: votingMobile ? "16px 20px" : "24px 30px",
+                    minHeight: votingMobile ? "48px" : "52px",
                     cursor: selectedOption ? "default" : "pointer",
                     textAlign: "center",
-                    minWidth: "180px",
-                    flex: "1 1 180px",
-                    maxWidth: "220px",
+                    minWidth: votingMobile ? "auto" : "180px",
+                    flex: votingMobile ? "none" : "1 1 180px",
+                    maxWidth: votingMobile ? "100%" : "220px",
+                    width: votingMobile ? "100%" : "auto",
                     transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
                     lineHeight: 1.3,
                   }}
@@ -1606,7 +1616,7 @@ function RewardPreview({ reward, daysUntilReward, isMobile }: { reward: { name: 
           {daysUntilReward === 0 ? "Unlocked today" : `${daysUntilReward} day${daysUntilReward === 1 ? "" : "s"} away`}
         </p>
       </div>
-      <div style={{ width: isMobile ? "100%" : "420px", maxWidth: isMobile ? "100%" : "420px", height: isMobile ? "180px" : "auto", flexShrink: 0 }}>
+      <div style={{ width: isMobile ? "100%" : "420px", maxWidth: isMobile ? "100%" : "420px", height: isMobile ? "220px" : "auto", flexShrink: 0 }}>
         <img src={reward.image} alt={reward.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
       </div>
     </div>
@@ -1751,38 +1761,24 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
       <RewardPreview reward={s.reward} daysUntilReward={s.daysUntilReward} isMobile={isMobile} />
 
       {/* Streak hero */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "28px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <div style={{ width: "48px", height: "48px", borderRadius: "50%", backgroundColor: "#FFF5EB", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <FlameIcon size={24} />
-          </div>
-          <div>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "28px", fontWeight: 400, color: "#000000", letterSpacing: "-0.02em", lineHeight: 1, display: "block" }}>
-              {s.checkedCount} day streak
-            </span>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#999", lineHeight: 1, marginTop: "5px", display: "block" }}>
-              Day {s.currentDay} of {CYCLE_DAYS}
-            </span>
-          </div>
-        </div>
-        {/* Current earning badge */}
-        <div style={{ backgroundColor: "#f0f7f7", border: "1px solid #d4e0df", padding: "12px 20px", display: "flex", alignItems: "center", gap: "10px" }}>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "28px", fontWeight: 600, color: "#0C3D3D", lineHeight: 1 }}>
-            {s.tier.label}
+      <div style={{ display: "flex", alignItems: "center", gap: isMobile ? "14px" : "16px", marginBottom: "32px" }}>
+        <div style={{ width: isMobile ? "52px" : "56px", height: isMobile ? "52px" : "56px", borderRadius: "50%", backgroundColor: "#0C3D3D", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "20px" : "22px", fontWeight: 600, color: "#ffffff", lineHeight: 1 }}>
+            {s.checkedCount}
           </span>
-          <div>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#000000", lineHeight: 1, display: "block" }}>
-              ${s.tier.rate.toFixed(2)}
-            </span>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, color: "#999", lineHeight: 1, marginTop: "3px", display: "block" }}>
-              per day
-            </span>
-          </div>
+        </div>
+        <div>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "22px" : "26px", fontWeight: 400, color: "#000000", letterSpacing: "-0.02em", lineHeight: 1, display: "block" }}>
+            day streak
+          </span>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#999", lineHeight: 1, marginTop: "8px", display: "block" }}>
+            Day {s.currentDay} of {CYCLE_DAYS} &middot; Next: {s.reward.name}
+          </span>
         </div>
       </div>
 
       {/* Progress bar */}
-      <div style={{ position: "relative", marginBottom: "56px", padding: "0 8px" }}>
+      <div style={{ position: "relative", marginBottom: "56px", padding: isMobile ? "0 16px" : "0 24px" }}>
         <div style={{ height: "6px", backgroundColor: "#e8eeed", borderRadius: "3px", overflow: "hidden" }}>
           <div style={{ height: "100%", width: `${s.barProgress}%`, backgroundColor: "#0C3D3D", borderRadius: "3px", transition: s.animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none" }} />
         </div>
@@ -1970,7 +1966,7 @@ function DailyStreakV3({ onStreakChange, isMobile }: { onStreakChange: (streak: 
       </div>
 
       {/* Progress bar with dots */}
-      <div style={{ position: "relative", marginBottom: "24px", padding: "0 8px" }}>
+      <div style={{ position: "relative", marginBottom: "24px", padding: isMobile ? "0 16px" : "0 24px" }}>
         <div style={{ height: "6px", backgroundColor: "#e8eeed", borderRadius: "3px", overflow: "hidden" }}>
           <div style={{ height: "100%", width: `${s.barProgress}%`, backgroundColor: "#0C3D3D", borderRadius: "3px", transition: s.animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none" }} />
         </div>
