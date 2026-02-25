@@ -2092,7 +2092,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                   textTransform: "uppercase",
                   color: "#000000",
                   lineHeight: 1,
-                  marginTop: "20px",
+                  marginTop: "10px",
                   whiteSpace: "nowrap",
                   textAlign: "center",
                 }}>
