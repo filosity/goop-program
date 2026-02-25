@@ -205,9 +205,11 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
         {/* Eyebrow */}
         <p
           style={{
-            fontFamily: "var(--font-sans)",
+            fontFamily: "var(--font-mono)",
             fontSize: isMobile ? "13px" : "16px",
             fontWeight: 600,
+            letterSpacing: "0.06em",
+            textTransform: "uppercase" as const,
             color: "rgba(255, 255, 255, 0.85)",
             margin: "0 0 10px 0",
             lineHeight: 1,
