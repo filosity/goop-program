@@ -1557,7 +1557,7 @@ const streakRewardsMultiplier = [
   { name: "Free Shipping", image: "/earn2.jpg", code: "FREESHIP300" },
 ];
 
-/* ─── Shared multiplier logic ─── */
+/* ─── Shared multiplier logic (cycle-based, used by V2/V3) ─── */
 const CYCLE_DAYS = 50;
 const TIER_2_START = 17;
 const TIER_3_START = 34;
@@ -1572,6 +1572,22 @@ function getStreakBarProgress(cycleDay: number) {
   if (cycleDay >= TIER_3_START) return 100;
   if (cycleDay >= TIER_2_START) return 50 + ((cycleDay - TIER_2_START) / (TIER_3_START - TIER_2_START)) * 50;
   return ((cycleDay - 1) / (TIER_2_START - 1)) * 50;
+}
+
+/* ─── V1 absolute-day tier logic (2x at day 50, 3x at day 150) ─── */
+const V1_TIER_2_DAY = 50;
+const V1_TIER_3_DAY = 150;
+
+function getStreakTierV1(currentDay: number) {
+  if (currentDay >= V1_TIER_3_DAY) return { label: "3x", rate: 0.75, tier: 3 };
+  if (currentDay >= V1_TIER_2_DAY) return { label: "2x", rate: 0.50, tier: 2 };
+  return { label: "1x", rate: 0.25, tier: 1 };
+}
+
+function getStreakBarProgressV1(currentDay: number) {
+  if (currentDay >= V1_TIER_3_DAY) return 100;
+  if (currentDay >= V1_TIER_2_DAY) return 50 + ((currentDay - V1_TIER_2_DAY) / (V1_TIER_3_DAY - V1_TIER_2_DAY)) * 50;
+  return ((currentDay - 1) / (V1_TIER_2_DAY - 1)) * 50;
 }
 
 /* ─── Shared streak fire icon ─── */
@@ -1702,11 +1718,11 @@ function useStreakCheckin(onStreakChange: (n: number) => void) {
   const daysUntilReward = nextRewardDay - currentDay;
   const reward = streakRewardsMultiplier[nextRewardIdx % streakRewardsMultiplier.length];
 
-  const handleCheckIn = useCallback(() => {
+  const handleCheckIn = useCallback((rateOverride?: number) => {
     if (showCheckedMessage) return;
     setAnimatingBar(true);
     setCheckedCount((c) => c + 1);
-    const rate = getStreakTier(cycleDay).rate;
+    const rate = rateOverride ?? getStreakTier(cycleDay).rate;
     const newTotal = Math.round((checkinPointsRef.current + rate) * 100) / 100;
     checkinPointsRef.current = newTotal;
     window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
@@ -1750,43 +1766,41 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
   const s = useStreakCheckin(onStreakChange);
   const [hoveredDot, setHoveredDot] = useState<number | null>(null);
 
+  const v1Tier = getStreakTierV1(s.currentDay);
+  const v1BarProgress = getStreakBarProgressV1(s.currentDay);
+
   const milestones = [
-    { label: "1x", rate: "$0.25/day", dayInCycle: 1 },
-    { label: "2x", rate: "$0.50/day", dayInCycle: TIER_2_START },
-    { label: "3x", rate: "$0.75/day", dayInCycle: TIER_3_START },
+    { label: "1x", rate: "$0.25/day", absoluteDay: 1 },
+    { label: "2x", rate: "$0.50/day", absoluteDay: V1_TIER_2_DAY },
+    { label: "3x", rate: "$0.75/day", absoluteDay: V1_TIER_3_DAY },
   ];
 
   return (
     <div style={{ border: "1px solid #d4e0df", backgroundColor: "#ffffff", padding: isMobile ? "24px 16px" : "48px" }}>
       <RewardPreview reward={s.reward} daysUntilReward={s.daysUntilReward} isMobile={isMobile} />
 
-      {/* Streak hero */}
-      <div style={{ display: "flex", alignItems: "center", gap: isMobile ? "14px" : "16px", marginBottom: "32px" }}>
-        <div style={{ width: isMobile ? "52px" : "56px", height: isMobile ? "52px" : "56px", borderRadius: "50%", backgroundColor: "#0C3D3D", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+      {/* Streak pill */}
+      <div style={{ marginBottom: "32px" }}>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: isMobile ? "8px" : "10px", backgroundColor: "#0C3D3D", borderRadius: "999px", padding: isMobile ? "10px 20px" : "12px 24px" }}>
           <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "20px" : "22px", fontWeight: 600, color: "#ffffff", lineHeight: 1 }}>
             {s.checkedCount}
           </span>
-        </div>
-        <div>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "22px" : "26px", fontWeight: 400, color: "#000000", letterSpacing: "-0.02em", lineHeight: 1, display: "block" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "14px" : "15px", fontWeight: 500, color: "rgba(255,255,255,0.8)", lineHeight: 1 }}>
             day streak
-          </span>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#999", lineHeight: 1, marginTop: "8px", display: "block" }}>
-            Day {s.currentDay} of {CYCLE_DAYS} &middot; Next: {s.reward.name}
           </span>
         </div>
       </div>
 
-      {/* Progress bar */}
-      <div style={{ position: "relative", marginBottom: "56px", padding: isMobile ? "0 16px" : "0 24px" }}>
+      {/* Progress bar — flush dots, absolute day milestones */}
+      <div style={{ position: "relative", marginBottom: "56px" }}>
         <div style={{ height: "6px", backgroundColor: "#e8eeed", borderRadius: "3px", overflow: "hidden" }}>
-          <div style={{ height: "100%", width: `${s.barProgress}%`, backgroundColor: "#0C3D3D", borderRadius: "3px", transition: s.animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none" }} />
+          <div style={{ height: "100%", width: `${v1BarProgress}%`, backgroundColor: "#0C3D3D", borderRadius: "3px", transition: s.animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none" }} />
         </div>
 
-        {/* Dots — 0%, 50%, 100% aligned to edges */}
+        {/* Dots — 0%, 50%, 100% flush with bar edges */}
         {milestones.map((m, i) => {
-          const isReached = s.cycleDay >= m.dayInCycle;
-          const daysToReach = m.dayInCycle - s.cycleDay;
+          const isReached = s.currentDay >= m.absoluteDay;
+          const daysToReach = m.absoluteDay - s.currentDay;
           const tooltipText = isReached ? `${m.rate} earned` : `${daysToReach} day${daysToReach === 1 ? "" : "s"} until ${m.rate}`;
 
           return (
@@ -1817,7 +1831,7 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
         })}
       </div>
 
-      <CheckInButton onCheckIn={s.handleCheckIn} showChecked={s.showCheckedMessage} rate={s.tier.rate} checkInHovered={s.checkInHovered} setCheckInHovered={s.setCheckInHovered} />
+      <CheckInButton onCheckIn={() => s.handleCheckIn(v1Tier.rate)} showChecked={s.showCheckedMessage} rate={v1Tier.rate} checkInHovered={s.checkInHovered} setCheckInHovered={s.setCheckInHovered} />
       <style>{multiplierKeyframes}</style>
     </div>
   );
