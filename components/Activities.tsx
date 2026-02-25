@@ -2092,7 +2092,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                   textTransform: "uppercase",
                   color: "#000000",
                   lineHeight: 1,
-                  marginTop: hasReward ? "6px" : "-3px",
+                  marginTop: "20px",
                   whiteSpace: "nowrap",
                   textAlign: "center",
                 }}>
@@ -2107,8 +2107,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                     fontWeight: 600,
                     color: "#000000",
                     lineHeight: 1,
-                    marginTop: "0px",
-                    marginBottom: "6px",
+                    marginTop: "8px",
                     whiteSpace: "nowrap",
                     textAlign: "center",
                     opacity: earnedDay === day.dayNum ? 0 : 1,
@@ -2122,7 +2121,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                 {/* Reward info below */}
                 {hasReward ? (
                   day.isRewardClaimed ? (
-                    <div style={{ width: "100%", marginTop: "18px" }}>
+                    <div style={{ width: "100%", marginTop: "8px" }}>
                       <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#000000", textAlign: "center", lineHeight: 1.2, display: "block", marginBottom: "6px" }}>
                         {day.reward!.name}
                       </span>
@@ -2174,7 +2173,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                       color: day.isChecked ? "#000000" : "#999",
                       textAlign: "center",
                       lineHeight: 1.2,
-                      marginTop: "16px",
+                      marginTop: "8px",
                       maxWidth: "120px",
                       transition: "color 0.3s ease",
                     }}>
