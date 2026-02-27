@@ -79,10 +79,13 @@ function SubMenu({ children }: { children: React.ReactNode }) {
   );
 }
 
+const TIER_EARN_RATES = [5 / 150, 10 / 150, 15 / 150, 20 / 150];
+
 function ProgramDropdown({
   open,
   totalSpend,
   currentPoints,
+  currentTier,
   setTotalSpend,
   setCurrentPoints,
   closeAll,
@@ -118,6 +121,7 @@ function ProgramDropdown({
   open: boolean;
   totalSpend: number;
   currentPoints: number;
+  currentTier: number;
   setTotalSpend: (n: number) => void;
   setCurrentPoints: (n: number) => void;
   closeAll: () => void;
@@ -153,7 +157,8 @@ function ProgramDropdown({
   const handleSimulateSpend = useCallback(
     (amount: number) => {
       const newSpend = totalSpend + amount;
-      const earned = Math.round(amount * 0.1 * 100) / 100;
+      const rate = TIER_EARN_RATES[currentTier] ?? TIER_EARN_RATES[0];
+      const earned = Math.round(amount * rate * 100) / 100;
       const newPoints = Math.round((currentPoints + earned) * 100) / 100;
       setTotalSpend(newSpend);
       setCurrentPoints(newPoints);
@@ -161,7 +166,7 @@ function ProgramDropdown({
       window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newPoints } }));
       closeAll();
     },
-    [totalSpend, currentPoints, setTotalSpend, setCurrentPoints, closeAll]
+    [totalSpend, currentPoints, currentTier, setTotalSpend, setCurrentPoints, closeAll]
   );
 
   if (!open) return null;
@@ -342,6 +347,7 @@ export default function Header() {
   const [activePartners, setActivePartners] = useState(6);
   const [shopHov, setShopHov] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentTier, setCurrentTier] = useState(0);
 
   const logoRef = useRef<HTMLDivElement>(null);
 
@@ -373,6 +379,28 @@ export default function Header() {
     };
     window.addEventListener("spend-updated", h);
     return () => window.removeEventListener("spend-updated", h);
+  }, []);
+
+  useEffect(() => {
+    const tierHandler = (e: Event) => {
+      const d = (e as CustomEvent).detail;
+      if (d?.tier !== undefined) setCurrentTier(d.tier);
+    };
+    const subHandler = (e: Event) => {
+      const month = (e as CustomEvent).detail?.month;
+      if (month !== undefined) {
+        if (month < 1) setCurrentTier(0);
+        else if (month <= 3) setCurrentTier(1);
+        else if (month <= 11) setCurrentTier(2);
+        else setCurrentTier(3);
+      }
+    };
+    window.addEventListener("tier-updated", tierHandler);
+    window.addEventListener("subscription-updated", subHandler);
+    return () => {
+      window.removeEventListener("tier-updated", tierHandler);
+      window.removeEventListener("subscription-updated", subHandler);
+    };
   }, []);
 
   const closeAll = useCallback(() => {
@@ -431,6 +459,7 @@ export default function Header() {
                 open={dropdownOpen}
                 totalSpend={totalSpend}
                 currentPoints={currentPoints}
+                currentTier={currentTier}
                 setTotalSpend={setTotalSpend}
                 setCurrentPoints={setCurrentPoints}
                 closeAll={closeAll}
@@ -599,6 +628,7 @@ export default function Header() {
                 open={dropdownOpen}
                 totalSpend={totalSpend}
                 currentPoints={currentPoints}
+                currentTier={currentTier}
                 setTotalSpend={setTotalSpend}
                 setCurrentPoints={setCurrentPoints}
                 closeAll={closeAll}
