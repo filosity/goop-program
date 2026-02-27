@@ -45,7 +45,7 @@ export default function FAQ() {
       id="section-faq"
       style={{
         backgroundColor: "#ffffff",
-        padding: isMobile ? "60px 20px" : "100px 48px",
+        padding: isMobile ? "40px 16px 60px" : "72px 48px 100px",
       }}
     >
       <div

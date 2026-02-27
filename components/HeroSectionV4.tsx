@@ -3,66 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import { DollarSignCircle, GiftBox, DiscountTag, Bolt, User, Star, Gifts, XmarkCircle } from "@vectoricons/atlas-icons-react";
 import { useIsMobile } from "@/hooks/useIsMobile";
-import HeroSectionV2 from "./HeroSectionV2";
-import HeroSectionV3 from "./HeroSectionV3";
-import HeroSectionV4 from "./HeroSectionV4";
-
-/* ─── Pill Button ─── */
-function PillButton({ label }: { label: string }) {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <a
-      href="#"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        fontFamily: "var(--font-sans)",
-        fontSize: "18px",
-        fontWeight: 600,
-        color: hovered ? "#ffffff" : "#0C3D3D",
-        backgroundColor: hovered ? "#0C3D3D" : "#ffffff",
-        border: "1px solid #0C3D3D",
-        padding: "12px 34px",
-        borderRadius: "999px",
-        textDecoration: "none",
-        lineHeight: 1,
-        minHeight: "52px",
-        display: "inline-flex",
-        alignItems: "center",
-        transition: "background-color 0.2s ease, color 0.2s ease",
-      }}
-    >
-      {label} →
-    </a>
-  );
-}
-
-/* ─── Section Label with underline matching text width ─── */
-function SectionLabel({ text }: { text: string }) {
-  return (
-    <div style={{ display: "inline-block", marginBottom: "20px" }}>
-      <p
-        style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: "16px",
-          fontWeight: 600,
-          color: "#1a1a1a",
-          margin: "0 0 10px 0",
-          lineHeight: 1,
-        }}
-      >
-        {text}
-      </p>
-      <div
-        style={{
-          width: "100%",
-          height: "1px",
-          backgroundColor: "#d5d5d5",
-        }}
-      />
-    </div>
-  );
-}
 
 /* ─── Tier popup data ─── */
 const TIER_NAMES: Record<number, string> = { 0: "Tier 1", 1: "Tier 2", 2: "Tier 3", 3: "Tier 4" };
@@ -150,7 +90,7 @@ function TierPopup({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        animation: "popupOverlay 0.25s ease",
+        animation: "v4PopupOverlay 0.25s ease",
       }}
     >
       <div
@@ -162,10 +102,9 @@ function TierPopup({
           maxWidth: "380px",
           maxHeight: "80vh",
           overflow: "auto",
-          animation: "popupCard 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+          animation: "v4PopupCard 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
         }}
       >
-        {/* Close button */}
         <button
           onClick={onClose}
           aria-label="Close"
@@ -191,14 +130,7 @@ function TierPopup({
         >
           <XmarkCircle size={17} color="currentColor" />
         </button>
-        {/* Header — image + tier name */}
-        <div
-          style={{
-            position: "relative",
-            height: "200px",
-            overflow: "hidden",
-          }}
-        >
+        <div style={{ position: "relative", height: "200px", overflow: "hidden" }}>
           <div
             style={{
               position: "absolute",
@@ -215,13 +147,7 @@ function TierPopup({
               background: "linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.1))",
             }}
           />
-          <div
-            style={{
-              position: "absolute",
-              bottom: "24px",
-              left: "24px",
-            }}
-          >
+          <div style={{ position: "absolute", bottom: "24px", left: "24px" }}>
             <p
               style={{
                 fontFamily: "var(--font-serif)",
@@ -247,7 +173,6 @@ function TierPopup({
             </p>
           </div>
         </div>
-        {/* Benefits list */}
         <div style={{ padding: "20px 32px 28px" }}>
           <div style={{ display: "flex", flexDirection: "column" }}>
             {tier.benefits.map((benefit, i) => (
@@ -282,11 +207,11 @@ function TierPopup({
       </div>
 
       <style>{`
-        @keyframes popupOverlay {
+        @keyframes v4PopupOverlay {
           from { opacity: 0; }
           to { opacity: 1; }
         }
-        @keyframes popupCard {
+        @keyframes v4PopupCard {
           from { opacity: 0; transform: scale(0.9) translateY(12px); }
           to { opacity: 1; transform: scale(1) translateY(0); }
         }
@@ -295,8 +220,7 @@ function TierPopup({
   );
 }
 
-/* ─── Tier milestone dot on progress bar ─── */
-
+/* ─── Progress bar helpers ─── */
 function getBarWidth(months: number): number {
   if (months >= 12) return 100;
   if (months >= 6) return 60 + ((months - 6) / 6) * 40;
@@ -312,7 +236,6 @@ function TierMilestone({
   align = "center",
   tierIndex,
   onOpenPopup,
-  dimmed,
   onHover,
   onLeave,
 }: {
@@ -323,7 +246,6 @@ function TierMilestone({
   align?: "center" | "right";
   tierIndex: number;
   onOpenPopup: (index: number) => void;
-  dimmed: boolean;
   onHover: () => void;
   onLeave: () => void;
 }) {
@@ -341,11 +263,8 @@ function TierMilestone({
         transform: "translate(-50%, -50%)",
         zIndex: 2,
         cursor: "pointer",
-        opacity: dimmed ? 0.7 : 1,
-        transition: "opacity 0.3s ease",
       }}
     >
-      {/* Dot */}
       <div
         style={{
           width: reached ? "20px" : "12px",
@@ -366,7 +285,6 @@ function TierMilestone({
           </svg>
         )}
       </div>
-      {/* Label below */}
       <span
         style={{
           position: "absolute",
@@ -374,17 +292,16 @@ function TierMilestone({
           ...(align === "right"
             ? { right: 0 }
             : { left: "50%", transform: "translateX(-50%)" }),
-          fontFamily: "var(--font-serif)",
-          fontSize: "14px",
-          fontWeight: reached ? 600 : 500,
-          color: "#1a1a1a",
+          fontFamily: "var(--font-sans)",
+          fontSize: "13px",
+          fontWeight: reached ? 600 : 400,
+          color: "#000000",
           whiteSpace: "nowrap",
           transition: "opacity 0.2s ease, top 0.3s ease",
         }}
       >
         {label}
       </span>
-      {/* Tooltip on hover */}
       {hovered && (
         <div
           style={{
@@ -398,9 +315,8 @@ function TierMilestone({
             fontSize: "14px",
             fontWeight: 500,
             padding: "7px 12px 9px",
-            borderRadius: "0",
             whiteSpace: "nowrap",
-            animation: "tooltipIn 0.2s ease",
+            animation: "v4TooltipIn 0.2s ease",
             boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
           }}
         >
@@ -415,18 +331,22 @@ function TierMilestone({
   );
 }
 
-function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
+/* ─── V4: V3 status card + V1 tier progress ─── */
+export default function HeroSectionV4({ bgMode = "video" }: { bgMode?: "video" | "static" }) {
   const isMobile = useIsMobile();
   const [visible, setVisible] = useState(false);
   const [barWidth, setBarWidth] = useState(0);
-  const [userPoints, setUserPoints] = useState(5);
+  const [userPoints, setUserPoints] = useState(50);
   const [totalMonths, setTotalMonths] = useState(1);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [subBtnHovered, setSubBtnHovered] = useState(false);
   const [hoveredMilestone, setHoveredMilestone] = useState<number | null>(null);
   const [openTier, setOpenTier] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
 
   const userTier = totalMonths >= 12 ? 3 : totalMonths >= 6 ? 2 : totalMonths >= 3 ? 1 : 0;
+  const dollarValue = (userPoints * 0.05).toFixed(2);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -442,20 +362,26 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
-    const pointsHandler = (e: Event) => {
+    const onPoints = (e: Event) => {
       const detail = (e as CustomEvent).detail;
-      if (detail?.points !== undefined) {
-        setUserPoints(detail.points);
+      if (detail?.points !== undefined) setUserPoints(detail.points);
+    };
+    const onSub = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.subscribed) setIsSubscribed(true);
+      if (detail?.month !== undefined) {
+        setTotalMonths(detail.month);
+        setBarWidth(getBarWidth(detail.month));
       }
     };
-    const tierHandler = (e: Event) => {
+    const onTier = (e: Event) => {
       const detail = (e as CustomEvent).detail;
       if (detail?.tier !== undefined) {
         const newMonths = detail.tier >= 3 ? 12 : detail.tier >= 2 ? 6 : detail.tier >= 1 ? 3 : detail.months || 1;
@@ -463,22 +389,20 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
         setBarWidth(getBarWidth(detail.months || newMonths));
       }
     };
-    const subHandler = (e: Event) => {
-      const detail = (e as CustomEvent).detail;
-      if (detail?.month !== undefined) {
-        setTotalMonths(detail.month);
-        setBarWidth(getBarWidth(detail.month));
-      }
-    };
-    window.addEventListener("points-updated", pointsHandler);
-    window.addEventListener("tier-updated", tierHandler);
-    window.addEventListener("subscription-updated", subHandler);
+    window.addEventListener("points-updated", onPoints);
+    window.addEventListener("subscription-updated", onSub);
+    window.addEventListener("tier-updated", onTier);
     return () => {
-      window.removeEventListener("points-updated", pointsHandler);
-      window.removeEventListener("tier-updated", tierHandler);
-      window.removeEventListener("subscription-updated", subHandler);
+      window.removeEventListener("points-updated", onPoints);
+      window.removeEventListener("subscription-updated", onSub);
+      window.removeEventListener("tier-updated", onTier);
     };
   }, []);
+
+  const handleHeroSubscribe = () => {
+    setIsSubscribed(true);
+    window.dispatchEvent(new CustomEvent("subscription-updated", { detail: { subscribed: true, days: 15, month: 1, source: "hero" } }));
+  };
 
   return (
     <section
@@ -495,21 +419,9 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
       }}
     >
       <style>{`
-        @keyframes tooltipIn {
+        @keyframes v4TooltipIn {
           from { opacity: 0; transform: translateX(-50%) translateY(4px); }
           to { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
-        @keyframes heroSlideUp {
-          from { opacity: 0; transform: translateY(24px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes heroFadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes heroCardSlide {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
 
@@ -612,16 +524,37 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
             gap: "8px",
           }}
         >
-          {/* CARD 1: AG Credit balance */}
+          {/* CARD 1: AG Credit Balance */}
           <div
             style={{
               backgroundColor: "#f5f3ef",
-              padding: isMobile ? "24px 20px 28px" : "36px 40px 40px",
+              padding: isMobile ? "24px 20px 24px" : "36px 40px 28px",
               opacity: visible ? 1 : 0,
               transition: "opacity 0.5s ease",
             }}
           >
-            <SectionLabel text="AG Credit Balance" />
+            {/* Section label */}
+            <div style={{ display: "inline-block", marginBottom: "20px" }}>
+              <p
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "16px",
+                  fontWeight: 600,
+                  color: "#1a1a1a",
+                  margin: "0 0 10px 0",
+                  lineHeight: 1,
+                }}
+              >
+                AG Credit Balance
+              </p>
+              <div
+                style={{
+                  width: "100%",
+                  height: "1px",
+                  backgroundColor: "#d5d5d5",
+                }}
+              />
+            </div>
 
             {/* Dollar amount */}
             <p
@@ -635,7 +568,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                 letterSpacing: "-0.02em",
               }}
             >
-              ${userPoints.toFixed(2)}
+              ${dollarValue}
             </p>
 
             {/* Redemption note — hidden after 90 days (3 months) */}
@@ -659,7 +592,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
               href="#"
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "17px",
+                fontSize: "13px",
                 fontWeight: 400,
                 color: "#1a1a1a",
                 textDecoration: "underline",
@@ -670,9 +603,82 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
               View Account Activity
             </a>
 
+            {/* Divider + Subscribe / Subscribed */}
+            <div
+              style={{
+                width: "100%",
+                height: "1px",
+                backgroundColor: "#d4e0df",
+                margin: "28px 0 16px",
+              }}
+            />
+            {isSubscribed ? (
+              <div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "13px",
+                    fontWeight: 600,
+                    color: "#000000",
+                    margin: "0 0 4px 0",
+                    lineHeight: 1.4,
+                  }}
+                >
+                  Member
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "13px",
+                    fontWeight: 400,
+                    color: "#000000",
+                    margin: 0,
+                    lineHeight: 1.4,
+                  }}
+                >
+                  Member since Feb 2026
+                </p>
+              </div>
+            ) : (
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: isMobile ? "wrap" as const : "nowrap" as const, gap: isMobile ? "12px" : "0" }}>
+                <p
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "13px",
+                    fontWeight: 400,
+                    color: "#000000",
+                    margin: 0,
+                    lineHeight: 1.4,
+                  }}
+                >
+                  Non-member
+                </p>
+                <button
+                  onClick={handleHeroSubscribe}
+                  onMouseEnter={() => setSubBtnHovered(true)}
+                  onMouseLeave={() => setSubBtnHovered(false)}
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    color: subBtnHovered ? "#000000" : "#ffffff",
+                    backgroundColor: subBtnHovered ? "#46DE46" : "#0C3D3D",
+                    border: "none",
+                    minHeight: "40px",
+                    padding: "0 24px",
+                    borderRadius: "999px",
+                    cursor: "pointer",
+                    transition: "background-color 0.2s ease, color 0.2s ease",
+                    flexShrink: 0,
+                  }}
+                >
+                  Subscribe →
+                </button>
+              </div>
+            )}
           </div>
 
-          {/* CARD 2: Current Tier — V2-style with milestone progress */}
+          {/* CARD 2: Current Tier */}
           <div
             style={{
               backgroundColor: "#f5f3ef",
@@ -681,13 +687,34 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
               transition: "opacity 0.5s ease",
             }}
           >
-            <SectionLabel text="Current Tier" />
+            {/* Section label */}
+            <div style={{ display: "inline-block", marginBottom: "20px" }}>
+              <p
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "16px",
+                  fontWeight: 600,
+                  color: "#1a1a1a",
+                  margin: "0 0 10px 0",
+                  lineHeight: 1,
+                }}
+              >
+                Current Tier
+              </p>
+              <div
+                style={{
+                  width: "100%",
+                  height: "1px",
+                  backgroundColor: "#d5d5d5",
+                }}
+              />
+            </div>
 
             {/* Large tier name */}
             <h2
               style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: isMobile ? "36px" : "48px",
+                fontFamily: "var(--font-sans)",
+                fontSize: "32px",
                 fontWeight: 400,
                 lineHeight: 1,
                 color: "#000000",
@@ -701,12 +728,12 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
             {/* Member since */}
             <p
               style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: "15px",
+                fontFamily: "var(--font-sans)",
+                fontSize: "13px",
                 fontWeight: 400,
-                color: "#1a1a1a",
+                color: "#000000",
                 margin: "0 0 36px 0",
-                lineHeight: 1.55,
+                lineHeight: 1.4,
               }}
             >
               Member since <span style={{ fontWeight: 600 }}>Feb 2026</span>
@@ -723,7 +750,6 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                 borderRadius: "2px",
               }}
             >
-              {/* Animated fill */}
               <div
                 style={{
                   width: `${barWidth}%`,
@@ -734,7 +760,6 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                 }}
               />
 
-              {/* Tier milestones */}
               <TierMilestone
                 label="Tier 2"
                 position="20%"
@@ -742,7 +767,6 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                 reached={userTier >= 1}
                 tierIndex={0}
                 onOpenPopup={setOpenTier}
-                dimmed={false}
                 onHover={() => setHoveredMilestone(0)}
                 onLeave={() => setHoveredMilestone(null)}
               />
@@ -753,7 +777,6 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                 reached={userTier >= 2}
                 tierIndex={1}
                 onOpenPopup={setOpenTier}
-                dimmed={false}
                 onHover={() => setHoveredMilestone(1)}
                 onLeave={() => setHoveredMilestone(null)}
               />
@@ -765,14 +788,12 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                 align="right"
                 tierIndex={2}
                 onOpenPopup={setOpenTier}
-                dimmed={false}
                 onHover={() => setHoveredMilestone(2)}
                 onLeave={() => setHoveredMilestone(null)}
               />
             </div>
           </div>
         </div>
-
       </div>
 
       {/* Tier benefits popup */}
@@ -784,32 +805,4 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
       )}
     </section>
   );
-}
-
-/* ─── Version Switcher ─── */
-export default function HeroSection() {
-  const [version, setVersion] = useState(4);
-  const [bgMode, setBgMode] = useState<"video" | "static">("video");
-
-  useEffect(() => {
-    function handleVersion(e: Event) {
-      const detail = (e as CustomEvent).detail;
-      if (detail?.version) setVersion(detail.version);
-    }
-    function handleBgMode(e: Event) {
-      const detail = (e as CustomEvent).detail;
-      if (detail?.mode) setBgMode(detail.mode);
-    }
-    window.addEventListener("hero-version", handleVersion);
-    window.addEventListener("header-bg-mode", handleBgMode);
-    return () => {
-      window.removeEventListener("hero-version", handleVersion);
-      window.removeEventListener("header-bg-mode", handleBgMode);
-    };
-  }, []);
-
-  if (version === 2) return <HeroSectionV2 bgMode={bgMode} />;
-  if (version === 3) return <HeroSectionV3 bgMode={bgMode} />;
-  if (version === 4) return <HeroSectionV4 bgMode={bgMode} />;
-  return <HeroSectionV1 bgMode={bgMode} />;
 }

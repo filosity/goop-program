@@ -163,7 +163,8 @@ function ProgramDropdown({
     subKey: string,
     event: string,
     active: number,
-    setActive: (n: number) => void
+    setActive: (n: number) => void,
+    versions: number[] = [1, 2, 3]
   ) => (
     <div
       style={{ position: "relative" }}
@@ -173,7 +174,7 @@ function ProgramDropdown({
       <DropdownItem hasArrow>{label}</DropdownItem>
       {openSub === subKey && (
         <SubMenu>
-          {[1, 2, 3].map((v) => (
+          {versions.map((v) => (
             <DropdownItem
               key={v}
               onClick={() => {
@@ -225,7 +226,7 @@ function ProgramDropdown({
           </SubMenu>
         )}
       </div>
-      {versionMenu("header", "header", "hero-version", activeHeader, setActiveHeader)}
+      {versionMenu("header", "header", "hero-version", activeHeader, setActiveHeader, [1, 2, 3, 4])}
       {versionMenu("featured", "featured", "featured-version", activeFeatured, setActiveFeatured)}
       {versionMenu("membership", "tiers", "tiers-version", activeMembership, setActiveMembership)}
       {versionMenu("sweepstakes", "sweepstakes", "sweepstakes-version", activeSweepstakes, setActiveSweepstakes)}
@@ -319,7 +320,7 @@ export default function Header() {
   const [activeFeatured, setActiveFeatured] = useState(1);
   const [activeMembership, setActiveMembership] = useState(1);
   const [activeSweepstakes, setActiveSweepstakes] = useState(1);
-  const [activeHeader, setActiveHeader] = useState(1);
+  const [activeHeader, setActiveHeader] = useState(4);
   const [showCommunity, setShowCommunity] = useState(false);
   const [showEvents, setShowEvents] = useState(false);
   const [showFeaturedBtn, setShowFeaturedBtn] = useState(false);

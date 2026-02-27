@@ -405,7 +405,7 @@ export default function Milestones() {
       id="section-milestones"
       style={{
         backgroundColor: "#ffffff",
-        padding: isMobile ? "24px 16px 60px" : "40px 48px 120px",
+        padding: isMobile ? "40px 16px 60px" : "72px 48px 100px",
       }}
     >
       {/* Subscribe banner — above heading when not subscribed */}

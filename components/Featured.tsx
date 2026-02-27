@@ -1172,7 +1172,7 @@ export default function Featured() {
       id="section-featured"
       style={{
         backgroundColor: "#ffffff",
-        padding: isMobile ? "24px 16px 24px" : "48px 48px 40px",
+        padding: isMobile ? "0px 16px 60px" : "0px 48px 100px",
       }}
     >
       {/* Section heading */}

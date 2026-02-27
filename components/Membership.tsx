@@ -353,7 +353,7 @@ export default function Membership() {
       onMouseEnter={() => setSectionHovered(true)}
       onMouseLeave={() => setSectionHovered(false)}
       style={{
-        padding: isMobile ? "1px 16px 32px" : "1px 48px 48px",
+        padding: isMobile ? "0px 16px 60px" : "0px 48px 100px",
       }}
     >
       <div

@@ -1,136 +1,125 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { DollarSignCircle, GiftBox, DiscountTag, Bolt, DeliveryTruck, User, Star, PresentBox, Gifts, XmarkCircle } from "@vectoricons/atlas-icons-react";
+import { DollarSignCircle, GiftBox, DiscountTag, Bolt, User, Star, Gifts, XmarkCircle } from "@vectoricons/atlas-icons-react";
 
 const benefitDescriptions: Record<string, string> = {
-  "10% cashback on all purchases":
-    "Earn 10% back on every purchase as AG1 credit, automatically applied to your account.",
-  "Birthday gift":
-    "Receive a complimentary gift from our curated collection delivered to you during your birthday month.",
-  "Member-only sales access":
-    "Get early and exclusive access to seasonal sales events reserved only for loyalty members.",
-  "Early access to new products":
-    "Be the first to shop new product launches before they become available to the public.",
-  "Free standard shipping":
-    "Enjoy free standard shipping on all orders, no minimum purchase required.",
-  "Free expedited shipping":
-    "Upgraded shipping at no cost — receive your orders faster with complimentary expedited delivery.",
-  "Free overnight shipping":
-    "The fastest delivery, completely free. All your orders arrive the very next day.",
-  "Exclusive quarterly gift":
-    "Four times a year, receive a surprise luxury gift hand-selected by our beauty editors.",
-  "Annual beauty consultation":
-    "A one-on-one virtual session with our beauty experts to create a personalised skincare and beauty routine.",
-  "VIP event invitations":
-    "Receive invitations to exclusive in-person and virtual events, product launches, and masterclasses.",
-  "Premium curated boxes":
-    "Receive specially curated boxes featuring full-size products from our most coveted collections.",
+  "Spend $150, Get $5":
+    "For every $150 you spend, earn $5 in AG Credit automatically added to your balance.",
+  "Spend $150, Get $10":
+    "For every $150 you spend, earn $10 in AG Credit automatically added to your balance.",
+  "Spend $150, Get $15":
+    "For every $150 you spend, earn $15 in AG Credit automatically added to your balance.",
+  "Spend $150, Get $20":
+    "For every $150 you spend, earn $20 in AG Credit automatically added to your balance.",
+  "$5 Birthday Reward":
+    "Receive $5 AG Credit during your birthday month as a thank you for being a member.",
+  "$10 Birthday Reward":
+    "Receive $10 AG Credit during your birthday month as a thank you for being a member.",
+  "$15 Birthday Reward":
+    "Receive $15 AG Credit during your birthday month as a thank you for being a member.",
+  "$20 Birthday Reward":
+    "Receive $20 AG Credit during your birthday month as a thank you for being a member.",
+  "Access to Exclusive Merch Store":
+    "Unlock the members-only merch store with exclusive AG1 apparel and accessories.",
+  "Access to Partner Offers":
+    "Get access to special deals and discounts from AG1's curated partner brands.",
+  "Access to Premium Partner Offers":
+    "Get access to premium deals and exclusive discounts from AG1's top-tier partner brands.",
+  "2X Referral Multiplier":
+    "Earn double the standard referral bonus when friends subscribe through your link.",
+  "3X Referral Multiplier":
+    "Earn triple the standard referral bonus when friends subscribe through your link.",
+  "Access to Focus Group":
+    "Join exclusive focus groups to help shape the future of AG1 products and programs.",
+  "Priority Customer Support":
+    "Skip the queue with dedicated priority support from the AG1 team.",
+  "Access to Exclusive Events":
+    "Receive invitations to exclusive in-person and virtual AG1 events, meetups, and product launches.",
 };
 
 /* ─── Unique SVG icon per benefit ─── */
 function BenefitIcon({
   benefit,
-  light,
   size = 22,
 }: {
   benefit: string;
-  light?: boolean;
   size?: number;
 }) {
-  const bg = light ? "#ffffff" : "#1a1a1a";
-  const fg = light ? "#000000" : "#ffffff";
-
-  const iconMap: Record<string, React.ReactNode> = {
-    points: <DollarSignCircle size={size} color="currentColor" />,
-    birthday: <GiftBox size={size} color="currentColor" />,
-    sales: <DiscountTag size={size} color="currentColor" />,
-    early: <Bolt size={size} color="currentColor" />,
-    shipping: <DeliveryTruck size={size} color="currentColor" />,
-    quarterly: <PresentBox size={size} color="currentColor" />,
-    consultation: <User size={size} color="currentColor" />,
-    vip: <Star size={size} color="currentColor" />,
-    curated: <Gifts size={size} color="currentColor" />,
-  };
-
-  // Map benefit text to icon key
-  let key = "points";
   const b = benefit.toLowerCase();
-  if (b.includes("cashback") || b.includes("earn")) key = "points";
-  else if (b.includes("birthday")) key = "birthday";
-  else if (b.includes("sales")) key = "sales";
-  else if (b.includes("early access")) key = "early";
-  else if (b.includes("shipping")) key = "shipping";
-  else if (b.includes("quarterly")) key = "quarterly";
-  else if (b.includes("consultation")) key = "consultation";
-  else if (b.includes("vip") || b.includes("event")) key = "vip";
-  else if (b.includes("curated") || b.includes("premium")) key = "curated";
-
-  return <>{iconMap[key]}</>;
+  if (b.includes("spend") && b.includes("get"))
+    return <DollarSignCircle size={size} color="currentColor" />;
+  if (b.includes("birthday"))
+    return <GiftBox size={size} color="currentColor" />;
+  if (b.includes("merch"))
+    return <Gifts size={size} color="currentColor" />;
+  if (b.includes("partner"))
+    return <DiscountTag size={size} color="currentColor" />;
+  if (b.includes("referral"))
+    return <User size={size} color="currentColor" />;
+  if (b.includes("focus group"))
+    return <User size={size} color="currentColor" />;
+  if (b.includes("support"))
+    return <Bolt size={size} color="currentColor" />;
+  if (b.includes("event"))
+    return <Star size={size} color="currentColor" />;
+  return <DollarSignCircle size={size} color="currentColor" />;
 }
 
 const tiers = [
   {
     name: "Tier 1",
     subtitle: "your tier",
-    spend: "$0–$349 annual spend",
+    spend: "0–2 months subscribed",
     current: true,
-    image: "/tier1.jpg",
+    image: "/ag1-tier1.avif",
     benefits: [
-      "10% cashback on all purchases",
-      "Birthday gift",
-      "Member-only sales access",
-      "Early access to new products",
-      "Free standard shipping",
+      "Spend $150, Get $5",
+      "$5 Birthday Reward",
     ],
   },
   {
     name: "Tier 2",
     subtitle: "",
-    spend: "$350–$899 annual spend",
+    spend: "3–5 months subscribed",
     current: false,
-    image: "/tier2.jpg",
+    image: "/ag1-tier2.avif",
     benefits: [
-      "10% cashback on all purchases",
-      "Birthday gift",
-      "Member-only sales access",
-      "Early access to new products",
-      "Free expedited shipping",
-      "Exclusive quarterly gift",
+      "Spend $150, Get $10",
+      "Access to Exclusive Merch Store",
+      "Access to Partner Offers",
+      "$10 Birthday Reward",
     ],
   },
   {
     name: "Tier 3",
     subtitle: "",
-    spend: "$900+ annual spend",
+    spend: "6–11 months subscribed",
     current: false,
-    image: "/tier3.jpg",
+    image: "/ag1-tier3.avif",
     benefits: [
-      "10% cashback on all purchases",
-      "Birthday gift",
-      "Member-only sales access",
-      "Early access to new products",
-      "Free overnight shipping",
-      "Exclusive quarterly gift",
-      "Annual beauty consultation",
+      "Spend $150, Get $15",
+      "Access to Exclusive Merch Store",
+      "Access to Partner Offers",
+      "2X Referral Multiplier",
+      "$15 Birthday Reward",
     ],
   },
   {
-    name: "The Collective",
+    name: "Tier 4",
     subtitle: "",
-    spend: "Invite only",
+    spend: "12+ months subscribed",
     current: false,
-    image: "/tier4.jpg",
+    image: "/ag1-tier4.avif",
     benefits: [
-      "10% cashback on all purchases",
-      "Birthday gift",
-      "Member-only sales access",
-      "Early access to new products",
-      "Free overnight shipping",
-      "Exclusive quarterly gift",
-      "Annual beauty consultation",
-      "VIP event invitations",
-      "Premium curated boxes",
+      "Spend $150, Get $20",
+      "Access to Exclusive Merch Store",
+      "Access to Premium Partner Offers",
+      "3X Referral Multiplier",
+      "$20 Birthday Reward",
+      "Access to Focus Group",
+      "Priority Customer Support",
+      "Access to Exclusive Events",
     ],
   },
 ];
@@ -198,7 +187,7 @@ function BenefitPopup({
         {/* Benefit name */}
         <h4
           style={{
-            fontFamily: "var(--font-serif)",
+            fontFamily: "var(--font-sans)",
             fontSize: "24px",
             fontWeight: 400,
             color: "#000000",
@@ -246,12 +235,21 @@ export default function Tiers() {
   const [currentTier, setCurrentTier] = useState<number>(0);
 
   useEffect(() => {
-    const handler = (e: Event) => {
+    const tierHandler = (e: Event) => {
       setCurrentTier((e as CustomEvent).detail.tier);
     };
-    window.addEventListener("tier-updated", handler);
+    const subHandler = (e: Event) => {
+      const month = (e as CustomEvent).detail.month;
+      if (month <= 2) setCurrentTier(0);
+      else if (month <= 5) setCurrentTier(1);
+      else if (month <= 11) setCurrentTier(2);
+      else setCurrentTier(3);
+    };
+    window.addEventListener("tier-updated", tierHandler);
+    window.addEventListener("subscription-updated", subHandler);
     return () => {
-      window.removeEventListener("tier-updated", handler);
+      window.removeEventListener("tier-updated", tierHandler);
+      window.removeEventListener("subscription-updated", subHandler);
     };
   }, []);
 
@@ -260,19 +258,22 @@ export default function Tiers() {
       id="section-tiers"
       style={{
         backgroundColor: "#ffffff",
-        padding: "20px 48px 40px",
+        padding: "0px 48px 100px",
       }}
     >
       {/* Heading */}
       <h2
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
           fontSize: "44px",
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
-          textAlign: "center",
+          textAlign: "left",
           margin: "0 0 56px 0",
+          maxWidth: "1280px",
+          marginLeft: "auto",
+          marginRight: "auto",
           letterSpacing: "-0.01em",
         }}
       >
@@ -290,6 +291,7 @@ export default function Tiers() {
         }}
       >
         {tiers.map((tier, i) => {
+          const isCurrent = currentTier === i;
           const isHovered = hoveredIndex === i;
           const isDimmed = hoveredIndex !== null && hoveredIndex !== i;
           const isLast = i === tiers.length - 1;
@@ -307,7 +309,9 @@ export default function Tiers() {
                 flexDirection: "column",
                 overflow: "hidden",
                 cursor: "pointer",
-                borderRight: !isLast ? "1px solid #d4e0df" : "none",
+                borderRight: !isLast
+                  ? `1px solid ${isCurrent ? "rgba(255,255,255,0.15)" : "#d4e0df"}`
+                  : "none",
               }}
             >
               {/* Image area */}
@@ -329,13 +333,13 @@ export default function Tiers() {
                     transform: isHovered ? "scale(1.05)" : "scale(1)",
                   }}
                 />
-                {currentTier === i && (
+                {isCurrent && (
                   <>
                     <div
                       style={{
                         position: "absolute",
                         inset: 0,
-                        backgroundColor: "rgba(0,0,0,0.15)",
+                        backgroundColor: "rgba(12,61,61,0.35)",
                       }}
                     />
                     <div
@@ -349,8 +353,7 @@ export default function Tiers() {
                         fontSize: "13px",
                         fontWeight: 500,
                         letterSpacing: "0.06em",
-                        color: "#000000",
-                        border: "1px solid #e0e0e0",
+                        color: "#0C3D3D",
                       }}
                     >
                       current tier
@@ -362,27 +365,22 @@ export default function Tiers() {
               {/* Card content */}
               <div
                 style={{
-                  backgroundColor: currentTier === i ? "#ffffff" : "#f5f8f8",
+                  backgroundColor: isCurrent ? "#0C3D3D" : "#f5f8f8",
                   padding: "32px 36px 44px",
                   flex: 1,
                   display: "flex",
                   flexDirection: "column",
-                  ...(currentTier === i ? { boxShadow: [
-                    i === 0 ? "inset 1px 0 0 0 #d4e0df" : "",
-                    "inset 0 -1px 0 0 #d4e0df",
-                    isLast ? "inset -1px 0 0 0 #d4e0df" : "",
-                  ].filter(Boolean).join(", ") } : {}),
                 }}
               >
 
                 {/* Tier name */}
                 <h3
                   style={{
-                    fontFamily: "var(--font-serif)",
+                    fontFamily: "var(--font-sans)",
                     fontSize: "30px",
                     fontWeight: 400,
                     lineHeight: 1.15,
-                    color: "#000000",
+                    color: isCurrent ? "#ffffff" : "#000000",
                     margin: "0 0 4px 0",
                     letterSpacing: "-0.01em",
                   }}
@@ -396,7 +394,7 @@ export default function Tiers() {
                     fontFamily: "var(--font-sans)",
                     fontSize: "13px",
                     fontWeight: 400,
-                    color: "#000000",
+                    color: isCurrent ? "rgba(255,255,255,0.6)" : "#000000",
                     margin: "0 0 28px 0",
                     lineHeight: 1.4,
                   }}
@@ -409,6 +407,7 @@ export default function Tiers() {
                   style={{
                     display: "flex",
                     flexDirection: "column",
+                    color: isCurrent ? "#ffffff" : "#1a1a1a",
                   }}
                 >
                   {tier.benefits.map((benefit, j) => {
@@ -434,7 +433,7 @@ export default function Tiers() {
                           padding: "16px 0",
                           borderTop:
                             !isFirst
-                              ? "1px solid #d4e0df"
+                              ? `1px solid ${isCurrent ? "rgba(255,255,255,0.15)" : "#d4e0df"}`
                               : "none",
                           opacity: isBenefitDimmed ? 0.35 : 1,
                           transition: "opacity 0.2s ease",
@@ -449,7 +448,7 @@ export default function Tiers() {
                             fontFamily: "var(--font-sans)",
                             fontSize: "14px",
                             fontWeight: 400,
-                            color: "#1a1a1a",
+                            color: isCurrent ? "rgba(255,255,255,0.85)" : "#1a1a1a",
                             lineHeight: 1.5,
                           }}
                         >

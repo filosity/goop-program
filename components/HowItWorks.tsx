@@ -236,7 +236,7 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
             margin: "8px 0 0 0",
           }}
         >
-          {active && points > 0 ? "AG Credit" : "10% cashback"}
+          AG Credit
         </p>
       </div>
     </div>
@@ -636,7 +636,7 @@ export default function HowItWorks() {
         backgroundColor: "#F6F5F1",
         padding: collapsed
           ? (isMobile ? "16px 16px 16px" : "16px 48px 16px")
-          : (isMobile ? "36px 16px 48px" : "36px 48px 80px"),
+          : (isMobile ? "30px 16px 30px" : "48px 48px 60px"),
       }}
     >
       <style>{`

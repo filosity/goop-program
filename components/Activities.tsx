@@ -2330,7 +2330,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
           marginBottom: "32px",
           border: "1px solid #d4e0df",
           overflow: "hidden",
-          height: isMobile ? "auto" : "260px",
+          height: isMobile ? "auto" : "325px",
         }}
       >
         {nextReward ? (
@@ -2863,8 +2863,7 @@ export default function Activities() {
     <section
       id="section-activities"
       style={{
-        padding: isMobile ? "0px 16px 40px" : "0px 48px 100px",
-        marginTop: "-30px",
+        padding: isMobile ? "0px 16px 60px" : "0px 48px 100px",
       }}
     >
       {/* Title */}

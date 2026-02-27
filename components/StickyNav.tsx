@@ -4,11 +4,12 @@ import { useEffect, useRef, useCallback, useState } from "react";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
 const sections = [
-  { id: "section-milestones", label: "subscriber milestones" },
-  { id: "section-sweepstakes", label: "sweepstakes" },
+  { id: "section-milestones", label: "Subscriber Milestones" },
+  { id: "section-tiers", label: "Tiers" },
+  { id: "section-sweepstakes", label: "Sweepstakes" },
   { id: "section-ways-to-earn", label: "AG Credit" },
-  { id: "section-activities", label: "activities" },
-  { id: "section-referrals", label: "referrals" },
+  { id: "section-activities", label: "Activities" },
+  { id: "section-referrals", label: "Referrals" },
   { id: "section-faq", label: "FAQ" },
 ];
 
@@ -181,7 +182,7 @@ export default function StickyNav() {
           flexDirection: "column",
           alignItems: "flex-start",
           backgroundColor: "#ffffff",
-          padding: "20px 24px",
+          padding: "20px 30px",
           gap: "0px",
           boxShadow: "none",
           border: "1px solid #d4e0df",
@@ -306,7 +307,7 @@ export default function StickyNav() {
               whiteSpace: "nowrap",
             }}
           >
-            rewards available
+            Rewards Available
           </p>
           <p
             style={{

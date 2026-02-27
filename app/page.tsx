@@ -8,6 +8,7 @@ import Sweepstakes from "@/components/Sweepstakes";
 import WaysToEarn from "@/components/WaysToEarn";
 import Activities from "@/components/Activities";
 import Referrals from "@/components/Referrals";
+import Tiers from "@/components/Tiers";
 import FAQ from "@/components/FAQ";
 import StickyNav from "@/components/StickyNav";
 
@@ -20,6 +21,7 @@ export default function Home() {
       <HowItWorks />
       <Featured />
       <Milestones />
+      <Tiers />
       <Membership />
       <Sweepstakes />
       <WaysToEarn />

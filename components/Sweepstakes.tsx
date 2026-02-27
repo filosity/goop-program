@@ -167,7 +167,7 @@ export default function Sweepstakes() {
       id="section-sweepstakes"
       style={{
         backgroundColor: "#ffffff",
-        padding: isMobile ? "0px 16px 60px" : "0px 48px 90px",
+        padding: isMobile ? "0px 16px 60px" : "0px 48px 100px",
       }}
     >
       {/* Heading */}
@@ -283,8 +283,8 @@ export default function Sweepstakes() {
                 }}
               >
                 <img
-                  src="/background-header.jpg"
-                  alt="Sweepstakes prize"
+                  src="/milestone-sweatshirt.jpg"
+                  alt="AG1 Sweatshirt"
                   style={{
                     width: "100%",
                     height: "100%",
@@ -333,9 +333,9 @@ export default function Sweepstakes() {
                     cursor: "pointer",
                   }}
                 >
-                  AG1 Limited Edition
+                  Limited Edition
                   <br />
-                  Bottle Giveaway
+                  AG1 Sweatshirt
                 </h2>
 
                 {/* Separator */}
@@ -605,8 +605,8 @@ export default function Sweepstakes() {
               }}
             >
               <img
-                src="/background-header.jpg"
-                alt="Sweepstakes prize"
+                src="/milestone-sweatshirt.jpg"
+                alt="AG1 Sweatshirt"
                 style={{
                   width: "100%",
                   height: "100%",
@@ -628,7 +628,7 @@ export default function Sweepstakes() {
                 letterSpacing: "-0.01em",
               }}
             >
-              AG1 Limited Edition Bottle Giveaway
+              Limited Edition AG1 Sweatshirt
             </h3>
             <p
               style={{
@@ -866,8 +866,8 @@ export default function Sweepstakes() {
                   }}
                 >
                   <img
-                    src="/background-header.jpg"
-                    alt="Sweepstakes prize"
+                    src="/milestone-sweatshirt.jpg"
+                    alt="AG1 Sweatshirt"
                     style={{
                       width: "100%",
                       height: "100%",
@@ -909,7 +909,7 @@ export default function Sweepstakes() {
                   >
                     AG1 Limited Edition
                     <br />
-                    Bottle Giveaway
+                    Sweatshirt Giveaway
                   </h2>
                 </div>
               </div>
