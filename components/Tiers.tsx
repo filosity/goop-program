@@ -292,7 +292,7 @@ export default function Tiers() {
           overflowX: "auto",
           scrollSnapType: "x mandatory",
           WebkitOverflowScrolling: "touch",
-          gap: "0",
+          gap: "12px",
           marginLeft: "-16px",
           marginRight: "-16px",
           paddingLeft: "16px",
@@ -331,10 +331,11 @@ export default function Tiers() {
                 overflow: "hidden",
                 cursor: "pointer",
                 ...(isMobile ? {
-                  minWidth: "80vw",
-                  maxWidth: "80vw",
+                  minWidth: "78vw",
+                  maxWidth: "78vw",
                   scrollSnapAlign: "start",
                   flexShrink: 0,
+                  borderRadius: "12px",
                   border: "1px solid #d4e0df",
                 } : {
                   borderRight: !isLast
