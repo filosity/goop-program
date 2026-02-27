@@ -2147,11 +2147,11 @@ export default function WaysToEarn() {
             <span
               style={{
                 fontWeight: 400,
-                color: activeTab === "earn" ? "rgba(255,255,255,0.45)" : "#aaaaaa",
+                color: activeTab === "earn" ? "rgba(255,255,255,0.45)" : earnTabHovered ? "#000000" : "#aaaaaa",
                 marginLeft: "6px",
               }}
             >
-              (<span style={{ fontWeight: 600, color: activeTab === "earn" ? "rgba(255,255,255,0.45)" : "#aaaaaa" }}>{earnedCount}</span>/{earnableCards})
+              (<span style={{ fontWeight: 600, color: activeTab === "earn" ? "rgba(255,255,255,0.45)" : earnTabHovered ? "#000000" : "#aaaaaa" }}>{earnedCount}</span>/{earnableCards})
             </span>
           </button>
 
