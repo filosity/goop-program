@@ -157,16 +157,19 @@ function ProgramDropdown({
   const handleSimulateSpend = useCallback(
     (amount: number) => {
       const newSpend = totalSpend + amount;
-      const rate = TIER_EARN_RATES[currentTier] ?? TIER_EARN_RATES[0];
+      const newTier = newSpend >= 500 ? 3 : newSpend >= 300 ? 2 : newSpend >= 100 ? 1 : 0;
+      const rate = TIER_EARN_RATES[newTier] ?? TIER_EARN_RATES[0];
       const earned = Math.round(amount * rate * 100) / 100;
       const newPoints = Math.round((currentPoints + earned) * 100) / 100;
       setTotalSpend(newSpend);
       setCurrentPoints(newPoints);
+      setCurrentTier(newTier);
       window.dispatchEvent(new CustomEvent("spend-updated", { detail: { spend: newSpend } }));
       window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newPoints } }));
+      window.dispatchEvent(new CustomEvent("tier-updated", { detail: { tier: newTier } }));
       closeAll();
     },
-    [totalSpend, currentPoints, currentTier, setTotalSpend, setCurrentPoints, closeAll]
+    [totalSpend, currentPoints, setTotalSpend, setCurrentPoints, setCurrentTier, closeAll]
   );
 
   if (!open) return null;
