@@ -336,7 +336,7 @@ export default function HeroSectionV4({ bgMode = "video" }: { bgMode?: "video" |
   const isMobile = useIsMobile();
   const [visible, setVisible] = useState(false);
   const [barWidth, setBarWidth] = useState(0);
-  const [userPoints, setUserPoints] = useState(50);
+  const [userPoints, setUserPoints] = useState(5);
   const [totalMonths, setTotalMonths] = useState(0);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [subBtnHovered, setSubBtnHovered] = useState(false);
@@ -346,7 +346,7 @@ export default function HeroSectionV4({ bgMode = "video" }: { bgMode?: "video" |
   const hasAnimated = useRef(false);
 
   const userTier = totalMonths >= 12 ? 3 : totalMonths >= 4 ? 2 : totalMonths >= 1 ? 1 : 0;
-  const dollarValue = (userPoints * 0.05).toFixed(2);
+  const dollarValue = userPoints.toFixed(2);
 
   useEffect(() => {
     const el = sectionRef.current;
