@@ -189,7 +189,7 @@ function V1Card({ partner, isMobile }: { partner: (typeof partners)[0]; isMobile
             whiteSpace: "nowrap",
           }}
         >
-          Unlock offer
+          Unlock
         </button>
       </div>
     </div>
@@ -335,7 +335,7 @@ function V3Row({ partner, isMobile, isLast }: { partner: (typeof partners)[0]; i
           flexShrink: 0,
         }}
       >
-        Unlock offer
+        Unlock
       </button>
     </div>
   );
@@ -419,7 +419,7 @@ function V4Card({ partner, isMobile }: { partner: (typeof partners)[0]; isMobile
             whiteSpace: "nowrap",
           }}
         >
-          Unlock offer
+          Unlock
         </button>
       </div>
     </div>
@@ -492,7 +492,7 @@ function V5Card({ partner, isMobile }: { partner: (typeof partners)[0]; isMobile
             gap: "6px",
           }}
         >
-          Unlock offer
+          Unlock
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
             <path d="M2.5 6H9.5M9.5 6L6.5 3M9.5 6L6.5 9" stroke="#0C3D3D" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -578,7 +578,7 @@ function V6Card({ partner, isMobile, isSubscribed }: { partner: (typeof partners
             whiteSpace: "nowrap",
           }}
         >
-          Unlock offer
+          Unlock
         </button>
       </div>
     </div>
