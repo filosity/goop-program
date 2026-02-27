@@ -7,6 +7,7 @@ import Featured from "@/components/Featured";
 import Sweepstakes from "@/components/Sweepstakes";
 import WaysToEarn from "@/components/WaysToEarn";
 import Activities from "@/components/Activities";
+import Partners from "@/components/Partners";
 import Referrals from "@/components/Referrals";
 import Tiers from "@/components/Tiers";
 import FAQ from "@/components/FAQ";
@@ -26,6 +27,7 @@ export default function Home() {
       <Sweepstakes />
       <WaysToEarn />
       <Activities />
+      <Partners />
       <Referrals />
       <FAQ />
     </>

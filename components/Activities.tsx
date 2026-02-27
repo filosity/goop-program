@@ -191,7 +191,7 @@ function AchievementCard({
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: "18px",
-                  fontWeight: 600,
+                  fontWeight: 400,
                   color: "#0C3D3D",
                   backgroundColor: claimHovered ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.9)",
                   border: "none",
@@ -1670,7 +1670,7 @@ function CheckInButton({ onCheckIn, showChecked, rate, checkInHovered, setCheckI
           style={{
             fontFamily: "var(--font-sans)",
             fontSize: "18px",
-            fontWeight: 600,
+            fontWeight: 400,
             color: "#ffffff",
             backgroundColor: checkInHovered ? "#155050" : "#0C3D3D",
             border: "none",
@@ -1776,7 +1776,6 @@ const multiplierKeyframes = `
 function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: number) => void; isMobile: boolean }) {
   const s = useStreakCheckin(onStreakChange);
   const [hoveredDot, setHoveredDot] = useState<number | null>(null);
-  const [celebrated, setCelebrated] = useState(false);
   const [celebrating, setCelebrating] = useState(false);
 
   const v1Tier = getStreakTierV1(s.currentDay);
@@ -1784,12 +1783,9 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
 
   const handleV1CheckIn = useCallback(() => {
     s.handleCheckIn(v1Tier.rate);
-    if (!celebrated) {
-      setCelebrating(true);
-      setCelebrated(true);
-      setTimeout(() => setCelebrating(false), 1600);
-    }
-  }, [s, v1Tier.rate, celebrated]);
+    setCelebrating(true);
+    setTimeout(() => setCelebrating(false), 1600);
+  }, [s, v1Tier.rate]);
 
   const milestones = [
     { label: "1x", rate: "$0.25/day", absoluteDay: 1 },
@@ -1858,7 +1854,7 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
       </div>
 
       {/* Progress bar — flush dots, absolute day milestones */}
-      <div style={{ position: "relative", marginBottom: "56px" }}>
+      <div style={{ position: "relative", marginBottom: "56px", marginLeft: isMobile ? "12px" : "0", marginRight: isMobile ? "12px" : "0" }}>
         <div style={{ height: "6px", backgroundColor: "#e8eeed", borderRadius: "3px", overflow: "hidden" }}>
           <div style={{ height: "100%", width: `${v1BarProgress}%`, backgroundColor: "#0C3D3D", borderRadius: "3px", transition: s.animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none" }} />
         </div>
@@ -2930,14 +2926,15 @@ export default function Activities() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: isMobile ? "15px" : "18px",
-              fontWeight: 600,
+              fontWeight: 400,
               padding: isMobile ? "0 20px" : "0 32px",
               minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "streak" ? "#0C3D3D" : streakTabHovered ? "rgba(12,61,61,0.06)" : "transparent",
-              color: activeTab === "streak" ? "#ffffff" : "#0C3D3D",
+              backgroundColor: activeTab === "streak" ? "#0C3D3D" : streakTabHovered ? "#46DE46" : "transparent",
+              color: activeTab === "streak" ? "#ffffff" : streakTabHovered ? "#000000" : "#0C3D3D",
+              borderColor: activeTab === "streak" ? "#0C3D3D" : streakTabHovered ? "#46DE46" : "#0C3D3D",
               border: "1px solid #0C3D3D",
               display: "inline-flex",
               alignItems: "center",
@@ -2961,14 +2958,15 @@ export default function Activities() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: isMobile ? "15px" : "18px",
-              fontWeight: 600,
+              fontWeight: 400,
               padding: isMobile ? "0 20px" : "0 32px",
               minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "achievements" ? "#0C3D3D" : achievementsTabHovered ? "rgba(12,61,61,0.06)" : "transparent",
-              color: activeTab === "achievements" ? "#ffffff" : "#0C3D3D",
+              backgroundColor: activeTab === "achievements" ? "#0C3D3D" : achievementsTabHovered ? "#46DE46" : "transparent",
+              color: activeTab === "achievements" ? "#ffffff" : achievementsTabHovered ? "#000000" : "#0C3D3D",
+              borderColor: activeTab === "achievements" ? "#0C3D3D" : achievementsTabHovered ? "#46DE46" : "#0C3D3D",
               border: "1px solid #0C3D3D",
             }}
           >
@@ -2991,14 +2989,15 @@ export default function Activities() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: isMobile ? "15px" : "18px",
-              fontWeight: 600,
+              fontWeight: 400,
               padding: isMobile ? "0 20px" : "0 32px",
               minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "voting" ? "#0C3D3D" : votingTabHovered ? "rgba(12,61,61,0.06)" : "transparent",
-              color: activeTab === "voting" ? "#ffffff" : "#0C3D3D",
+              backgroundColor: activeTab === "voting" ? "#0C3D3D" : votingTabHovered ? "#46DE46" : "transparent",
+              color: activeTab === "voting" ? "#ffffff" : votingTabHovered ? "#000000" : "#0C3D3D",
+              borderColor: activeTab === "voting" ? "#0C3D3D" : votingTabHovered ? "#46DE46" : "#0C3D3D",
               border: "1px solid #0C3D3D",
             }}
           >

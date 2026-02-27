@@ -147,7 +147,7 @@ function MilestoneCard({
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: "18px",
-                  fontWeight: 600,
+                  fontWeight: 400,
                   color: "#0C3D3D",
                   backgroundColor: hovered ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.9)",
                   border: "none",
@@ -311,7 +311,7 @@ function MilestoneCard({
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: "13px",
-                  fontWeight: 600,
+                  fontWeight: 400,
                   color: "#ffffff",
                   backgroundColor: "#0C3D3D",
                   border: "1px solid #0C3D3D",
@@ -474,7 +474,7 @@ export default function Milestones() {
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: "18px",
-                  fontWeight: 600,
+                  fontWeight: 400,
                   color: btnHovered ? "#000000" : "#ffffff",
                   backgroundColor: btnHovered ? "#46DE46" : "#0C3D3D",
                   border: "none",

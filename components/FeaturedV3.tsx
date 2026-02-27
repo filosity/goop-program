@@ -327,7 +327,7 @@ function ImmersiveShowcase() {
                 alignSelf: "flex-start",
                 fontFamily: "var(--font-sans)",
                 fontSize: "18px",
-                fontWeight: 600,
+                fontWeight: 400,
                 color: "#0C3D3D",
                 backgroundColor: btnHov ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.9)",
                 minHeight: "52px",
@@ -406,7 +406,7 @@ function ImmersiveShowcase() {
                   style={{
                     fontFamily: "var(--font-sans)",
                     fontSize: "14px",
-                    fontWeight: 600,
+                    fontWeight: 400,
                     color: "#000000",
                     backgroundColor: "#ffffff",
                     border: "1px solid rgba(255,255,255,0.3)",
@@ -802,7 +802,7 @@ function CommunityMagazine() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "21px",
-              fontWeight: 600,
+              fontWeight: 400,
               color: "#0C3D3D",
               backgroundColor: "transparent",
               border: "1px solid #0C3D3D",
@@ -812,8 +812,8 @@ function CommunityMagazine() {
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#46DE46"; e.currentTarget.style.color = "#000"; e.currentTarget.style.borderColor = "#46DE46"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
             Show More
           </button>
@@ -824,7 +824,7 @@ function CommunityMagazine() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "21px",
-              fontWeight: 600,
+              fontWeight: 400,
               color: "#0C3D3D",
               backgroundColor: "transparent",
               border: "1px solid #0C3D3D",
@@ -834,7 +834,7 @@ function CommunityMagazine() {
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#46DE46"; e.currentTarget.style.color = "#000"; e.currentTarget.style.borderColor = "#46DE46"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
             Collapse
@@ -1102,7 +1102,7 @@ function EventsCalendar() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "21px",
-              fontWeight: 600,
+              fontWeight: 400,
               color: "#0C3D3D",
               backgroundColor: "transparent",
               border: "1px solid #0C3D3D",
@@ -1112,8 +1112,8 @@ function EventsCalendar() {
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#46DE46"; e.currentTarget.style.color = "#000"; e.currentTarget.style.borderColor = "#46DE46"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
             Show More
           </button>
@@ -1124,7 +1124,7 @@ function EventsCalendar() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "21px",
-              fontWeight: 600,
+              fontWeight: 400,
               color: "#0C3D3D",
               backgroundColor: "transparent",
               border: "1px solid #0C3D3D",
@@ -1134,7 +1134,7 @@ function EventsCalendar() {
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0C3D3D"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#46DE46"; e.currentTarget.style.color = "#000"; e.currentTarget.style.borderColor = "#46DE46"; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0C3D3D"; e.currentTarget.style.borderColor = "#0C3D3D"; }}
           >
             Collapse
@@ -1227,15 +1227,15 @@ export default function FeaturedV3() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "18px",
-              fontWeight: 600,
+              fontWeight: 400,
               padding: "0 32px",
               minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "featured" ? "#0C3D3D" : "transparent",
-              color: activeTab === "featured" ? "#ffffff" : "#0C3D3D",
-              border: activeTab === "featured" ? "1px solid #0C3D3D" : featuredHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
+              backgroundColor: activeTab === "featured" ? "#0C3D3D" : featuredHovered ? "#46DE46" : "transparent",
+              color: activeTab === "featured" ? "#ffffff" : featuredHovered ? "#000000" : "#0C3D3D",
+              border: activeTab === "featured" ? "1px solid #0C3D3D" : featuredHovered ? "1px solid #46DE46" : "1px solid #d5d5d5",
             }}
           >
             Featured
@@ -1253,15 +1253,15 @@ export default function FeaturedV3() {
               alignItems: "center",
               fontFamily: "var(--font-sans)",
               fontSize: "18px",
-              fontWeight: 600,
+              fontWeight: 400,
               padding: "0 32px",
               minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "community" ? "#0C3D3D" : "transparent",
-              color: activeTab === "community" ? "#ffffff" : "#0C3D3D",
-              border: activeTab === "community" ? "1px solid #0C3D3D" : communityHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
+              backgroundColor: activeTab === "community" ? "#0C3D3D" : communityHovered ? "#46DE46" : "transparent",
+              color: activeTab === "community" ? "#ffffff" : communityHovered ? "#000000" : "#0C3D3D",
+              border: activeTab === "community" ? "1px solid #0C3D3D" : communityHovered ? "1px solid #46DE46" : "1px solid #d5d5d5",
             }}
           >
             Community
@@ -1282,15 +1282,15 @@ export default function FeaturedV3() {
               alignItems: "center",
               fontFamily: "var(--font-sans)",
               fontSize: "18px",
-              fontWeight: 600,
+              fontWeight: 400,
               padding: "0 32px",
               minHeight: "52px",
               borderRadius: "999px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "events" ? "#0C3D3D" : "transparent",
-              color: activeTab === "events" ? "#ffffff" : "#0C3D3D",
-              border: activeTab === "events" ? "1px solid #0C3D3D" : eventsHovered ? "1px solid #0C3D3D" : "1px solid #d5d5d5",
+              backgroundColor: activeTab === "events" ? "#0C3D3D" : eventsHovered ? "#46DE46" : "transparent",
+              color: activeTab === "events" ? "#ffffff" : eventsHovered ? "#000000" : "#0C3D3D",
+              border: activeTab === "events" ? "1px solid #0C3D3D" : eventsHovered ? "1px solid #46DE46" : "1px solid #d5d5d5",
             }}
           >
             Events

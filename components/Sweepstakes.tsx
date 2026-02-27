@@ -215,7 +215,7 @@ export default function Sweepstakes() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: isMobile ? "14px" : "17px",
-              fontWeight: 600,
+              fontWeight: 400,
               padding: isMobile ? "0 18px" : "0 32px",
               minHeight: isMobile ? "44px" : "52px",
               borderRadius: "999px",
@@ -225,10 +225,10 @@ export default function Sweepstakes() {
                 activeTab === "join"
                   ? "#0C3D3D"
                   : joinHovered
-                    ? "rgba(12,61,61,0.06)"
+                    ? "#46DE46"
                     : "transparent",
-              color: activeTab === "join" ? "#ffffff" : "#0C3D3D",
-              border: "1px solid #0C3D3D",
+              color: activeTab === "join" ? "#ffffff" : joinHovered ? "#000000" : "#0C3D3D",
+              border: activeTab === "join" ? "1px solid #0C3D3D" : joinHovered ? "1px solid #46DE46" : "1px solid #0C3D3D",
             }}
           >
             Join The Sweepstakes
@@ -240,7 +240,7 @@ export default function Sweepstakes() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: isMobile ? "14px" : "17px",
-              fontWeight: 600,
+              fontWeight: 400,
               padding: isMobile ? "0 18px" : "0 32px",
               minHeight: isMobile ? "44px" : "52px",
               borderRadius: "999px",
@@ -250,10 +250,10 @@ export default function Sweepstakes() {
                 activeTab === "past"
                   ? "#0C3D3D"
                   : pastHovered
-                    ? "rgba(12,61,61,0.06)"
+                    ? "#46DE46"
                     : "transparent",
-              color: activeTab === "past" ? "#ffffff" : "#0C3D3D",
-              border: "1px solid #0C3D3D",
+              color: activeTab === "past" ? "#ffffff" : pastHovered ? "#000000" : "#0C3D3D",
+              border: activeTab === "past" ? "1px solid #0C3D3D" : pastHovered ? "1px solid #46DE46" : "1px solid #0C3D3D",
             }}
           >
             Past Winners

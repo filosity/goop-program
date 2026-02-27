@@ -12,7 +12,7 @@ function PillButton({ label }: { label: string }) {
       style={{
         fontFamily: "var(--font-sans)",
         fontSize: "16px",
-        fontWeight: 600,
+        fontWeight: 400,
         color: "#ffffff",
         backgroundColor: hovered ? "#1a4a4b" : "#0f2e2f",
         minHeight: "52px",

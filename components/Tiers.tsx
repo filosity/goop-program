@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { DollarSignCircle, GiftBox, DiscountTag, Bolt, User, Star, Gifts, XmarkCircle } from "@vectoricons/atlas-icons-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const benefitDescriptions: Record<string, string> = {
   "Spend $150, Get $5":
@@ -70,7 +71,7 @@ const tiers = [
   {
     name: "Tier 1",
     subtitle: "your tier",
-    spend: "0–2 months subscribed",
+    spend: "On sign-up",
     current: true,
     image: "/ag1-tier1.avif",
     benefits: [
@@ -81,7 +82,7 @@ const tiers = [
   {
     name: "Tier 2",
     subtitle: "",
-    spend: "3–5 months subscribed",
+    spend: "1–3 months subscribed",
     current: false,
     image: "/ag1-tier2.avif",
     benefits: [
@@ -94,7 +95,7 @@ const tiers = [
   {
     name: "Tier 3",
     subtitle: "",
-    spend: "6–11 months subscribed",
+    spend: "4–11 months subscribed",
     current: false,
     image: "/ag1-tier3.avif",
     benefits: [
@@ -229,10 +230,12 @@ function BenefitPopup({
 }
 
 export default function Tiers() {
+  const isMobile = useIsMobile();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [hoveredBenefit, setHoveredBenefit] = useState<string | null>(null);
   const [activeBenefit, setActiveBenefit] = useState<string | null>(null);
   const [currentTier, setCurrentTier] = useState<number>(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const tierHandler = (e: Event) => {
@@ -240,8 +243,8 @@ export default function Tiers() {
     };
     const subHandler = (e: Event) => {
       const month = (e as CustomEvent).detail.month;
-      if (month <= 2) setCurrentTier(0);
-      else if (month <= 5) setCurrentTier(1);
+      if (month < 1) setCurrentTier(0);
+      else if (month <= 3) setCurrentTier(1);
       else if (month <= 11) setCurrentTier(2);
       else setCurrentTier(3);
     };
@@ -258,19 +261,19 @@ export default function Tiers() {
       id="section-tiers"
       style={{
         backgroundColor: "#ffffff",
-        padding: "0px 48px 100px",
+        padding: isMobile ? "0px 16px 60px" : "0px 48px 100px",
       }}
     >
       {/* Heading */}
       <h2
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "44px",
+          fontSize: isMobile ? "32px" : "44px",
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
           textAlign: "left",
-          margin: "0 0 56px 0",
+          margin: isMobile ? "0 0 32px 0" : "0 0 56px 0",
           maxWidth: "1280px",
           marginLeft: "auto",
           marginRight: "auto",
@@ -282,7 +285,20 @@ export default function Tiers() {
 
       {/* Tier cards */}
       <div
-        style={{
+        id="tiers-scroll"
+        ref={scrollRef}
+        style={isMobile ? {
+          display: "flex",
+          overflowX: "auto",
+          scrollSnapType: "x mandatory",
+          WebkitOverflowScrolling: "touch",
+          gap: "0",
+          marginLeft: "-16px",
+          marginRight: "-16px",
+          paddingLeft: "16px",
+          paddingRight: "16px",
+          scrollbarWidth: "none",
+        } as React.CSSProperties : {
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: "0",
@@ -290,6 +306,11 @@ export default function Tiers() {
           margin: "0 auto",
         }}
       >
+      {isMobile && (
+        <style>{`
+          #tiers-scroll::-webkit-scrollbar { display: none; }
+        `}</style>
+      )}
         {tiers.map((tier, i) => {
           const isCurrent = currentTier === i;
           const isHovered = hoveredIndex === i;
@@ -309,9 +330,17 @@ export default function Tiers() {
                 flexDirection: "column",
                 overflow: "hidden",
                 cursor: "pointer",
-                borderRight: !isLast
-                  ? `1px solid ${isCurrent ? "rgba(255,255,255,0.15)" : "#d4e0df"}`
-                  : "none",
+                ...(isMobile ? {
+                  minWidth: "80vw",
+                  maxWidth: "80vw",
+                  scrollSnapAlign: "start",
+                  flexShrink: 0,
+                  border: "1px solid #d4e0df",
+                } : {
+                  borderRight: !isLast
+                    ? `1px solid ${isCurrent ? "rgba(255,255,255,0.15)" : "#d4e0df"}`
+                    : "none",
+                }),
               }}
             >
               {/* Image area */}
@@ -352,7 +381,6 @@ export default function Tiers() {
                         fontFamily: "var(--font-sans)",
                         fontSize: "13px",
                         fontWeight: 500,
-                        letterSpacing: "0.06em",
                         color: "#0C3D3D",
                       }}
                     >
@@ -365,8 +393,8 @@ export default function Tiers() {
               {/* Card content */}
               <div
                 style={{
-                  backgroundColor: isCurrent ? "#0C3D3D" : "#f5f8f8",
-                  padding: "32px 36px 44px",
+                  backgroundColor: isCurrent ? "#0C3D3D" : "#F6F5F1",
+                  padding: isMobile ? "24px 20px 32px" : "32px 36px 44px",
                   flex: 1,
                   display: "flex",
                   flexDirection: "column",

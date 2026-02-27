@@ -324,7 +324,7 @@ function RedeemStep({ active, imageSrc }: { active: boolean; index: number; imag
         style={{
           fontFamily: "var(--font-sans)",
           fontSize: "18px",
-          fontWeight: 600,
+          fontWeight: 400,
           color: "#ffffff",
           backgroundColor: active
             ? hovered && phase === "idle"

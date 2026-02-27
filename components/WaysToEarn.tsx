@@ -1724,7 +1724,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
               onClick={handleSubmit}
               onMouseEnter={() => setSubmitHovered(true)}
               onMouseLeave={() => setSubmitHovered(false)}
-              style={{ alignSelf: "flex-start", fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#ffffff", backgroundColor: submitHovered ? "#155050" : "#0C3D3D", border: "1px solid #0C3D3D", minHeight: "52px", padding: "0 40px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
+              style={{ alignSelf: "flex-start", fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 400, color: "#ffffff", backgroundColor: submitHovered ? "#155050" : "#0C3D3D", border: "1px solid #0C3D3D", minHeight: "52px", padding: "0 40px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
             >
               Submit Receipt →
             </button>
@@ -1805,14 +1805,14 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
                 onClick={handleReset}
                 onMouseEnter={() => setNewUploadHovered(true)}
                 onMouseLeave={() => setNewUploadHovered(false)}
-                style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "16px" : "18px", fontWeight: 600, color: "#ffffff", backgroundColor: newUploadHovered ? "#155050" : "#0C3D3D", border: "1px solid #0C3D3D", minHeight: isMobile ? "48px" : "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
+                style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "16px" : "18px", fontWeight: 400, color: "#ffffff", backgroundColor: newUploadHovered ? "#155050" : "#0C3D3D", border: "1px solid #0C3D3D", minHeight: isMobile ? "48px" : "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
               >
                 Upload Another →
               </button>
               <button
                 onMouseEnter={() => setHistoryHovered(true)}
                 onMouseLeave={() => setHistoryHovered(false)}
-                style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "16px" : "18px", fontWeight: 600, color: historyHovered ? "#ffffff" : "#0C3D3D", backgroundColor: historyHovered ? "#0C3D3D" : "transparent", border: "1px solid #0C3D3D", minHeight: isMobile ? "48px" : "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease, color 0.2s ease" }}
+                style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "16px" : "18px", fontWeight: 400, color: historyHovered ? "#000000" : "#0C3D3D", backgroundColor: historyHovered ? "#46DE46" : "transparent", border: historyHovered ? "1px solid #46DE46" : "1px solid #0C3D3D", minHeight: isMobile ? "48px" : "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease, color 0.2s ease" }}
               >
                 View History →
               </button>
@@ -2129,7 +2129,7 @@ export default function WaysToEarn() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: isMobile ? "14px" : "18px",
-              fontWeight: 600,
+              fontWeight: 400,
               padding: isMobile ? "0 18px" : "0 32px",
               minHeight: isMobile ? "44px" : "52px",
               borderRadius: "999px",
@@ -2137,8 +2137,9 @@ export default function WaysToEarn() {
               flexShrink: 0,
               whiteSpace: "nowrap",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "earn" ? "#0C3D3D" : earnTabHovered ? "rgba(12,61,61,0.06)" : "transparent",
-              color: activeTab === "earn" ? "#ffffff" : "#0C3D3D",
+              backgroundColor: activeTab === "earn" ? "#0C3D3D" : earnTabHovered ? "#46DE46" : "transparent",
+              color: activeTab === "earn" ? "#ffffff" : earnTabHovered ? "#000000" : "#0C3D3D",
+              borderColor: activeTab === "earn" ? "#0C3D3D" : earnTabHovered ? "#46DE46" : "#0C3D3D",
               border: activeTab === "earn" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
             }}
           >
@@ -2161,7 +2162,7 @@ export default function WaysToEarn() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: isMobile ? "14px" : "18px",
-              fontWeight: 600,
+              fontWeight: 400,
               padding: isMobile ? "0 18px" : "0 32px",
               minHeight: isMobile ? "44px" : "52px",
               borderRadius: "999px",
@@ -2169,8 +2170,9 @@ export default function WaysToEarn() {
               flexShrink: 0,
               whiteSpace: "nowrap",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "exchange" ? "#0C3D3D" : exchangeTabHovered ? "rgba(12,61,61,0.06)" : "transparent",
-              color: activeTab === "exchange" ? "#ffffff" : "#0C3D3D",
+              backgroundColor: activeTab === "exchange" ? "#0C3D3D" : exchangeTabHovered ? "#46DE46" : "transparent",
+              color: activeTab === "exchange" ? "#ffffff" : exchangeTabHovered ? "#000000" : "#0C3D3D",
+              borderColor: activeTab === "exchange" ? "#0C3D3D" : exchangeTabHovered ? "#46DE46" : "#0C3D3D",
               border: activeTab === "exchange" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
             }}
           >
@@ -2184,7 +2186,7 @@ export default function WaysToEarn() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: isMobile ? "14px" : "18px",
-              fontWeight: 600,
+              fontWeight: 400,
               padding: isMobile ? "0 18px" : "0 32px",
               minHeight: isMobile ? "44px" : "52px",
               borderRadius: "999px",
@@ -2192,8 +2194,9 @@ export default function WaysToEarn() {
               flexShrink: 0,
               whiteSpace: "nowrap",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "products" ? "#0C3D3D" : productsTabHovered ? "rgba(12,61,61,0.06)" : "transparent",
-              color: activeTab === "products" ? "#ffffff" : "#0C3D3D",
+              backgroundColor: activeTab === "products" ? "#0C3D3D" : productsTabHovered ? "#46DE46" : "transparent",
+              color: activeTab === "products" ? "#ffffff" : productsTabHovered ? "#000000" : "#0C3D3D",
+              borderColor: activeTab === "products" ? "#0C3D3D" : productsTabHovered ? "#46DE46" : "#0C3D3D",
               border: activeTab === "products" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
             }}
           >
@@ -2207,7 +2210,7 @@ export default function WaysToEarn() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: isMobile ? "14px" : "18px",
-              fontWeight: 600,
+              fontWeight: 400,
               padding: isMobile ? "0 18px" : "0 32px",
               minHeight: isMobile ? "44px" : "52px",
               borderRadius: "999px",
@@ -2215,8 +2218,9 @@ export default function WaysToEarn() {
               whiteSpace: "nowrap",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "upload" ? "#0C3D3D" : uploadTabHovered ? "rgba(12,61,61,0.06)" : "transparent",
-              color: activeTab === "upload" ? "#ffffff" : "#0C3D3D",
+              backgroundColor: activeTab === "upload" ? "#0C3D3D" : uploadTabHovered ? "#46DE46" : "transparent",
+              color: activeTab === "upload" ? "#ffffff" : uploadTabHovered ? "#000000" : "#0C3D3D",
+              borderColor: activeTab === "upload" ? "#0C3D3D" : uploadTabHovered ? "#46DE46" : "#0C3D3D",
               border: activeTab === "upload" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
             }}
           >

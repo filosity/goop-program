@@ -10,7 +10,7 @@ const TIER_NAMES: Record<number, string> = { 0: "Tier 1", 1: "Tier 2", 2: "Tier 
 const heroTierData = [
   {
     name: "Tier 2",
-    spend: "3–5 months subscribed",
+    spend: "1–3 months subscribed",
     image: "/ag1-tier2.avif",
     benefits: [
       "Spend $150, Get $10",
@@ -21,7 +21,7 @@ const heroTierData = [
   },
   {
     name: "Tier 3",
-    spend: "6–11 months subscribed",
+    spend: "4–11 months subscribed",
     image: "/ag1-tier3.avif",
     benefits: [
       "Spend $150, Get $15",
@@ -223,9 +223,9 @@ function TierPopup({
 /* ─── Progress bar helpers ─── */
 function getBarWidth(months: number): number {
   if (months >= 12) return 100;
-  if (months >= 6) return 60 + ((months - 6) / 6) * 40;
-  if (months >= 3) return 20 + ((months - 3) / 3) * 40;
-  return (months / 3) * 20;
+  if (months >= 4) return 40 + ((months - 4) / 8) * 60;
+  if (months >= 1) return 10 + ((months - 1) / 3) * 30;
+  return months * 10;
 }
 
 function TierMilestone({
@@ -337,7 +337,7 @@ export default function HeroSectionV4({ bgMode = "video" }: { bgMode?: "video" |
   const [visible, setVisible] = useState(false);
   const [barWidth, setBarWidth] = useState(0);
   const [userPoints, setUserPoints] = useState(50);
-  const [totalMonths, setTotalMonths] = useState(1);
+  const [totalMonths, setTotalMonths] = useState(0);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [subBtnHovered, setSubBtnHovered] = useState(false);
   const [hoveredMilestone, setHoveredMilestone] = useState<number | null>(null);
@@ -345,7 +345,7 @@ export default function HeroSectionV4({ bgMode = "video" }: { bgMode?: "video" |
   const sectionRef = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
 
-  const userTier = totalMonths >= 12 ? 3 : totalMonths >= 6 ? 2 : totalMonths >= 3 ? 1 : 0;
+  const userTier = totalMonths >= 12 ? 3 : totalMonths >= 4 ? 2 : totalMonths >= 1 ? 1 : 0;
   const dollarValue = (userPoints * 0.05).toFixed(2);
 
   useEffect(() => {
@@ -384,7 +384,7 @@ export default function HeroSectionV4({ bgMode = "video" }: { bgMode?: "video" |
     const onTier = (e: Event) => {
       const detail = (e as CustomEvent).detail;
       if (detail?.tier !== undefined) {
-        const newMonths = detail.tier >= 3 ? 12 : detail.tier >= 2 ? 6 : detail.tier >= 1 ? 3 : detail.months || 1;
+        const newMonths = detail.tier >= 3 ? 12 : detail.tier >= 2 ? 4 : detail.tier >= 1 ? 1 : detail.months || 0;
         setTotalMonths(detail.months || newMonths);
         setBarWidth(getBarWidth(detail.months || newMonths));
       }
@@ -660,7 +660,7 @@ export default function HeroSectionV4({ bgMode = "video" }: { bgMode?: "video" |
                   style={{
                     fontFamily: "var(--font-sans)",
                     fontSize: "14px",
-                    fontWeight: 600,
+                    fontWeight: 400,
                     color: subBtnHovered ? "#000000" : "#ffffff",
                     backgroundColor: subBtnHovered ? "#46DE46" : "#0C3D3D",
                     border: "none",
@@ -762,8 +762,8 @@ export default function HeroSectionV4({ bgMode = "video" }: { bgMode?: "video" |
 
               <TierMilestone
                 label="Tier 2"
-                position="20%"
-                tooltip={`${Math.max(3 - totalMonths, 0)} months`}
+                position="10%"
+                tooltip={`${Math.max(1 - totalMonths, 0)} months`}
                 reached={userTier >= 1}
                 tierIndex={0}
                 onOpenPopup={setOpenTier}
@@ -772,8 +772,8 @@ export default function HeroSectionV4({ bgMode = "video" }: { bgMode?: "video" |
               />
               <TierMilestone
                 label="Tier 3"
-                position="60%"
-                tooltip={`${Math.max(6 - totalMonths, 0)} months`}
+                position="40%"
+                tooltip={`${Math.max(4 - totalMonths, 0)} months`}
                 reached={userTier >= 2}
                 tierIndex={1}
                 onOpenPopup={setOpenTier}

@@ -168,7 +168,7 @@ export default function TiersV2() {
                 position: "relative",
                 fontFamily: "var(--font-sans)",
                 fontSize: "13px",
-                fontWeight: 600,
+                fontWeight: 400,
                 height: "38px",
                 padding: "0 22px",
                 borderRadius: "40px",

@@ -462,7 +462,7 @@ export default function Membership() {
               alignSelf: "flex-start",
               fontFamily: "var(--font-sans)",
               fontSize: "18px",
-              fontWeight: 600,
+              fontWeight: 400,
               color: btnHovered ? "#000000" : "#0C3D3D",
               backgroundColor: btnHovered
                 ? "#46DE46"

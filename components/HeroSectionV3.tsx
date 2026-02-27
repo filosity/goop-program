@@ -274,7 +274,7 @@ export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" |
               style={{
                 fontFamily: "var(--font-sans)",
                 fontSize: "14px",
-                fontWeight: 600,
+                fontWeight: 400,
                 color: subBtnHovered ? "#000000" : "#ffffff",
                 backgroundColor: subBtnHovered ? "#46DE46" : "#0C3D3D",
                 border: "none",

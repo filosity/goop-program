@@ -260,7 +260,7 @@ export default function MembershipV3() {
             alignItems: "center",
             fontFamily: "var(--font-sans)",
             fontSize: "15px",
-            fontWeight: 600,
+            fontWeight: 400,
             color: "#0C3D3D",
             backgroundColor: btnHovered
               ? "rgba(255,255,255,0.85)"
@@ -289,7 +289,7 @@ export default function MembershipV3() {
               transition: "margin-right 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
             }}
           />
-          subscribe now →
+          Subscribe now →
         </a>
       </div>
 

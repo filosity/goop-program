@@ -110,6 +110,10 @@ function ProgramDropdown({
   setShowFeaturedSection,
   activeActivities,
   setActiveActivities,
+  activeNav,
+  setActiveNav,
+  activePartners,
+  setActivePartners,
 }: {
   open: boolean;
   totalSpend: number;
@@ -141,6 +145,10 @@ function ProgramDropdown({
   setShowFeaturedSection: (b: boolean) => void;
   activeActivities: number;
   setActiveActivities: (n: number) => void;
+  activeNav: number;
+  setActiveNav: (n: number) => void;
+  activePartners: number;
+  setActivePartners: (n: number) => void;
 }) {
   const handleSimulateSpend = useCallback(
     (amount: number) => {
@@ -231,6 +239,8 @@ function ProgramDropdown({
       {versionMenu("membership", "tiers", "tiers-version", activeMembership, setActiveMembership)}
       {versionMenu("sweepstakes", "sweepstakes", "sweepstakes-version", activeSweepstakes, setActiveSweepstakes)}
       {versionMenu("activities", "activities", "activities-version", activeActivities, setActiveActivities)}
+      {versionMenu("partners", "partners", "partners-version", activePartners, setActivePartners, [1, 2, 3, 4, 5, 6])}
+      {versionMenu("nav", "nav", "nav-version", activeNav, setActiveNav, [1, 2, 3, 4, 5, 6])}
       {/* Header background mode */}
       <div
         style={{ position: "relative" }}
@@ -328,6 +338,8 @@ export default function Header() {
   const [showFeaturedSection, setShowFeaturedSection] = useState(false);
   const [headerBgMode, setHeaderBgMode] = useState<"video" | "static">("video");
   const [activeActivities, setActiveActivities] = useState(1);
+  const [activeNav, setActiveNav] = useState(1);
+  const [activePartners, setActivePartners] = useState(6);
   const [shopHov, setShopHov] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -446,6 +458,10 @@ export default function Header() {
                 setShowFeaturedSection={setShowFeaturedSection}
                 activeActivities={activeActivities}
                 setActiveActivities={setActiveActivities}
+                activeNav={activeNav}
+                setActiveNav={setActiveNav}
+                activePartners={activePartners}
+                setActivePartners={setActivePartners}
               />
             </div>
           )}
@@ -495,7 +511,7 @@ export default function Header() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: isMobile ? "14px" : "18px",
-              fontWeight: 600,
+              fontWeight: 400,
               color: "#000000",
               textDecoration: "none",
               backgroundColor: shopHov ? "#3fcb3f" : "#46DE46",
@@ -610,6 +626,10 @@ export default function Header() {
                 setShowFeaturedSection={setShowFeaturedSection}
                 activeActivities={activeActivities}
                 setActiveActivities={setActiveActivities}
+                activeNav={activeNav}
+                setActiveNav={setActiveNav}
+                activePartners={activePartners}
+                setActivePartners={setActivePartners}
               />
             </div>
             <a href="#" style={{ ...navLink, fontSize: "16px" }}>AG1 for Daily Health</a>

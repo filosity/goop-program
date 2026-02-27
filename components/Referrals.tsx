@@ -52,7 +52,7 @@ export default function Referrals() {
         <div
           style={{
             backgroundColor: "transparent",
-            padding: isMobile ? "32px 20px" : "56px 52px 52px",
+            padding: isMobile ? "32px 20px" : "56px 52px 52px 0",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -148,7 +148,7 @@ export default function Referrals() {
               style={{
                 fontFamily: "var(--font-sans)",
                 fontSize: "16px",
-                fontWeight: 500,
+                fontWeight: 400,
                 color: "#ffffff",
                 background: "none",
                 border: "none",
@@ -289,7 +289,7 @@ export default function Referrals() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "17px",
-              fontWeight: 600,
+              fontWeight: 400,
               color: sendHovered ? "#0C3D3D" : "#ffffff",
               backgroundColor: sendHovered ? "#ffffff" : "transparent",
               border: "1px solid #ffffff",
@@ -330,7 +330,7 @@ export default function Referrals() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "17px",
-              fontWeight: 500,
+              fontWeight: 400,
               color: "#ffffff",
               backgroundColor: copied ? "rgba(255,255,255,0.15)" : "transparent",
               border: "1px solid rgba(255,255,255,0.4)",
