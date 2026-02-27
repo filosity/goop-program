@@ -117,6 +117,7 @@ function ProgramDropdown({
   setActiveNav,
   activePartners,
   setActivePartners,
+  setCurrentTier,
 }: {
   open: boolean;
   totalSpend: number;
