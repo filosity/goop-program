@@ -5,7 +5,7 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" | "static" }) {
   const isMobile = useIsMobile();
-  const [userPoints, setUserPoints] = useState(50);
+  const [userPoints, setUserPoints] = useState(5);
   const [visible, setVisible] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [subDays, setSubDays] = useState(0);
@@ -223,7 +223,7 @@ export default function HeroSectionV2({ bgMode = "video" }: { bgMode?: "video" |
                 letterSpacing: "-0.02em",
               }}
             >
-              ${(userPoints * 0.05).toFixed(2)}
+              ${userPoints.toFixed(2)}
             </p>
             <p
               style={{

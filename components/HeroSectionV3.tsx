@@ -5,13 +5,13 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function HeroSectionV3({ bgMode = "video" }: { bgMode?: "video" | "static" }) {
   const isMobile = useIsMobile();
-  const [userPoints, setUserPoints] = useState(50);
+  const [userPoints, setUserPoints] = useState(5);
   const [visible, setVisible] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [subBtnHovered, setSubBtnHovered] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  const dollarValue = (userPoints * 0.05).toFixed(2);
+  const dollarValue = userPoints.toFixed(2);
 
   useEffect(() => {
     const el = sectionRef.current;
