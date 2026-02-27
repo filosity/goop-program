@@ -7,42 +7,42 @@ const partners = [
   {
     name: "Clarins",
     offer: "20% off sitewide + Free Shipping",
-    image: "/partner-clarins.png",
+    image: "/partner-clarins.jpg",
   },
   {
     name: "Kenneth Cole",
     offer: "Free Shipping with Orders Over $50",
-    image: "/partner-kennethcole.png",
+    image: "/partner-kennethcole.jpg",
   },
   {
     name: "Spa of Wonders",
     offer: "20% off entry",
-    image: "/partner-spa.png",
+    image: "/partner-spa.jpg",
   },
   {
     name: "Walgreens",
     offer: "Extra 30% off $30+",
-    image: "/partner-walgreens.png",
+    image: "/partner-walgreens.jpg",
   },
   {
     name: "Jamba",
     offer: "Spend $12 or more and get a free loyalty loaded bowl",
-    image: "/partner-jamba.png",
+    image: "/partner-jamba.jpg",
   },
   {
     name: "Crunch Fitness",
     offer: "$1 off Peak Results personal training enrollment fee",
-    image: "/partner-crunch.png",
+    image: "/partner-crunch.jpg",
   },
   {
     name: "Orangetheory",
     offer: "Sign up for a Premier or Elite membership, get $10 off a month",
-    image: "/partner-orangetheory.png",
+    image: "/partner-orangetheory.jpg",
   },
   {
     name: "Disney Cruise Line",
     offer: "Receive a $75 vacation package credit with your booking",
-    image: "/partner-disney.png",
+    image: "/partner-disney.jpg",
   },
 ];
 
@@ -578,7 +578,7 @@ function V6Card({ partner, isMobile, isSubscribed }: { partner: (typeof partners
             whiteSpace: "nowrap",
           }}
         >
-          {isSubscribed ? "Unlock offer" : "Subscribe"}
+          Unlock offer
         </button>
       </div>
     </div>
