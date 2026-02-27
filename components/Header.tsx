@@ -153,6 +153,7 @@ function ProgramDropdown({
   setActiveNav: (n: number) => void;
   activePartners: number;
   setActivePartners: (n: number) => void;
+  setCurrentTier: (n: number) => void;
 }) {
   const handleSimulateSpend = useCallback(
     (amount: number) => {
@@ -494,6 +495,7 @@ export default function Header() {
                 setActiveNav={setActiveNav}
                 activePartners={activePartners}
                 setActivePartners={setActivePartners}
+                setCurrentTier={setCurrentTier}
               />
             </div>
           )}
@@ -663,6 +665,7 @@ export default function Header() {
                 setActiveNav={setActiveNav}
                 activePartners={activePartners}
                 setActivePartners={setActivePartners}
+                setCurrentTier={setCurrentTier}
               />
             </div>
             <a href="#" style={{ ...navLink, fontSize: "16px" }}>AG1 for Daily Health</a>
