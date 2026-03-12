@@ -806,10 +806,12 @@ const allVotingQuestions: { question: string; options: string[]; images?: string
   {
     question: "When do you take your AG1?",
     options: ["Morning", "Afternoon", "Evening", "Multiple times"],
+    images: ["/earn1.jpg", "/earn3.jpg", "/featured2.jpg", "/earn2.jpg"],
   },
   {
     question: "How do you mix your AG1?",
     options: ["Water", "Smoothie", "Juice", "Other"],
+    images: ["/earn6.jpg", "/earn10.jpg", "/earn7.jpg", "/earn4.jpg"],
   },
   {
     question: "Pick your ideal AG1 moment",
@@ -819,10 +821,12 @@ const allVotingQuestions: { question: string; options: string[]; images?: string
   {
     question: "Do you travel with AG1?",
     options: ["Always", "Sometimes", "Never", "Didn\u2019t know I could"],
+    images: ["/product-travelpacks-original.jpg", "/earn5.jpg", "/earn1.jpg", "/featured1.jpg"],
   },
   {
     question: "Tried AG1 Zero yet?",
     options: ["Love it", "Not yet", "Prefer original", "Didn\u2019t know about it"],
+    images: ["/product-travelpacks-chocolate.jpg", "/product-variety-pack.jpg", "/featured1.jpg", "/featured2.jpg"],
   },
   {
     question: "What\u2019s your go-to AG1 gear?",
