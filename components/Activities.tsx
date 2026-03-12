@@ -833,9 +833,39 @@ const allVotingQuestions: { question: string; options: string[]; images?: string
     options: ["Shaker Bottle", "Travel Packs", "Hat", "Duffel Bag"],
     images: ["/featured-stanley.jpg", "/earn1.jpg", "/milestone-hat.jpg", "/milestone-duffel-bag.jpg"],
   },
+  {
+    question: "Which skincare step do you never skip?",
+    options: ["Cleanser", "Serum", "Moisturizer", "Face Oil"],
+    images: ["/model-holding-cleanser.png", "/model-holding-serum.png", "/goop-moisturizer-collection.png", "/goop-face-oil-dropper.png"],
+  },
+  {
+    question: "What\u2019s your ideal self-care ritual?",
+    options: ["Bath Soak", "Face Mask", "Meditation", "Red Light Therapy"],
+    images: ["/goop-martini-bath-soak.png", "/model-holding-face-mask.png", "/sunset-mountain-meditation.avif", "/red-light-therapy.avif"],
+  },
+  {
+    question: "Pick your glow-up essential",
+    options: ["Retinol Duo", "Eye Serum", "Full Collection", "Face Oil"],
+    images: ["/goop-retinol-duo.png", "/model-holding-eye-serum.png", "/goop-full-collection.png", "/goop-face-oil-dropper.png"],
+  },
+  {
+    question: "What matters most in your beauty routine?",
+    options: ["Clean Ingredients", "Luxury Feel", "Visible Results", "Sustainability"],
+    images: ["/serum-ampoules.png", "/luxury-beauty-gift-stack.avif", "/glowing-skin-closeup.avif", "/pink-dahlia-bloom.webp"],
+  },
+  {
+    question: "When do you do your skincare routine?",
+    options: ["Morning Only", "Night Only", "Both AM & PM", "Whenever I Remember"],
+    images: ["/dewy-skin-closeup.avif", "/elegant-neck-portrait-bw.avif", "/model-holding-serum.png", "/model-holding-cleanser.png"],
+  },
+  {
+    question: "Which gift set would you choose?",
+    options: ["Skincare Bundle", "Bath Collection", "Serum Set", "The Full Works"],
+    images: ["/goop-moisturizer-collection.png", "/goop-martini-bath-soak.png", "/serum-ampoules.png", "/luxury-beauty-gift-stack.avif"],
+  },
 ];
 
-const VOTING_DISPLAY_COUNT = 8;
+const VOTING_DISPLAY_COUNT = 14;
 
 /* ─── Fallback images for voting version 1 ─── */
 const votingImages: string[] = [
