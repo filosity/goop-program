@@ -1,0 +1,15 @@
+============================================
+  GOOP LOYALTY PROGRAM
+============================================
+
+Brand: goop (beauty/fashion/wellness)
+
+GitHub:  https://github.com/filosity/goop-program.git
+Vercel:  https://goop-program.vercel.app
+
+ONLY push/commit to: filosity/goop-program
+NEVER push this code to filosity/loyalty-program, filosity/ag-loyalty, or filosity/loyalty-program-v2
+
+Before every push, verify:
+  git remote -v
+  Must show: https://github.com/filosity/goop-program.git

@@ -6,8 +6,8 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 
 const earnCards = [
   {
-    title: "Sign up for\na subscription",
-    points: "+$2 AG Credit",
+    title: "Create\nan Account",
+    points: "+$2 Goop Credit",
     icon: "user",
     action: null,
     image: "/earn10.jpg",
@@ -15,26 +15,8 @@ const earnCards = [
     description: null,
   },
   {
-    title: "Be a Member\nfor 90 days",
-    points: "+$5 AG Credit",
-    icon: "star",
-    action: null,
-    image: "/earn1.jpg",
-    input: null,
-    description: null,
-  },
-  {
-    title: "Be a Member\nfor 1 year",
-    points: "+$10 AG Credit",
-    icon: "star",
-    action: null,
-    image: "/earn2.jpg",
-    input: null,
-    description: null,
-  },
-  {
-    title: "Connect\nInstagram",
-    points: "+$1 AG Credit",
+    title: "Connect\nIG Handle",
+    points: "+$0.50 Goop Credit",
     icon: "instagram",
     action: "Connect",
     image: "/earn3.jpg",
@@ -42,8 +24,8 @@ const earnCards = [
     description: null,
   },
   {
-    title: "Connect\nTikTok",
-    points: "+$1 AG Credit",
+    title: "Connect\nTikTok Handle",
+    points: "+$0.50 Goop Credit",
     icon: "tiktok",
     action: "Connect",
     image: "/earn4.jpg",
@@ -51,8 +33,8 @@ const earnCards = [
     description: null,
   },
   {
-    title: "Post IG/TikTok\nwith your AG1",
-    points: "+$5 AG Credit",
+    title: "Mention on IG\nor TikTok",
+    points: "+$2 Goop Credit",
     icon: "instagram",
     action: "Connect",
     image: "/earn5.jpg",
@@ -60,17 +42,53 @@ const earnCards = [
     description: null,
   },
   {
-    title: "Happy\nBirthday",
-    points: "+$1 AG Credit",
-    icon: "gift",
-    action: "Submit",
-    image: "/earn7.jpg",
-    input: "birthday",
+    title: "Follow\non IG",
+    points: "+$0.50 Goop Credit",
+    icon: "instagram",
+    action: "Connect",
+    image: "/earn1.jpg",
+    input: null,
     description: null,
   },
   {
-    title: "Sign up\nfor SMS",
-    points: "+$1 AG Credit",
+    title: "Follow\non TikTok",
+    points: "+$0.50 Goop Credit",
+    icon: "tiktok",
+    action: "Connect",
+    image: "/earn2.jpg",
+    input: null,
+    description: null,
+  },
+  {
+    title: "Write\na Review",
+    points: "+$2 Goop Credit",
+    icon: "star",
+    action: "Review",
+    image: "/earn8.jpg",
+    input: null,
+    description: null,
+  },
+  {
+    title: "Subscribe\nto Email",
+    points: "TBD",
+    icon: "phone",
+    action: "Submit",
+    image: "/earn6.jpg",
+    input: "Your email address",
+    description: null,
+  },
+  {
+    title: "Happy\nBirthday",
+    points: "+$0.50 Goop Credit",
+    icon: "gift",
+    action: null,
+    image: "/earn7.jpg",
+    input: null,
+    description: null,
+  },
+  {
+    title: "SMS\nSign Up",
+    points: "+$2 Goop Credit",
     icon: "phone",
     action: "Submit",
     image: "/earn6.jpg",
@@ -78,11 +96,29 @@ const earnCards = [
     description: null,
   },
   {
-    title: "Leave\na Review",
-    points: "+$1 AG Credit",
+    title: "Purchase\n3 Times",
+    points: "+$10 Goop Credit",
+    icon: "bag",
+    action: null,
+    image: "/earn10.jpg",
+    input: null,
+    description: null,
+  },
+  {
+    title: "Download Apple\nWallet Pass",
+    points: "+$3 Goop Credit",
     icon: "star",
-    action: "Review",
-    image: "/earn8.jpg",
+    action: null,
+    image: "/earn1.jpg",
+    input: null,
+    description: null,
+  },
+  {
+    title: "Attend One\nof Our Events",
+    points: "TBD",
+    icon: "star",
+    action: null,
+    image: "/earn2.jpg",
     input: null,
     description: null,
   },
@@ -147,14 +183,10 @@ function EarnCard({
     <div
       data-earn-index={index}
       style={{
-        minWidth: isExiting ? "0px" : isMobile ? "calc(75% - 8px)" : "calc(25% - 12px)",
-        maxWidth: isExiting ? "0px" : isMobile ? "calc(75% - 8px)" : "calc(25% - 12px)",
-        marginRight: isExiting ? "0px" : isMobile ? "12px" : "16px",
         opacity: isExiting ? 0 : dimmed ? 0.5 : 1,
         transform: isExiting ? "scale(0.92)" : "scale(1)",
-        transition: "min-width 0.45s cubic-bezier(0.4,0,0.2,1), max-width 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, transform 0.3s ease, margin-right 0.45s cubic-bezier(0.4,0,0.2,1)",
+        transition: "opacity 0.3s ease, transform 0.3s ease",
         overflow: "hidden",
-        flexShrink: 0,
       }}
     >
       <div
@@ -536,7 +568,7 @@ function RedeemContent({
             letterSpacing: "-0.01em",
           }}
         >
-          Your AG Credit for a discount
+          Your Goop Credit for a discount
         </p>
 
         <p
@@ -549,7 +581,7 @@ function RedeemContent({
             lineHeight: 1.6,
           }}
         >
-          Use the slider to choose how many AG Credit to convert.
+          Use the slider to choose how many Goop Credit to convert.
         </p>
 
         {/* Divider */}
@@ -882,7 +914,7 @@ function RedeemContent({
                   lineHeight: 1,
                 }}
               >
-                AG Credit
+                Goop Credit
               </p>
               <p
                 style={{
@@ -1063,9 +1095,9 @@ function RedeemContent({
 
 /* ─── Exclusive merch data ─── */
 const freeProducts = [
-  { name: "AG1 Puffer Jacket", points: 30, image: "/featured-puffer-jacket.jpg", tierRequired: null, discount: null as string | null },
-  { name: "AG1 Pajama Pants", points: 20, image: "/milestone-sweatpants.jpg", tierRequired: null, discount: null as string | null },
-  { name: "AG1 Stanley Cup", points: 10, image: "/featured-stanley.jpg", tierRequired: null, discount: null },
+  { name: "Product Name", points: 0, image: "/goop-face-oil-dropper.png", tierRequired: null, discount: null as string | null },
+  { name: "Product Name", points: 0, image: "/goop-retinol-duo.png", tierRequired: null, discount: null as string | null },
+  { name: "Product Name", points: 0, image: "/goop-martini-bath-soak.png", tierRequired: 3, discount: null as string | null },
 ];
 
 /* ─── Free products tab content (carousel) ─── */
@@ -1145,22 +1177,10 @@ function FreeProductsContent({
   return (
     <>
       <div
-        ref={carouselRef}
-        data-products-carousel=""
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
         style={{
-          display: "flex",
+          display: "grid",
+          gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
           gap: "16px",
-          overflowX: "auto",
-          scrollBehavior: "smooth",
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-          cursor: "grab",
-          userSelect: "none",
-          paddingBottom: "4px",
         }}
       >
         {freeProducts.map((product, i) => {
@@ -1174,10 +1194,7 @@ function FreeProductsContent({
               key={i}
               style={{
                 position: "relative",
-                minWidth: isMobile ? "calc(80% - 8px)" : "calc(34% - 10px)",
-                maxWidth: isMobile ? "calc(80% - 8px)" : "calc(34% - 10px)",
                 height: isMobile ? "400px" : "480px",
-                flexShrink: 0,
                 backgroundColor: "#ffffff",
                 display: "flex",
                 flexDirection: "column",
@@ -1335,7 +1352,7 @@ function FreeProductsContent({
                       lineHeight: 1,
                     }}
                   >
-                    ${product.points} AG Credit
+                    ${product.points} Goop Credit
                   </p>
                 </div>
 
@@ -1424,7 +1441,7 @@ function FreeProductsContent({
                           transition: "opacity 0.2s ease, transform 0.2s ease",
                         }}
                       >
-                        need ${(product.points - totalPoints).toFixed(2)} more AG Credit
+                        need ${(product.points - totalPoints).toFixed(2)} more Goop Credit
                         <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderTop: "4px solid #000000" }} />
                       </div>
                     )}
@@ -1436,55 +1453,6 @@ function FreeProductsContent({
         })}
       </div>
 
-      {/* Carousel arrows */}
-      <div style={{ display: "flex", justifyContent: "center", gap: "8px", marginTop: "20px" }}>
-        <button
-          onClick={() => { if (carouselRef.current) carouselRef.current.scrollBy({ left: -500, behavior: "smooth" }); }}
-          onMouseEnter={() => setLeftArrowHovered(true)}
-          onMouseLeave={() => setLeftArrowHovered(false)}
-          aria-label="Previous"
-          style={{
-            width: "36px",
-            height: "36px",
-            borderRadius: "50%",
-            backgroundColor: "transparent",
-            border: leftArrowHovered ? "1px solid #000000" : "1px solid #d8d5d0",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            transition: "border-color 0.2s ease",
-          }}
-        >
-          <ArrowLeft size={12} color="#000000" />
-        </button>
-        <button
-          onClick={() => { if (carouselRef.current) carouselRef.current.scrollBy({ left: 500, behavior: "smooth" }); }}
-          onMouseEnter={() => setRightArrowHovered(true)}
-          onMouseLeave={() => setRightArrowHovered(false)}
-          aria-label="Next"
-          style={{
-            width: "36px",
-            height: "36px",
-            borderRadius: "50%",
-            backgroundColor: "transparent",
-            border: rightArrowHovered ? "1px solid #000000" : "1px solid #d8d5d0",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            transition: "border-color 0.2s ease",
-          }}
-        >
-          <ArrowRight size={12} color="#000000" />
-        </button>
-      </div>
-
-      <style>{`
-        [data-products-carousel]::-webkit-scrollbar { display: none; }
-        [data-products-carousel] * { -webkit-user-drag: none; user-drag: none; }
-        [data-products-carousel] img { pointer-events: none; }
-      `}</style>
     </>
   );
 }
@@ -1591,7 +1559,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
                 lineHeight: 1,
               }}
             >
-              earn AG Credit
+              earn Goop Credit
             </span>
 
             <p
@@ -1797,7 +1765,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
             </p>
 
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#000000", margin: "0 0 32px 0", lineHeight: 1.6 }}>
-              Once the verification process is finished your AG Credit will be added to your account. You can follow the status in your Rewards History.
+              Once the verification process is finished your Goop Credit will be added to your account. You can follow the status in your Rewards History.
             </p>
 
             <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: "10px", width: isMobile ? "100%" : "auto" }}>
@@ -2010,7 +1978,7 @@ export default function WaysToEarn() {
 
   const handlePointsChange = useCallback((newTotal: number) => {
     setTotalPoints(newTotal);
-    // Only update AG Credit balance — tier is based on spend, not AG Credit balance
+    // Only update Goop Credit balance — tier is based on spend, not Goop Credit balance
     window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
   }, []);
 
@@ -2032,7 +2000,7 @@ export default function WaysToEarn() {
         setAnimPhase(null);
         const next = new Set(completedCards).add(index);
         setCompletedCards(next);
-        // Add AG Credit from this card
+        // Add Goop Credit from this card
         const card = earnCards[index];
         if (card?.points) {
           const match = card.points.match(/\+\$(\d+(?:\.\d+)?)/);
@@ -2080,7 +2048,7 @@ export default function WaysToEarn() {
           letterSpacing: "-0.01em",
         }}
       >
-        AG Credit
+        Ways to Earn Credit
       </h2>
 
       {/* Subtext */}
@@ -2096,10 +2064,7 @@ export default function WaysToEarn() {
           lineHeight: 1.4,
         }}
       >
-        {activeTab === "earn" && "Follow us on social media, sign up for SMS and more."}
-        {activeTab === "exchange" && "Apply your AG Credit as a discount on your subscription."}
-        {activeTab === "products" && "Redeem your AG Credit for exclusive merch — available for a limited time."}
-        {activeTab === "upload" && "Upload your receipt and earn AG Credit for every dollar spent."}
+        Earn Goop Credit through everyday actions. Credit expires after 1 year of inactivity.
       </p>
 
       <div
@@ -2108,239 +2073,72 @@ export default function WaysToEarn() {
           margin: "0 auto",
         }}
       >
-        {/* Tab buttons */}
+        {/* ═══ EARN CARDS (wrapping grid, no carousel) ═══ */}
         <div
-          data-earn-tabs=""
           style={{
-            display: "flex",
-            gap: isMobile ? "8px" : "10px",
-            marginBottom: isMobile ? "24px" : "32px",
-            flexWrap: isMobile ? "wrap" : "nowrap",
-            overflowX: "visible",
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-            paddingBottom: isMobile ? "4px" : "0",
+            display: "grid",
+            gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
+            gap: isMobile ? "12px" : "16px",
           }}
         >
-          <button
-            onClick={() => switchTab("earn")}
-            onMouseEnter={() => setEarnTabHovered(true)}
-            onMouseLeave={() => setEarnTabHovered(false)}
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: isMobile ? "14px" : "18px",
-              fontWeight: 400,
-              padding: isMobile ? "0 18px" : "0 32px",
-              minHeight: isMobile ? "44px" : "52px",
-              borderRadius: "999px",
-              cursor: "pointer",
-              flexShrink: 0,
-              whiteSpace: "nowrap",
-              transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "earn" ? "#0C3D3D" : earnTabHovered ? "#46DE46" : "transparent",
-              color: activeTab === "earn" ? "#ffffff" : earnTabHovered ? "#000000" : "#0C3D3D",
-              borderColor: activeTab === "earn" ? "#0C3D3D" : earnTabHovered ? "#46DE46" : "#0C3D3D",
-              border: activeTab === "earn" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
-            }}
-          >
-            Ways To Earn{" "}
-            <span
-              style={{
-                fontWeight: 400,
-                color: activeTab === "earn" ? "rgba(255,255,255,0.45)" : earnTabHovered ? "#000000" : "#aaaaaa",
-                marginLeft: "6px",
-              }}
-            >
-              (<span style={{ fontWeight: 600, color: activeTab === "earn" ? "rgba(255,255,255,0.45)" : earnTabHovered ? "#000000" : "#aaaaaa" }}>{earnedCount}</span>/{earnableCards})
-            </span>
-          </button>
-
-          <button
-            onClick={() => switchTab("exchange")}
-            onMouseEnter={() => setExchangeTabHovered(true)}
-            onMouseLeave={() => setExchangeTabHovered(false)}
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: isMobile ? "14px" : "18px",
-              fontWeight: 400,
-              padding: isMobile ? "0 18px" : "0 32px",
-              minHeight: isMobile ? "44px" : "52px",
-              borderRadius: "999px",
-              cursor: "pointer",
-              flexShrink: 0,
-              whiteSpace: "nowrap",
-              transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "exchange" ? "#0C3D3D" : exchangeTabHovered ? "#46DE46" : "transparent",
-              color: activeTab === "exchange" ? "#ffffff" : exchangeTabHovered ? "#000000" : "#0C3D3D",
-              borderColor: activeTab === "exchange" ? "#0C3D3D" : exchangeTabHovered ? "#46DE46" : "#0C3D3D",
-              border: activeTab === "exchange" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
-            }}
-          >
-            Apply To Subscription
-          </button>
-
-          <button
-            onClick={() => switchTab("products")}
-            onMouseEnter={() => setProductsTabHovered(true)}
-            onMouseLeave={() => setProductsTabHovered(false)}
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: isMobile ? "14px" : "18px",
-              fontWeight: 400,
-              padding: isMobile ? "0 18px" : "0 32px",
-              minHeight: isMobile ? "44px" : "52px",
-              borderRadius: "999px",
-              cursor: "pointer",
-              flexShrink: 0,
-              whiteSpace: "nowrap",
-              transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "products" ? "#0C3D3D" : productsTabHovered ? "#46DE46" : "transparent",
-              color: activeTab === "products" ? "#ffffff" : productsTabHovered ? "#000000" : "#0C3D3D",
-              borderColor: activeTab === "products" ? "#0C3D3D" : productsTabHovered ? "#46DE46" : "#0C3D3D",
-              border: activeTab === "products" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
-            }}
-          >
-            Exclusive Merch
-          </button>
-
-          <button
-            onClick={() => switchTab("upload")}
-            onMouseEnter={() => setUploadTabHovered(true)}
-            onMouseLeave={() => setUploadTabHovered(false)}
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: isMobile ? "14px" : "18px",
-              fontWeight: 400,
-              padding: isMobile ? "0 18px" : "0 32px",
-              minHeight: isMobile ? "44px" : "52px",
-              borderRadius: "999px",
-              flexShrink: 0,
-              whiteSpace: "nowrap",
-              cursor: "pointer",
-              transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "upload" ? "#0C3D3D" : uploadTabHovered ? "#46DE46" : "transparent",
-              color: activeTab === "upload" ? "#ffffff" : uploadTabHovered ? "#000000" : "#0C3D3D",
-              borderColor: activeTab === "upload" ? "#0C3D3D" : uploadTabHovered ? "#46DE46" : "#0C3D3D",
-              border: activeTab === "upload" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
-            }}
-          >
-            Upload Receipt
-          </button>
+          {earnCards.map((card, i) => (
+              <EarnCard
+                key={i}
+                card={card}
+                index={i}
+                completed={completedCards.has(i)}
+                phase={animPhase?.index === i ? animPhase.phase : null}
+                onComplete={() => handleComplete(i)}
+                highlighted={highlightedCards.has(i)}
+                anyHighlighted={highlightedCards.size > 0}
+                subscriptionDays={subscriptionDays}
+                isMobile={isMobile}
+              />
+            ))}
         </div>
 
-        {/* ═══ EARN TAB ═══ */}
-        {activeTab === "earn" && (
-          <>
-            <div
-              ref={earnCarouselRef}
-              data-earn-carousel=""
-              onMouseDown={earnMouseDown}
-              onMouseMove={earnMouseMove}
-              onMouseUp={earnMouseUp}
-              onMouseLeave={earnMouseUp}
-              style={{
-                display: "flex",
-                overflowX: "auto",
-                scrollBehavior: "smooth",
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
-                cursor: "grab",
-                userSelect: "none",
-                paddingBottom: "4px",
-              }}
-            >
-              {[...earnCards.map((card, i) => ({ card, i }))].sort((a, b) => {
-                const aDone = completedCards.has(a.i) && animPhase?.index !== a.i;
-                const bDone = completedCards.has(b.i) && animPhase?.index !== b.i;
-                if (aDone === bDone) return 0;
-                return aDone ? 1 : -1;
-              }).map(({ card, i }) => (
-                  <EarnCard
-                    key={i}
-                    card={card}
-                    index={i}
-                    completed={completedCards.has(i)}
-                    phase={animPhase?.index === i ? animPhase.phase : null}
-                    onComplete={() => handleComplete(i)}
-                    highlighted={highlightedCards.has(i)}
-                    anyHighlighted={highlightedCards.size > 0}
-                    subscriptionDays={subscriptionDays}
-                    isMobile={isMobile}
-                  />
-                ))}
-            </div>
+        <style>{`
+          .earn-dark-input::placeholder {
+            color: rgba(255,255,255,0.5);
+            transition: color 0.3s ease;
+          }
+          .earn-dark-input:focus {
+            border-bottom-color: #ffffff !important;
+            color: #ffffff !important;
+          }
+          .earn-dark-input:focus::placeholder {
+            color: rgba(255,255,255,0.5);
+          }
+        `}</style>
 
-            {/* Carousel arrows */}
-            <div style={{ display: "flex", justifyContent: "center", gap: "8px", marginTop: "20px" }}>
-              <button
-                onClick={() => { if (earnCarouselRef.current) earnCarouselRef.current.scrollBy({ left: -400, behavior: "smooth" }); }}
-                onMouseEnter={() => setEarnLeftHovered(true)}
-                onMouseLeave={() => setEarnLeftHovered(false)}
-                aria-label="Previous"
-                style={{
-                  width: "36px",
-                  height: "36px",
-                  borderRadius: "50%",
-                  backgroundColor: "transparent",
-                  border: earnLeftHovered ? "1px solid #000000" : "1px solid #d8d5d0",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  transition: "border-color 0.2s ease",
-                }}
-              >
-                <ArrowLeft size={12} color="#000000" />
-              </button>
-              <button
-                onClick={() => { if (earnCarouselRef.current) earnCarouselRef.current.scrollBy({ left: 400, behavior: "smooth" }); }}
-                onMouseEnter={() => setEarnRightHovered(true)}
-                onMouseLeave={() => setEarnRightHovered(false)}
-                aria-label="Next"
-                style={{
-                  width: "36px",
-                  height: "36px",
-                  borderRadius: "50%",
-                  backgroundColor: "transparent",
-                  border: earnRightHovered ? "1px solid #000000" : "1px solid #d8d5d0",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  transition: "border-color 0.2s ease",
-                }}
-              >
-                <ArrowRight size={12} color="#000000" />
-              </button>
-            </div>
-
-            <style>{`
-              [data-earn-carousel]::-webkit-scrollbar { display: none; }
-              [data-earn-carousel] * { -webkit-user-drag: none; user-drag: none; }
-              [data-earn-carousel] img { pointer-events: none; }
-              .earn-dark-input::placeholder {
-                color: rgba(255,255,255,0.5);
-                transition: color 0.3s ease;
-              }
-              .earn-dark-input:focus {
-                border-bottom-color: #ffffff !important;
-                color: #ffffff !important;
-              }
-              .earn-dark-input:focus::placeholder {
-                color: rgba(255,255,255,0.5);
-              }
-            `}</style>
-          </>
-        )}
-
-        {/* ═══ EXCHANGE TAB ═══ */}
-        {activeTab === "exchange" && <RedeemContent totalPoints={totalPoints} onPointsChange={handlePointsChange} isMobile={isMobile} />}
-
-        {/* ═══ FREE PRODUCTS TAB ═══ */}
-        {activeTab === "products" && <FreeProductsContent totalPoints={totalPoints} onPointsChange={handlePointsChange} currentTier={currentTier} isMobile={isMobile} />}
-
-        {/* ═══ UPLOAD RECEIPT TAB ═══ */}
-        {activeTab === "upload" && <UploadReceiptContent isMobile={isMobile} />}
+        {/* ═══ FREE PRODUCTS (wrapping grid below) ═══ */}
+        <h3
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: isMobile ? "24px" : "36px",
+            fontWeight: 400,
+            lineHeight: 1.1,
+            color: "#000000",
+            marginTop: isMobile ? "48px" : "80px",
+            marginBottom: "12px",
+            letterSpacing: "-0.01em",
+          }}
+        >
+          Free Products
+        </h3>
+        <p
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "16px",
+            fontWeight: 400,
+            color: "#000000",
+            marginBottom: isMobile ? "24px" : "32px",
+            lineHeight: 1.4,
+          }}
+        >
+          Redeem your Goop Credit for complimentary products.
+        </p>
+        <FreeProductsContent totalPoints={totalPoints} onPointsChange={handlePointsChange} currentTier={currentTier} isMobile={isMobile} />
       </div>
 
       <style>{`

@@ -90,7 +90,7 @@ export default function Referrals() {
               letterSpacing: "-0.01em",
             }}
           >
-            Give $15, Get $15
+            Refer a Friend
           </h2>
 
           {/* Subtitle */}
@@ -101,12 +101,47 @@ export default function Referrals() {
               fontWeight: 400,
               lineHeight: 1.55,
               color: "#ffffff",
-              margin: "0 0 32px 0",
+              margin: "0 0 16px 0",
               maxWidth: "400px",
             }}
           >
-            Your friend gets $15 off their first subscription order, and you
-            earn $15 AG Credit.
+            Both you and your friend receive a discount. Tiered rewards based on purchase amount.
+          </p>
+
+          {/* Referral tiers */}
+          <div style={{ marginBottom: "24px", maxWidth: "400px" }}>
+            {[
+              { spend: "$200", discount: "$50 off" },
+              { spend: "$500", discount: "$100 off" },
+              { spend: "$1,000", discount: "$200 off" },
+            ].map((tier, i) => (
+              <div
+                key={i}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  padding: "10px 0",
+                  borderBottom: i < 2 ? "1px solid rgba(255,255,255,0.15)" : "none",
+                }}
+              >
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(255,255,255,0.7)" }}>Min. {tier.spend}</span>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#ffffff", fontWeight: 500 }}>{tier.discount} each</span>
+              </div>
+            ))}
+          </div>
+
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "12px",
+              fontWeight: 400,
+              lineHeight: 1.5,
+              color: "rgba(255,255,255,0.4)",
+              margin: "0 0 24px 0",
+              maxWidth: "400px",
+            }}
+          >
+            No stacking against other offers. The referrer receives an equivalent discount.
           </p>
 
           {/* Email input */}

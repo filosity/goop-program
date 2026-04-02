@@ -501,10 +501,10 @@ export default function Header() {
             </div>
           )}
 
-          {/* AG1 for Daily Health (hidden on mobile) */}
+          {/* goop (hidden on mobile) */}
           {!isMobile && (
             <a href="#" style={navLink}>
-              AG1 for Daily Health
+              goop
             </a>
           )}
 
@@ -669,7 +669,7 @@ export default function Header() {
                 setCurrentTier={setCurrentTier}
               />
             </div>
-            <a href="#" style={{ ...navLink, fontSize: "16px" }}>AG1 for Daily Health</a>
+            <a href="#" style={{ ...navLink, fontSize: "16px" }}>goop</a>
             <a href="#" style={{ ...navLink, fontSize: "16px", display: "inline-flex", alignItems: "center", gap: "8px" }}>
               AGZ for Sleep
               <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", fontWeight: 700, letterSpacing: "0.04em", textTransform: "uppercase" as const, color: "#ffffff", backgroundColor: "#1a1a1a", borderRadius: "6px", padding: "3px 5px", lineHeight: 1 }}>NEW</span>

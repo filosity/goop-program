@@ -1,35 +1,19 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import HowItWorks from "@/components/HowItWorks";
-import Milestones from "@/components/Milestones";
-import Membership from "@/components/Membership";
-import Featured from "@/components/Featured";
-import Sweepstakes from "@/components/Sweepstakes";
 import WaysToEarn from "@/components/WaysToEarn";
-import Activities from "@/components/Activities";
-import Partners from "@/components/Partners";
-import Referrals from "@/components/Referrals";
 import Tiers from "@/components/Tiers";
-import FAQ from "@/components/FAQ";
-import StickyNav from "@/components/StickyNav";
+import Activities from "@/components/Activities";
+import Referrals from "@/components/Referrals";
 
 export default function Home() {
   return (
     <>
       <Header />
       <HeroSection />
-      <StickyNav />
-      <HowItWorks />
-      <Featured />
-      <Milestones />
-      <Tiers />
-      <Membership />
-      <Sweepstakes />
       <WaysToEarn />
+      <Tiers />
       <Activities />
-      <Partners />
       <Referrals />
-      <FAQ />
     </>
   );
 }

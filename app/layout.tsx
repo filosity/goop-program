@@ -32,8 +32,8 @@ const ag1Mono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "AG1 Rewards",
-  description: "AG1 loyalty rewards program",
+  title: "goop Rewards",
+  description: "goop loyalty rewards program",
 };
 
 export const viewport: Viewport = {

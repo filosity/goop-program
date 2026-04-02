@@ -5,38 +5,34 @@ import { DollarSignCircle, GiftBox, DiscountTag, Bolt, User, Star, Gifts, XmarkC
 import { useIsMobile } from "@/hooks/useIsMobile";
 
 const benefitDescriptions: Record<string, string> = {
-  "Spend $150, Get $5":
-    "For every $150 you spend, earn $5 in AG Credit automatically added to your balance.",
-  "Spend $150, Get $10":
-    "For every $150 you spend, earn $10 in AG Credit automatically added to your balance.",
-  "Spend $150, Get $15":
-    "For every $150 you spend, earn $15 in AG Credit automatically added to your balance.",
-  "Spend $150, Get $20":
-    "For every $150 you spend, earn $20 in AG Credit automatically added to your balance.",
-  "$5 Birthday Reward":
-    "Receive $5 AG Credit during your birthday month as a thank you for being a member.",
-  "$10 Birthday Reward":
-    "Receive $10 AG Credit during your birthday month as a thank you for being a member.",
-  "$15 Birthday Reward":
-    "Receive $15 AG Credit during your birthday month as a thank you for being a member.",
-  "$20 Birthday Reward":
-    "Receive $20 AG Credit during your birthday month as a thank you for being a member.",
-  "Access to Exclusive Merch Store":
-    "Unlock the members-only merch store with exclusive AG1 apparel and accessories.",
-  "Access to Partner Offers":
-    "Get access to special deals and discounts from AG1's curated partner brands.",
-  "Access to Premium Partner Offers":
-    "Get access to premium deals and exclusive discounts from AG1's top-tier partner brands.",
-  "2X Referral Multiplier":
-    "Earn double the standard referral bonus when friends subscribe through your link.",
-  "3X Referral Multiplier":
-    "Earn triple the standard referral bonus when friends subscribe through your link.",
-  "Access to Focus Group":
-    "Join exclusive focus groups to help shape the future of AG1 products and programs.",
-  "Priority Customer Support":
-    "Skip the queue with dedicated priority support from the AG1 team.",
-  "Access to Exclusive Events":
-    "Receive invitations to exclusive in-person and virtual AG1 events, meetups, and product launches.",
+  "10% back on all purchases":
+    "Earn 10% back in Goop Credit on every purchase you make.",
+  "15% back on all purchases":
+    "Earn 15% back in Goop Credit on every purchase you make.",
+  "Yearly beauty mini gift":
+    "Receive a complimentary beauty mini gift each year as a member perk.",
+  "Core content access":
+    "Unlock access to curated goop content and editorial features.",
+  "Free expedited shipping":
+    "Enjoy free expedited shipping on all orders.",
+  "Overnight shipping and returns":
+    "Get overnight shipping and free returns on all orders.",
+  "Early access to product drops and launches":
+    "Be the first to shop new product drops and exclusive launches.",
+  "Yearly beauty full sized gift":
+    "Receive a complimentary full-sized beauty product each year.",
+  "Curated quarterly box":
+    "Receive a curated box of goop favorites delivered to you each quarter.",
+  "1:1 Digital styling sessions":
+    "Book personalized one-on-one digital styling sessions with our team.",
+  "Premium content access":
+    "Unlock premium goop content, guides, and exclusive editorial features.",
+  "Yearly beauty gift":
+    "Receive a complimentary beauty gift each year as a member perk.",
+  "VIP access to events":
+    "Receive invitations to exclusive VIP goop events and experiences.",
+  "Exclusive merchandise":
+    "Access limited-edition goop merchandise available only to top-tier members.",
 };
 
 /* ─── Unique SVG icon per benefit ─── */
@@ -75,52 +71,55 @@ const tiers = [
     current: true,
     image: "/ag1-tier1.avif",
     benefits: [
-      "Spend $150, Get $5",
-      "$5 Birthday Reward",
+      "10% back on all purchases",
     ],
   },
   {
     name: "Tier 2",
     subtitle: "",
-    spend: "1–3 months subscribed",
+    spend: "$350 annual spend",
     current: false,
     image: "/ag1-tier2.avif",
     benefits: [
-      "Spend $150, Get $10",
-      "Access to Exclusive Merch Store",
-      "Access to Partner Offers",
-      "$10 Birthday Reward",
+      "10% back on all purchases",
+      "Yearly beauty mini gift",
+      "Core content access",
     ],
   },
   {
     name: "Tier 3",
     subtitle: "",
-    spend: "4–11 months subscribed",
+    spend: "$900 annual spend",
     current: false,
     image: "/ag1-tier3.avif",
     benefits: [
-      "Spend $150, Get $15",
-      "Access to Exclusive Merch Store",
-      "Access to Partner Offers",
-      "2X Referral Multiplier",
-      "$15 Birthday Reward",
+      "10% back on all purchases",
+      "Free expedited shipping",
+      "Overnight shipping and returns",
+      "Early access to product drops and launches",
+      "Yearly beauty full sized gift",
+      "Curated quarterly box",
+      "1:1 Digital styling sessions",
+      "Premium content access",
     ],
   },
   {
     name: "Tier 4",
-    subtitle: "",
-    spend: "12+ months subscribed",
+    subtitle: "Invite Only",
+    spend: "Invite only / Prestige",
     current: false,
     image: "/ag1-tier4.avif",
     benefits: [
-      "Spend $150, Get $20",
-      "Access to Exclusive Merch Store",
-      "Access to Premium Partner Offers",
-      "3X Referral Multiplier",
-      "$20 Birthday Reward",
-      "Access to Focus Group",
-      "Priority Customer Support",
-      "Access to Exclusive Events",
+      "15% back on all purchases",
+      "Free expedited shipping",
+      "Overnight shipping and returns",
+      "Early access to product drops and launches",
+      "Yearly beauty gift",
+      "Curated quarterly box",
+      "1:1 Digital styling sessions",
+      "VIP access to events",
+      "Exclusive merchandise",
+      "Premium content access",
     ],
   },
 ];

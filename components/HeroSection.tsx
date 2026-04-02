@@ -583,7 +583,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
             transition: "opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s",
           }}
         >
-          AG1 rewards
+          goop rewards
         </p>
 
         {/* Heading */}
@@ -621,7 +621,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
               transition: "opacity 0.5s ease",
             }}
           >
-            <SectionLabel text="AG Credit Balance" />
+            <SectionLabel text="Goop Credit Balance" />
 
             {/* Dollar amount */}
             <p

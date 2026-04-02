@@ -7,34 +7,34 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 /* ─── Achievement data ─── */
 const achievements = [
   {
-    id: "ag-sporting-event",
-    title: "AG at a Sporting Event",
-    description: "Share a photo of you with AG1 at a sporting event.",
-    reward: "+$3 AG Credit",
-    code: "SPORT3",
-    codeHint: "apply this code to claim your $3 AG Credit",
+    id: "gwyneths-picks",
+    title: "Gwyneth's Picks",
+    description: "Purchase your first Gwyneth's Pick's piece.",
+    reward: "TBD Goop Credit",
+    code: "GPICK1",
+    codeHint: "apply this code to claim your Goop Credit",
     goal: 1,
-    image: "/achievement_sportevent.avif",
+    image: "/goop-full-collection.png",
   },
   {
-    id: "agz-subscriber",
-    title: "AG1 + AGZ Subscriber",
-    description: "Subscribe to both AG1 and AG1 Zero (AGZ) to unlock this bonus.",
-    reward: "+$5 AG Credit",
-    code: "AGZDUO5",
-    codeHint: "apply this code to claim your $5 AG Credit",
+    id: "goop-on-vacation",
+    title: "#gooponvacation",
+    description: "Wear a goop dress on vacation and tag us with #gooponvacation. Available for members after Tier 2.",
+    reward: "TBD Goop Credit",
+    code: "GOOPVAC",
+    codeHint: "apply this code to claim your Goop Credit",
     goal: 1,
-    image: "/earn2.jpg",
+    image: "/elegant-neck-portrait-bw.avif",
   },
   {
-    id: "refer-review",
-    title: "Refer & Review",
-    description: "Refer a friend and leave a product review.",
-    reward: "+$5 AG Credit",
-    code: "REFREVIEW5",
-    codeHint: "apply this code to claim your $5 AG Credit",
+    id: "beauty-fashion",
+    title: "Beauty + Fashion",
+    description: "Purchase a beauty and a fashion item.",
+    reward: "TBD Goop Credit",
+    code: "BFCOMBO",
+    codeHint: "apply this code to claim your Goop Credit",
     goal: 2,
-    image: "/earn3.jpg",
+    image: "/goop-moisturizer-collection.png",
   },
 ];
 
@@ -643,10 +643,10 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange, isMob
   }, [claimed, claimable]);
 
   const handleClaim = useCallback((id: string) => {
-    // Add AG Credit from reward if applicable
+    // Add Goop Credit from reward if applicable
     const achievement = achievements.find(a => a.id === id);
     if (achievement) {
-      const match = achievement.reward.match(/\+\$(\d+(?:\.\d+)?)\s*AG Credit/i);
+      const match = achievement.reward.match(/\+\$(\d+(?:\.\d+)?)\s*Goop Credit/i);
       if (match) {
         const dollars = parseFloat(match[1]);
         const newTotal = Math.round((currentPointsRef.current + dollars) * 100) / 100;
@@ -794,44 +794,9 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange, isMob
 /* ─── Voting data ─── */
 const allVotingQuestions: { question: string; options: string[]; images?: string[] }[] = [
   {
-    question: "Which AG1 merch would you want most?",
-    options: ["Puffer Jacket", "Stanley Cup", "Tote Bag", "Pajamas"],
-    images: ["/featured-puffer-jacket.jpg", "/featured-stanley.jpg", "/milestone-tote.jpg", "/milestone-sweatpants.jpg"],
-  },
-  {
-    question: "Which AG1 supplement interests you?",
-    options: ["D3+K2", "Omega-3", "Travel Packs", "AG1 Original"],
-    images: ["/product-d3k2.jpg", "/product-omega3.jpg", "/product-travelpacks-original.jpg", "/featured1.jpg"],
-  },
-  {
-    question: "When do you take your AG1?",
-    options: ["Morning", "Afternoon", "Evening", "Multiple times"],
-    images: ["/earn1.jpg", "/earn3.jpg", "/featured2.jpg", "/earn2.jpg"],
-  },
-  {
-    question: "How do you mix your AG1?",
-    options: ["Water", "Smoothie", "Juice", "Other"],
-    images: ["/earn6.jpg", "/earn10.jpg", "/earn7.jpg", "/earn4.jpg"],
-  },
-  {
-    question: "Pick your ideal AG1 moment",
-    options: ["Morning routine", "Post-workout", "On the go", "Outdoors"],
-    images: ["/earn3.jpg", "/earn5.jpg", "/product-travelpacks-original.jpg", "/earn7.jpg"],
-  },
-  {
-    question: "Do you travel with AG1?",
-    options: ["Always", "Sometimes", "Never", "Didn\u2019t know I could"],
-    images: ["/product-travelpacks-original.jpg", "/earn5.jpg", "/earn1.jpg", "/featured1.jpg"],
-  },
-  {
-    question: "Tried AG1 Zero yet?",
-    options: ["Love it", "Not yet", "Prefer original", "Didn\u2019t know about it"],
-    images: ["/product-travelpacks-chocolate.jpg", "/product-variety-pack.jpg", "/featured1.jpg", "/featured2.jpg"],
-  },
-  {
-    question: "What\u2019s your go-to AG1 gear?",
-    options: ["Shaker Bottle", "Travel Packs", "Hat", "Duffel Bag"],
-    images: ["/featured-stanley.jpg", "/earn1.jpg", "/milestone-hat.jpg", "/milestone-duffel-bag.jpg"],
+    question: "Which of goop\u2019s lifestyle categories are you most interested in?",
+    options: ["Beauty", "Fashion", "Wellness & Home"],
+    images: ["/goop-moisturizer-collection.png", "/elegant-neck-portrait-bw.avif", "/sunset-mountain-meditation.avif"],
   },
   {
     question: "Which skincare step do you never skip?",
@@ -865,7 +830,7 @@ const allVotingQuestions: { question: string; options: string[]; images?: string
   },
 ];
 
-const VOTING_DISPLAY_COUNT = 14;
+const VOTING_DISPLAY_COUNT = 7;
 
 /* ─── Fallback images for voting version 1 ─── */
 const votingImages: string[] = [
@@ -891,7 +856,7 @@ const votingImages: string[] = [
   "/product-travelpacks-original.jpg",
 ];
 
-/* ─── Shared AG Credit earned animation (black circle, white checkmark) ─── */
+/* ─── Shared Goop Credit earned animation (black circle, white checkmark) ─── */
 function VotingPointsEarned() {
   return (
     <div
@@ -943,7 +908,7 @@ function VotingPointsEarned() {
           textAlign: "center",
         }}
       >
-        +$0.25 AG Credit earned
+        +$0.25 Goop Credit earned
       </span>
     </div>
   );
@@ -1003,7 +968,7 @@ function VotingComplete({ totalEarned, questionVisible }: { totalEarned: number;
           justifyContent: "center",
         }}
       >
-        +${totalEarned.toFixed(2)} AG Credit earned today
+        +${totalEarned.toFixed(2)} Goop Credit earned today
       </span>
     </div>
   );
@@ -1572,22 +1537,22 @@ function VotingContent({ onAnsweredCountChange }: { onAnsweredCountChange: (coun
 
 /* ─── Streak reward milestones ─── */
 const streakRewards = [
-  { name: "AG1 Shaker Bottle", image: "/featured-stanley.jpg", code: "SHAKER7" },
+  { name: "goop Shaker Bottle", image: "/featured-stanley.jpg", code: "SHAKER7" },
   { name: "Travel Packs", image: "/earn1.jpg", code: "TRAVEL14" },
-  { name: "$2 AG Credit", image: "/featured1.jpg", code: "STREAK2" },
-  { name: "AG1 Hat", image: "/milestone-hat.jpg", code: "HAT28" },
+  { name: "$2 Goop Credit", image: "/featured1.jpg", code: "STREAK2" },
+  { name: "goop Hat", image: "/milestone-hat.jpg", code: "HAT28" },
   { name: "Free Shipping", image: "/earn2.jpg", code: "FREESHIP" },
-  { name: "$1 AG Credit", image: "/featured2.jpg", code: "STREAK1" },
-  { name: "AG1 Tote", image: "/milestone-tote.jpg", code: "TOTE42" },
+  { name: "$1 Goop Credit", image: "/featured2.jpg", code: "STREAK1" },
+  { name: "goop Tote", image: "/milestone-tote.jpg", code: "TOTE42" },
 ];
 
 /* ─── Streak rewards (every 50 days) ─── */
 const streakRewardsMultiplier = [
-  { name: "AG1 Shaker Bottle", image: "/featured-stanley.jpg", code: "SHAKER50" },
+  { name: "goop Shaker Bottle", image: "/featured-stanley.jpg", code: "SHAKER50" },
   { name: "Travel Packs", image: "/earn1.jpg", code: "TRAVEL100" },
-  { name: "$5 AG Credit", image: "/featured1.jpg", code: "STREAK5" },
-  { name: "AG1 Hat", image: "/milestone-hat.jpg", code: "HAT200" },
-  { name: "AG1 Tote", image: "/milestone-tote.jpg", code: "TOTE250" },
+  { name: "$5 Goop Credit", image: "/featured1.jpg", code: "STREAK5" },
+  { name: "goop Hat", image: "/milestone-hat.jpg", code: "HAT200" },
+  { name: "goop Tote", image: "/milestone-tote.jpg", code: "TOTE250" },
   { name: "Free Shipping", image: "/earn2.jpg", code: "FREESHIP300" },
 ];
 
@@ -1690,7 +1655,7 @@ function CheckInButton({ onCheckIn, showChecked, rate, checkInHovered, setCheckI
             <path d="M12 21L17.5 26.5L28 14" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "streakDrawCheck 0.4s ease 0.25s forwards" }} />
           </svg>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.3s both" }}>
-            +${rate.toFixed(2)} AG Credit earned
+            +${rate.toFixed(2)} Goop Credit earned
           </p>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.5s both" }}>
             Check in again tomorrow
@@ -2011,7 +1976,7 @@ function DailyStreakV2({ onStreakChange, isMobile }: { onStreakChange: (streak: 
           Today&rsquo;s check-in earns{" "}
         </span>
         <span style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#0C3D3D", lineHeight: 1 }}>
-          +${s.tier.rate.toFixed(2)} AG Credit
+          +${s.tier.rate.toFixed(2)} Goop Credit
         </span>
       </div>
 
@@ -2181,7 +2146,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
       setHasCheckedOnce(true);
       setTimeout(() => setShowCheckedMessage(false), 2800);
     }
-    // Award $0.25 AG Credit for each check-in
+    // Award $0.25 Goop Credit for each check-in
     const newTotal = Math.round((checkinPointsRef.current + 0.25) * 100) / 100;
     checkinPointsRef.current = newTotal;
     window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
@@ -2672,7 +2637,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                   Day {day.dayNum}
                 </span>
 
-                {/* $0.25 AG Credit for normal checked days */}
+                {/* $0.25 Goop Credit for normal checked days */}
                 {!hasReward && (day.isChecked || earnedDay === day.dayNum) && (
                   <span style={{
                     fontFamily: "var(--font-sans)",
@@ -2896,7 +2861,7 @@ export default function Activities() {
         padding: isMobile ? "0px 16px 60px" : "0px 48px 100px",
       }}
     >
-      {/* Title */}
+      {/* ═══ ACHIEVEMENTS SECTION ═══ */}
       <h2
         style={{
           fontFamily: "var(--font-sans)",
@@ -2912,10 +2877,9 @@ export default function Activities() {
           marginRight: "auto",
         }}
       >
-        Activities
+        Achievements
       </h2>
 
-      {/* Subtext */}
       <p
         style={{
           fontFamily: "var(--font-sans)",
@@ -2930,9 +2894,7 @@ export default function Activities() {
           marginRight: "auto",
         }}
       >
-        {activeTab === "streak" && "Keep up your daily streak and unlock milestone rewards."}
-        {activeTab === "achievements" && "Unlock achievements by engaging with AG1."}
-        {activeTab === "voting" && "Have a say in what happens next and earn +$0.25 AG Credit."}
+        Complete milestones to earn bonus Goop Credit.
       </p>
 
       <div
@@ -2941,130 +2903,46 @@ export default function Activities() {
           margin: "0 auto",
         }}
       >
-        {/* Tab buttons */}
-        <div
+        <AchievementsContent onClaimedCountChange={setClaimedCount} onHasClaimableChange={setHasClaimable} isMobile={isMobile} />
+
+        {/* ═══ VOTING SECTION ═══ */}
+        <h2
           style={{
-            display: "flex",
-            gap: "10px",
-            marginBottom: "24px",
-            flexWrap: isMobile ? "wrap" as const : "nowrap" as const,
-            scrollbarWidth: "none" as const,
-            msOverflowStyle: "none" as const,
+            fontFamily: "var(--font-sans)",
+            fontSize: isMobile ? "28px" : "44px",
+            fontWeight: 400,
+            lineHeight: 1.1,
+            color: "#000000",
+            textAlign: "left",
+            margin: isMobile ? "48px 0 12px 0" : "80px 0 12px 0",
+            letterSpacing: "-0.01em",
           }}
         >
-          {/* Daily Check-in tab (first) */}
-          <button
-            onClick={() => switchTab("streak")}
-            onMouseEnter={() => setStreakTabHovered(true)}
-            onMouseLeave={() => setStreakTabHovered(false)}
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: isMobile ? "15px" : "18px",
-              fontWeight: 400,
-              padding: isMobile ? "0 20px" : "0 32px",
-              minHeight: "52px",
-              borderRadius: "999px",
-              cursor: "pointer",
-              transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "streak" ? "#0C3D3D" : streakTabHovered ? "#46DE46" : "transparent",
-              color: activeTab === "streak" ? "#ffffff" : streakTabHovered ? "#000000" : "#0C3D3D",
-              borderColor: activeTab === "streak" ? "#0C3D3D" : streakTabHovered ? "#46DE46" : "#0C3D3D",
-              border: "1px solid #0C3D3D",
-              display: "inline-flex",
-              alignItems: "center",
-              whiteSpace: "nowrap",
-              gap: "6px",
-            }}
-          >
-            Daily Check-in
-            <span style={{ fontWeight: 400, color: activeTab === "streak" ? "#ffffff" : streakTabHovered ? "#000000" : "#0C3D3D", display: "inline-flex", alignItems: "center" }}>
-              (<span style={{ fontWeight: 600, color: activeTab === "streak" ? "#ffffff" : streakTabHovered ? "#000000" : "#0C3D3D" }}>{streakStreak}</span>
-              <svg width="10" height="10" viewBox="0 0 24 24" fill={activeTab === "streak" ? "#ffffff" : streakTabHovered ? "#000000" : "#0C3D3D"} style={{ marginLeft: "2px" }}>
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg>)
-            </span>
-          </button>
-          {/* Achievements tab */}
-          <button
-            onClick={() => switchTab("achievements")}
-            onMouseEnter={() => setAchievementsTabHovered(true)}
-            onMouseLeave={() => setAchievementsTabHovered(false)}
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: isMobile ? "15px" : "18px",
-              fontWeight: 400,
-              padding: isMobile ? "0 20px" : "0 32px",
-              minHeight: "52px",
-              borderRadius: "999px",
-              cursor: "pointer",
-              transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "achievements" ? "#0C3D3D" : achievementsTabHovered ? "#46DE46" : "transparent",
-              color: activeTab === "achievements" ? "#ffffff" : achievementsTabHovered ? "#000000" : "#0C3D3D",
-              borderColor: activeTab === "achievements" ? "#0C3D3D" : achievementsTabHovered ? "#46DE46" : "#0C3D3D",
-              border: "1px solid #0C3D3D",
-            }}
-          >
-            Achievements{" "}
-            <span
-              style={{
-                fontWeight: 400,
-                color: activeTab === "achievements" ? "rgba(255,255,255,0.45)" : achievementsTabHovered ? "#000000" : "#aaaaaa",
-                marginLeft: "6px",
-              }}
-            >
-              (<span style={{ fontWeight: 600, color: activeTab === "achievements" ? "rgba(255,255,255,0.45)" : achievementsTabHovered ? "#000000" : "#aaaaaa" }}>{claimedCount}</span>/{achievements.length})
-            </span>
-          </button>
-          {/* Voting tab */}
-          <button
-            onClick={() => switchTab("voting")}
-            onMouseEnter={() => setVotingTabHovered(true)}
-            onMouseLeave={() => setVotingTabHovered(false)}
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: isMobile ? "15px" : "18px",
-              fontWeight: 400,
-              padding: isMobile ? "0 20px" : "0 32px",
-              minHeight: "52px",
-              borderRadius: "999px",
-              cursor: "pointer",
-              transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-              backgroundColor: activeTab === "voting" ? "#0C3D3D" : votingTabHovered ? "#46DE46" : "transparent",
-              color: activeTab === "voting" ? "#ffffff" : votingTabHovered ? "#000000" : "#0C3D3D",
-              borderColor: activeTab === "voting" ? "#0C3D3D" : votingTabHovered ? "#46DE46" : "#0C3D3D",
-              border: "1px solid #0C3D3D",
-            }}
-          >
-            Voting{" "}
-            <span
-              style={{
-                fontWeight: 400,
-                color: activeTab === "voting" ? "rgba(255,255,255,0.45)" : votingTabHovered ? "#000000" : "#aaaaaa",
-                marginLeft: "6px",
-              }}
-            >
-              (<span style={{ fontWeight: 600, color: activeTab === "voting" ? "rgba(255,255,255,0.45)" : votingTabHovered ? "#000000" : "#aaaaaa" }}>{votingAnsweredCount}</span>/{VOTING_DISPLAY_COUNT})
-            </span>
-          </button>
-        </div>
+          Voting
+        </h2>
 
-        {/* Tab content */}
-        <div style={{ display: activeTab === "streak" ? "block" : "none" }}>
-          {streakVersion === 1 && <DailyStreakV1 onStreakChange={setStreakStreak} isMobile={isMobile} />}
-          {streakVersion === 2 && <DailyStreakV2 onStreakChange={setStreakStreak} isMobile={isMobile} />}
-          {streakVersion === 3 && <DailyStreakV3 onStreakChange={setStreakStreak} isMobile={isMobile} />}
+        <p
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "16px",
+            fontWeight: 400,
+            color: "#000000",
+            textAlign: "left",
+            margin: "0 0 36px 0",
+            lineHeight: 1.4,
+          }}
+        >
+          Have your say and earn +$0.25 Goop Credit per vote.
+        </p>
+
+        <div
+          style={{
+            border: "1px solid #d4e0df",
+            backgroundColor: "#ffffff",
+          }}
+        >
+          <VotingContent onAnsweredCountChange={setVotingAnsweredCount} />
         </div>
-        {activeTab === "achievements" && <AchievementsContent onClaimedCountChange={setClaimedCount} onHasClaimableChange={setHasClaimable} isMobile={isMobile} />}
-        {activeTab === "voting" && (
-          <div
-            style={{
-              border: "1px solid #d4e0df",
-              backgroundColor: "#ffffff",
-            }}
-          >
-            <VotingContent onAnsweredCountChange={setVotingAnsweredCount} />
-          </div>
-        )}
       </div>
 
       <style>{`
