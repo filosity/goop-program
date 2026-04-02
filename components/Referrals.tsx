@@ -33,7 +33,7 @@ export default function Referrals() {
     <section
       id="section-referrals"
       style={{
-        backgroundColor: "#0C3D3D",
+        backgroundColor: "#000000",
         padding: "0",
         overflow: "hidden",
       }}
@@ -325,7 +325,7 @@ export default function Referrals() {
               fontFamily: "var(--font-sans)",
               fontSize: "17px",
               fontWeight: 400,
-              color: sendHovered ? "#0C3D3D" : "#ffffff",
+              color: sendHovered ? "#000000" : "#ffffff",
               backgroundColor: sendHovered ? "#ffffff" : "transparent",
               border: "1px solid #ffffff",
               minHeight: "52px",

@@ -245,7 +245,7 @@ function EarnCard({
             display: "inline-flex",
             alignItems: "center",
             gap: "8px",
-            backgroundColor: "#0C3D3D",
+            backgroundColor: "#000000",
             borderRadius: "999px",
             padding: "8px 16px",
             zIndex: 2,
@@ -398,7 +398,7 @@ function EarnCard({
                 fontFamily: "var(--font-sans)",
                 fontSize: "18px",
                 fontWeight: 600,
-                color: "#0C3D3D",
+                color: "#000000",
                 backgroundColor: "#ffffff",
                 border: "none",
                 minHeight: "52px",
@@ -549,7 +549,7 @@ function RedeemContent({
             fontFamily: "var(--font-sans)",
             fontSize: "16px",
             fontWeight: 600,
-            color: "#0C3D3D",
+            color: "#000000",
             margin: "0 0 24px 0",
             lineHeight: 1,
           }}
@@ -594,7 +594,7 @@ function RedeemContent({
               fontFamily: "var(--font-sans)",
               fontSize: "16px",
               fontWeight: 600,
-              color: "#0C3D3D",
+              color: "#000000",
               lineHeight: 1,
             }}
           >
@@ -637,7 +637,7 @@ function RedeemContent({
             fontFamily: "var(--font-sans)",
             fontSize: "16px",
             fontWeight: 600,
-            color: "#0C3D3D",
+            color: "#000000",
             margin: "0 0 16px 0",
             lineHeight: 1,
           }}
@@ -683,7 +683,7 @@ function RedeemContent({
           >
             <div
               style={{
-                backgroundColor: "#0C3D3D",
+                backgroundColor: "#000000",
                 color: "#ffffff",
                 fontFamily: "var(--font-sans)",
                 fontSize: "12px",
@@ -738,7 +738,7 @@ function RedeemContent({
               fontSize: "18px",
               fontWeight: 600,
               color: redeemHovered ? "#000000" : "#ffffff",
-              backgroundColor: redeemHovered ? "#46DE46" : "#0C3D3D",
+              backgroundColor: redeemHovered ? "#000000" : "#000000",
               border: "none",
               minHeight: "52px",
               padding: "0 36px",
@@ -834,7 +834,7 @@ function RedeemContent({
               width: "72px",
               height: "72px",
               borderRadius: "50%",
-              backgroundColor: "#0C3D3D",
+              backgroundColor: "#000000",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -1232,7 +1232,7 @@ function FreeProductsContent({
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "7px",
-                      backgroundColor: "#0C3D3D",
+                      backgroundColor: "#000000",
                       borderRadius: "999px",
                       padding: "10px 18px",
                       zIndex: 2,
@@ -1262,7 +1262,7 @@ function FreeProductsContent({
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "7px",
-                      backgroundColor: "#0C3D3D",
+                      backgroundColor: "#000000",
                       borderRadius: "999px",
                       padding: "10px 18px",
                       zIndex: 2,
@@ -1380,10 +1380,10 @@ function FreeProductsContent({
                         borderRadius: isCircle ? "50%" : "999px",
                         width: isCircle ? "52px" : "auto",
                         padding: isCircle ? "0" : "0 32px",
-                        border: canAfford || phase !== "idle" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
+                        border: canAfford || phase !== "idle" ? "1px solid #000000" : "1px solid #000000",
                         cursor: !canAfford || phase !== "idle" ? "default" : "pointer",
-                        backgroundColor: canAfford || phase !== "idle" ? "#0C3D3D" : "transparent",
-                        color: canAfford || phase !== "idle" ? "#ffffff" : "#0C3D3D",
+                        backgroundColor: canAfford || phase !== "idle" ? "#000000" : "transparent",
+                        color: canAfford || phase !== "idle" ? "#ffffff" : "#000000",
                         opacity: !canAfford && phase === "idle" ? 0.3 : 1,
                         transition: "border-radius 0.4s cubic-bezier(0.4,0,0.2,1), width 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, background-color 0.2s ease",
                         display: "flex",
@@ -1427,7 +1427,7 @@ function FreeProductsContent({
                           bottom: "calc(100% + 8px)",
                           left: "50%",
                           transform: "translateX(-50%) translateY(4px)",
-                          backgroundColor: "#0C3D3D",
+                          backgroundColor: "#000000",
                           color: "#ffffff",
                           fontFamily: "var(--font-sans)",
                           fontSize: "11px",
@@ -1554,7 +1554,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
                 fontFamily: "var(--font-sans)",
                 fontSize: "16px",
                 fontWeight: 600,
-                color: "#0C3D3D",
+                color: "#000000",
                 margin: "0 0 20px 0",
                 lineHeight: 1,
               }}
@@ -1617,7 +1617,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
                   width: "48px",
                   height: "48px",
                   borderRadius: "50%",
-                  backgroundColor: "#0C3D3D",
+                  backgroundColor: "#000000",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -1647,7 +1647,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
 
         {phase === "selected" && (
           <>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#000000", margin: "0 0 20px 0", lineHeight: 1 }}>
               review &amp; submit
             </span>
 
@@ -1661,7 +1661,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
 
             {/* File chip */}
             <div style={{ display: "flex", alignItems: "center", gap: "12px", padding: "14px 18px", border: "1px solid #d4e0df", borderRadius: "10px", marginBottom: "12px", backgroundColor: "#faf9f7" }}>
-              <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "#0C3D3D", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "#000000", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M9 1H4C3.44772 1 3 1.44772 3 2V14C3 14.5523 3.44772 15 4 15H12C12.5523 15 13 14.5523 13 14V5L9 1Z" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                   <path d="M9 1V5H13" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -1692,7 +1692,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
               onClick={handleSubmit}
               onMouseEnter={() => setSubmitHovered(true)}
               onMouseLeave={() => setSubmitHovered(false)}
-              style={{ alignSelf: "flex-start", fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 400, color: "#ffffff", backgroundColor: submitHovered ? "#155050" : "#0C3D3D", border: "1px solid #0C3D3D", minHeight: "52px", padding: "0 40px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
+              style={{ alignSelf: "flex-start", fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 400, color: "#ffffff", backgroundColor: submitHovered ? "#155050" : "#000000", border: "1px solid #000000", minHeight: "52px", padding: "0 40px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
             >
               Submit Receipt →
             </button>
@@ -1701,7 +1701,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
 
         {phase === "uploading" && (
           <>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#000000", margin: "0 0 20px 0", lineHeight: 1 }}>
               uploading
             </span>
 
@@ -1715,7 +1715,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
 
             <div style={{ padding: "14px 18px", border: "1px solid #d4e0df", borderRadius: "10px", marginBottom: "20px", backgroundColor: "#faf9f7", overflow: "hidden" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
-                <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "#0C3D3D", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "#000000", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M9 1H4C3.44772 1 3 1.44772 3 2V14C3 14.5523 3.44772 15 4 15H12C12.5523 15 13 14.5523 13 14V5L9 1Z" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M9 1V5H13" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -1730,7 +1730,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
                 </span>
               </div>
               <div style={{ height: "2px", backgroundColor: "#d4e0df", borderRadius: "1px", overflow: "hidden" }}>
-                <div style={{ height: "100%", width: `${uploadProgress}%`, backgroundColor: "#0C3D3D", borderRadius: "1px", transition: "width 0.15s ease-out" }} />
+                <div style={{ height: "100%", width: `${uploadProgress}%`, backgroundColor: "#000000", borderRadius: "1px", transition: "width 0.15s ease-out" }} />
               </div>
             </div>
           </>
@@ -1738,7 +1738,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
 
         {phase === "success" && (
           <>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#0C3D3D", margin: "0 0 20px 0", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#000000", margin: "0 0 20px 0", lineHeight: 1 }}>
               complete
             </span>
 
@@ -1747,7 +1747,7 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
                 width: "56px",
                 height: "56px",
                 borderRadius: "50%",
-                backgroundColor: "#0C3D3D",
+                backgroundColor: "#000000",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -1773,14 +1773,14 @@ function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
                 onClick={handleReset}
                 onMouseEnter={() => setNewUploadHovered(true)}
                 onMouseLeave={() => setNewUploadHovered(false)}
-                style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "16px" : "18px", fontWeight: 400, color: "#ffffff", backgroundColor: newUploadHovered ? "#155050" : "#0C3D3D", border: "1px solid #0C3D3D", minHeight: isMobile ? "48px" : "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
+                style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "16px" : "18px", fontWeight: 400, color: "#ffffff", backgroundColor: newUploadHovered ? "#155050" : "#000000", border: "1px solid #000000", minHeight: isMobile ? "48px" : "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
               >
                 Upload Another →
               </button>
               <button
                 onMouseEnter={() => setHistoryHovered(true)}
                 onMouseLeave={() => setHistoryHovered(false)}
-                style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "16px" : "18px", fontWeight: 400, color: historyHovered ? "#000000" : "#0C3D3D", backgroundColor: historyHovered ? "#46DE46" : "transparent", border: historyHovered ? "1px solid #46DE46" : "1px solid #0C3D3D", minHeight: isMobile ? "48px" : "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease, color 0.2s ease" }}
+                style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "16px" : "18px", fontWeight: 400, color: historyHovered ? "#000000" : "#000000", backgroundColor: historyHovered ? "#000000" : "transparent", border: historyHovered ? "1px solid #000000" : "1px solid #000000", minHeight: isMobile ? "48px" : "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease, color 0.2s ease" }}
               >
                 View History →
               </button>

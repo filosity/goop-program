@@ -381,7 +381,7 @@ export default function Tiers() {
                         fontFamily: "var(--font-sans)",
                         fontSize: "13px",
                         fontWeight: 500,
-                        color: "#0C3D3D",
+                        color: "#000000",
                       }}
                     >
                       current tier
@@ -393,7 +393,7 @@ export default function Tiers() {
               {/* Card content */}
               <div
                 style={{
-                  backgroundColor: isCurrent ? "#0C3D3D" : "#F6F5F1",
+                  backgroundColor: isCurrent ? "#000000" : "#F6F5F1",
                   padding: isMobile ? "24px 20px 32px" : "32px 36px 44px",
                   flex: 1,
                   display: "flex",
