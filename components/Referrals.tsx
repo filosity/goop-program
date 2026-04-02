@@ -21,7 +21,7 @@ export default function Referrals() {
   const [friendNameFocused, setFriendNameFocused] = useState(false);
   const [messageFocused, setMessageFocused] = useState(false);
 
-  const referralLink = "referfrnd.io/ag1/384928";
+  const referralLink = "referfrnd.io/goop/384928";
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(`https://${referralLink}`);
@@ -33,7 +33,7 @@ export default function Referrals() {
     <section
       id="section-referrals"
       style={{
-        backgroundColor: "#000000",
+        backgroundColor: "#0C3D3D",
         padding: "0",
         overflow: "hidden",
       }}
@@ -101,47 +101,80 @@ export default function Referrals() {
               fontWeight: 400,
               lineHeight: 1.55,
               color: "#ffffff",
-              margin: "0 0 16px 0",
+              margin: "0 0 24px 0",
               maxWidth: "400px",
             }}
           >
-            Both you and your friend receive a discount. Tiered rewards based on purchase amount.
+            Both you and your friend receive a discount. Tiered rewards based on
+            purchase amount.
           </p>
 
-          {/* Referral tiers */}
-          <div style={{ marginBottom: "24px", maxWidth: "400px" }}>
+          {/* Tiered referral table */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "0",
+              marginBottom: "8px",
+              maxWidth: "400px",
+            }}
+          >
             {[
-              { spend: "$200", discount: "$50 off" },
-              { spend: "$500", discount: "$100 off" },
-              { spend: "$1,000", discount: "$200 off" },
+              { min: "$200", reward: "$50 off each" },
+              { min: "$500", reward: "$100 off each" },
+              { min: "$1,000", reward: "$200 off each" },
             ].map((tier, i) => (
               <div
                 key={i}
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  padding: "10px 0",
-                  borderBottom: i < 2 ? "1px solid rgba(255,255,255,0.15)" : "none",
+                  alignItems: "center",
+                  padding: "12px 0",
+                  borderBottom:
+                    i < 2
+                      ? "1px solid rgba(255,255,255,0.2)"
+                      : "1px solid rgba(255,255,255,0.2)",
                 }}
               >
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(255,255,255,0.7)" }}>Min. {tier.spend}</span>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "#ffffff", fontWeight: 500 }}>{tier.discount} each</span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "15px",
+                    fontWeight: 400,
+                    color: "#ffffff",
+                  }}
+                >
+                  Min. {tier.min}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "15px",
+                    fontWeight: 600,
+                    color: "#ffffff",
+                  }}
+                >
+                  {tier.reward}
+                </span>
               </div>
             ))}
           </div>
 
+          {/* Referral note */}
           <p
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "12px",
+              fontSize: "13px",
               fontWeight: 400,
               lineHeight: 1.5,
-              color: "rgba(255,255,255,0.4)",
-              margin: "0 0 24px 0",
+              color: "rgba(255,255,255,0.65)",
+              margin: "0 0 28px 0",
               maxWidth: "400px",
             }}
           >
-            No stacking against other offers. The referrer receives an equivalent discount.
+            No stacking against other offers. The referrer receives an equivalent
+            discount.
           </p>
 
           {/* Email input */}
@@ -325,7 +358,7 @@ export default function Referrals() {
               fontFamily: "var(--font-sans)",
               fontSize: "17px",
               fontWeight: 400,
-              color: sendHovered ? "#000000" : "#ffffff",
+              color: sendHovered ? "#0C3D3D" : "#ffffff",
               backgroundColor: sendHovered ? "#ffffff" : "transparent",
               border: "1px solid #ffffff",
               minHeight: "52px",

@@ -6,33 +6,33 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 
 const benefitDescriptions: Record<string, string> = {
   "10% back on all purchases":
-    "Earn 10% back in Goop Credit on every purchase you make.",
+    "Earn 10% back in Goop Credit on every purchase, automatically added to your balance.",
   "15% back on all purchases":
-    "Earn 15% back in Goop Credit on every purchase you make.",
+    "Earn 15% back in Goop Credit on every purchase, automatically added to your balance.",
   "Yearly beauty mini gift":
-    "Receive a complimentary beauty mini gift each year as a member perk.",
+    "Receive a curated mini beauty gift each year as a thank you for being a valued member.",
   "Core content access":
-    "Unlock access to curated goop content and editorial features.",
+    "Unlock access to Goop's core editorial content, wellness guides, and lifestyle features.",
   "Free expedited shipping":
-    "Enjoy free expedited shipping on all orders.",
+    "Enjoy complimentary expedited shipping on all Goop orders.",
   "Overnight shipping and returns":
-    "Get overnight shipping and free returns on all orders.",
+    "Get free overnight shipping and hassle-free returns on all orders.",
   "Early access to product drops and launches":
-    "Be the first to shop new product drops and exclusive launches.",
+    "Be the first to shop new product drops and exclusive launches before they go live.",
   "Yearly beauty full sized gift":
-    "Receive a complimentary full-sized beauty product each year.",
+    "Receive a full-sized beauty gift each year, hand-selected by the Goop team.",
   "Curated quarterly box":
-    "Receive a curated box of goop favorites delivered to you each quarter.",
+    "Receive a quarterly box curated with Goop's top picks in beauty, wellness, and lifestyle.",
   "1:1 Digital styling sessions":
-    "Book personalized one-on-one digital styling sessions with our team.",
+    "Book personalized one-on-one digital styling sessions with Goop's style experts.",
   "Premium content access":
-    "Unlock premium goop content, guides, and exclusive editorial features.",
+    "Unlock full access to Goop's premium content including in-depth articles, video series, and expert guides.",
   "Yearly beauty gift":
-    "Receive a complimentary beauty gift each year as a member perk.",
+    "Receive an exclusive yearly beauty gift curated by the Goop team.",
   "VIP access to events":
-    "Receive invitations to exclusive VIP goop events and experiences.",
+    "Get VIP invitations to exclusive Goop events, summits, and experiences.",
   "Exclusive merchandise":
-    "Access limited-edition goop merchandise available only to top-tier members.",
+    "Access limited-edition Goop merchandise available only to top-tier members.",
 };
 
 /* ─── Unique SVG icon per benefit ─── */
@@ -44,22 +44,22 @@ function BenefitIcon({
   size?: number;
 }) {
   const b = benefit.toLowerCase();
-  if (b.includes("spend") && b.includes("get"))
+  if (b.includes("% back"))
     return <DollarSignCircle size={size} color="currentColor" />;
-  if (b.includes("birthday"))
+  if (b.includes("gift") || b.includes("quarterly box"))
     return <GiftBox size={size} color="currentColor" />;
-  if (b.includes("merch"))
-    return <Gifts size={size} color="currentColor" />;
-  if (b.includes("partner"))
-    return <DiscountTag size={size} color="currentColor" />;
-  if (b.includes("referral"))
-    return <User size={size} color="currentColor" />;
-  if (b.includes("focus group"))
-    return <User size={size} color="currentColor" />;
-  if (b.includes("support"))
+  if (b.includes("shipping") || b.includes("returns"))
     return <Bolt size={size} color="currentColor" />;
-  if (b.includes("event"))
+  if (b.includes("early access") || b.includes("drops"))
     return <Star size={size} color="currentColor" />;
+  if (b.includes("styling"))
+    return <User size={size} color="currentColor" />;
+  if (b.includes("content"))
+    return <DiscountTag size={size} color="currentColor" />;
+  if (b.includes("vip") || b.includes("event"))
+    return <Star size={size} color="currentColor" />;
+  if (b.includes("merchandise"))
+    return <Gifts size={size} color="currentColor" />;
   return <DollarSignCircle size={size} color="currentColor" />;
 }
 
@@ -381,7 +381,7 @@ export default function Tiers() {
                         fontFamily: "var(--font-sans)",
                         fontSize: "13px",
                         fontWeight: 500,
-                        color: "#000000",
+                        color: "#0C3D3D",
                       }}
                     >
                       current tier
@@ -393,7 +393,7 @@ export default function Tiers() {
               {/* Card content */}
               <div
                 style={{
-                  backgroundColor: isCurrent ? "#000000" : "#F6F5F1",
+                  backgroundColor: isCurrent ? "#0C3D3D" : "#F6F5F1",
                   padding: isMobile ? "24px 20px 32px" : "32px 36px 44px",
                   flex: 1,
                   display: "flex",

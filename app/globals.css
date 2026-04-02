@@ -1,59 +1,16 @@
 @import "tailwindcss";
 
-/* ─── Adobe Caslon Pro (Serif) ─── */
-@font-face {
-  font-family: "ACaslonPro";
-  src: url("/fonts/ACaslonPro-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "ACaslonPro";
-  src: url("/fonts/ACaslonPro-Italic.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "ACaslonPro";
-  src: url("/fonts/ACaslonPro-Semibold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "ACaslonPro";
-  src: url("/fonts/ACaslonPro-SemiboldItalic.woff2") format("woff2");
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "ACaslonPro";
-  src: url("/fonts/ACaslonPro-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "ACaslonPro";
-  src: url("/fonts/ACaslonPro-BoldItalic.woff2") format("woff2");
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
 /* ─── CSS Custom Properties ─── */
 :root {
   /* Fonts */
-  --font-serif: "ACaslonPro", "Georgia", "Times New Roman", serif;
-  --font-sans: "Inter Tight", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: "AG1 Regular", Georgia, "Times New Roman", serif;
+  --font-sans: "AG1 Secondary", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "AG1 Mono", "SF Mono", "Fira Code", monospace;
+
+  /* AG1 Colors */
+  --color-ag1-green: #0f2e2f;
+  --color-ag1-accent: #0d8b87;
+  --color-ag1-light: #e8f5f4;
 
   /* Colors */
   --color-black: #000000;
@@ -141,24 +98,20 @@ body {
   font-weight: 500;
 }
 
-/* H7 — Overline / Eyebrow (Sans, uppercase) */
+/* H7 — Overline / Eyebrow (Sans) */
 .h7 {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   line-height: 1.5;
   font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
-/* H8 — Micro label (Sans, uppercase) */
+/* H8 — Micro label (Sans) */
 .h8 {
   font-family: var(--font-sans);
   font-size: 0.625rem;
   line-height: 1.5;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 
 /* Paragraph — Body text */
@@ -199,14 +152,12 @@ body {
   font-weight: 400;
 }
 
-/* Capitalized / Overline text */
+/* Overline text (Sans) */
 .overline {
   font-family: var(--font-sans);
   font-size: 0.6875rem;
   line-height: 1.5;
   font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 
 /* Nav link style */
@@ -220,9 +171,15 @@ body {
 
 /* Announcement bar text */
 .announcement {
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   font-size: 0.6875rem;
   line-height: 1.4;
   font-weight: 400;
   letter-spacing: 0.03em;
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
 }

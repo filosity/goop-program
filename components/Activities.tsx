@@ -127,7 +127,7 @@ function AchievementCard({
             lineHeight: 1,
             padding: "6px 12px",
             borderRadius: "999px",
-            backgroundColor: redeemed || claimed || claimClicked ? "#000000" : isComplete ? "#E8913A" : "rgba(255,255,255,0.92)",
+            backgroundColor: redeemed || claimed || claimClicked ? "#0C3D3D" : isComplete ? "#E8913A" : "rgba(255,255,255,0.92)",
             color: redeemed || claimed || claimClicked ? "#ffffff" : isComplete ? "#ffffff" : "#1a1a1a",
             backdropFilter: isComplete || redeemed || claimed || claimClicked ? "none" : "blur(8px)",
             transition: "all 0.4s ease",
@@ -161,7 +161,7 @@ function AchievementCard({
                   cx="18"
                   cy="18"
                   r="17"
-                  fill="#000000"
+                  fill="#0C3D3D"
                   style={{
                     transformOrigin: "18px 18px",
                     animation: "achieveCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
@@ -192,7 +192,7 @@ function AchievementCard({
                   fontFamily: "var(--font-sans)",
                   fontSize: "18px",
                   fontWeight: 400,
-                  color: "#000000",
+                  color: "#0C3D3D",
                   backgroundColor: claimHovered ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.9)",
                   border: "none",
                   minHeight: "52px",
@@ -221,7 +221,7 @@ function AchievementCard({
               const dx = Math.cos(angle) * dist;
               const dy = Math.sin(angle) * dist;
               const spin = 180 + Math.random() * 540;
-              const colors = ["#000000", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#0a3030", "#3da88a", "#276b5d"];
+              const colors = ["#0C3D3D", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#0a3030", "#3da88a", "#276b5d"];
               const delay = i * 0.004;
               const dur = 1.8 + Math.random() * 0.6;
               return (
@@ -379,7 +379,7 @@ function AchievementCard({
                 style={{
                   height: "100%",
                   width: `${pct}%`,
-                  backgroundColor: "#000000",
+                  backgroundColor: "#0C3D3D",
                   transition: "width 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
               />
@@ -498,8 +498,8 @@ function AchievementCard({
                       fontSize: "16px",
                       fontWeight: 600,
                       color: "#ffffff",
-                      backgroundColor: "#000000",
-                      border: "1px solid #000000",
+                      backgroundColor: "#0C3D3D",
+                      border: "1px solid #0C3D3D",
                       minHeight: "52px",
                       padding: "10px 24px",
                       cursor: "pointer",
@@ -646,7 +646,7 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange, isMob
     // Add Goop Credit from reward if applicable
     const achievement = achievements.find(a => a.id === id);
     if (achievement) {
-      const match = achievement.reward.match(/\+\$(\d+(?:\.\d+)?)\s*Goop Credit/i);
+      const match = achievement.reward.match(/\+?\$(\d+(?:\.\d+)?)\s*Goop Credit/i);
       if (match) {
         const dollars = parseFloat(match[1]);
         const newTotal = Math.round((currentPointsRef.current + dollars) * 100) / 100;
@@ -794,9 +794,9 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange, isMob
 /* ─── Voting data ─── */
 const allVotingQuestions: { question: string; options: string[]; images?: string[] }[] = [
   {
-    question: "Which of goop\u2019s lifestyle categories are you most interested in?",
+    question: "Which of goop's lifestyle categories are you most interested in?",
     options: ["Beauty", "Fashion", "Wellness & Home"],
-    images: ["/goop-moisturizer-collection.png", "/elegant-neck-portrait-bw.avif", "/sunset-mountain-meditation.avif"],
+    images: ["/goop-moisturizer-collection.png", "/goop-full-collection.png", "/goop-martini-bath-soak.png"],
   },
   {
     question: "Which skincare step do you never skip?",
@@ -880,7 +880,7 @@ function VotingPointsEarned() {
           cx="14"
           cy="14"
           r="14"
-          fill="#000000"
+          fill="#0C3D3D"
           style={{
             transformOrigin: "14px 14px",
             animation: "achieveCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
@@ -959,7 +959,7 @@ function VotingComplete({ totalEarned, questionVisible }: { totalEarned: number;
           fontSize: "18px",
           fontWeight: 600,
           color: "#ffffff",
-          backgroundColor: "#000000",
+          backgroundColor: "#0C3D3D",
           padding: "0 32px",
           minHeight: "52px",
           borderRadius: "999px",
@@ -1060,7 +1060,7 @@ function VotingVersion1({
                       width: "100%",
                       aspectRatio: "3 / 3.5",
                       cursor: selectedOption ? "default" : "pointer",
-                      boxShadow: isSelected ? "inset 0 0 0 1px #000000" : isHovered ? "inset 0 0 0 1px #000000" : "inset 0 0 0 1px #d4e0df",
+                      boxShadow: isSelected ? "inset 0 0 0 1px #0C3D3D" : isHovered ? "inset 0 0 0 1px #0C3D3D" : "inset 0 0 0 1px #d4e0df",
                       overflow: "hidden",
                       transition: "box-shadow 0.2s ease",
                       position: "relative",
@@ -1087,9 +1087,9 @@ function VotingVersion1({
                       fontFamily: "var(--font-sans)",
                       fontSize: "18px",
                       fontWeight: 600,
-                      color: isSelected ? "#ffffff" : "#000000",
-                      backgroundColor: isSelected ? "#000000" : "transparent",
-                      border: isSelected ? "1px solid #000000" : isHovered ? "1px solid #000000" : "1px solid #000000",
+                      color: isSelected ? "#ffffff" : "#0C3D3D",
+                      backgroundColor: isSelected ? "#0C3D3D" : "transparent",
+                      border: isSelected ? "1px solid #0C3D3D" : isHovered ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
                       minHeight: "52px",
                       padding: "0 32px",
                       borderRadius: "999px",
@@ -1196,9 +1196,9 @@ function VotingVersion2({
                     fontFamily: "var(--font-sans)",
                     fontSize: votingMobile ? "16px" : "18px",
                     fontWeight: 500,
-                    color: isSelected ? "#ffffff" : "#000000",
-                    backgroundColor: isSelected ? "#000000" : "#ffffff",
-                    border: isSelected ? "1px solid #000000" : isHovered ? "1px solid #000000" : "1px solid #000000",
+                    color: isSelected ? "#ffffff" : "#0C3D3D",
+                    backgroundColor: isSelected ? "#0C3D3D" : "#ffffff",
+                    border: isSelected ? "1px solid #0C3D3D" : isHovered ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
                     padding: votingMobile ? "16px 20px" : "24px 30px",
                     minHeight: votingMobile ? "48px" : "52px",
                     cursor: selectedOption ? "default" : "pointer",
@@ -1325,8 +1325,8 @@ function VotingVersion3({
                 fontSize: "18px",
                 fontWeight: 600,
                 color: "#ffffff",
-                backgroundColor: submitHovered ? "#155050" : "#000000",
-                border: "1px solid #000000",
+                backgroundColor: submitHovered ? "#155050" : "#0C3D3D",
+                border: "1px solid #0C3D3D",
                 minHeight: "52px",
                 borderRadius: "999px",
                 padding: "0 32px",
@@ -1627,7 +1627,7 @@ function RewardPreview({ reward, daysUntilReward, isMobile }: { reward: { name: 
         <p style={{ fontFamily: "var(--font-sans)", fontSize: "26px", fontWeight: 400, color: "#000000", margin: "0 0 10px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
           {reward.name}
         </p>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "#000000", margin: 0, lineHeight: 1 }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "#0C3D3D", margin: 0, lineHeight: 1 }}>
           {daysUntilReward === 0 ? "Unlocked today" : `${daysUntilReward} day${daysUntilReward === 1 ? "" : "s"} away`}
         </p>
       </div>
@@ -1651,7 +1651,7 @@ function CheckInButton({ onCheckIn, showChecked, rate, checkInHovered, setCheckI
       {showChecked ? (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", animation: "streakCheckedIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }}>
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style={{ overflow: "visible" }}>
-            <circle cx="20" cy="20" r="19" fill="#000000" style={{ transformOrigin: "20px 20px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
+            <circle cx="20" cy="20" r="19" fill="#0C3D3D" style={{ transformOrigin: "20px 20px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
             <path d="M12 21L17.5 26.5L28 14" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "streakDrawCheck 0.4s ease 0.25s forwards" }} />
           </svg>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.3s both" }}>
@@ -1671,7 +1671,7 @@ function CheckInButton({ onCheckIn, showChecked, rate, checkInHovered, setCheckI
             fontSize: "18px",
             fontWeight: 400,
             color: "#ffffff",
-            backgroundColor: checkInHovered ? "#155050" : "#000000",
+            backgroundColor: checkInHovered ? "#155050" : "#0C3D3D",
             border: "none",
             minHeight: "52px",
             padding: "0 40px",
@@ -1803,7 +1803,7 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
             display: "inline-flex",
             alignItems: "center",
             gap: isMobile ? "8px" : "10px",
-            backgroundColor: "#000000",
+            backgroundColor: "#0C3D3D",
             borderRadius: "999px",
             padding: isMobile ? "10px 20px" : "12px 24px",
             animation: celebrating ? "streakPillPop 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none",
@@ -1825,7 +1825,7 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
                 const dist = 40 + Math.random() * 100;
                 const dx = Math.cos(angle) * dist;
                 const dy = Math.sin(angle) * dist;
-                const colors = ["#000000", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#3da88a", "#276b5d", "#E8913A"];
+                const colors = ["#0C3D3D", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#3da88a", "#276b5d", "#E8913A"];
                 const delay = i * 0.008;
                 const dur = 1.0 + Math.random() * 0.5;
                 return (
@@ -1855,7 +1855,7 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
       {/* Progress bar — flush dots, absolute day milestones */}
       <div style={{ position: "relative", marginBottom: "56px", marginLeft: isMobile ? "12px" : "0", marginRight: isMobile ? "12px" : "0" }}>
         <div style={{ height: "6px", backgroundColor: "#e8eeed", borderRadius: "3px", overflow: "hidden" }}>
-          <div style={{ height: "100%", width: `${v1BarProgress}%`, backgroundColor: "#000000", borderRadius: "3px", transition: s.animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none" }} />
+          <div style={{ height: "100%", width: `${v1BarProgress}%`, backgroundColor: "#0C3D3D", borderRadius: "3px", transition: s.animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none" }} />
         </div>
 
         {/* Dots — 0%, 50%, 100% flush with bar edges */}
@@ -1876,9 +1876,9 @@ function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: 
                 cursor: "default",
               }}
             >
-              <div style={{ width: "16px", height: "16px", borderRadius: "50%", backgroundColor: isReached ? "#000000" : "#d4e0df", border: isReached ? "3px solid #000000" : "3px solid #ffffff", boxShadow: "0 0 0 1px #d4e0df", transition: "background-color 0.5s ease" }} />
+              <div style={{ width: "16px", height: "16px", borderRadius: "50%", backgroundColor: isReached ? "#0C3D3D" : "#d4e0df", border: isReached ? "3px solid #0C3D3D" : "3px solid #ffffff", boxShadow: "0 0 0 1px #d4e0df", transition: "background-color 0.5s ease" }} />
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "absolute", top: "22px", left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: isReached ? 700 : 500, color: isReached ? "#000000" : "#999", lineHeight: 1 }}>{m.label}</span>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: isReached ? 700 : 500, color: isReached ? "#0C3D3D" : "#999", lineHeight: 1 }}>{m.label}</span>
                 <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 400, color: "#999", lineHeight: 1, marginTop: "4px" }}>{m.rate}</span>
               </div>
               {hoveredDot === i && (
@@ -1939,8 +1939,8 @@ function DailyStreakV2({ onStreakChange, isMobile }: { onStreakChange: (streak: 
               key={t.label}
               style={{
                 flex: 1,
-                border: isActive ? "2px solid #000000" : "1px solid #d4e0df",
-                backgroundColor: isActive ? "#000000" : "#ffffff",
+                border: isActive ? "2px solid #0C3D3D" : "1px solid #d4e0df",
+                backgroundColor: isActive ? "#0C3D3D" : "#ffffff",
                 padding: isMobile ? "20px" : "28px 24px",
                 display: "flex",
                 flexDirection: "column",
@@ -1956,7 +1956,7 @@ function DailyStreakV2({ onStreakChange, isMobile }: { onStreakChange: (streak: 
                   Active
                 </span>
               )}
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "36px" : "44px", fontWeight: 600, color: isActive ? "#ffffff" : isPast ? "#000000" : "#d4e0df", lineHeight: 1, letterSpacing: "-0.02em", transition: "color 0.4s ease" }}>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "36px" : "44px", fontWeight: 600, color: isActive ? "#ffffff" : isPast ? "#0C3D3D" : "#d4e0df", lineHeight: 1, letterSpacing: "-0.02em", transition: "color 0.4s ease" }}>
                 {t.label}
               </span>
               <span style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 500, color: isActive ? "rgba(255,255,255,0.9)" : "#000000", lineHeight: 1, marginTop: "10px" }}>
@@ -1975,7 +1975,7 @@ function DailyStreakV2({ onStreakChange, isMobile }: { onStreakChange: (streak: 
         <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 500, color: "#999", lineHeight: 1 }}>
           Today&rsquo;s check-in earns{" "}
         </span>
-        <span style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#000000", lineHeight: 1 }}>
+        <span style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#0C3D3D", lineHeight: 1 }}>
           +${s.tier.rate.toFixed(2)} Goop Credit
         </span>
       </div>
@@ -2023,7 +2023,7 @@ function DailyStreakV3({ onStreakChange, isMobile }: { onStreakChange: (streak: 
             width: isMobile ? "110px" : "130px",
             height: isMobile ? "110px" : "130px",
             borderRadius: "50%",
-            backgroundColor: "#000000",
+            backgroundColor: "#0C3D3D",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -2043,7 +2043,7 @@ function DailyStreakV3({ onStreakChange, isMobile }: { onStreakChange: (streak: 
       {/* Progress bar with dots */}
       <div style={{ position: "relative", marginBottom: "24px", padding: isMobile ? "0 16px" : "0 24px" }}>
         <div style={{ height: "6px", backgroundColor: "#e8eeed", borderRadius: "3px", overflow: "hidden" }}>
-          <div style={{ height: "100%", width: `${s.barProgress}%`, backgroundColor: "#000000", borderRadius: "3px", transition: s.animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none" }} />
+          <div style={{ height: "100%", width: `${s.barProgress}%`, backgroundColor: "#0C3D3D", borderRadius: "3px", transition: s.animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none" }} />
         </div>
         {milestones.map((m, i) => {
           const isReached = s.cycleDay >= m.dayInCycle;
@@ -2061,8 +2061,8 @@ function DailyStreakV3({ onStreakChange, isMobile }: { onStreakChange: (streak: 
                 cursor: "default",
               }}
             >
-              <div style={{ width: "16px", height: "16px", borderRadius: "50%", backgroundColor: isReached ? "#000000" : "#d4e0df", border: isReached ? "3px solid #000000" : "3px solid #ffffff", boxShadow: "0 0 0 1px #d4e0df", transition: "background-color 0.5s ease" }} />
-              <span style={{ position: "absolute", top: "22px", left: "50%", transform: "translateX(-50%)", fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: isReached ? 700 : 500, color: isReached ? "#000000" : "#999", whiteSpace: "nowrap", lineHeight: 1 }}>
+              <div style={{ width: "16px", height: "16px", borderRadius: "50%", backgroundColor: isReached ? "#0C3D3D" : "#d4e0df", border: isReached ? "3px solid #0C3D3D" : "3px solid #ffffff", boxShadow: "0 0 0 1px #d4e0df", transition: "background-color 0.5s ease" }} />
+              <span style={{ position: "absolute", top: "22px", left: "50%", transform: "translateX(-50%)", fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: isReached ? 700 : 500, color: isReached ? "#0C3D3D" : "#999", whiteSpace: "nowrap", lineHeight: 1 }}>
                 {m.label}
               </span>
               {hoveredDot === i && (
@@ -2462,7 +2462,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
             top: `${8 + 47}px`,
             left: 0,
             height: "3px",
-            backgroundColor: "#000000",
+            backgroundColor: "#0C3D3D",
             zIndex: 1,
             transition: "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
             width: `${progressWidth}px`,
@@ -2503,9 +2503,9 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                         position: "relative",
                         cursor: isClickable || (day.isRewardEarned && !day.isRewardClaimed) ? "pointer" : "default",
                         border: day.isToday
-                          ? "3px solid #000000"
+                          ? "3px solid #0C3D3D"
                           : day.isChecked
-                              ? "3px solid #000000"
+                              ? "3px solid #0C3D3D"
                               : "3px solid #d4e0df",
                         backgroundColor: "#ffffff",
                         boxShadow: day.isToday
@@ -2536,7 +2536,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                       {(day.isChecked || day.isAnimating) && !day.isRewardEarned && (
                         <div style={{ position: "absolute", inset: 0, borderRadius: "50%", backgroundColor: "rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                           <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
-                            <circle cx="14" cy="14" r="13" fill="#000000" style={{ transformOrigin: "14px 14px", animation: day.isAnimating ? "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" : "none" }} />
+                            <circle cx="14" cy="14" r="13" fill="#0C3D3D" style={{ transformOrigin: "14px 14px", animation: day.isAnimating ? "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" : "none" }} />
                             <path d="M8 14.5L12 18.5L20 9.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 24, strokeDashoffset: day.isAnimating ? 24 : 0, animation: day.isAnimating ? "streakDrawCheck 0.4s ease 0.25s forwards" : "none" }} />
                           </svg>
                         </div>
@@ -2555,7 +2555,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                       {day.isRewardClaiming && (
                         <div style={{ position: "absolute", inset: 0, borderRadius: "50%", backgroundColor: "rgba(0,0,0,0.3)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 3 }}>
                           <svg width="24" height="24" viewBox="0 0 28 28" fill="none" style={{ overflow: "visible" }}>
-                            <circle cx="14" cy="14" r="13" fill="#000000" style={{ transformOrigin: "14px 14px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
+                            <circle cx="14" cy="14" r="13" fill="#0C3D3D" style={{ transformOrigin: "14px 14px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
                             <path d="M8 14.5L12 18.5L20 9.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 24, strokeDashoffset: 24, animation: "streakDrawCheck 0.4s ease 0.25s forwards" }} />
                           </svg>
                         </div>
@@ -2565,7 +2565,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                       {day.isRewardClaimed && (
                         <div style={{ position: "absolute", bottom: "-2px", right: "-2px", zIndex: 4 }}>
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <circle cx="8" cy="8" r="8" fill="#000000" />
+                            <circle cx="8" cy="8" r="8" fill="#0C3D3D" />
                             <path d="M4.5 8.5L7 11L11.5 5.5" stroke="#ffffff" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </div>
@@ -2582,7 +2582,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                             const dx = Math.cos(angle) * dist;
                             const dy = Math.sin(angle) * dist;
                             const spin = 180 + Math.random() * 540;
-                            const colors = ["#000000", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#3da88a"];
+                            const colors = ["#0C3D3D", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#3da88a"];
                             return (
                               <div
                                 key={i}
@@ -2612,8 +2612,8 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                         width: day.isToday ? "22px" : day.isChecked || day.isAnimating ? "16px" : "14px",
                         height: day.isToday ? "22px" : day.isChecked || day.isAnimating ? "16px" : "14px",
                         borderRadius: "50%",
-                        backgroundColor: day.isChecked || day.isAnimating ? "#000000" : day.isToday ? "#ffffff" : "#d4e0df",
-                        border: day.isToday ? "3px solid #000000" : "none",
+                        backgroundColor: day.isChecked || day.isAnimating ? "#0C3D3D" : day.isToday ? "#ffffff" : "#d4e0df",
+                        border: day.isToday ? "3px solid #0C3D3D" : "none",
                         boxShadow: day.isToday ? "0 0 0 3px rgba(12,61,61,0.2)" : "none",
                         cursor: isClickable ? "pointer" : "default",
                         transition: "background-color 0.5s ease, box-shadow 0.5s ease, width 0.5s ease, height 0.5s ease",
@@ -2689,8 +2689,8 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
                             fontSize: "12px",
                             fontWeight: 600,
                             color: "#ffffff",
-                            backgroundColor: "#000000",
-                            border: "1px solid #000000",
+                            backgroundColor: "#0C3D3D",
+                            border: "1px solid #0C3D3D",
                             padding: "8px 12px",
                             lineHeight: 1,
                             cursor: "pointer",
@@ -2729,7 +2729,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
         {showCheckedMessage ? (
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", animation: "streakCheckedIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }}>
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style={{ overflow: "visible" }}>
-              <circle cx="20" cy="20" r="19" fill="#000000" style={{ transformOrigin: "20px 20px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
+              <circle cx="20" cy="20" r="19" fill="#0C3D3D" style={{ transformOrigin: "20px 20px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
               <path d="M12 21L17.5 26.5L28 14" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "streakDrawCheck 0.4s ease 0.25s forwards" }} />
             </svg>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.3s both" }}>
@@ -2749,7 +2749,7 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
               fontSize: "18px",
               fontWeight: 600,
               color: "#ffffff",
-              backgroundColor: checkInHovered ? "#155050" : "#000000",
+              backgroundColor: checkInHovered ? "#155050" : "#0C3D3D",
               border: "none",
               minHeight: "52px",
               padding: "0 40px",
@@ -2808,51 +2808,14 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
 /* ─── Activities Section ─── */
 export default function Activities() {
   const isMobile = useIsMobile();
-  const [activeTab, setActiveTab] = useState<"streak" | "achievements" | "voting">("streak");
-  const [streakTabHovered, setStreakTabHovered] = useState(false);
-  const [achievementsTabHovered, setAchievementsTabHovered] = useState(false);
-  const [votingTabHovered, setVotingTabHovered] = useState(false);
   const [claimedCount, setClaimedCount] = useState(0);
   const [votingAnsweredCount, setVotingAnsweredCount] = useState(0);
-  const [streakStreak, setStreakStreak] = useState(0);
   const [hasClaimable, setHasClaimable] = useState(false);
-  const [streakVersion, setStreakVersion] = useState(1);
-
-  // Listen for version switching from Header dropdown
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const version = (e as CustomEvent).detail?.version;
-      if (version >= 1 && version <= 3) setStreakVersion(version);
-    };
-    window.addEventListener("activities-version", handler);
-    return () => window.removeEventListener("activities-version", handler);
-  }, []);
 
   // Dispatch event for StickyNav red dot
   useEffect(() => {
     window.dispatchEvent(new CustomEvent("activities-claimable", { detail: { hasClaimable } }));
   }, [hasClaimable]);
-
-  // Listen for tab switch from Featured section
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const tab = (e as CustomEvent).detail?.tab;
-      if (tab === "streak" || tab === "achievements" || tab === "voting") {
-        setActiveTab(tab);
-      }
-    };
-    window.addEventListener("activities-tab-switch", handler);
-    return () => window.removeEventListener("activities-tab-switch", handler);
-  }, []);
-
-  const switchTab = useCallback((tab: "streak" | "achievements" | "voting") => {
-    setActiveTab(tab);
-    const el = document.getElementById("section-activities");
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 76 - 20;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  }, []);
 
   return (
     <section
@@ -2861,7 +2824,7 @@ export default function Activities() {
         padding: isMobile ? "0px 16px 60px" : "0px 48px 100px",
       }}
     >
-      {/* ═══ ACHIEVEMENTS SECTION ═══ */}
+      {/* Achievements Title */}
       <h2
         style={{
           fontFamily: "var(--font-sans)",
@@ -2880,6 +2843,7 @@ export default function Activities() {
         Achievements
       </h2>
 
+      {/* Achievements Subtext */}
       <p
         style={{
           fontFamily: "var(--font-sans)",
@@ -2903,9 +2867,10 @@ export default function Activities() {
           margin: "0 auto",
         }}
       >
+        {/* Achievements content */}
         <AchievementsContent onClaimedCountChange={setClaimedCount} onHasClaimableChange={setHasClaimable} isMobile={isMobile} />
 
-        {/* ═══ VOTING SECTION ═══ */}
+        {/* Voting Title */}
         <h2
           style={{
             fontFamily: "var(--font-sans)",
@@ -2914,13 +2879,14 @@ export default function Activities() {
             lineHeight: 1.1,
             color: "#000000",
             textAlign: "left",
-            margin: isMobile ? "48px 0 12px 0" : "80px 0 12px 0",
+            margin: isMobile ? "60px 0 12px 0" : "80px 0 12px 0",
             letterSpacing: "-0.01em",
           }}
         >
           Voting
         </h2>
 
+        {/* Voting Subtext */}
         <p
           style={{
             fontFamily: "var(--font-sans)",
@@ -2935,6 +2901,7 @@ export default function Activities() {
           Have your say and earn +$0.25 Goop Credit per vote.
         </p>
 
+        {/* Voting content */}
         <div
           style={{
             border: "1px solid #d4e0df",

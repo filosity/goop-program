@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
-import { User, Instagram, Tiktok, Star, GiftBox, Phone, ShoppingBag, OpenBook, Headphones, ArrowLeft, ArrowRight, DiscountTag } from "@vectoricons/atlas-icons-react";
+import { useState, useCallback, useEffect } from "react";
+import { User, Instagram, Tiktok, Star, GiftBox, Phone, ShoppingBag, OpenBook, Headphones, DiscountTag } from "@vectoricons/atlas-icons-react";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
 const earnCards = [
@@ -71,7 +71,7 @@ const earnCards = [
   {
     title: "Subscribe\nto Email",
     points: "TBD",
-    icon: "phone",
+    icon: "book",
     action: "Submit",
     image: "/earn6.jpg",
     input: "Your email address",
@@ -81,9 +81,9 @@ const earnCards = [
     title: "Happy\nBirthday",
     points: "+$0.50 Goop Credit",
     icon: "gift",
-    action: null,
+    action: "Submit",
     image: "/earn7.jpg",
-    input: null,
+    input: "birthday",
     description: null,
   },
   {
@@ -91,7 +91,7 @@ const earnCards = [
     points: "+$2 Goop Credit",
     icon: "phone",
     action: "Submit",
-    image: "/earn6.jpg",
+    image: "/earn10.jpg",
     input: "Your phone number",
     description: null,
   },
@@ -100,16 +100,16 @@ const earnCards = [
     points: "+$10 Goop Credit",
     icon: "bag",
     action: null,
-    image: "/earn10.jpg",
+    image: "/earn1.jpg",
     input: null,
     description: null,
   },
   {
     title: "Download Apple\nWallet Pass",
     points: "+$3 Goop Credit",
-    icon: "star",
-    action: null,
-    image: "/earn1.jpg",
+    icon: "phone",
+    action: "Download",
+    image: "/earn2.jpg",
     input: null,
     description: null,
   },
@@ -118,7 +118,7 @@ const earnCards = [
     points: "TBD",
     icon: "star",
     action: null,
-    image: "/earn2.jpg",
+    image: "/earn5.jpg",
     input: null,
     description: null,
   },
@@ -245,7 +245,7 @@ function EarnCard({
             display: "inline-flex",
             alignItems: "center",
             gap: "8px",
-            backgroundColor: "#000000",
+            backgroundColor: "#0C3D3D",
             borderRadius: "999px",
             padding: "8px 16px",
             zIndex: 2,
@@ -398,7 +398,7 @@ function EarnCard({
                 fontFamily: "var(--font-sans)",
                 fontSize: "18px",
                 fontWeight: 600,
-                color: "#000000",
+                color: "#0C3D3D",
                 backgroundColor: "#ffffff",
                 border: "none",
                 minHeight: "52px",
@@ -459,645 +459,11 @@ function EarnCard({
   );
 }
 
-/* ─── Redeem tab content ─── */
-function RedeemContent({
-  totalPoints,
-  onPointsChange,
-  isMobile = false,
-}: {
-  totalPoints: number;
-  onPointsChange: (newTotal: number) => void;
-  isMobile?: boolean;
-}) {
-  const [sliderValue, setSliderValue] = useState(0);
-  const [redeemHovered, setRedeemHovered] = useState(false);
-  const [popup, setPopup] = useState<{
-    phase: "in" | "counting" | "done" | "out";
-    points: number;
-    credit: string;
-    displayPoints: number;
-  } | null>(null);
-  const countRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const handleRedeem = useCallback(() => {
-    if (sliderValue <= 0 || popup) return;
-    const redeemed = sliderValue;
-    const credit = redeemed.toFixed(2);
-    const newTotal = Math.round((totalPoints - redeemed) * 100) / 100;
-
-    setPopup({ phase: "in", points: redeemed, credit, displayPoints: 0 });
-    setSliderValue(0);
-    onPointsChange(newTotal);
-
-    // Phase: in → counting (after overlay fades in)
-    setTimeout(() => {
-      setPopup((p) => p ? { ...p, phase: "counting" } : null);
-
-      // Animate the points counting up
-      const steps = 30;
-      const stepTime = 40;
-      let step = 0;
-      countRef.current = setInterval(() => {
-        step++;
-        const progress = step / steps;
-        // Ease-out curve
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(eased * redeemed * 100) / 100;
-        setPopup((p) => p ? { ...p, displayPoints: current } : null);
-
-        if (step >= steps) {
-          if (countRef.current) clearInterval(countRef.current);
-          setPopup((p) => p ? { ...p, displayPoints: redeemed, phase: "done" } : null);
-
-          // Auto-close after pause
-          setTimeout(() => {
-            setPopup((p) => p ? { ...p, phase: "out" } : null);
-            setTimeout(() => setPopup(null), 500);
-          }, 2200);
-        }
-      }, stepTime);
-    }, 400);
-  }, [sliderValue, totalPoints, onPointsChange, popup]);
-
-  const maxPoints = totalPoints;
-  const dollarValue = sliderValue.toFixed(2);
-  const fillPercent = maxPoints > 0 ? (sliderValue / maxPoints) * 100 : 0;
-
-  return (
-    <>
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-        minHeight: isMobile ? "auto" : "520px",
-        width: "100%",
-      }}
-    >
-      {/* Left column — white */}
-      <div
-        style={{
-          backgroundColor: "#ffffff",
-          border: "1px solid #d4e0df",
-          padding: isMobile ? "40px 24px" : "72px 60px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
-        <span
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "16px",
-            fontWeight: 600,
-            color: "#000000",
-            margin: "0 0 24px 0",
-            lineHeight: 1,
-          }}
-        >
-          exchange
-        </span>
-
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: isMobile ? "24px" : "32px",
-            fontWeight: 400,
-            color: "#000000",
-            margin: "0 0 14px 0",
-            lineHeight: 1.2,
-            letterSpacing: "-0.01em",
-          }}
-        >
-          Your Goop Credit for a discount
-        </p>
-
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "16px",
-            fontWeight: 400,
-            color: "#000000",
-            margin: "0 0 36px 0",
-            lineHeight: 1.6,
-          }}
-        >
-          Use the slider to choose how many Goop Credit to convert.
-        </p>
-
-        {/* Divider */}
-        <div style={{ height: "1px", backgroundColor: "#d4e0df", margin: "0 0 28px 0" }} />
-
-        {/* Available balance */}
-        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", margin: "0 0 28px 0" }}>
-          <span
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "16px",
-              fontWeight: 600,
-              color: "#000000",
-              lineHeight: 1,
-            }}
-          >
-            available
-          </span>
-          <span
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "28px",
-              fontWeight: 400,
-              color: "#000000",
-              lineHeight: 1,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            ${totalPoints.toFixed(2)}
-          </span>
-        </div>
-
-      </div>
-
-      {/* Right column — beige */}
-      <div
-        style={{
-          backgroundColor: "#F6F5F1",
-          padding: isMobile ? "40px 24px" : "72px 60px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-          border: "1px solid #d4e0df",
-          borderLeft: isMobile ? "1px solid #d4e0df" : "none",
-          borderTop: isMobile ? "none" : "1px solid #d4e0df",
-        }}
-      >
-        {/* Hero dollar value */}
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "16px",
-            fontWeight: 600,
-            color: "#000000",
-            margin: "0 0 16px 0",
-            lineHeight: 1,
-          }}
-        >
-          you receive
-        </p>
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: isMobile ? "48px" : "64px",
-            fontWeight: 400,
-            color: "#000000",
-            margin: 0,
-            lineHeight: 1,
-            letterSpacing: "-0.03em",
-            transition: "opacity 0.2s ease",
-            opacity: sliderValue > 0 ? 1 : 0.15,
-          }}
-        >
-          ${dollarValue}
-        </p>
-
-        {/* Slider area */}
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            padding: "28px 0 0",
-            marginTop: "40px",
-          }}
-        >
-          {/* Floating pill */}
-          <div
-            style={{
-              position: "absolute",
-              top: "-2px",
-              left: `calc(${fillPercent}% + ${9 - fillPercent * 0.18}px)`,
-              transform: "translateX(-50%)",
-              pointerEvents: "none",
-              opacity: sliderValue > 0 ? 1 : 0,
-              transition: "opacity 0.25s ease",
-            }}
-          >
-            <div
-              style={{
-                backgroundColor: "#000000",
-                color: "#ffffff",
-                fontFamily: "var(--font-sans)",
-                fontSize: "12px",
-                fontWeight: 600,
-                padding: "6px 14px",
-                borderRadius: "999px",
-                whiteSpace: "nowrap",
-                lineHeight: 1,
-                letterSpacing: "0.01em",
-              }}
-            >
-              ${sliderValue.toFixed(2)}
-            </div>
-            <div
-              style={{
-                width: 0,
-                height: 0,
-                borderLeft: "4px solid transparent",
-                borderRight: "4px solid transparent",
-                borderTop: "4px solid #000000",
-                margin: "0 auto",
-              }}
-            />
-          </div>
-
-          <input
-            type="range"
-            min={0}
-            max={maxPoints}
-            step={0.01}
-            value={sliderValue}
-            onChange={(e) => setSliderValue(Number(e.target.value))}
-            className="redeem-slider"
-            style={{ width: "100%", cursor: "pointer" }}
-          />
-
-          {/* Min/max */}
-          <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 400, color: "#b0ada8" }}>$0</span>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 400, color: "#b0ada8" }}>${maxPoints.toFixed(2)}</span>
-          </div>
-        </div>
-
-        {/* Button */}
-        <div style={{ display: "flex", justifyContent: "center", marginTop: "36px" }}>
-          <button
-            onClick={handleRedeem}
-            onMouseEnter={() => setRedeemHovered(true)}
-            onMouseLeave={() => setRedeemHovered(false)}
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "18px",
-              fontWeight: 600,
-              color: redeemHovered ? "#000000" : "#ffffff",
-              backgroundColor: redeemHovered ? "#000000" : "#000000",
-              border: "none",
-              minHeight: "52px",
-              padding: "0 36px",
-              borderRadius: "999px",
-              cursor: sliderValue > 0 ? "pointer" : "default",
-              lineHeight: 1,
-              transition: "background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease",
-              opacity: sliderValue > 0 ? 1 : 0.35,
-            }}
-          >
-            Apply To Subscription →
-          </button>
-        </div>
-
-      </div>
-    </div>
-
-    {/* ─── Redeem success overlay ─── */}
-    {popup && (
-      <div
-        onClick={() => {
-          if (popup.phase !== "in") {
-            setPopup({ ...popup, phase: "out" });
-            setTimeout(() => setPopup(null), 500);
-          }
-        }}
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 9999,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: popup.phase === "out" ? "rgba(0,0,0,0)" : "rgba(0,0,0,0.6)",
-          transition: "background-color 0.5s ease",
-          animation: popup.phase === "in" ? "redeemOverlayIn 0.4s ease forwards" : undefined,
-        }}
-      >
-        <div
-          onClick={(e) => e.stopPropagation()}
-          style={{
-            position: "relative",
-            backgroundColor: "#ffffff",
-            padding: isMobile ? "40px 24px" : "64px 72px",
-            minWidth: isMobile ? "0" : "440px",
-            maxWidth: isMobile ? "calc(100% - 32px)" : "480px",
-            width: isMobile ? "calc(100% - 32px)" : "auto",
-            textAlign: "center",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            opacity: popup.phase === "out" ? 0 : 1,
-            transform: popup.phase === "out"
-              ? "scale(0.97) translateY(10px)"
-              : popup.phase === "in"
-                ? undefined
-                : "scale(1) translateY(0)",
-            transition: "opacity 0.4s ease, transform 0.4s ease",
-            animation: popup.phase === "in" ? "redeemCardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards" : undefined,
-          }}
-        >
-          {/* Close button */}
-          <button
-            onClick={() => {
-              setPopup({ ...popup, phase: "out" });
-              setTimeout(() => setPopup(null), 500);
-            }}
-            style={{
-              position: "absolute",
-              top: "20px",
-              right: "20px",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              padding: "4px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              opacity: 0.3,
-              transition: "opacity 0.2s ease",
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.opacity = "0.3"; }}
-          >
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M4 4L14 14M14 4L4 14" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-          </button>
-
-          {/* Checkmark circle */}
-          <div
-            style={{
-              width: "72px",
-              height: "72px",
-              borderRadius: "50%",
-              backgroundColor: "#000000",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginBottom: "32px",
-              animation: popup.phase !== "out" ? "redeemCirclePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both" : undefined,
-            }}
-          >
-            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-              <path
-                d="M8 15.5L13 20.5L22 11.5"
-                stroke="#ffffff"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                style={{
-                  strokeDasharray: 28,
-                  strokeDashoffset: 28,
-                  animation: popup.phase !== "out" ? "redeemCheckDraw 0.4s ease 0.55s forwards" : undefined,
-                }}
-              />
-            </svg>
-          </div>
-
-          {/* Title */}
-          <p
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: isMobile ? "24px" : "32px",
-              fontWeight: 400,
-              color: "#000000",
-              margin: "0 0 10px 0",
-              lineHeight: 1.2,
-              letterSpacing: "-0.01em",
-              animation: popup.phase !== "out" ? "redeemTextUp 0.4s ease 0.3s both" : undefined,
-            }}
-          >
-            Applied to subscription
-          </p>
-
-          {/* Subtitle */}
-          <p
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "17px",
-              fontWeight: 400,
-              color: "#000000",
-              margin: "0 0 40px 0",
-              lineHeight: 1.5,
-              animation: popup.phase !== "out" ? "redeemTextUp 0.4s ease 0.4s both" : undefined,
-            }}
-          >
-            {"Applied $" + popup.credit + " to your subscription as a discount."}
-          </p>
-
-          {/* Stats row */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: isMobile ? "20px" : "40px",
-              width: "100%",
-              padding: isMobile ? "20px 0" : "28px 0",
-              marginBottom: isMobile ? "24px" : "32px",
-              animation: popup.phase !== "out" ? "redeemTextUp 0.4s ease 0.5s both" : undefined,
-            }}
-          >
-            {/* Points */}
-            <div style={{ textAlign: "center" }}>
-              <p
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "16px",
-                  fontWeight: 600,
-                  color: "#aaaaaa",
-                  margin: "0 0 10px 0",
-                  lineHeight: 1,
-                }}
-              >
-                Goop Credit
-              </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: isMobile ? "28px" : "40px",
-                  fontWeight: 400,
-                  color: "#000000",
-                  margin: 0,
-                  lineHeight: 1,
-                  letterSpacing: "-0.02em",
-                  fontVariantNumeric: "tabular-nums",
-                }}
-              >
-                ${popup.displayPoints.toFixed(2)}
-              </p>
-            </div>
-
-            {/* Arrow */}
-            <svg
-              width="32"
-              height="12"
-              viewBox="0 0 32 12"
-              fill="none"
-              style={{ opacity: 0.25, flexShrink: 0 }}
-            >
-              <line x1="0" y1="6" x2="26" y2="6" stroke="#000000" strokeWidth="1" />
-              <polyline points="24,2 28,6 24,10" stroke="#000000" strokeWidth="1" fill="none" />
-            </svg>
-
-            {/* Credit */}
-            <div style={{ textAlign: "center" }}>
-              <p
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "16px",
-                  fontWeight: 600,
-                  color: "#aaaaaa",
-                  margin: "0 0 10px 0",
-                  lineHeight: 1,
-                }}
-              >
-                applied
-              </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: isMobile ? "28px" : "40px",
-                  fontWeight: 400,
-                  color: "#000000",
-                  margin: 0,
-                  lineHeight: 1,
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                ${popup.credit}
-              </p>
-            </div>
-          </div>
-
-          {/* New balance */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "baseline",
-              justifyContent: "space-between",
-              width: "100%",
-              animation: popup.phase !== "out" ? "redeemTextUp 0.4s ease 0.6s both" : undefined,
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "15px",
-                fontWeight: 600,
-                color: "#aaaaaa",
-                lineHeight: 1,
-              }}
-            >
-              new balance
-            </span>
-            <span
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "24px",
-                fontWeight: 400,
-                color: "#000000",
-                lineHeight: 1,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              ${totalPoints.toFixed(2)}
-            </span>
-          </div>
-        </div>
-      </div>
-    )}
-
-    <style>{`
-      .redeem-slider {
-        -webkit-appearance: none;
-        appearance: none;
-        height: 2px;
-        background: linear-gradient(
-          to right,
-          #000000 0%,
-          #000000 ${fillPercent}%,
-          #dddad6 ${fillPercent}%,
-          #dddad6 100%
-        );
-        outline: none;
-        border: none;
-        border-radius: 1px;
-      }
-      .redeem-slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: #000000;
-        cursor: pointer;
-        border: none;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
-      }
-      .redeem-slider::-webkit-slider-thumb:hover {
-        transform: scale(1.3);
-        box-shadow: 0 3px 12px rgba(0,0,0,0.25);
-      }
-      .redeem-slider::-webkit-slider-thumb:active {
-        transform: scale(1.15);
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      }
-      .redeem-slider::-moz-range-thumb {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: #000000;
-        cursor: pointer;
-        border: none;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      }
-      .redeem-slider::-moz-range-track {
-        height: 2px;
-        background: #dddad6;
-        border: none;
-        border-radius: 1px;
-      }
-      .redeem-slider::-moz-range-progress {
-        height: 2px;
-        background: #000000;
-        border: none;
-      }
-      @keyframes redeemOverlayIn {
-        from { background-color: rgba(0,0,0,0); }
-        to { background-color: rgba(0,0,0,0.6); }
-      }
-      @keyframes redeemCardIn {
-        from { opacity: 0; transform: translateY(24px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      @keyframes redeemCirclePop {
-        0% { transform: scale(0); opacity: 0; }
-        70% { transform: scale(1.08); opacity: 1; }
-        100% { transform: scale(1); opacity: 1; }
-      }
-      @keyframes redeemCheckDraw {
-        to { stroke-dashoffset: 0; }
-      }
-      @keyframes redeemTextUp {
-        from { opacity: 0; transform: translateY(14px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-    `}</style>
-    </>
-  );
-}
-
 /* ─── Exclusive merch data ─── */
 const freeProducts = [
-  { name: "Product Name", points: 0, image: "/goop-face-oil-dropper.png", tierRequired: null, discount: null as string | null },
-  { name: "Product Name", points: 0, image: "/goop-retinol-duo.png", tierRequired: null, discount: null as string | null },
-  { name: "Product Name", points: 0, image: "/goop-martini-bath-soak.png", tierRequired: 3, discount: null as string | null },
+  { name: "Product Name", points: 30, image: "/goop-face-oil-dropper.png", tierRequired: null, discount: null as string | null },
+  { name: "Product Name", points: 20, image: "/goop-retinol-duo.png", tierRequired: null, discount: null as string | null },
+  { name: "Product Name", points: 10, image: "/goop-martini-bath-soak.png", tierRequired: 3, discount: null },
 ];
 
 /* ─── Free products tab content (carousel) ─── */
@@ -1115,50 +481,6 @@ function FreeProductsContent({
   const [phases, setPhases] = useState<Record<number, "idle" | "loading" | "check" | "done">>(
     () => Object.fromEntries(freeProducts.map((_, i) => [i, "idle"]))
   );
-  const [leftArrowHovered, setLeftArrowHovered] = useState(false);
-  const [rightArrowHovered, setRightArrowHovered] = useState(false);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
-  const dragStartX = useRef(0);
-  const dragScrollLeft = useRef(0);
-  const hasDragged = useRef(false);
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    const el = carouselRef.current;
-    if (!el) return;
-    e.preventDefault();
-    isDragging.current = true;
-    hasDragged.current = false;
-    dragStartX.current = e.pageX - el.offsetLeft;
-    dragScrollLeft.current = el.scrollLeft;
-    el.style.scrollBehavior = "auto";
-    el.style.cursor = "grabbing";
-    document.body.style.userSelect = "none";
-    document.body.style.webkitUserSelect = "none";
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging.current) return;
-    e.preventDefault();
-    const el = carouselRef.current;
-    if (!el) return;
-    const x = e.pageX - el.offsetLeft;
-    const walk = (x - dragStartX.current) * 1.5;
-    if (Math.abs(walk) > 5) hasDragged.current = true;
-    el.scrollLeft = dragScrollLeft.current - walk;
-  };
-
-  const handleMouseUp = () => {
-    isDragging.current = false;
-    const el = carouselRef.current;
-    if (el) {
-      el.style.scrollBehavior = "smooth";
-      el.style.cursor = "grab";
-    }
-    document.body.style.userSelect = "";
-    document.body.style.webkitUserSelect = "";
-  };
-
   const handleRedeem = (index: number, cost: number) => {
     if (totalPoints < cost) return;
     if (phases[index] !== "idle") return;
@@ -1232,7 +554,7 @@ function FreeProductsContent({
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "7px",
-                      backgroundColor: "#000000",
+                      backgroundColor: "#0C3D3D",
                       borderRadius: "999px",
                       padding: "10px 18px",
                       zIndex: 2,
@@ -1262,7 +584,7 @@ function FreeProductsContent({
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "7px",
-                      backgroundColor: "#000000",
+                      backgroundColor: "#0C3D3D",
                       borderRadius: "999px",
                       padding: "10px 18px",
                       zIndex: 2,
@@ -1352,7 +674,7 @@ function FreeProductsContent({
                       lineHeight: 1,
                     }}
                   >
-                    ${product.points} Goop Credit
+                    ${product.points} AG Credit
                   </p>
                 </div>
 
@@ -1380,10 +702,10 @@ function FreeProductsContent({
                         borderRadius: isCircle ? "50%" : "999px",
                         width: isCircle ? "52px" : "auto",
                         padding: isCircle ? "0" : "0 32px",
-                        border: canAfford || phase !== "idle" ? "1px solid #000000" : "1px solid #000000",
+                        border: canAfford || phase !== "idle" ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
                         cursor: !canAfford || phase !== "idle" ? "default" : "pointer",
-                        backgroundColor: canAfford || phase !== "idle" ? "#000000" : "transparent",
-                        color: canAfford || phase !== "idle" ? "#ffffff" : "#000000",
+                        backgroundColor: canAfford || phase !== "idle" ? "#0C3D3D" : "transparent",
+                        color: canAfford || phase !== "idle" ? "#ffffff" : "#0C3D3D",
                         opacity: !canAfford && phase === "idle" ? 0.3 : 1,
                         transition: "border-radius 0.4s cubic-bezier(0.4,0,0.2,1), width 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, background-color 0.2s ease",
                         display: "flex",
@@ -1427,7 +749,7 @@ function FreeProductsContent({
                           bottom: "calc(100% + 8px)",
                           left: "50%",
                           transform: "translateX(-50%) translateY(4px)",
-                          backgroundColor: "#000000",
+                          backgroundColor: "#0C3D3D",
                           color: "#ffffff",
                           fontFamily: "var(--font-sans)",
                           fontSize: "11px",
@@ -1441,7 +763,7 @@ function FreeProductsContent({
                           transition: "opacity 0.2s ease, transform 0.2s ease",
                         }}
                       >
-                        need ${(product.points - totalPoints).toFixed(2)} more Goop Credit
+                        need ${(product.points - totalPoints).toFixed(2)} more AG Credit
                         <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderTop: "4px solid #000000" }} />
                       </div>
                     )}
@@ -1457,454 +779,20 @@ function FreeProductsContent({
   );
 }
 
-/* ─── Upload Receipt tab content ─── */
-type UploadPhase = "idle" | "selected" | "uploading" | "success";
-
-function UploadReceiptContent({ isMobile = false }: { isMobile?: boolean }) {
-  const [phase, setPhase] = useState<UploadPhase>("idle");
-  const [fileName, setFileName] = useState("");
-  const [fileSize, setFileSize] = useState("");
-  const [dragOver, setDragOver] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
-  const [dropHovered, setDropHovered] = useState(false);
-  const [submitHovered, setSubmitHovered] = useState(false);
-  const [removeHovered, setRemoveHovered] = useState(false);
-  const [newUploadHovered, setNewUploadHovered] = useState(false);
-  const [historyHovered, setHistoryHovered] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const formatFileSize = (bytes: number) => {
-    if (bytes < 1024) return `${bytes} B`;
-    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-  };
-
-  const handleFileSelect = useCallback((file: File) => {
-    const validTypes = ["image/jpeg", "image/png", "image/heic", "application/pdf"];
-    const maxSize = 10 * 1024 * 1024;
-    if (!validTypes.includes(file.type) && !file.name.endsWith(".heic")) return;
-    if (file.size > maxSize) return;
-    setFileName(file.name);
-    setFileSize(formatFileSize(file.size));
-    setPhase("selected");
-  }, []);
-
-  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) handleFileSelect(file);
-    e.target.value = "";
-  }, [handleFileSelect]);
-
-  const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    setDragOver(false);
-    const file = e.dataTransfer.files?.[0];
-    if (file) handleFileSelect(file);
-  }, [handleFileSelect]);
-
-  const handleSubmit = useCallback(() => {
-    if (phase !== "selected") return;
-    setPhase("uploading");
-    setUploadProgress(0);
-    let progress = 0;
-    progressRef.current = setInterval(() => {
-      const increment = progress < 30 ? 4 : progress < 70 ? 1.5 : progress < 90 ? 3 : 5;
-      progress = Math.min(progress + increment + Math.random() * 2, 100);
-      setUploadProgress(progress);
-      if (progress >= 100) {
-        if (progressRef.current) clearInterval(progressRef.current);
-        setTimeout(() => setPhase("success"), 400);
-      }
-    }, 80);
-  }, [phase]);
-
-  const handleReset = useCallback(() => {
-    setPhase("idle");
-    setFileName("");
-    setFileSize("");
-    setUploadProgress(0);
-  }, []);
-
-  return (
-    <>
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-        minHeight: isMobile ? "auto" : "480px",
-        width: "100%",
-      }}
-    >
-      {/* Left — content */}
-      <div
-        style={{
-          backgroundColor: "#ffffff",
-          border: "1px solid #d4e0df",
-          padding: isMobile ? "40px 24px" : "64px 56px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
-        {phase === "idle" && (
-          <>
-            <span
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "16px",
-                fontWeight: 600,
-                color: "#000000",
-                margin: "0 0 20px 0",
-                lineHeight: 1,
-              }}
-            >
-              earn Goop Credit
-            </span>
-
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: isMobile ? "24px" : "32px",
-                fontWeight: 400,
-                color: "#000000",
-                margin: "0 0 14px 0",
-                lineHeight: 1.2,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              Upload your receipt
-            </p>
-
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "16px",
-                fontWeight: 400,
-                color: "#000000",
-                margin: "0 0 32px 0",
-                lineHeight: 1.6,
-              }}
-            >
-              Make a photo or scan of your receipt and upload.
-              <br />
-              10% cashback on all purchases.
-            </p>
-
-            {/* Drop zone */}
-            <div
-              onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
-              onDragLeave={() => setDragOver(false)}
-              onDrop={handleDrop}
-              onClick={() => fileInputRef.current?.click()}
-              onMouseEnter={() => setDropHovered(true)}
-              onMouseLeave={() => setDropHovered(false)}
-              style={{
-                border: `1.5px dashed ${dragOver ? "#000000" : "#d5d2ce"}`,
-                borderRadius: 0,
-                padding: "40px 32px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                backgroundColor: dragOver ? "rgba(0,0,0,0.02)" : dropHovered ? "#faf9f7" : "transparent",
-                transition: "border-color 0.25s ease, background-color 0.25s ease",
-              }}
-            >
-              <div
-                style={{
-                  width: "48px",
-                  height: "48px",
-                  borderRadius: "50%",
-                  backgroundColor: "#000000",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginBottom: "16px",
-                  transition: "transform 0.25s ease",
-                  transform: dragOver ? "scale(1.08)" : "scale(1)",
-                }}
-              >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 14V3M10 3L6 7M10 3L14 7" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M3 13V15C3 16.1046 3.89543 17 5 17H15C16.1046 17 17 16.1046 17 15V13" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "#000000", margin: "0 0 6px 0", lineHeight: 1 }}>
-                Drop your receipt here or{" "}
-                <span style={{ textDecoration: "underline", textUnderlineOffset: "2px" }}>browse</span>
-              </p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 400, color: "#aaaaaa", margin: 0, lineHeight: 1 }}>
-                JPG, PNG, HEIC, PDF &middot; Max 10MB
-              </p>
-            </div>
-
-            <input ref={fileInputRef} type="file" accept=".jpg,.jpeg,.png,.heic,.pdf" onChange={handleInputChange} style={{ display: "none" }} />
-          </>
-        )}
-
-        {phase === "selected" && (
-          <>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#000000", margin: "0 0 20px 0", lineHeight: 1 }}>
-              review &amp; submit
-            </span>
-
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "24px" : "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
-              Upload your receipt
-            </p>
-
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "14px" : "16px", fontWeight: 400, color: "#000000", margin: "0 0 32px 0", lineHeight: 1.6 }}>
-              Make a photo or scan of your receipt and upload.
-            </p>
-
-            {/* File chip */}
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", padding: "14px 18px", border: "1px solid #d4e0df", borderRadius: "10px", marginBottom: "12px", backgroundColor: "#faf9f7" }}>
-              <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "#000000", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M9 1H4C3.44772 1 3 1.44772 3 2V14C3 14.5523 3.44772 15 4 15H12C12.5523 15 13 14.5523 13 14V5L9 1Z" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M9 1V5H13" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 500, color: "#000000", margin: 0, lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{fileName}</p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 400, color: "#aaaaaa", margin: "3px 0 0 0", lineHeight: 1 }}>{fileSize}</p>
-              </div>
-              <button
-                onClick={handleReset}
-                onMouseEnter={() => setRemoveHovered(true)}
-                onMouseLeave={() => setRemoveHovered(false)}
-                aria-label="Remove file"
-                style={{ background: "none", border: "none", cursor: "pointer", padding: "4px", display: "flex", alignItems: "center", justifyContent: "center", opacity: removeHovered ? 1 : 0.4, transition: "opacity 0.2s ease" }}
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M4 4L12 12M12 4L4 12" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
-              </button>
-            </div>
-
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 400, color: "#bbbbbb", margin: "0 0 28px 0", lineHeight: 1 }}>
-              Accepted: JPG, PNG, HEIC, PDF &middot; Max 10MB
-            </p>
-
-            <button
-              onClick={handleSubmit}
-              onMouseEnter={() => setSubmitHovered(true)}
-              onMouseLeave={() => setSubmitHovered(false)}
-              style={{ alignSelf: "flex-start", fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 400, color: "#ffffff", backgroundColor: submitHovered ? "#155050" : "#000000", border: "1px solid #000000", minHeight: "52px", padding: "0 40px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
-            >
-              Submit Receipt →
-            </button>
-          </>
-        )}
-
-        {phase === "uploading" && (
-          <>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#000000", margin: "0 0 20px 0", lineHeight: 1 }}>
-              uploading
-            </span>
-
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "24px" : "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
-              Processing your receipt
-            </p>
-
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#000000", margin: "0 0 36px 0", lineHeight: 1.6 }}>
-              Please wait while we verify your receipt.
-            </p>
-
-            <div style={{ padding: "14px 18px", border: "1px solid #d4e0df", borderRadius: "10px", marginBottom: "20px", backgroundColor: "#faf9f7", overflow: "hidden" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
-                <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "#000000", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M9 1H4C3.44772 1 3 1.44772 3 2V14C3 14.5523 3.44772 15 4 15H12C12.5523 15 13 14.5523 13 14V5L9 1Z" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M9 1V5H13" stroke="#ffffff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 500, color: "#000000", margin: 0, lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{fileName}</p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 400, color: "#aaaaaa", margin: "3px 0 0 0", lineHeight: 1 }}>{fileSize}</p>
-                </div>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 600, color: "#000000", flexShrink: 0 }}>
-                  {Math.round(uploadProgress)}%
-                </span>
-              </div>
-              <div style={{ height: "2px", backgroundColor: "#d4e0df", borderRadius: "1px", overflow: "hidden" }}>
-                <div style={{ height: "100%", width: `${uploadProgress}%`, backgroundColor: "#000000", borderRadius: "1px", transition: "width 0.15s ease-out" }} />
-              </div>
-            </div>
-          </>
-        )}
-
-        {phase === "success" && (
-          <>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#000000", margin: "0 0 20px 0", lineHeight: 1 }}>
-              complete
-            </span>
-
-            <div
-              style={{
-                width: "56px",
-                height: "56px",
-                borderRadius: "50%",
-                backgroundColor: "#000000",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginBottom: "24px",
-                animation: "receiptCheckScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
-              }}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M6 12.5L10 16.5L18 8.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 24, strokeDashoffset: 24, animation: "receiptDrawCheck 0.4s ease 0.3s forwards" }} />
-              </svg>
-            </div>
-
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "24px" : "32px", fontWeight: 400, color: "#000000", margin: "0 0 14px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
-              Thank you
-            </p>
-
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#000000", margin: "0 0 32px 0", lineHeight: 1.6 }}>
-              Once the verification process is finished your Goop Credit will be added to your account. You can follow the status in your Rewards History.
-            </p>
-
-            <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: "10px", width: isMobile ? "100%" : "auto" }}>
-              <button
-                onClick={handleReset}
-                onMouseEnter={() => setNewUploadHovered(true)}
-                onMouseLeave={() => setNewUploadHovered(false)}
-                style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "16px" : "18px", fontWeight: 400, color: "#ffffff", backgroundColor: newUploadHovered ? "#155050" : "#000000", border: "1px solid #000000", minHeight: isMobile ? "48px" : "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease" }}
-              >
-                Upload Another →
-              </button>
-              <button
-                onMouseEnter={() => setHistoryHovered(true)}
-                onMouseLeave={() => setHistoryHovered(false)}
-                style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "16px" : "18px", fontWeight: 400, color: historyHovered ? "#000000" : "#000000", backgroundColor: historyHovered ? "#000000" : "transparent", border: historyHovered ? "1px solid #000000" : "1px solid #000000", minHeight: isMobile ? "48px" : "52px", padding: "0 36px", borderRadius: "999px", cursor: "pointer", lineHeight: 1, transition: "background-color 0.2s ease, color 0.2s ease" }}
-              >
-                View History →
-              </button>
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* Right — product image */}
-      <div style={{ position: "relative", overflow: "hidden", border: "1px solid #d4e0df", borderLeft: isMobile ? "1px solid #d4e0df" : "none", borderTop: isMobile ? "none" : "1px solid #d4e0df", minHeight: isMobile ? "240px" : "auto" }}>
-        <img src="/featured2.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(0,0,0,0.03) 0%, transparent 60%)" }} />
-        <div
-          style={{
-            position: "absolute",
-            bottom: "24px",
-            right: "24px",
-            backgroundColor: "#000000",
-            color: "#ffffff",
-            fontFamily: "var(--font-sans)",
-            fontSize: "11px",
-            fontWeight: 600,
-            padding: "10px 18px",
-            borderRadius: "999px",
-            lineHeight: 1,
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-          }}
-        >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M7 1L8.8 4.6L12.8 5.2L9.9 8L10.6 12L7 10.1L3.4 12L4.1 8L1.2 5.2L5.2 4.6L7 1Z" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          10% cashback on all purchases
-        </div>
-      </div>
-    </div>
-
-    <style>{`
-      @keyframes receiptCheckScale {
-        0% { transform: scale(0); opacity: 0; }
-        60% { transform: scale(1.1); opacity: 1; }
-        100% { transform: scale(1); opacity: 1; }
-      }
-      @keyframes receiptDrawCheck {
-        to { stroke-dashoffset: 0; }
-      }
-    `}</style>
-    </>
-  );
-}
-
 export default function WaysToEarn() {
   const isMobile = useIsMobile();
   const [completedCards, setCompletedCards] = useState<Set<number>>(new Set([0]));
   const [animPhase, setAnimPhase] = useState<{ index: number; phase: "check" | "exit" } | null>(null);
   const [highlightedCards, setHighlightedCards] = useState<Set<number>>(new Set());
-  const [activeTab, setActiveTab] = useState<"earn" | "exchange" | "products" | "upload">("earn");
-  const [earnTabHovered, setEarnTabHovered] = useState(false);
-  const [exchangeTabHovered, setExchangeTabHovered] = useState(false);
-  const [productsTabHovered, setProductsTabHovered] = useState(false);
-  const [uploadTabHovered, setUploadTabHovered] = useState(false);
-  const [earnLeftHovered, setEarnLeftHovered] = useState(false);
-  const [earnRightHovered, setEarnRightHovered] = useState(false);
-  const earnCarouselRef = useRef<HTMLDivElement>(null);
-  const earnDragging = useRef(false);
-  const earnDragStartX = useRef(0);
-  const earnDragScrollLeft = useRef(0);
-  const earnHasDragged = useRef(false);
-
-  const earnMouseDown = useCallback((e: React.MouseEvent) => {
-    const el = earnCarouselRef.current;
-    if (!el) return;
-    const tag = (e.target as HTMLElement).tagName;
-    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || tag === "BUTTON") return;
-    e.preventDefault();
-    earnDragging.current = true;
-    earnHasDragged.current = false;
-    earnDragStartX.current = e.pageX - el.offsetLeft;
-    earnDragScrollLeft.current = el.scrollLeft;
-    el.style.scrollBehavior = "auto";
-    el.style.cursor = "grabbing";
-    document.body.style.userSelect = "none";
-    document.body.style.webkitUserSelect = "none";
-  }, []);
-
-  const earnMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!earnDragging.current) return;
-    e.preventDefault();
-    const el = earnCarouselRef.current;
-    if (!el) return;
-    const x = e.pageX - el.offsetLeft;
-    const walk = (x - earnDragStartX.current) * 1.5;
-    if (Math.abs(walk) > 5) earnHasDragged.current = true;
-    el.scrollLeft = earnDragScrollLeft.current - walk;
-  }, []);
-
-  const earnMouseUp = useCallback(() => {
-    earnDragging.current = false;
-    const el = earnCarouselRef.current;
-    if (el) {
-      el.style.scrollBehavior = "smooth";
-      el.style.cursor = "grab";
-    }
-    document.body.style.userSelect = "";
-    document.body.style.webkitUserSelect = "";
-  }, []);
   const [totalPoints, setTotalPoints] = useState(5);
   const [currentTier, setCurrentTier] = useState(0);
   const [subscriptionDays, setSubscriptionDays] = useState(0);
 
   useEffect(() => {
     const handler = () => {
-      setHighlightedCards(new Set([3, 4]));
+      setHighlightedCards(new Set([1, 2]));
       setTimeout(() => setHighlightedCards(new Set()), 2000);
-      // Scroll carousel so both handle cards (index 3 & 4) are visible
-      setTimeout(() => {
-        const carousel = document.querySelector('[data-earn-carousel]') as HTMLElement;
-        if (carousel) {
-          carousel.scrollTo({ left: 0, behavior: "smooth" });
-        }
-      }, 500);
     };
-    const activateEarn = () => setActiveTab("earn");
     const pointsHandler = (e: Event) => {
       const detail = (e as CustomEvent).detail;
       if (detail?.points !== undefined) setTotalPoints(detail.points);
@@ -1920,7 +808,6 @@ export default function WaysToEarn() {
         setCurrentTier(newTier);
       }
     };
-    const activateProducts = () => setActiveTab("products");
     const subHandler = (e: Event) => {
       const detail = (e as CustomEvent).detail;
       if (detail?.subscribed && detail?.days !== undefined) {
@@ -1928,16 +815,12 @@ export default function WaysToEarn() {
       }
     };
     window.addEventListener("highlight-earn-handles", handler);
-    window.addEventListener("activate-earn-tab", activateEarn);
-    window.addEventListener("activate-products-tab", activateProducts);
     window.addEventListener("points-updated", pointsHandler);
     window.addEventListener("tier-updated", tierHandler);
     window.addEventListener("spend-updated", spendHandler);
     window.addEventListener("subscription-updated", subHandler);
     return () => {
       window.removeEventListener("highlight-earn-handles", handler);
-      window.removeEventListener("activate-earn-tab", activateEarn);
-      window.removeEventListener("activate-products-tab", activateProducts);
       window.removeEventListener("points-updated", pointsHandler);
       window.removeEventListener("tier-updated", tierHandler);
       window.removeEventListener("spend-updated", spendHandler);
@@ -1978,17 +861,8 @@ export default function WaysToEarn() {
 
   const handlePointsChange = useCallback((newTotal: number) => {
     setTotalPoints(newTotal);
-    // Only update Goop Credit balance — tier is based on spend, not Goop Credit balance
+    // Only update AG Credit balance — tier is based on spend, not AG Credit balance
     window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
-  }, []);
-
-  const switchTab = useCallback((tab: "earn" | "exchange" | "products" | "upload") => {
-    setActiveTab(tab);
-    const el = document.getElementById("section-ways-to-earn");
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 76 - 20;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
   }, []);
 
   const handleComplete = useCallback((index: number) => {
@@ -2000,7 +874,7 @@ export default function WaysToEarn() {
         setAnimPhase(null);
         const next = new Set(completedCards).add(index);
         setCompletedCards(next);
-        // Add Goop Credit from this card
+        // Add AG Credit from this card
         const card = earnCards[index];
         if (card?.points) {
           const match = card.points.match(/\+\$(\d+(?:\.\d+)?)/);
@@ -2022,10 +896,6 @@ export default function WaysToEarn() {
       }, 500);
     }, 900);
   }, [completedCards, animPhase]);
-
-  // Progress: total cards and completed count
-  const earnableCards = earnCards.length;
-  const earnedCount = completedCards.size;
 
   return (
     <section
@@ -2073,15 +943,20 @@ export default function WaysToEarn() {
           margin: "0 auto",
         }}
       >
-        {/* ═══ EARN CARDS (wrapping grid, no carousel) ═══ */}
+        {/* ═══ EARN CARDS GRID ═══ */}
         <div
           style={{
             display: "grid",
             gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
-            gap: isMobile ? "12px" : "16px",
+            gap: "16px",
           }}
         >
-          {earnCards.map((card, i) => (
+          {[...earnCards.map((card, i) => ({ card, i }))].sort((a, b) => {
+            const aDone = completedCards.has(a.i) && animPhase?.index !== a.i;
+            const bDone = completedCards.has(b.i) && animPhase?.index !== b.i;
+            if (aDone === bDone) return 0;
+            return aDone ? 1 : -1;
+          }).map(({ card, i }) => (
               <EarnCard
                 key={i}
                 card={card}
@@ -2111,38 +986,40 @@ export default function WaysToEarn() {
           }
         `}</style>
 
-        {/* ═══ FREE PRODUCTS (wrapping grid below) ═══ */}
-        <h3
+        {/* ═══ FREE PRODUCTS HEADING ═══ */}
+        <h2
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: isMobile ? "24px" : "36px",
+            fontSize: isMobile ? "28px" : "44px",
             fontWeight: 400,
             lineHeight: 1.1,
             color: "#000000",
-            marginTop: isMobile ? "48px" : "80px",
-            marginBottom: "12px",
+            textAlign: "left",
+            margin: isMobile ? "48px 0 12px" : "72px 0 12px",
             letterSpacing: "-0.01em",
           }}
         >
           Free Products
-        </h3>
+        </h2>
         <p
           style={{
             fontFamily: "var(--font-sans)",
             fontSize: "16px",
             fontWeight: 400,
             color: "#000000",
-            marginBottom: isMobile ? "24px" : "32px",
+            textAlign: "left",
+            margin: "0 0 40px",
             lineHeight: 1.4,
           }}
         >
           Redeem your Goop Credit for complimentary products.
         </p>
+
+        {/* ═══ FREE PRODUCTS GRID ═══ */}
         <FreeProductsContent totalPoints={totalPoints} onPointsChange={handlePointsChange} currentTier={currentTier} isMobile={isMobile} />
       </div>
 
       <style>{`
-        [data-earn-tabs]::-webkit-scrollbar { display: none; }
         @keyframes earnOverlayIn {
           from { opacity: 0; }
           to { opacity: 1; }
