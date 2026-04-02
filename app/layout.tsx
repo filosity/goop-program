@@ -1,44 +1,16 @@
-import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
+import type { Metadata } from "next";
+import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 
-const ag1Regular = localFont({
-  src: [
-    {
-      path: "../public/fonts/AG1-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/AG1-Bold.woff2",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const ag1Secondary = localFont({
-  src: "../public/fonts/AG1-Secondary.woff2",
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const ag1Mono = localFont({
-  src: "../public/fonts/AG1-Mono.woff2",
-  variable: "--font-mono",
+const interTight = Inter_Tight({
+  subsets: ["latin"],
+  variable: "--font-inter-tight",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "AG1 Rewards",
-  description: "AG1 loyalty rewards program",
-};
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
+  title: "Rewards Club",
+  description: "Loyalty rewards program",
 };
 
 export default function RootLayout({
@@ -47,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${ag1Regular.variable} ${ag1Secondary.variable} ${ag1Mono.variable}`}>
-      <body style={{ fontFamily: "var(--font-sans)" }}>
+    <html lang="en" className={interTight.variable}>
+      <body style={{ fontFamily: "var(--font-inter-tight), var(--font-sans)" }}>
         {children}
       </body>
     </html>

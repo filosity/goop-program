@@ -1,10 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function Referrals() {
-  const isMobile = useIsMobile();
   const [email, setEmail] = useState("");
   const [yourName, setYourName] = useState("");
   const [friendName, setFriendName] = useState("");
@@ -21,7 +19,7 @@ export default function Referrals() {
   const [friendNameFocused, setFriendNameFocused] = useState(false);
   const [messageFocused, setMessageFocused] = useState(false);
 
-  const referralLink = "referfrnd.io/goop/384928";
+  const referralLink = "goop.com/ref/yourcode123";
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(`https://${referralLink}`);
@@ -31,46 +29,41 @@ export default function Referrals() {
 
   return (
     <section
-      id="section-referrals"
       style={{
-        backgroundColor: "#0C3D3D",
-        padding: "0",
-        overflow: "hidden",
+        padding: "0px 48px 120px",
       }}
     >
       <div
         style={{
           maxWidth: "1280px",
           margin: "0 auto",
+          backgroundColor: "#ffffff",
+          border: "1px solid #e5e2de",
           display: "grid",
-          gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-          height: isMobile ? "auto" : "920px",
-          position: "relative",
+          gridTemplateColumns: "1fr 1fr",
+          height: "820px",
         }}
       >
         {/* ─── Left column: form ─── */}
         <div
           style={{
-            backgroundColor: "transparent",
-            padding: isMobile ? "32px 20px" : "56px 52px 52px 0",
+            backgroundColor: "#ffffff",
+            padding: "56px 52px 52px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             overflow: "hidden",
-            position: "relative",
-            zIndex: 2,
-            order: isMobile ? 2 : 1,
           }}
         >
           {/* Label */}
           <p
             style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "16px",
+              fontFamily: "var(--font-sans)",
+              fontSize: "11px",
               fontWeight: 600,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "#ffffff",
+              color: "#888888",
               margin: "0 0 16px 0",
               lineHeight: 1,
             }}
@@ -82,99 +75,31 @@ export default function Referrals() {
           <h2
             style={{
               fontFamily: "var(--font-serif)",
-              fontSize: isMobile ? "32px" : "44px",
+              fontSize: "44px",
               fontWeight: 400,
               lineHeight: 1.15,
-              color: "#ffffff",
+              color: "#000000",
               margin: "0 0 14px 0",
               letterSpacing: "-0.01em",
             }}
           >
-            Refer a Friend
+            Give $10, Get $10
           </h2>
 
           {/* Subtitle */}
           <p
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "16px",
+              fontSize: "14px",
               fontWeight: 400,
               lineHeight: 1.55,
-              color: "#ffffff",
-              margin: "0 0 24px 0",
-              maxWidth: "400px",
+              color: "#888888",
+              margin: "0 0 32px 0",
+              maxWidth: "320px",
             }}
           >
-            Both you and your friend receive a discount. Tiered rewards based on
-            purchase amount.
-          </p>
-
-          {/* Tiered referral table */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "0",
-              marginBottom: "8px",
-              maxWidth: "400px",
-            }}
-          >
-            {[
-              { min: "$200", reward: "$50 off each" },
-              { min: "$500", reward: "$100 off each" },
-              { min: "$1,000", reward: "$200 off each" },
-            ].map((tier, i) => (
-              <div
-                key={i}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  padding: "12px 0",
-                  borderBottom:
-                    i < 2
-                      ? "1px solid rgba(255,255,255,0.2)"
-                      : "1px solid rgba(255,255,255,0.2)",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "15px",
-                    fontWeight: 400,
-                    color: "#ffffff",
-                  }}
-                >
-                  Min. {tier.min}
-                </span>
-                <span
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "15px",
-                    fontWeight: 600,
-                    color: "#ffffff",
-                  }}
-                >
-                  {tier.reward}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Referral note */}
-          <p
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "13px",
-              fontWeight: 400,
-              lineHeight: 1.5,
-              color: "rgba(255,255,255,0.65)",
-              margin: "0 0 28px 0",
-              maxWidth: "400px",
-            }}
-          >
-            No stacking against other offers. The referrer receives an equivalent
-            discount.
+            Share the beauty. Your friend gets $10 off their first order, and you
+            earn $10 in store credit.
           </p>
 
           {/* Email input */}
@@ -189,11 +114,11 @@ export default function Referrals() {
               fontFamily: "var(--font-sans)",
               fontSize: "14px",
               fontWeight: 400,
-              color: "#ffffff",
+              color: "#000000",
               border: "none",
               borderBottom: emailFocused
-                ? "1px solid #ffffff"
-                : "1px solid rgba(255,255,255,0.3)",
+                ? "1px solid #000000"
+                : "1px solid #e5e2de",
               padding: "12px 0",
               backgroundColor: "transparent",
               width: "100%",
@@ -205,7 +130,7 @@ export default function Referrals() {
           {/* ─── Personalize your invite (collapsible accordion) ─── */}
           <div
             style={{
-              border: expanded ? "1px solid rgba(255,255,255,0.6)" : "1px solid rgba(255,255,255,0.3)",
+              border: expanded ? "1px solid #000000" : "1px solid #e5e2de",
               backgroundColor: "transparent",
               marginTop: "20px",
               transition: "background-color 0.3s ease, border-color 0.3s ease",
@@ -215,13 +140,12 @@ export default function Referrals() {
               onClick={() => setExpanded(!expanded)}
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "16px",
-                fontWeight: 400,
-                color: "#ffffff",
+                fontSize: "13px",
+                fontWeight: 500,
+                color: "#000000",
                 background: "none",
                 border: "none",
                 padding: "16px 20px",
-                minHeight: "52px",
                 width: "100%",
                 cursor: "pointer",
                 display: "flex",
@@ -244,7 +168,7 @@ export default function Referrals() {
               >
                 <path
                   d="M1 3L5 7L9 3"
-                  stroke="#ffffff"
+                  stroke="#000000"
                   strokeWidth="1.3"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -283,11 +207,11 @@ export default function Referrals() {
                       fontFamily: "var(--font-sans)",
                       fontSize: "14px",
                       fontWeight: 400,
-                      color: "#ffffff",
+                      color: "#000000",
                       border: "none",
                       borderBottom: yourNameFocused
-                        ? "1px solid #ffffff"
-                        : "1px solid rgba(255,255,255,0.3)",
+                        ? "1px solid #000000"
+                        : "1px solid #e5e2de",
                       padding: "12px 0",
                       backgroundColor: "transparent",
                       width: "100%",
@@ -306,11 +230,11 @@ export default function Referrals() {
                       fontFamily: "var(--font-sans)",
                       fontSize: "14px",
                       fontWeight: 400,
-                      color: "#ffffff",
+                      color: "#000000",
                       border: "none",
                       borderBottom: friendNameFocused
-                        ? "1px solid #ffffff"
-                        : "1px solid rgba(255,255,255,0.3)",
+                        ? "1px solid #000000"
+                        : "1px solid #e5e2de",
                       padding: "12px 0",
                       backgroundColor: "transparent",
                       width: "100%",
@@ -332,11 +256,11 @@ export default function Referrals() {
                     fontFamily: "var(--font-sans)",
                     fontSize: "14px",
                     fontWeight: 400,
-                    color: "#ffffff",
+                    color: "#000000",
                     border: "none",
                     borderBottom: messageFocused
-                      ? "1px solid #ffffff"
-                      : "1px solid rgba(255,255,255,0.3)",
+                      ? "1px solid #000000"
+                      : "1px solid #e5e2de",
                     padding: "14px 0",
                     backgroundColor: "transparent",
                     width: "100%",
@@ -356,33 +280,42 @@ export default function Referrals() {
             onMouseLeave={() => setSendHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "17px",
-              fontWeight: 400,
-              color: sendHovered ? "#0C3D3D" : "#ffffff",
-              backgroundColor: sendHovered ? "#ffffff" : "transparent",
-              border: "1px solid #ffffff",
-              minHeight: "52px",
-              borderRadius: "999px",
-              padding: "0 36px",
+              fontSize: "13px",
+              fontWeight: 600,
+              color: "#ffffff",
+              backgroundColor: sendHovered ? "#222222" : "#000000",
+              border: "none",
+              height: "38px",
+              borderRadius: "40px",
+              padding: "0 28px",
               cursor: "pointer",
-              transition: "background-color 0.2s ease, color 0.2s ease",
-              alignSelf: isMobile ? "stretch" : "flex-start",
+              transition: "background-color 0.2s ease",
+              alignSelf: "flex-start",
               marginTop: "28px",
             }}
           >
-            Send Invite →
+            send invite
           </button>
 
+          {/* Divider */}
+          <div
+            style={{
+              width: "100%",
+              height: "1px",
+              backgroundColor: "#e5e2de",
+              margin: "32px 0",
+            }}
+          />
+
           {/* Or share your link */}
-          <div style={{ marginTop: "32px" }} />
           <p
             style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "16px",
+              fontFamily: "var(--font-sans)",
+              fontSize: "11px",
               fontWeight: 600,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "#ffffff",
+              color: "#aaaaaa",
               margin: "0 0 16px 0",
               lineHeight: 1,
             }}
@@ -397,22 +330,21 @@ export default function Referrals() {
             onMouseLeave={() => setCopyHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "17px",
-              fontWeight: 400,
-              color: "#ffffff",
-              backgroundColor: copied ? "rgba(255,255,255,0.15)" : "transparent",
-              border: "1px solid rgba(255,255,255,0.4)",
-              minHeight: "52px",
-              borderRadius: "999px",
-              padding: "0 28px",
+              fontSize: "13px",
+              fontWeight: 500,
+              color: copied ? "#ffffff" : "#000000",
+              backgroundColor: copied ? "#000000" : "transparent",
+              border: copyHovered && !copied ? "1px solid #000000" : "1px solid #e5e2de",
+              height: "38px",
+              borderRadius: "40px",
+              padding: "0 20px",
               cursor: "pointer",
               transition:
                 "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
-              alignSelf: isMobile ? "stretch" : "flex-start",
-              justifyContent: isMobile ? "center" : undefined,
+              alignSelf: "flex-start",
             }}
           >
             {/* Copy icon */}
@@ -431,7 +363,7 @@ export default function Referrals() {
                 <path d="M5 15H4a1 1 0 01-1-1V4a1 1 0 011-1h10a1 1 0 011 1v1" />
               </svg>
             )}
-            {copied ? "Copied!" : referralLink}
+            {copied ? "copied!" : referralLink}
           </button>
 
           {/* Social icons */}
@@ -448,10 +380,10 @@ export default function Referrals() {
               onMouseLeave={() => setFbHovered(false)}
               aria-label="Share on Facebook"
               style={{
-                width: "52px",
-                minHeight: "52px",
+                width: "36px",
+                height: "36px",
                 borderRadius: "50%",
-                border: fbHovered ? "1px solid #ffffff" : "1px solid rgba(255,255,255,0.3)",
+                border: fbHovered ? "1px solid #000000" : "1px solid #e5e2de",
                 backgroundColor: "transparent",
                 cursor: "pointer",
                 display: "flex",
@@ -460,7 +392,7 @@ export default function Referrals() {
                 transition: "border-color 0.2s ease",
               }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#000000">
                 <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
               </svg>
             </button>
@@ -471,10 +403,10 @@ export default function Referrals() {
               onMouseLeave={() => setXHovered(false)}
               aria-label="Share on X"
               style={{
-                width: "52px",
-                minHeight: "52px",
+                width: "36px",
+                height: "36px",
                 borderRadius: "50%",
-                border: xHovered ? "1px solid #ffffff" : "1px solid rgba(255,255,255,0.3)",
+                border: xHovered ? "1px solid #000000" : "1px solid #e5e2de",
                 backgroundColor: "transparent",
                 cursor: "pointer",
                 display: "flex",
@@ -483,7 +415,7 @@ export default function Referrals() {
                 transition: "border-color 0.2s ease",
               }}
             >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="#ffffff">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#000000">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
             </button>
@@ -494,12 +426,12 @@ export default function Referrals() {
               onMouseLeave={() => setEmailIconHovered(false)}
               aria-label="Share via Email"
               style={{
-                width: "52px",
-                minHeight: "52px",
+                width: "36px",
+                height: "36px",
                 borderRadius: "50%",
                 border: emailIconHovered
-                  ? "1px solid #ffffff"
-                  : "1px solid rgba(255,255,255,0.3)",
+                  ? "1px solid #000000"
+                  : "1px solid #e5e2de",
                 backgroundColor: "transparent",
                 cursor: "pointer",
                 display: "flex",
@@ -513,7 +445,7 @@ export default function Referrals() {
                 height="14"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#ffffff"
+                stroke="#000000"
                 strokeWidth="1.8"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -525,48 +457,33 @@ export default function Referrals() {
           </div>
         </div>
 
-        {/* ─── Right column: image (extends full width to the right edge) ─── */}
+        {/* ─── Right column: image ─── */}
         <div
           style={{
             position: "relative",
-            overflow: "visible",
-            height: isMobile ? "250px" : undefined,
-            order: isMobile ? 1 : 2,
+            overflow: "hidden",
           }}
         >
+          <img
+            src="/background-header.jpg"
+            alt=""
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+          {/* Subtle overlay */}
           <div
             style={{
-              position: isMobile ? "relative" : "absolute",
-              top: 0,
-              left: 0,
-              right: isMobile ? 0 : "calc(-1 * (50vw - 640px))",
-              bottom: 0,
-              overflow: "hidden",
-              height: isMobile ? "250px" : undefined,
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(to right, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0) 30%)",
+              pointerEvents: "none",
             }}
-          >
-            <img
-              src="/background-header.jpg"
-              alt=""
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "center center",
-                display: "block",
-              }}
-            />
-            {/* Subtle overlay */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "linear-gradient(to right, rgba(12,61,61,0.15) 0%, rgba(0,0,0,0) 30%)",
-                pointerEvents: "none",
-              }}
-            />
-          </div>
+          />
         </div>
       </div>
     </section>

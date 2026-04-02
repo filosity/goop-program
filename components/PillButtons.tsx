@@ -11,15 +11,12 @@ function PillButton({ label }: { label: string }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         fontFamily: "var(--font-sans)",
-        fontSize: "16px",
-        fontWeight: 400,
+        fontSize: "13px",
+        fontWeight: 600,
         color: "#ffffff",
-        backgroundColor: hovered ? "#1a4a4b" : "#0f2e2f",
-        minHeight: "52px",
-        padding: "12px 36px",
-        display: "inline-flex",
-        alignItems: "center",
-        borderRadius: "999px",
+        backgroundColor: hovered ? "#333333" : "#000000",
+        padding: "12px 28px",
+        borderRadius: "40px",
         textDecoration: "none",
         lineHeight: 1,
         transition: "background-color 0.2s ease",
@@ -34,15 +31,15 @@ export default function PillButtons() {
   return (
     <div
       style={{
-        backgroundColor: "#f0f5f5",
+        backgroundColor: "#f5f3f0",
         padding: "28px 48px",
         display: "flex",
         gap: "12px",
         justifyContent: "center",
       }}
     >
-      <PillButton label="Shop Now →" />
-      <PillButton label="Rewards History →" />
+      <PillButton label="shop now" />
+      <PillButton label="rewards history" />
     </div>
   );
 }

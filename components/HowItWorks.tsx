@@ -1,18 +1,19 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useIsMobile } from "@/hooks/useIsMobile";
 import { ArrowDown } from "@vectoricons/atlas-icons-react";
+
+/* ─── Available images for steps ─── */
+const allImages = ["/tier1.jpg", "/tier2.jpg", "/tier3.jpg", "/tier4.jpg"];
 
 /* ─── Step image component — rendered above interactive area ─── */
 function StepImage({ src }: { src: string }) {
-  const isMobile = useIsMobile();
   return (
     <div
       style={{
-        marginTop: isMobile ? "16px" : "20px",
+        marginTop: "20px",
         overflow: "hidden",
-        height: isMobile ? "200px" : "160px",
+        height: "160px",
       }}
     >
       <img
@@ -60,7 +61,7 @@ function SignUpStep({ active, imageSrc }: { active: boolean; index: number; imag
         style={{
           backgroundColor: "#ffffff",
           padding: "24px",
-          border: "1px solid #d4e0df",
+          border: "1px solid #e8e5e1",
           borderTop: "none",
           textAlign: "left",
           height: "110px",
@@ -72,8 +73,10 @@ function SignUpStep({ active, imageSrc }: { active: boolean; index: number; imag
         <p
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "15px",
+            fontSize: "10px",
             fontWeight: 600,
+            textTransform: "uppercase",
+            letterSpacing: "0.08em",
             color: "#999999",
             margin: "0 0 8px 0",
           }}
@@ -151,13 +154,13 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
       setCoins([]);
       return;
     }
-    const target = 7.5;
+    const target = 150;
     let current = 0;
     const interval = setInterval(() => {
-      current += 0.15;
+      current += 3;
       if (current > target) current = target;
-      setPoints(Math.round(current * 100) / 100);
-      if (Math.round(current * 100) % 75 === 0 && current < target) {
+      setPoints(current);
+      if (current % 15 === 0 && current < target) {
         coinId.current++;
         setCoins((prev) => [
           ...prev.slice(-5),
@@ -176,7 +179,7 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
         style={{
           backgroundColor: "#ffffff",
           padding: "24px",
-          border: "1px solid #d4e0df",
+          border: "1px solid #e8e5e1",
           borderTop: "none",
           height: "110px",
           position: "relative",
@@ -206,17 +209,19 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
         <p
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "15px",
+            fontSize: "10px",
             fontWeight: 600,
+            textTransform: "uppercase",
+            letterSpacing: "0.08em",
             color: "#999999",
             margin: "0 0 6px 0",
           }}
         >
-          AG Credit earned
+          goop credit earned
         </p>
         <p
           style={{
-            fontFamily: "var(--font-sans)",
+            fontFamily: "var(--font-serif)",
             fontSize: "32px",
             fontWeight: 400,
             color: "#000000",
@@ -225,18 +230,18 @@ function EarnStep({ active, imageSrc }: { active: boolean; index: number; imageS
             lineHeight: 1.1,
           }}
         >
-          {active ? `$${points.toFixed(2)}` : "—"}
+          {active ? points.toLocaleString() : "—"}
         </p>
         <p
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "14px",
+            fontSize: "12px",
             fontWeight: 400,
-            color: "#000000",
+            color: "#888888",
             margin: "8px 0 0 0",
           }}
         >
-          AG Credit
+          {active && points > 0 ? `$${(points / 20).toFixed(2)} value` : "10% cashback"}
         </p>
       </div>
     </div>
@@ -298,7 +303,7 @@ function RedeemStep({ active, imageSrc }: { active: boolean; index: number; imag
   }, []);
 
   const isCircle = phase === "loading" || phase === "check";
-  const btnHeight = 52;
+  const btnHeight = 42;
 
   return (
     <div>
@@ -307,7 +312,7 @@ function RedeemStep({ active, imageSrc }: { active: boolean; index: number; imag
         style={{
           backgroundColor: "#ffffff",
           padding: "24px",
-          border: "1px solid #d4e0df",
+          border: "1px solid #e8e5e1",
           borderTop: "none",
           height: "110px",
           display: "flex",
@@ -323,17 +328,17 @@ function RedeemStep({ active, imageSrc }: { active: boolean; index: number; imag
           onMouseLeave={() => setHovered(false)}
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "18px",
-          fontWeight: 400,
+          fontSize: "13px",
+          fontWeight: 600,
           color: "#ffffff",
           backgroundColor: active
             ? hovered && phase === "idle"
-              ? "#0E4747"
-              : "#0C3D3D"
+              ? "#333333"
+              : "#000000"
             : "#cccccc",
-          width: isCircle ? `${btnHeight}px` : "160px",
+          width: isCircle ? `${btnHeight}px` : "140px",
           height: `${btnHeight}px`,
-          borderRadius: isCircle ? `${btnHeight / 2}px` : "999px",
+          borderRadius: isCircle ? `${btnHeight / 2}px` : "0",
           border: "none",
           cursor: active && phase === "idle" ? "pointer" : "default",
           transition:
@@ -356,7 +361,7 @@ function RedeemStep({ active, imageSrc }: { active: boolean; index: number; imag
             position: "absolute",
           }}
         >
-          Redeem →
+          redeem
         </span>
 
         {/* Spinner — visible in loading */}
@@ -427,14 +432,12 @@ function StepColumn({
   isActive,
   autoPlaying,
   onActivate,
-  isMobile,
 }: {
   step: { number: string; title: string; description: string; imageSrc: string; component: React.ComponentType<{ active: boolean; index: number; imageSrc: string }> };
   index: number;
   isActive: boolean;
   autoPlaying: boolean;
   onActivate: () => void;
-  isMobile: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const StepComponent = step.component;
@@ -446,10 +449,9 @@ function StepColumn({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        flex: isMobile ? "none" : 1,
-        width: isMobile ? "100%" : "auto",
+        flex: 1,
         textAlign: "center",
-        padding: isMobile ? "0 0 32px 0" : "0 48px",
+        padding: "0 48px",
         cursor: autoPlaying ? "default" : "pointer",
         transition: "transform 0.2s ease",
         position: "relative",
@@ -457,8 +459,8 @@ function StepColumn({
         flexDirection: "column",
       }}
     >
-      {/* Vertical divider — 50% height (hidden on mobile) */}
-      {index > 0 && !isMobile && (
+      {/* Vertical divider — 50% height */}
+      {index > 0 && (
         <div
           style={{
             position: "absolute",
@@ -467,17 +469,6 @@ function StepColumn({
             height: "50%",
             width: "1px",
             backgroundColor: "#d8d5d0",
-          }}
-        />
-      )}
-      {/* Horizontal divider on mobile between steps */}
-      {index > 0 && isMobile && (
-        <div
-          style={{
-            width: "100%",
-            height: "1px",
-            backgroundColor: "#d8d5d0",
-            marginBottom: "24px",
           }}
         />
       )}
@@ -498,7 +489,7 @@ function StepColumn({
       >
         <p
           style={{
-            fontFamily: "var(--font-sans)",
+            fontFamily: "var(--font-serif)",
             fontSize: "14px",
             fontWeight: 400,
             color: "#000000",
@@ -515,7 +506,7 @@ function StepColumn({
       <p
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: isMobile ? "17px" : "19px",
+          fontSize: "19px",
           fontWeight: 700,
           color: "#000000",
           margin: "0 0 8px 0",
@@ -529,12 +520,12 @@ function StepColumn({
       <p
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: isMobile ? "15px" : "17px",
+          fontSize: "15.5px",
           fontWeight: 400,
           color: "#444444",
           margin: 0,
           lineHeight: 1.55,
-          minHeight: isMobile ? "auto" : "48px",
+          minHeight: "48px",
         }}
       >
         {step.description}
@@ -548,7 +539,6 @@ function StepColumn({
 
 /* ─── Main component ─── */
 export default function HowItWorks() {
-  const isMobile = useIsMobile();
   const [activeStep, setActiveStep] = useState(-1);
   const [autoPlaying, setAutoPlaying] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
@@ -604,27 +594,38 @@ export default function HowItWorks() {
     };
   }, []);
 
+  const [stepImages, setStepImages] = useState([allImages[0], allImages[1], allImages[2]]);
+  const hasShuffled = useRef(false);
+
+  useEffect(() => {
+    if (!hasShuffled.current) {
+      hasShuffled.current = true;
+      const shuffled = [...allImages].sort(() => 0.5 - Math.random());
+      setStepImages([shuffled[0], shuffled[1], shuffled[2]]);
+    }
+  }, []);
+
   const steps = [
     {
       number: "1",
-      title: "Subscribe",
-      description: "Sign up for an AG1 subscription to start earning.",
+      title: "Sign up",
+      description: "Create a free account in seconds.",
       component: SignUpStep,
-      imageSrc: "/howitworks-subscribe.png",
+      imageSrc: stepImages[0],
     },
     {
       number: "2",
-      title: "Earn AG Credit",
-      description: "Earn AG Credit per serving and through activities.",
+      title: "Earn goop credit",
+      description: "Earn goop credit on every purchase.",
       component: EarnStep,
-      imageSrc: "/tier2.jpg",
+      imageSrc: stepImages[1],
     },
     {
       number: "3",
       title: "Redeem",
-      description: "Use your AG Credit for exclusive merch after 90 days.",
+      description: "Exchange your goop credit for discounts and free products.",
       component: RedeemStep,
-      imageSrc: "/milestone-merch-store.jpg",
+      imageSrc: stepImages[2],
     },
   ];
 
@@ -633,10 +634,8 @@ export default function HowItWorks() {
       id="section-how-it-works"
       ref={sectionRef}
       style={{
-        backgroundColor: "#F6F5F1",
-        padding: collapsed
-          ? (isMobile ? "16px 16px 16px" : "16px 48px 16px")
-          : (isMobile ? "30px 16px 30px" : "48px 48px 60px"),
+        backgroundColor: "#f5f3f0",
+        padding: collapsed ? "16px 48px 16px" : "36px 48px 80px",
       }}
     >
       <style>{`
@@ -690,8 +689,8 @@ export default function HowItWorks() {
       >
         <h2
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: collapsed ? "13px" : (isMobile ? "28px" : "36px"),
+            fontFamily: collapsed ? "var(--font-sans)" : "var(--font-serif)",
+            fontSize: collapsed ? "13px" : "36px",
             fontWeight: collapsed ? 600 : 400,
             fontStyle: "normal",
             lineHeight: 1.1,
@@ -753,7 +752,7 @@ export default function HowItWorks() {
       {/* Steps — collapsible */}
       <div
         style={{
-          maxHeight: collapsed ? "0px" : (isMobile ? "3000px" : "900px"),
+          maxHeight: collapsed ? "0px" : "900px",
           opacity: collapsed ? 0 : 1,
           overflow: "hidden",
         }}
@@ -761,10 +760,9 @@ export default function HowItWorks() {
         <div
           style={{
             display: "flex",
-            flexDirection: isMobile ? "column" as const : "row" as const,
-            maxWidth: isMobile ? "100%" : "1040px",
+            maxWidth: "1040px",
             margin: "0 auto",
-            alignItems: isMobile ? "stretch" : "flex-start",
+            alignItems: "flex-start",
           }}
         >
           {steps.map((step, i) => (
@@ -774,7 +772,6 @@ export default function HowItWorks() {
               index={i}
               isActive={activeStep === i}
               autoPlaying={autoPlaying}
-              isMobile={isMobile}
               onActivate={() => {
                 if (!autoPlaying) {
                   setActiveStep(activeStep === i ? -1 : i);

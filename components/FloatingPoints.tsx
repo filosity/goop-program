@@ -89,8 +89,9 @@ export default function FloatingPoints() {
         <p
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "15px",
+            fontSize: "12px",
             fontWeight: 600,
+            letterSpacing: "0.02em",
             color: "#1a1a1a",
             margin: 0,
             lineHeight: 1,
@@ -103,7 +104,7 @@ export default function FloatingPoints() {
         {/* Amount */}
         <p
           style={{
-            fontFamily: "var(--font-sans)",
+            fontFamily: "var(--font-serif)",
             fontSize: "32px",
             fontWeight: 400,
             lineHeight: 1,
@@ -115,18 +116,18 @@ export default function FloatingPoints() {
           $50.00
         </p>
 
-        {/* AG Credit */}
+        {/* goop credit */}
         <p
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "15px",
+            fontSize: "13px",
             fontWeight: 400,
-            color: "#000000",
+            color: "#888888",
             margin: 0,
             lineHeight: 1.4,
           }}
         >
-          1,000 AG Credit
+          1,000 goop credit
         </p>
       </div>
 

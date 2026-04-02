@@ -41,7 +41,7 @@ const tiers = [
   },
   {
     name: "Tier 3",
-    spend: "$900+ annual spend",
+    spend: "$900–$2,999 annual spend",
     image: "/tier3.jpg",
     benefits: [
       "10% cashback on all purchases",
@@ -168,12 +168,12 @@ export default function TiersV2() {
                 position: "relative",
                 fontFamily: "var(--font-sans)",
                 fontSize: "13px",
-                fontWeight: 400,
+                fontWeight: 600,
                 height: "38px",
                 padding: "0 22px",
                 borderRadius: "40px",
-                border: isActive ? "1px solid #0f2e2f" : "1px solid #d4e0df",
-                backgroundColor: isActive ? "#0f2e2f" : "transparent",
+                border: isActive ? "1px solid #000000" : "1px solid #e5e2de",
+                backgroundColor: isActive ? "#000000" : "transparent",
                 color: isActive ? "#ffffff" : "#000000",
                 cursor: "pointer",
                 transition: "all 0.25s ease",
@@ -192,7 +192,7 @@ export default function TiersV2() {
                     fontWeight: 600,
                     letterSpacing: "0.04em",
                     color: "#ffffff",
-                    backgroundColor: "#0f2e2f",
+                    backgroundColor: "#000000",
                     padding: "2px 6px",
                     borderRadius: "20px",
                     lineHeight: 1.3,
@@ -212,7 +212,7 @@ export default function TiersV2() {
         style={{
           maxWidth: "1280px",
           margin: "0 auto",
-          border: "1px solid #d4e0df",
+          border: "1px solid #e5e2de",
           display: "flex",
           overflow: "hidden",
           minHeight: "520px",
@@ -276,7 +276,7 @@ export default function TiersV2() {
               fontFamily: "var(--font-sans)",
               fontSize: "14px",
               fontWeight: 400,
-              color: "#000000",
+              color: "#888888",
               margin: "0",
               lineHeight: 1.4,
             }}
@@ -288,7 +288,7 @@ export default function TiersV2() {
           <div
             style={{
               height: "1px",
-              backgroundColor: "#d4e0df",
+              backgroundColor: "#e5e2de",
               margin: "24px 0",
             }}
           />
@@ -308,7 +308,7 @@ export default function TiersV2() {
                   alignItems: "center",
                   gap: "14px",
                   padding: "14px 0",
-                  borderTop: j > 0 ? "1px solid #d4e0df" : "none",
+                  borderTop: j > 0 ? "1px solid #e5e2de" : "none",
                   color: "#1a1a1a",
                 }}
               >

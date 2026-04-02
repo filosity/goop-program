@@ -1,11 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { DollarSignCircle, GiftBox, DiscountTag, Bolt, User, Star, Gifts, XmarkCircle } from "@vectoricons/atlas-icons-react";
-import { useIsMobile } from "@/hooks/useIsMobile";
+import { DollarSignCircle, GiftBox, DiscountTag, Bolt, DeliveryTruck, User, Star, PresentBox, Gifts, XmarkCircle } from "@vectoricons/atlas-icons-react";
 import HeroSectionV2 from "./HeroSectionV2";
 import HeroSectionV3 from "./HeroSectionV3";
-import HeroSectionV4 from "./HeroSectionV4";
 
 /* ─── Pill Button ─── */
 function PillButton({ label }: { label: string }) {
@@ -17,22 +15,18 @@ function PillButton({ label }: { label: string }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         fontFamily: "var(--font-sans)",
-        fontSize: "18px",
-        fontWeight: 400,
-        color: hovered ? "#000000" : "#0C3D3D",
-        backgroundColor: hovered ? "#46DE46" : "#ffffff",
-        border: hovered ? "1px solid #46DE46" : "1px solid #0C3D3D",
-        padding: "12px 34px",
-        borderRadius: "999px",
+        fontSize: "13px",
+        fontWeight: 600,
+        color: "#ffffff",
+        backgroundColor: hovered ? "#333333" : "#000000",
+        padding: "12px 22px",
+        borderRadius: "40px",
         textDecoration: "none",
         lineHeight: 1,
-        minHeight: "52px",
-        display: "inline-flex",
-        alignItems: "center",
-        transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
+        transition: "background-color 0.2s ease",
       }}
     >
-      {label} →
+      {label}
     </a>
   );
 }
@@ -44,8 +38,9 @@ function SectionLabel({ text }: { text: string }) {
       <p
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "16px",
+          fontSize: "13px",
           fontWeight: 600,
+          letterSpacing: "0.02em",
           color: "#1a1a1a",
           margin: "0 0 10px 0",
           lineHeight: 1,
@@ -64,71 +59,166 @@ function SectionLabel({ text }: { text: string }) {
   );
 }
 
-/* ─── Tier popup data ─── */
-const TIER_NAMES: Record<number, string> = { 0: "Tier 1", 1: "Tier 2", 2: "Tier 3", 3: "Tier 4" };
-
-const heroTierData = [
+/* ─── Tier data ─── */
+const tierData = [
   {
     name: "Tier 2",
-    spend: "1–3 months subscribed",
-    image: "/ag1-tier2.avif",
+    spend: "$350–$899 annual spend",
+    image: "/tier2.jpg",
     benefits: [
-      "Spend $150, Get $10",
-      "Access to Exclusive Merch Store",
-      "Access to Partner Offers",
-      "$10 Birthday Reward",
+      "10% cashback on all purchases",
+      "Birthday gift",
+      "Member-only sales access",
+      "Early access to new products",
+      "Free expedited shipping",
+      "Exclusive quarterly gift",
     ],
   },
   {
     name: "Tier 3",
-    spend: "4–11 months subscribed",
-    image: "/ag1-tier3.avif",
+    spend: "$900–$2,999 annual spend",
+    image: "/tier3.jpg",
     benefits: [
-      "Spend $150, Get $15",
-      "Access to Exclusive Merch Store",
-      "Access to Partner Offers",
-      "2X Referral Multiplier",
-      "$15 Birthday Reward",
+      "10% cashback on all purchases",
+      "Birthday gift",
+      "Member-only sales access",
+      "Early access to new products",
+      "Free overnight shipping",
+      "Exclusive quarterly gift",
+      "Annual beauty consultation",
     ],
   },
   {
-    name: "Tier 4",
-    spend: "12+ months subscribed",
-    image: "/ag1-tier4.avif",
+    name: "The Collective",
+    spend: "Invite only",
+    image: "/tier4.jpg",
     benefits: [
-      "Spend $150, Get $20",
-      "Access to Exclusive Merch Store",
-      "Access to Premium Partner Offers",
-      "3X Referral Multiplier",
-      "$20 Birthday Reward",
-      "Access to Focus Group",
-      "Priority Customer Support",
-      "Access to Exclusive Events",
+      "10% cashback on all purchases",
+      "Birthday gift",
+      "Member-only sales access",
+      "Early access to new products",
+      "Free overnight shipping",
+      "Exclusive quarterly gift",
+      "Annual beauty consultation",
+      "VIP event invitations",
+      "Premium curated boxes",
     ],
   },
 ];
 
-/* ─── Benefit icon for popup ─── */
+/* ─── Benefit icon (matches Tiers section) ─── */
 function PopupBenefitIcon({ benefit }: { benefit: string }) {
   const s = 22;
+
   const b = benefit.toLowerCase();
-  if (b.includes("spend") && b.includes("get"))
+  if (b.includes("cashback") || b.includes("earn"))
     return <DollarSignCircle size={s} color="currentColor" />;
   if (b.includes("birthday"))
     return <GiftBox size={s} color="currentColor" />;
-  if (b.includes("merch"))
-    return <Gifts size={s} color="currentColor" />;
-  if (b.includes("partner"))
+  if (b.includes("sales"))
     return <DiscountTag size={s} color="currentColor" />;
-  if (b.includes("referral"))
-    return <User size={s} color="currentColor" />;
-  if (b.includes("focus group"))
-    return <User size={s} color="currentColor" />;
-  if (b.includes("support"))
+  if (b.includes("early access"))
     return <Bolt size={s} color="currentColor" />;
-  if (b.includes("event"))
+  if (b.includes("shipping"))
+    return <DeliveryTruck size={s} color="currentColor" />;
+  if (b.includes("quarterly"))
+    return <PresentBox size={s} color="currentColor" />;
+  if (b.includes("consultation"))
+    return <User size={s} color="currentColor" />;
+  if (b.includes("vip") || b.includes("event"))
     return <Star size={s} color="currentColor" />;
+  if (b.includes("curated") || b.includes("premium"))
+    return <Gifts size={s} color="currentColor" />;
+  // default
   return <DollarSignCircle size={s} color="currentColor" />;
+}
+
+/* ─── Benefit descriptions ─── */
+const popupBenefitDescriptions: Record<string, string> = {
+  "10% cashback on all purchases":
+    "Earn 10% back on every purchase as store credit, automatically applied to your account.",
+  "Birthday gift":
+    "Receive a complimentary gift from our curated collection delivered to you during your birthday month.",
+  "Member-only sales access":
+    "Get early and exclusive access to seasonal sales events reserved only for loyalty members.",
+  "Early access to new products":
+    "Be the first to shop new product launches before they become available to the public.",
+  "Free standard shipping":
+    "Enjoy free standard shipping on all orders, no minimum purchase required.",
+  "Free expedited shipping":
+    "Upgraded shipping at no cost — receive your orders faster with complimentary expedited delivery.",
+  "Free overnight shipping":
+    "The fastest delivery, completely free. All your orders arrive the very next day.",
+  "Exclusive quarterly gift":
+    "Four times a year, receive a surprise luxury gift hand-selected by our beauty editors.",
+  "Annual beauty consultation":
+    "A one-on-one virtual session with our beauty experts to create a personalised skincare and beauty routine.",
+  "VIP event invitations":
+    "Receive invitations to exclusive in-person and virtual events, product launches, and masterclasses.",
+  "Premium curated boxes":
+    "Receive specially curated boxes featuring full-size products from our most coveted collections.",
+};
+
+/* ─── Single benefit row with hover tooltip ─── */
+function PopupBenefitRow({ benefit, hasBorder }: { benefit: string; hasBorder: boolean }) {
+  const [hovered, setHovered] = useState(false);
+  const desc = popupBenefitDescriptions[benefit] || "Learn more about this exclusive benefit available to loyalty members.";
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        gap: "12px",
+        padding: "14px 0",
+        borderTop: hasBorder ? "1px solid #e5e2de" : "none",
+        cursor: "default",
+      }}
+    >
+      <div style={{ flexShrink: 0 }}>
+        <PopupBenefitIcon benefit={benefit} />
+      </div>
+      <span
+        style={{
+          fontFamily: "var(--font-sans)",
+          fontSize: "13px",
+          fontWeight: 400,
+          color: "#1a1a1a",
+          lineHeight: 1.5,
+        }}
+      >
+        {benefit}
+      </span>
+      {/* Hover tooltip */}
+      {hovered && (
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: "100%",
+            marginBottom: "6px",
+            backgroundColor: "#000000",
+            color: "#ffffff",
+            fontFamily: "var(--font-sans)",
+            fontSize: "13px",
+            fontWeight: 500,
+            lineHeight: 1.5,
+            padding: "10px 14px",
+            borderRadius: "0",
+            zIndex: 20,
+            cursor: "default",
+            animation: "popupTooltipIn 0.15s ease",
+          }}
+        >
+          {desc}
+        </div>
+      )}
+    </div>
+  );
 }
 
 /* ─── Tier benefits popup ─── */
@@ -136,7 +226,7 @@ function TierPopup({
   tier,
   onClose,
 }: {
-  tier: (typeof heroTierData)[0];
+  tier: (typeof tierData)[0];
   onClose: () => void;
 }) {
   return (
@@ -247,63 +337,25 @@ function TierPopup({
             </p>
           </div>
         </div>
-        {/* Benefits list */}
+        {/* Benefits — matching tier card style */}
         <div style={{ padding: "20px 32px 28px" }}>
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             {tier.benefits.map((benefit, i) => (
-              <div
-                key={i}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "12px",
-                  padding: "14px 0",
-                  borderTop: i > 0 ? "1px solid #e5e2de" : "none",
-                }}
-              >
-                <div style={{ flexShrink: 0 }}>
-                  <PopupBenefitIcon benefit={benefit} />
-                </div>
-                <span
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "13px",
-                    fontWeight: 400,
-                    color: "#1a1a1a",
-                    lineHeight: 1.5,
-                  }}
-                >
-                  {benefit}
-                </span>
-              </div>
+              <PopupBenefitRow key={i} benefit={benefit} hasBorder={i > 0} />
             ))}
           </div>
         </div>
       </div>
-
-      <style>{`
-        @keyframes popupOverlay {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes popupCard {
-          from { opacity: 0; transform: scale(0.9) translateY(12px); }
-          to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-      `}</style>
     </div>
   );
 }
 
-/* ─── Tier milestone dot on progress bar ─── */
-
-function getBarWidth(months: number): number {
-  if (months >= 12) return 100;
-  if (months >= 4) return 40 + ((months - 4) / 8) * 60;
-  if (months >= 1) return 10 + ((months - 1) / 3) * 30;
-  return months * 10;
-}
-
+/* ─── Tier milestone icon on progress bar ─── */
 function TierMilestone({
   label,
   position,
@@ -333,7 +385,10 @@ function TierMilestone({
     <div
       onMouseEnter={() => { setHovered(true); onHover(); }}
       onMouseLeave={() => { setHovered(false); onLeave(); }}
-      onClick={(e) => { e.stopPropagation(); onOpenPopup(tierIndex); }}
+      onClick={(e) => {
+        e.stopPropagation();
+        onOpenPopup(tierIndex);
+      }}
       style={{
         position: "absolute",
         left: position,
@@ -351,8 +406,8 @@ function TierMilestone({
           width: reached ? "20px" : "12px",
           height: reached ? "20px" : "12px",
           borderRadius: "50%",
-          backgroundColor: reached ? "#0C3D3D" : "#ffffff",
-          border: reached || hovered ? "2px solid #0C3D3D" : "2px solid #cccccc",
+          backgroundColor: reached ? "#000000" : "#ffffff",
+          border: reached || hovered ? "2px solid #000000" : "2px solid #cccccc",
           transition: "border-color 0.3s ease, transform 0.3s ease, width 0.3s ease, height 0.3s ease",
           transform: hovered ? "scale(1.2)" : "scale(1)",
           display: "flex",
@@ -392,7 +447,7 @@ function TierMilestone({
             bottom: reached ? "26px" : "22px",
             left: "50%",
             transform: "translateX(-50%)",
-            backgroundColor: "#0C3D3D",
+            backgroundColor: "#000000",
             color: "#ffffff",
             fontFamily: "var(--font-sans)",
             fontSize: "14px",
@@ -407,7 +462,7 @@ function TierMilestone({
           {reached ? (
             <span><span style={{ fontWeight: 700 }}>{label}</span> unlocked</span>
           ) : (
-            <span>Subscribe <span style={{ fontWeight: 700 }}>{tooltip}</span> more to unlock</span>
+            <span>Spend <span style={{ fontWeight: 700 }}>{tooltip}</span> more to unlock</span>
           )}
         </div>
       )}
@@ -415,18 +470,27 @@ function TierMilestone({
   );
 }
 
-function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
-  const isMobile = useIsMobile();
-  const [visible, setVisible] = useState(false);
+function getBarWidth(spend: number): number {
+  if (spend >= 500) return 100;
+  if (spend >= 300) return 60 + ((spend - 300) / 200) * 40;
+  if (spend >= 100) return 20 + ((spend - 100) / 200) * 40;
+  return (spend / 100) * 20;
+}
+const HERO_TIER_NAMES: Record<number, string> = { 0: "Tier 1", 1: "Tier 2", 2: "Tier 3", 3: "The Collective" };
+
+function HeroSectionV1() {
   const [barWidth, setBarWidth] = useState(0);
-  const [userPoints, setUserPoints] = useState(5);
-  const [totalMonths, setTotalMonths] = useState(0);
-  const [hoveredMilestone, setHoveredMilestone] = useState<number | null>(null);
+  const [visible, setVisible] = useState(false);
   const [openTier, setOpenTier] = useState<number | null>(null);
+  const [hoveredMilestone, setHoveredMilestone] = useState<number | null>(null);
+  const [userPoints, setUserPoints] = useState(50);
+  const [totalSpend, setTotalSpend] = useState(50);
   const sectionRef = useRef<HTMLElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 
-  const userTier = totalMonths >= 12 ? 3 : totalMonths >= 4 ? 2 : totalMonths >= 1 ? 1 : 0;
+  // Tier is based on cumulative spend (never decreases), not point balance
+  const userTier = totalSpend >= 500 ? 3 : totalSpend >= 300 ? 2 : totalSpend >= 100 ? 1 : 0;
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -437,7 +501,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
           setVisible(true);
           if (!hasAnimated.current) {
             hasAnimated.current = true;
-            setTimeout(() => setBarWidth(getBarWidth(totalMonths)), 500);
+            setTimeout(() => setBarWidth(getBarWidth(totalSpend)), 500);
           }
           observer.disconnect();
         }
@@ -455,28 +519,19 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
         setUserPoints(detail.points);
       }
     };
-    const tierHandler = (e: Event) => {
+    const spendHandler = (e: Event) => {
       const detail = (e as CustomEvent).detail;
-      if (detail?.tier !== undefined) {
-        const newMonths = detail.tier >= 3 ? 12 : detail.tier >= 2 ? 4 : detail.tier >= 1 ? 1 : detail.months || 0;
-        setTotalMonths(detail.months || newMonths);
-        setBarWidth(getBarWidth(detail.months || newMonths));
-      }
-    };
-    const subHandler = (e: Event) => {
-      const detail = (e as CustomEvent).detail;
-      if (detail?.month !== undefined) {
-        setTotalMonths(detail.month);
-        setBarWidth(getBarWidth(detail.month));
+      if (detail?.spend !== undefined) {
+        setTotalSpend(detail.spend);
+        const newTier = detail.spend >= 500 ? 3 : detail.spend >= 300 ? 2 : detail.spend >= 100 ? 1 : 0;
+        setBarWidth(getBarWidth(detail.spend));
       }
     };
     window.addEventListener("points-updated", pointsHandler);
-    window.addEventListener("tier-updated", tierHandler);
-    window.addEventListener("subscription-updated", subHandler);
+    window.addEventListener("spend-updated", spendHandler);
     return () => {
       window.removeEventListener("points-updated", pointsHandler);
-      window.removeEventListener("tier-updated", tierHandler);
-      window.removeEventListener("subscription-updated", subHandler);
+      window.removeEventListener("spend-updated", spendHandler);
     };
   }, []);
 
@@ -511,49 +566,31 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes popupOverlay {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes popupCard {
+          from { opacity: 0; transform: scale(0.9) translateY(12px); }
+          to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes popupTooltipIn {
+          from { opacity: 0; transform: translateY(4px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
       `}</style>
 
-      {/* Background */}
-      {bgMode === "video" ? (
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            opacity: visible ? 1 : 0,
-            transition: "opacity 0.5s ease",
-          }}
-        >
-          <source src="/membership.mp4" type="video/mp4" />
-        </video>
-      ) : (
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: "url('/background-header.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            opacity: visible ? 1 : 0,
-            transition: "opacity 0.5s ease",
-          }}
-        />
-      )}
-
-      {/* 30% black overlay */}
+      {/* Background image */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          backgroundColor: "rgba(0,0,0,0.3)",
-          zIndex: 0,
+          backgroundImage: "url('/background-header.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          opacity: visible ? 1 : 0,
+          transition: "opacity 0.5s ease",
         }}
       />
 
@@ -562,19 +599,18 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
         style={{
           position: "relative",
           zIndex: 1,
-          padding: isMobile ? "24px 16px 24px 16px" : "48px 0 40px 48px",
+          padding: "48px 0 40px 48px",
           width: "100%",
-          maxWidth: isMobile ? "100%" : "540px",
+          maxWidth: "540px",
         }}
       >
-        {/* Eyebrow */}
+        {/* ═══ Eyebrow ═══ */}
         <p
           style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: isMobile ? "13px" : "16px",
-            fontWeight: 600,
-            letterSpacing: "0.06em",
-            textTransform: "uppercase" as const,
+            fontFamily: "var(--font-sans)",
+            fontSize: "15px",
+            fontWeight: 500,
+            letterSpacing: "0.03em",
             color: "rgba(255, 255, 255, 0.85)",
             margin: "0 0 10px 0",
             lineHeight: 1,
@@ -583,18 +619,18 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
             transition: "opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s",
           }}
         >
-          AG1 rewards
+          rewards club
         </p>
 
-        {/* Heading */}
+        {/* ═══ Heading ═══ */}
         <h1
           style={{
             fontFamily: "var(--font-serif)",
-            fontSize: isMobile ? "28px" : "38px",
+            fontSize: "38px",
             fontWeight: 400,
             lineHeight: 1.1,
             color: "#ffffff",
-            margin: isMobile ? "0 0 24px 0" : "0 0 32px 0",
+            margin: "0 0 32px 0",
             letterSpacing: "-0.01em",
             opacity: visible ? 1 : 0,
             transform: visible ? "translateY(0)" : "translateY(20px)",
@@ -604,7 +640,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
           Welcome back, Bethany
         </h1>
 
-        {/* Cards */}
+        {/* ═══ Cards ═══ */}
         <div
           style={{
             display: "flex",
@@ -612,22 +648,22 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
             gap: "8px",
           }}
         >
-          {/* CARD 1: AG Credit balance */}
+          {/* ═══ CARD 1: rewards available to spend ═══ */}
           <div
             style={{
-              backgroundColor: "#f5f3ef",
-              padding: isMobile ? "24px 20px 28px" : "36px 40px 40px",
+              backgroundColor: "#ffffff",
+              padding: "36px 40px 40px",
               opacity: visible ? 1 : 0,
               transition: "opacity 0.5s ease",
             }}
           >
-            <SectionLabel text="AG Credit Balance" />
+            <SectionLabel text="rewards available to spend" />
 
             {/* Dollar amount */}
             <p
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "32px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "44px",
                 fontWeight: 400,
                 lineHeight: 1,
                 color: "#000000",
@@ -635,31 +671,29 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                 letterSpacing: "-0.02em",
               }}
             >
-              ${userPoints.toFixed(2)}
+              ${(userPoints * 0.05).toFixed(2)}
             </p>
 
-            {/* Redemption note — hidden after 90 days (3 months) */}
-            {totalMonths < 3 && (
-              <p
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "13px",
-                  fontWeight: 400,
-                  color: "#000000",
-                  margin: "0 0 12px 0",
-                  lineHeight: 1.4,
-                }}
-              >
-                Redeemable for exclusive merch after 90 days
-              </p>
-            )}
+            {/* goop credit info */}
+            <p
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "15px",
+                fontWeight: 400,
+                color: "#1a1a1a",
+                margin: "0 0 12px 0",
+                lineHeight: 1.55,
+              }}
+            >
+              You have {userPoints.toLocaleString()} goop credit
+            </p>
 
             {/* Activity link */}
             <a
               href="#"
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "17px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "15px",
                 fontWeight: 400,
                 color: "#1a1a1a",
                 textDecoration: "underline",
@@ -667,27 +701,27 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                 textDecorationThickness: "0.5px",
               }}
             >
-              View Account Activity
+              View account activity
             </a>
 
           </div>
 
-          {/* CARD 2: Current Tier — V2-style with milestone progress */}
+          {/* ═══ CARD 2: your current tier ═══ */}
           <div
             style={{
-              backgroundColor: "#f5f3ef",
-              padding: isMobile ? "24px 20px 32px" : "36px 40px 32px",
+              backgroundColor: "#ffffff",
+              padding: "36px 40px 32px",
               opacity: visible ? 1 : 0,
               transition: "opacity 0.5s ease",
             }}
           >
-            <SectionLabel text="Current Tier" />
+            <SectionLabel text="your current tier" />
 
-            {/* Large tier name */}
+            {/* Tier name */}
             <h2
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: isMobile ? "36px" : "48px",
+                fontSize: "48px",
                 fontWeight: 400,
                 lineHeight: 1,
                 color: "#000000",
@@ -695,7 +729,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                 letterSpacing: "-0.02em",
               }}
             >
-              {TIER_NAMES[userTier]}
+              {HERO_TIER_NAMES[userTier]}
             </h2>
 
             {/* Member since */}
@@ -709,11 +743,12 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                 lineHeight: 1.55,
               }}
             >
-              Member since <span style={{ fontWeight: 600 }}>Feb 2026</span>
+              Member since <span style={{ fontWeight: 600 }}>March 2026</span>
             </p>
 
             {/* Progress bar with tier milestones */}
             <div
+              ref={barRef}
               style={{
                 position: "relative",
                 width: "94%",
@@ -728,7 +763,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                 style={{
                   width: `${barWidth}%`,
                   height: "100%",
-                  backgroundColor: "#0C3D3D",
+                  backgroundColor: "#000000",
                   borderRadius: "2px",
                   transition: "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
                 }}
@@ -737,8 +772,8 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
               {/* Tier milestones */}
               <TierMilestone
                 label="Tier 2"
-                position="10%"
-                tooltip={`${Math.max(1 - totalMonths, 0)} months`}
+                position="20%"
+                tooltip={`$${Math.max(100 - totalSpend, 0)}`}
                 reached={userTier >= 1}
                 tierIndex={0}
                 onOpenPopup={setOpenTier}
@@ -748,8 +783,8 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
               />
               <TierMilestone
                 label="Tier 3"
-                position="40%"
-                tooltip={`${Math.max(4 - totalMonths, 0)} months`}
+                position="60%"
+                tooltip={`$${Math.max(300 - totalSpend, 0)}`}
                 reached={userTier >= 2}
                 tierIndex={1}
                 onOpenPopup={setOpenTier}
@@ -758,9 +793,9 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
                 onLeave={() => setHoveredMilestone(null)}
               />
               <TierMilestone
-                label="Tier 4"
+                label="The Collective"
                 position="100%"
-                tooltip={`${Math.max(12 - totalMonths, 0)} months`}
+                tooltip={`$${Math.max(500 - totalSpend, 0)}`}
                 reached={userTier >= 3}
                 align="right"
                 tierIndex={2}
@@ -778,7 +813,7 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
       {/* Tier benefits popup */}
       {openTier !== null && (
         <TierPopup
-          tier={heroTierData[openTier]}
+          tier={tierData[openTier]}
           onClose={() => setOpenTier(null)}
         />
       )}
@@ -788,28 +823,18 @@ function HeroSectionV1({ bgMode }: { bgMode: "video" | "static" }) {
 
 /* ─── Version Switcher ─── */
 export default function HeroSection() {
-  const [version, setVersion] = useState(4);
-  const [bgMode, setBgMode] = useState<"video" | "static">("video");
+  const [version, setVersion] = useState(1);
 
   useEffect(() => {
     function handleVersion(e: Event) {
       const detail = (e as CustomEvent).detail;
       if (detail?.version) setVersion(detail.version);
     }
-    function handleBgMode(e: Event) {
-      const detail = (e as CustomEvent).detail;
-      if (detail?.mode) setBgMode(detail.mode);
-    }
     window.addEventListener("hero-version", handleVersion);
-    window.addEventListener("header-bg-mode", handleBgMode);
-    return () => {
-      window.removeEventListener("hero-version", handleVersion);
-      window.removeEventListener("header-bg-mode", handleBgMode);
-    };
+    return () => window.removeEventListener("hero-version", handleVersion);
   }, []);
 
-  if (version === 2) return <HeroSectionV2 bgMode={bgMode} />;
-  if (version === 3) return <HeroSectionV3 bgMode={bgMode} />;
-  if (version === 4) return <HeroSectionV4 bgMode={bgMode} />;
-  return <HeroSectionV1 bgMode={bgMode} />;
+  if (version === 2) return <HeroSectionV2 />;
+  if (version === 3) return <HeroSectionV3 />;
+  return <HeroSectionV1 />;
 }

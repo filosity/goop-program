@@ -1,125 +1,136 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { DollarSignCircle, GiftBox, DiscountTag, Bolt, User, Star, Gifts, XmarkCircle } from "@vectoricons/atlas-icons-react";
-import { useIsMobile } from "@/hooks/useIsMobile";
+import { useState, useEffect } from "react";
+import { DollarSignCircle, GiftBox, DiscountTag, Bolt, DeliveryTruck, User, Star, PresentBox, Gifts, XmarkCircle } from "@vectoricons/atlas-icons-react";
 
 const benefitDescriptions: Record<string, string> = {
-  "10% back on all purchases":
-    "Earn 10% back in Goop Credit on every purchase, automatically added to your balance.",
-  "15% back on all purchases":
-    "Earn 15% back in Goop Credit on every purchase, automatically added to your balance.",
-  "Yearly beauty mini gift":
-    "Receive a curated mini beauty gift each year as a thank you for being a valued member.",
-  "Core content access":
-    "Unlock access to Goop's core editorial content, wellness guides, and lifestyle features.",
+  "10% cashback on all purchases":
+    "Earn 10% back on every purchase as store credit, automatically applied to your account.",
+  "Birthday gift":
+    "Receive a complimentary gift from our curated collection delivered to you during your birthday month.",
+  "Member-only sales access":
+    "Get early and exclusive access to seasonal sales events reserved only for loyalty members.",
+  "Early access to new products":
+    "Be the first to shop new product launches before they become available to the public.",
+  "Free standard shipping":
+    "Enjoy free standard shipping on all orders, no minimum purchase required.",
   "Free expedited shipping":
-    "Enjoy complimentary expedited shipping on all Goop orders.",
-  "Overnight shipping and returns":
-    "Get free overnight shipping and hassle-free returns on all orders.",
-  "Early access to product drops and launches":
-    "Be the first to shop new product drops and exclusive launches before they go live.",
-  "Yearly beauty full sized gift":
-    "Receive a full-sized beauty gift each year, hand-selected by the Goop team.",
-  "Curated quarterly box":
-    "Receive a quarterly box curated with Goop's top picks in beauty, wellness, and lifestyle.",
-  "1:1 Digital styling sessions":
-    "Book personalized one-on-one digital styling sessions with Goop's style experts.",
-  "Premium content access":
-    "Unlock full access to Goop's premium content including in-depth articles, video series, and expert guides.",
-  "Yearly beauty gift":
-    "Receive an exclusive yearly beauty gift curated by the Goop team.",
-  "VIP access to events":
-    "Get VIP invitations to exclusive Goop events, summits, and experiences.",
-  "Exclusive merchandise":
-    "Access limited-edition Goop merchandise available only to top-tier members.",
+    "Upgraded shipping at no cost — receive your orders faster with complimentary expedited delivery.",
+  "Free overnight shipping":
+    "The fastest delivery, completely free. All your orders arrive the very next day.",
+  "Exclusive quarterly gift":
+    "Four times a year, receive a surprise luxury gift hand-selected by our beauty editors.",
+  "Annual beauty consultation":
+    "A one-on-one virtual session with our beauty experts to create a personalised skincare and beauty routine.",
+  "VIP event invitations":
+    "Receive invitations to exclusive in-person and virtual events, product launches, and masterclasses.",
+  "Premium curated boxes":
+    "Receive specially curated boxes featuring full-size products from our most coveted collections.",
 };
 
 /* ─── Unique SVG icon per benefit ─── */
 function BenefitIcon({
   benefit,
+  light,
   size = 22,
 }: {
   benefit: string;
+  light?: boolean;
   size?: number;
 }) {
+  const bg = light ? "#ffffff" : "#1a1a1a";
+  const fg = light ? "#000000" : "#ffffff";
+
+  const iconMap: Record<string, React.ReactNode> = {
+    points: <DollarSignCircle size={size} color="currentColor" />,
+    birthday: <GiftBox size={size} color="currentColor" />,
+    sales: <DiscountTag size={size} color="currentColor" />,
+    early: <Bolt size={size} color="currentColor" />,
+    shipping: <DeliveryTruck size={size} color="currentColor" />,
+    quarterly: <PresentBox size={size} color="currentColor" />,
+    consultation: <User size={size} color="currentColor" />,
+    vip: <Star size={size} color="currentColor" />,
+    curated: <Gifts size={size} color="currentColor" />,
+  };
+
+  // Map benefit text to icon key
+  let key = "points";
   const b = benefit.toLowerCase();
-  if (b.includes("% back"))
-    return <DollarSignCircle size={size} color="currentColor" />;
-  if (b.includes("gift") || b.includes("quarterly box"))
-    return <GiftBox size={size} color="currentColor" />;
-  if (b.includes("shipping") || b.includes("returns"))
-    return <Bolt size={size} color="currentColor" />;
-  if (b.includes("early access") || b.includes("drops"))
-    return <Star size={size} color="currentColor" />;
-  if (b.includes("styling"))
-    return <User size={size} color="currentColor" />;
-  if (b.includes("content"))
-    return <DiscountTag size={size} color="currentColor" />;
-  if (b.includes("vip") || b.includes("event"))
-    return <Star size={size} color="currentColor" />;
-  if (b.includes("merchandise"))
-    return <Gifts size={size} color="currentColor" />;
-  return <DollarSignCircle size={size} color="currentColor" />;
+  if (b.includes("cashback") || b.includes("earn")) key = "points";
+  else if (b.includes("birthday")) key = "birthday";
+  else if (b.includes("sales")) key = "sales";
+  else if (b.includes("early access")) key = "early";
+  else if (b.includes("shipping")) key = "shipping";
+  else if (b.includes("quarterly")) key = "quarterly";
+  else if (b.includes("consultation")) key = "consultation";
+  else if (b.includes("vip") || b.includes("event")) key = "vip";
+  else if (b.includes("curated") || b.includes("premium")) key = "curated";
+
+  return <>{iconMap[key]}</>;
 }
 
 const tiers = [
   {
     name: "Tier 1",
     subtitle: "your tier",
-    spend: "On sign-up",
+    spend: "$0–$349 annual spend",
     current: true,
-    image: "/ag1-tier1.avif",
+    image: "/tier1.jpg",
     benefits: [
-      "10% back on all purchases",
+      "10% cashback on all purchases",
+      "Birthday gift",
+      "Member-only sales access",
+      "Early access to new products",
+      "Free standard shipping",
     ],
   },
   {
     name: "Tier 2",
     subtitle: "",
-    spend: "$350 annual spend",
+    spend: "$350–$899 annual spend",
     current: false,
-    image: "/ag1-tier2.avif",
+    image: "/tier2.jpg",
     benefits: [
-      "10% back on all purchases",
-      "Yearly beauty mini gift",
-      "Core content access",
+      "10% cashback on all purchases",
+      "Birthday gift",
+      "Member-only sales access",
+      "Early access to new products",
+      "Free expedited shipping",
+      "Exclusive quarterly gift",
     ],
   },
   {
     name: "Tier 3",
     subtitle: "",
-    spend: "$900 annual spend",
+    spend: "$900–$2,999 annual spend",
     current: false,
-    image: "/ag1-tier3.avif",
+    image: "/tier3.jpg",
     benefits: [
-      "10% back on all purchases",
-      "Free expedited shipping",
-      "Overnight shipping and returns",
-      "Early access to product drops and launches",
-      "Yearly beauty full sized gift",
-      "Curated quarterly box",
-      "1:1 Digital styling sessions",
-      "Premium content access",
+      "10% cashback on all purchases",
+      "Birthday gift",
+      "Member-only sales access",
+      "Early access to new products",
+      "Free overnight shipping",
+      "Exclusive quarterly gift",
+      "Annual beauty consultation",
     ],
   },
   {
-    name: "Tier 4",
-    subtitle: "Invite Only",
-    spend: "Invite only / Prestige",
+    name: "The Collective",
+    subtitle: "",
+    spend: "Invite only",
     current: false,
-    image: "/ag1-tier4.avif",
+    image: "/tier4.jpg",
     benefits: [
-      "15% back on all purchases",
-      "Free expedited shipping",
-      "Overnight shipping and returns",
-      "Early access to product drops and launches",
-      "Yearly beauty gift",
-      "Curated quarterly box",
-      "1:1 Digital styling sessions",
-      "VIP access to events",
-      "Exclusive merchandise",
-      "Premium content access",
+      "10% cashback on all purchases",
+      "Birthday gift",
+      "Member-only sales access",
+      "Early access to new products",
+      "Free overnight shipping",
+      "Exclusive quarterly gift",
+      "Annual beauty consultation",
+      "VIP event invitations",
+      "Premium curated boxes",
     ],
   },
 ];
@@ -187,7 +198,7 @@ function BenefitPopup({
         {/* Benefit name */}
         <h4
           style={{
-            fontFamily: "var(--font-sans)",
+            fontFamily: "var(--font-serif)",
             fontSize: "24px",
             fontWeight: 400,
             color: "#000000",
@@ -229,29 +240,18 @@ function BenefitPopup({
 }
 
 export default function Tiers() {
-  const isMobile = useIsMobile();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [hoveredBenefit, setHoveredBenefit] = useState<string | null>(null);
   const [activeBenefit, setActiveBenefit] = useState<string | null>(null);
   const [currentTier, setCurrentTier] = useState<number>(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const tierHandler = (e: Event) => {
+    const handler = (e: Event) => {
       setCurrentTier((e as CustomEvent).detail.tier);
     };
-    const subHandler = (e: Event) => {
-      const month = (e as CustomEvent).detail.month;
-      if (month < 1) setCurrentTier(0);
-      else if (month <= 3) setCurrentTier(1);
-      else if (month <= 11) setCurrentTier(2);
-      else setCurrentTier(3);
-    };
-    window.addEventListener("tier-updated", tierHandler);
-    window.addEventListener("subscription-updated", subHandler);
+    window.addEventListener("tier-updated", handler);
     return () => {
-      window.removeEventListener("tier-updated", tierHandler);
-      window.removeEventListener("subscription-updated", subHandler);
+      window.removeEventListener("tier-updated", handler);
     };
   }, []);
 
@@ -260,22 +260,19 @@ export default function Tiers() {
       id="section-tiers"
       style={{
         backgroundColor: "#ffffff",
-        padding: isMobile ? "0px 16px 60px" : "0px 48px 100px",
+        padding: "20px 48px 40px",
       }}
     >
       {/* Heading */}
       <h2
         style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: isMobile ? "32px" : "44px",
+          fontFamily: "var(--font-serif)",
+          fontSize: "44px",
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
-          textAlign: "left",
-          margin: isMobile ? "0 0 32px 0" : "0 0 56px 0",
-          maxWidth: "1280px",
-          marginLeft: "auto",
-          marginRight: "auto",
+          textAlign: "center",
+          margin: "0 0 56px 0",
           letterSpacing: "-0.01em",
         }}
       >
@@ -284,20 +281,7 @@ export default function Tiers() {
 
       {/* Tier cards */}
       <div
-        id="tiers-scroll"
-        ref={scrollRef}
-        style={isMobile ? {
-          display: "flex",
-          overflowX: "auto",
-          scrollSnapType: "x mandatory",
-          WebkitOverflowScrolling: "touch",
-          gap: "12px",
-          marginLeft: "-16px",
-          marginRight: "-16px",
-          paddingLeft: "16px",
-          paddingRight: "16px",
-          scrollbarWidth: "none",
-        } as React.CSSProperties : {
+        style={{
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: "0",
@@ -305,13 +289,7 @@ export default function Tiers() {
           margin: "0 auto",
         }}
       >
-      {isMobile && (
-        <style>{`
-          #tiers-scroll::-webkit-scrollbar { display: none; }
-        `}</style>
-      )}
         {tiers.map((tier, i) => {
-          const isCurrent = currentTier === i;
           const isHovered = hoveredIndex === i;
           const isDimmed = hoveredIndex !== null && hoveredIndex !== i;
           const isLast = i === tiers.length - 1;
@@ -329,18 +307,7 @@ export default function Tiers() {
                 flexDirection: "column",
                 overflow: "hidden",
                 cursor: "pointer",
-                ...(isMobile ? {
-                  minWidth: "78vw",
-                  maxWidth: "78vw",
-                  scrollSnapAlign: "start",
-                  flexShrink: 0,
-                  borderRadius: "12px",
-                  border: "1px solid #d4e0df",
-                } : {
-                  borderRight: !isLast
-                    ? `1px solid ${isCurrent ? "rgba(255,255,255,0.15)" : "#d4e0df"}`
-                    : "none",
-                }),
+                borderRight: !isLast ? "1px solid #e5e2de" : "none",
               }}
             >
               {/* Image area */}
@@ -362,13 +329,13 @@ export default function Tiers() {
                     transform: isHovered ? "scale(1.05)" : "scale(1)",
                   }}
                 />
-                {isCurrent && (
+                {currentTier === i && (
                   <>
                     <div
                       style={{
                         position: "absolute",
                         inset: 0,
-                        backgroundColor: "rgba(12,61,61,0.35)",
+                        backgroundColor: "rgba(0,0,0,0.15)",
                       }}
                     />
                     <div
@@ -381,7 +348,9 @@ export default function Tiers() {
                         fontFamily: "var(--font-sans)",
                         fontSize: "13px",
                         fontWeight: 500,
-                        color: "#0C3D3D",
+                        letterSpacing: "0.06em",
+                        color: "#000000",
+                        border: "1px solid #e0e0e0",
                       }}
                     >
                       current tier
@@ -393,22 +362,27 @@ export default function Tiers() {
               {/* Card content */}
               <div
                 style={{
-                  backgroundColor: isCurrent ? "#0C3D3D" : "#F6F5F1",
-                  padding: isMobile ? "24px 20px 32px" : "32px 36px 44px",
+                  backgroundColor: currentTier === i ? "#ffffff" : "#f9f7f5",
+                  padding: "32px 36px 44px",
                   flex: 1,
                   display: "flex",
                   flexDirection: "column",
+                  ...(currentTier === i ? { boxShadow: [
+                    i === 0 ? "inset 1px 0 0 0 #e5e2de" : "",
+                    "inset 0 -1px 0 0 #e5e2de",
+                    isLast ? "inset -1px 0 0 0 #e5e2de" : "",
+                  ].filter(Boolean).join(", ") } : {}),
                 }}
               >
 
                 {/* Tier name */}
                 <h3
                   style={{
-                    fontFamily: "var(--font-sans)",
+                    fontFamily: "var(--font-serif)",
                     fontSize: "30px",
                     fontWeight: 400,
                     lineHeight: 1.15,
-                    color: isCurrent ? "#ffffff" : "#000000",
+                    color: "#000000",
                     margin: "0 0 4px 0",
                     letterSpacing: "-0.01em",
                   }}
@@ -422,7 +396,7 @@ export default function Tiers() {
                     fontFamily: "var(--font-sans)",
                     fontSize: "13px",
                     fontWeight: 400,
-                    color: isCurrent ? "rgba(255,255,255,0.6)" : "#000000",
+                    color: "#888888",
                     margin: "0 0 28px 0",
                     lineHeight: 1.4,
                   }}
@@ -435,7 +409,6 @@ export default function Tiers() {
                   style={{
                     display: "flex",
                     flexDirection: "column",
-                    color: isCurrent ? "#ffffff" : "#1a1a1a",
                   }}
                 >
                   {tier.benefits.map((benefit, j) => {
@@ -461,7 +434,7 @@ export default function Tiers() {
                           padding: "16px 0",
                           borderTop:
                             !isFirst
-                              ? `1px solid ${isCurrent ? "rgba(255,255,255,0.15)" : "#d4e0df"}`
+                              ? "1px solid #e5e2de"
                               : "none",
                           opacity: isBenefitDimmed ? 0.35 : 1,
                           transition: "opacity 0.2s ease",
@@ -476,7 +449,7 @@ export default function Tiers() {
                             fontFamily: "var(--font-sans)",
                             fontSize: "14px",
                             fontWeight: 400,
-                            color: isCurrent ? "rgba(255,255,255,0.85)" : "#1a1a1a",
+                            color: "#1a1a1a",
                             lineHeight: 1.5,
                           }}
                         >

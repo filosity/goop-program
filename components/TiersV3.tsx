@@ -42,7 +42,7 @@ const tiers = [
   },
   {
     name: "Tier 3",
-    spend: "$900+ annual spend",
+    spend: "$900–$2,999 annual spend",
     image: "/tier3.jpg",
     benefits: [
       "10% cashback on all purchases",
@@ -225,8 +225,10 @@ export default function TiersV3() {
           <p
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "16px",
+              fontSize: "11px",
               fontWeight: 600,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
               color: "rgba(255,255,255,0.6)",
               margin: "0 0 16px 0",
               lineHeight: 1,
@@ -429,6 +431,7 @@ export default function TiersV3() {
               fontFamily: "var(--font-sans)",
               fontSize: "12px",
               fontWeight: 600,
+              letterSpacing: "0.04em",
               color: "#000000",
               zIndex: 3,
             }}

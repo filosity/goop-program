@@ -1,40 +1,89 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
-import { ArrowLeft, ArrowRight } from "@vectoricons/atlas-icons-react";
-import { useIsMobile } from "@/hooks/useIsMobile";
+import { ArrowLeft, ArrowRight, DollarSignCircle, GiftBox, DiscountTag, Bolt, DeliveryTruck, Headphones, Star } from "@vectoricons/atlas-icons-react";
 
 /* ─── Achievement data ─── */
 const achievements = [
   {
-    id: "gwyneths-picks",
-    title: "Gwyneth's Picks",
-    description: "Purchase your first Gwyneth's Pick's piece.",
-    reward: "TBD Goop Credit",
-    code: "GPICK1",
-    codeHint: "apply this code to claim your Goop Credit",
+    id: "first-purchase",
+    title: "First Purchase",
+    description: "Complete your very first purchase to kickstart your beauty journey.",
+    reward: "+25 goop credit",
+    code: "FIRST25",
+    codeHint: "apply this code at checkout to claim your bonus goop credit",
     goal: 1,
-    image: "/goop-full-collection.png",
+    image: "/tier1.jpg",
   },
   {
-    id: "goop-on-vacation",
-    title: "#gooponvacation",
-    description: "Wear a goop dress on vacation and tag us with #gooponvacation. Available for members after Tier 2.",
-    reward: "TBD Goop Credit",
-    code: "GOOPVAC",
-    codeHint: "apply this code to claim your Goop Credit",
-    goal: 1,
-    image: "/elegant-neck-portrait-bw.avif",
+    id: "skincare-devotee",
+    title: "Skincare Devotee",
+    description: "Order 5 products from the skincare collection.",
+    reward: "15% off next order",
+    code: "SKIN15",
+    codeHint: "use this code at checkout for 15% off your next skincare order",
+    goal: 5,
+    image: "/tier2.jpg",
   },
   {
-    id: "beauty-fashion",
-    title: "Beauty + Fashion",
-    description: "Purchase a beauty and a fashion item.",
-    reward: "TBD Goop Credit",
-    code: "BFCOMBO",
-    codeHint: "apply this code to claim your Goop Credit",
-    goal: 2,
-    image: "/goop-moisturizer-collection.png",
+    id: "beauty-explorer",
+    title: "Beauty Explorer",
+    description: "Try products from 3 different categories to discover your favorites.",
+    reward: "+75 goop credit",
+    code: "EXPLORE75",
+    codeHint: "apply this code at checkout to claim your bonus goop credit",
+    goal: 3,
+    image: "/tier3.jpg",
+  },
+  {
+    id: "loyal-customer",
+    title: "Loyal Customer",
+    description: "Make 10 purchases and unlock a permanent loyalty reward.",
+    reward: "Free shipping forever",
+    code: "LOYAL-SHIP",
+    codeHint: "add this code to your account to unlock permanent free shipping",
+    goal: 10,
+    image: "/tier4.jpg",
+  },
+  {
+    id: "review-maven",
+    title: "Review Maven",
+    description: "Write 5 thoughtful product reviews to help the community.",
+    reward: "+100 goop credit",
+    code: "REVIEW100",
+    codeHint: "apply this code at checkout to claim your bonus goop credit",
+    goal: 5,
+    image: "/tier1.jpg",
+  },
+  {
+    id: "social-butterfly",
+    title: "Social Butterfly",
+    description: "Connect your Instagram, TikTok, and subscribe to our SMS list.",
+    reward: "Early access to drops",
+    code: "EARLYACCESS",
+    codeHint: "your early access has been activated for all upcoming product drops",
+    goal: 3,
+    image: "/tier2.jpg",
+  },
+  {
+    id: "seasonal-collector",
+    title: "Seasonal Collector",
+    description: "Purchase from 4 seasonal collections throughout the year.",
+    reward: "Curated gift box",
+    code: "GIFTBOX26",
+    codeHint: "use this code at checkout to receive your curated gift box",
+    goal: 4,
+    image: "/tier3.jpg",
+  },
+  {
+    id: "brand-ambassador",
+    title: "Brand Ambassador",
+    description: "Refer 3 friends who each make their first purchase.",
+    reward: "$50 store credit",
+    code: "AMBASS50",
+    codeHint: "apply this code at checkout to redeem your $50 store credit",
+    goal: 3,
+    image: "/tier4.jpg",
   },
 ];
 
@@ -48,7 +97,6 @@ function AchievementCard({
   celebrating,
   onClick,
   onClaim,
-  isMobile,
 }: {
   achievement: (typeof achievements)[number];
   progress: number;
@@ -58,7 +106,6 @@ function AchievementCard({
   celebrating: boolean;
   onClick: () => void;
   onClaim: () => void;
-  isMobile: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -80,8 +127,8 @@ function AchievementCard({
       onMouseLeave={() => setHovered(false)}
       onClick={onClick}
       style={{
-        width: isMobile ? "100%" : "360px",
-        minWidth: isMobile ? "100%" : "360px",
+        width: "300px",
+        minWidth: "300px",
         flexShrink: 0,
         display: "flex",
         flexDirection: "column",
@@ -95,9 +142,9 @@ function AchievementCard({
       <div
         style={{
           position: "relative",
-          height: "300px",
+          height: "260px",
           overflow: "hidden",
-          border: "1px solid #d4e0df",
+          border: "1px solid #e5e2de",
           borderBottom: "none",
         }}
       >
@@ -122,12 +169,14 @@ function AchievementCard({
             top: "14px",
             right: "14px",
             fontFamily: "var(--font-sans)",
-            fontSize: "15px",
+            fontSize: "10px",
             fontWeight: 600,
+            letterSpacing: "0.06em",
+            textTransform: "uppercase",
             lineHeight: 1,
             padding: "6px 12px",
-            borderRadius: "999px",
-            backgroundColor: redeemed || claimed || claimClicked ? "#0C3D3D" : isComplete ? "#E8913A" : "rgba(255,255,255,0.92)",
+            borderRadius: "40px",
+            backgroundColor: redeemed || claimed || claimClicked ? "#000000" : isComplete ? "#E8913A" : "rgba(255,255,255,0.92)",
             color: redeemed || claimed || claimClicked ? "#ffffff" : isComplete ? "#ffffff" : "#1a1a1a",
             backdropFilter: isComplete || redeemed || claimed || claimClicked ? "none" : "blur(8px)",
             transition: "all 0.4s ease",
@@ -161,7 +210,7 @@ function AchievementCard({
                   cx="18"
                   cy="18"
                   r="17"
-                  fill="#0C3D3D"
+                  fill="#000000"
                   style={{
                     transformOrigin: "18px 18px",
                     animation: "achieveCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
@@ -190,21 +239,21 @@ function AchievementCard({
                 onMouseLeave={() => setClaimHovered(false)}
                 style={{
                   fontFamily: "var(--font-sans)",
-                  fontSize: "18px",
-                  fontWeight: 400,
-                  color: "#0C3D3D",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  color: "#000000",
                   backgroundColor: claimHovered ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.9)",
                   border: "none",
-                  minHeight: "52px",
-                  padding: "0 36px",
-                  borderRadius: "999px",
+                  height: "38px",
+                  padding: "0 28px",
+                  borderRadius: "40px",
                   cursor: "pointer",
                   lineHeight: 1,
                   transition: "background-color 0.2s ease, opacity 0.2s ease",
                   animation: "achieveClaimIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
                 }}
               >
-                Claim →
+                claim
               </button>
             )}
           </div>
@@ -221,7 +270,7 @@ function AchievementCard({
               const dx = Math.cos(angle) * dist;
               const dy = Math.sin(angle) * dist;
               const spin = 180 + Math.random() * 540;
-              const colors = ["#0C3D3D", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#0a3030", "#3da88a", "#276b5d"];
+              const colors = ["#D4AF37", "#FFBF00", "#F7E7CE", "#DAA520", "#E8D5A3", "#C5961A", "#FFD700", "#B8860B"];
               const delay = i * 0.004;
               const dur = 1.8 + Math.random() * 0.6;
               return (
@@ -282,7 +331,7 @@ function AchievementCard({
           padding: "28px 24px 26px",
           display: "flex",
           flexDirection: "column",
-          border: "1px solid #d4e0df",
+          border: "1px solid #e5e2de",
           borderTop: "none",
           backgroundColor: "#ffffff",
           flex: 1,
@@ -291,7 +340,7 @@ function AchievementCard({
         {/* Title */}
         <h4
           style={{
-            fontFamily: "var(--font-sans)",
+            fontFamily: "var(--font-serif)",
             fontSize: "22px",
             fontWeight: 400,
             lineHeight: 1.2,
@@ -309,10 +358,10 @@ function AchievementCard({
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "16px",
+                fontSize: "13px",
                 fontWeight: 400,
                 lineHeight: 1.5,
-                color: "#000000",
+                color: "#888888",
                 margin: 0,
               }}
             >
@@ -327,8 +376,10 @@ function AchievementCard({
               <span
                 style={{
                   fontFamily: "var(--font-sans)",
-                  fontSize: "16px",
+                  fontSize: "11px",
                   fontWeight: 600,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
                   color: "#aaaaaa",
                   lineHeight: 1,
                   display: "block",
@@ -340,7 +391,7 @@ function AchievementCard({
               <span
                 style={{
                   fontFamily: "var(--font-sans)",
-                  fontSize: "17px",
+                  fontSize: "15px",
                   fontWeight: 600,
                   color: "#000000",
                   lineHeight: 1,
@@ -370,7 +421,7 @@ function AchievementCard({
               style={{
                 width: "100%",
                 height: "1px",
-                backgroundColor: "#d4e0df",
+                backgroundColor: "#e5e2de",
                 overflow: "hidden",
                 marginBottom: "14px",
               }}
@@ -379,7 +430,7 @@ function AchievementCard({
                 style={{
                   height: "100%",
                   width: `${pct}%`,
-                  backgroundColor: "#0C3D3D",
+                  backgroundColor: "#000000",
                   transition: "width 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
               />
@@ -389,9 +440,9 @@ function AchievementCard({
             <span
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "15px",
+                fontSize: "12px",
                 fontWeight: 400,
-                color: "#000000",
+                color: "#aaaaaa",
                 lineHeight: 1,
               }}
             >
@@ -407,8 +458,10 @@ function AchievementCard({
             <span
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "16px",
+                fontSize: "11px",
                 fontWeight: 600,
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
                 color: "#aaaaaa",
                 lineHeight: 1,
                 display: "block",
@@ -420,7 +473,7 @@ function AchievementCard({
             <span
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "17px",
+                fontSize: "15px",
                 fontWeight: 600,
                 color: "#000000",
                 lineHeight: 1,
@@ -439,20 +492,20 @@ function AchievementCard({
                   alignItems: "center",
                   gap: "10px",
                   padding: "12px 16px",
-                  backgroundColor: "#f0f5f5",
+                  backgroundColor: "#f4f2ef",
                   marginBottom: "8px",
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="11" fill="#6b8a89" />
+                  <circle cx="12" cy="12" r="11" fill="#888888" />
                   <path d="M7.5 12.5L10.5 15.5L16.5 9.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "15px",
+                    fontSize: "13px",
                     fontWeight: 600,
-                    color: "#000000",
+                    color: "#888888",
                     lineHeight: 1,
                   }}
                 >
@@ -477,14 +530,12 @@ function AchievementCard({
                       fontFamily: "var(--font-sans)",
                       fontSize: "13px",
                       fontWeight: 600,
+                      letterSpacing: "0.08em",
                       color: "#000000",
-                      backgroundColor: "#f5f8f8",
-                      border: "1px solid #d4e0df",
+                      backgroundColor: "#f9f7f5",
+                      border: "1px solid #e5e2de",
                       borderRight: "none",
                       padding: "10px 14px",
-                      minHeight: "52px",
-                      display: "flex",
-                      alignItems: "center",
                       lineHeight: 1,
                       flex: 1,
                     }}
@@ -495,20 +546,19 @@ function AchievementCard({
                     onClick={(e) => { e.stopPropagation(); handleCopy(); }}
                     style={{
                       fontFamily: "var(--font-sans)",
-                      fontSize: "16px",
+                      fontSize: "13px",
                       fontWeight: 600,
                       color: "#ffffff",
-                      backgroundColor: "#0C3D3D",
-                      border: "1px solid #0C3D3D",
-                      minHeight: "52px",
-                      padding: "10px 24px",
+                      backgroundColor: "#000000",
+                      border: "1px solid #000000",
+                      padding: "10px 14px",
                       cursor: "pointer",
                       lineHeight: 1,
                       transition: "background-color 0.2s ease",
                       whiteSpace: "nowrap",
                     }}
                   >
-                    {copied ? "Copied!" : "Copy"}
+                    {copied ? "copied!" : "copy"}
                   </button>
                 </div>
                 {/* Tooltip — above copy button */}
@@ -518,10 +568,10 @@ function AchievementCard({
                     bottom: "calc(100% + 8px)",
                     right: 0,
                     transform: `translateY(${copied ? "0px" : "4px"})`,
-                    backgroundColor: "#eaf2f2",
+                    backgroundColor: "#f0eeeb",
                     color: "#000000",
                     fontFamily: "var(--font-sans)",
-                    fontSize: "13px",
+                    fontSize: "11px",
                     fontWeight: 500,
                     padding: "6px 12px",
                     borderRadius: "6px",
@@ -533,7 +583,7 @@ function AchievementCard({
                   }}
                 >
                   add the code to your cart
-                  <div style={{ position: "absolute", top: "100%", right: "16px", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderTop: "4px solid #eaf2f2" }} />
+                  <div style={{ position: "absolute", top: "100%", right: "16px", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderTop: "4px solid #f0eeeb" }} />
                 </div>
               </div>
             )}
@@ -546,18 +596,28 @@ function AchievementCard({
 }
 
 /* ─── Achievements Content (carousel) ─── */
-function AchievementsContent({ onClaimedCountChange, onHasClaimableChange, isMobile }: { onClaimedCountChange: (count: number) => void; onHasClaimableChange: (has: boolean) => void; isMobile: boolean }) {
+function AchievementsContent({ onClaimedCountChange, onHasClaimableChange }: { onClaimedCountChange: (count: number) => void; onHasClaimableChange: (has: boolean) => void }) {
   const [progress, setProgress] = useState<Record<string, number>>(() => {
     const init: Record<string, number> = {};
     achievements.forEach((a) => { init[a.id] = 0; });
+    init["first-purchase"] = 1;
+    init["skincare-devotee"] = 5;
+    init["beauty-explorer"] = 3;
     return init;
   });
-  const [claimable, setClaimable] = useState<Record<string, boolean>>({});
-  const [claimed, setClaimed] = useState<Record<string, boolean>>({});
-  const [redeemed] = useState<Set<string>>(new Set());
+  const [claimable, setClaimable] = useState<Record<string, boolean>>({
+    "first-purchase": false,
+    "skincare-devotee": false,
+    "beauty-explorer": true,
+  });
+  const [claimed, setClaimed] = useState<Record<string, boolean>>({
+    "first-purchase": true,
+    "skincare-devotee": true,
+  });
+  const [redeemed] = useState<Set<string>>(new Set(["first-purchase"]));
   const [celebratingId, setCelebratingId] = useState<string | null>(null);
 
-  const currentPointsRef = useRef(5);
+  const currentPointsRef = useRef(50);
 
   // Sync claimed count and claimable state to parent
   useEffect(() => {
@@ -643,13 +703,13 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange, isMob
   }, [claimed, claimable]);
 
   const handleClaim = useCallback((id: string) => {
-    // Add Goop Credit from reward if applicable
+    // Add goop credit from reward if applicable
     const achievement = achievements.find(a => a.id === id);
     if (achievement) {
-      const match = achievement.reward.match(/\+?\$(\d+(?:\.\d+)?)\s*Goop Credit/i);
+      const match = achievement.reward.match(/\+(\d+)\s*goop credit/i);
       if (match) {
-        const dollars = parseFloat(match[1]);
-        const newTotal = Math.round((currentPointsRef.current + dollars) * 100) / 100;
+        const pts = parseInt(match[1], 10);
+        const newTotal = currentPointsRef.current + pts;
         currentPointsRef.current = newTotal;
         window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
       }
@@ -676,13 +736,12 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange, isMob
         onMouseLeave={handleMouseUp}
         style={{
           display: "flex",
-          flexDirection: isMobile ? "column" as const : "row" as const,
           gap: "16px",
-          overflowX: isMobile ? "visible" as const : "auto" as const,
+          overflowX: "auto",
           scrollBehavior: "smooth",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
-          cursor: isMobile ? "default" : "grab",
+          cursor: "grab",
           userSelect: "none",
           paddingBottom: "4px",
         }}
@@ -698,63 +757,60 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange, isMob
             celebrating={celebratingId === a.id}
             onClick={() => handleCardClick(a.id, a.goal)}
             onClaim={() => handleClaim(a.id)}
-            isMobile={isMobile}
           />
         ))}
       </div>
 
-      {/* Arrow nav — only show if cards overflow (more than 3) */}
-      {achievements.length > 3 && (
-        <div
+      {/* Arrow nav — centered below */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "8px",
+          marginTop: "16px",
+        }}
+      >
+        <button
+          onClick={() => carouselRef.current?.scrollBy({ left: -320, behavior: "smooth" })}
+          onMouseEnter={() => setLeftArrowHovered(true)}
+          onMouseLeave={() => setLeftArrowHovered(false)}
+          aria-label="Previous"
           style={{
+            width: "36px",
+            height: "36px",
+            borderRadius: "50%",
+            backgroundColor: "transparent",
+            border: leftArrowHovered ? "1px solid #000000" : "1px solid #d8d5d0",
+            cursor: "pointer",
             display: "flex",
+            alignItems: "center",
             justifyContent: "center",
-            gap: "8px",
-            marginTop: "16px",
+            transition: "border-color 0.2s ease",
           }}
         >
-          <button
-            onClick={() => carouselRef.current?.scrollBy({ left: -320, behavior: "smooth" })}
-            onMouseEnter={() => setLeftArrowHovered(true)}
-            onMouseLeave={() => setLeftArrowHovered(false)}
-            aria-label="Previous"
-            style={{
-              width: "36px",
-              height: "36px",
-              borderRadius: "50%",
-              backgroundColor: "transparent",
-              border: leftArrowHovered ? "1px solid #000000" : "1px solid #d4e0df",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              transition: "border-color 0.2s ease",
-            }}
-          >
-            <ArrowLeft size={12} color="#000000" />
-          </button>
-          <button
-            onClick={() => carouselRef.current?.scrollBy({ left: 320, behavior: "smooth" })}
-            onMouseEnter={() => setRightArrowHovered(true)}
-            onMouseLeave={() => setRightArrowHovered(false)}
-            aria-label="Next"
-            style={{
-              width: "36px",
-              height: "36px",
-              borderRadius: "50%",
-              backgroundColor: "transparent",
-              border: rightArrowHovered ? "1px solid #000000" : "1px solid #d4e0df",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              transition: "border-color 0.2s ease",
-            }}
-          >
-            <ArrowRight size={12} color="#000000" />
-          </button>
-        </div>
-      )}
+          <ArrowLeft size={12} color="#000000" />
+        </button>
+        <button
+          onClick={() => carouselRef.current?.scrollBy({ left: 320, behavior: "smooth" })}
+          onMouseEnter={() => setRightArrowHovered(true)}
+          onMouseLeave={() => setRightArrowHovered(false)}
+          aria-label="Next"
+          style={{
+            width: "36px",
+            height: "36px",
+            borderRadius: "50%",
+            backgroundColor: "transparent",
+            border: rightArrowHovered ? "1px solid #000000" : "1px solid #d8d5d0",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            transition: "border-color 0.2s ease",
+          }}
+        >
+          <ArrowRight size={12} color="#000000" />
+        </button>
+      </div>
 
       <style>{`
         @keyframes achieveOverlayIn {
@@ -794,69 +850,50 @@ function AchievementsContent({ onClaimedCountChange, onHasClaimableChange, isMob
 /* ─── Voting data ─── */
 const allVotingQuestions: { question: string; options: string[]; images?: string[] }[] = [
   {
-    question: "Which of goop's lifestyle categories are you most interested in?",
-    options: ["Beauty", "Fashion", "Wellness & Home"],
-    images: ["/goop-moisturizer-collection.png", "/goop-full-collection.png", "/goop-martini-bath-soak.png"],
+    question: "Which bath ritual is your go-to?",
+    options: ["Boreal Fog Bath Bomb", "Love Bath Heart-Opening Soak", "Pomelo Grove Bath Bomb"],
+    images: ["/product-bath-bomb.webp", "/product-love-bath-soak.webp", "/product-pomelo-bath-bomb.webp"],
   },
   {
-    question: "Which skincare step do you never skip?",
-    options: ["Cleanser", "Serum", "Moisturizer", "Face Oil"],
-    images: ["/model-holding-cleanser.png", "/model-holding-serum.png", "/goop-moisturizer-collection.png", "/goop-face-oil-dropper.png"],
+    question: "Which body care product would you like to try?",
+    options: ["Afterglow Body Oil", "Corpus Body Wash", "No.14 Icila Body Lotion"],
+    images: ["/product-afterglow-bodyoil.webp", "/product-corpus-bodywash.webp", "/product-icila-bodylotion.webp"],
+  },
+  {
+    question: "What should we feature as product of the month?",
+    options: ["Instant Glow Body Polish", "Jillian Dempsey Makeup Bag", "Aloe Vera Shampoo Duo"],
+    images: ["/product-glow-body-polish.webp", "/product-makeupbag.webp", "/product-aloe-vera-duo.webp"],
+  },
+  {
+    question: "Which product would you gift a friend?",
+    options: ["Amber & Vanilla Pebble", "Cooling Massage Body Oil", "Afterglow Body Oil"],
+    images: ["/product-amber-pebble.webp", "/product-cooling-body-oil.webp", "/product-afterglow-bodyoil.webp"],
+  },
+  {
+    question: "What type of event would you attend?",
+    options: ["In-store Workshop", "Virtual Masterclass", "Pop-up Experience"],
   },
   {
     question: "What\u2019s your ideal self-care ritual?",
-    options: ["Bath Soak", "Face Mask", "Meditation", "Red Light Therapy"],
-    images: ["/goop-martini-bath-soak.png", "/model-holding-face-mask.png", "/sunset-mountain-meditation.avif", "/red-light-therapy.avif"],
+    options: ["Morning Skincare Routine", "Evening Bath Soak", "Weekend Spa Day"],
   },
   {
-    question: "Pick your glow-up essential",
-    options: ["Retinol Duo", "Eye Serum", "Full Collection", "Face Oil"],
-    images: ["/goop-retinol-duo.png", "/model-holding-eye-serum.png", "/goop-full-collection.png", "/goop-face-oil-dropper.png"],
+    question: "Which beauty trend excites you most?",
+    options: ["Clean Beauty", "Glass Skin", "Ayurvedic Wellness"],
   },
   {
-    question: "What matters most in your beauty routine?",
-    options: ["Clean Ingredients", "Luxury Feel", "Visible Results", "Sustainability"],
-    images: ["/serum-ampoules.png", "/luxury-beauty-gift-stack.avif", "/glowing-skin-closeup.avif", "/pink-dahlia-bloom.webp"],
-  },
-  {
-    question: "When do you do your skincare routine?",
-    options: ["Morning Only", "Night Only", "Both AM & PM", "Whenever I Remember"],
-    images: ["/dewy-skin-closeup.avif", "/elegant-neck-portrait-bw.avif", "/model-holding-serum.png", "/model-holding-cleanser.png"],
-  },
-  {
-    question: "Which gift set would you choose?",
-    options: ["Skincare Bundle", "Bath Collection", "Serum Set", "The Full Works"],
-    images: ["/goop-moisturizer-collection.png", "/goop-martini-bath-soak.png", "/serum-ampoules.png", "/luxury-beauty-gift-stack.avif"],
+    question: "Which product do you prefer?",
+    options: ["Microderm Instant Glow Body Polish", "Cooling Abhyanga Massage Body Oil", "Pomelo Grove Bath Bomb"],
+    images: ["/product-glow-body-polish.webp", "/product-cooling-body-oil.webp", "/product-pomelo-bath-bomb.webp"],
   },
 ];
 
-const VOTING_DISPLAY_COUNT = 7;
+const VOTING_DISPLAY_COUNT = 8;
 
 /* ─── Fallback images for voting version 1 ─── */
-const votingImages: string[] = [
-  "/featured1.jpg",
-  "/featured2.jpg",
-  "/featured3.jpg",
-  "/featured4.jpg",
-  "/tier1.jpg",
-  "/tier2.jpg",
-  "/tier3.jpg",
-  "/tier4.jpg",
-  "/earn1.jpg",
-  "/earn2.jpg",
-  "/earn3.jpg",
-  "/earn4.jpg",
-  "/earn5.jpg",
-  "/earn6.jpg",
-  "/earn7.jpg",
-  "/earn8.jpg",
-  "/earn10.jpg",
-  "/product-d3k2.jpg",
-  "/product-omega3.jpg",
-  "/product-travelpacks-original.jpg",
-];
+const votingImages = ["/product-bath-bomb.webp", "/product-afterglow-bodyoil.webp", "/product-corpus-bodywash.webp", "/product-icila-bodylotion.webp", "/product-glow-body-polish.webp", "/product-makeupbag.webp", "/product-amber-pebble.webp", "/product-cooling-body-oil.webp"];
 
-/* ─── Shared Goop Credit earned animation (black circle, white checkmark) ─── */
+/* ─── Shared goop credit earned animation (black circle, white checkmark) ─── */
 function VotingPointsEarned() {
   return (
     <div
@@ -880,7 +917,7 @@ function VotingPointsEarned() {
           cx="14"
           cy="14"
           r="14"
-          fill="#0C3D3D"
+          fill="#000000"
           style={{
             transformOrigin: "14px 14px",
             animation: "achieveCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
@@ -902,13 +939,13 @@ function VotingPointsEarned() {
       <span
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "16px",
+          fontSize: "14px",
           fontWeight: 600,
           color: "#000000",
           textAlign: "center",
         }}
       >
-        +$0.25 Goop Credit earned
+        +5 goop credit earned
       </span>
     </div>
   );
@@ -931,7 +968,7 @@ function VotingComplete({ totalEarned, questionVisible }: { totalEarned: number;
     >
       <h3
         style={{
-          fontFamily: "var(--font-sans)",
+          fontFamily: "var(--font-serif)",
           fontSize: "22px",
           fontWeight: 400,
           color: "#000000",
@@ -944,9 +981,9 @@ function VotingComplete({ totalEarned, questionVisible }: { totalEarned: number;
       <p
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "16px",
+          fontSize: "14px",
           fontWeight: 400,
-          color: "#000000",
+          color: "#888888",
           textAlign: "center",
           margin: "0 0 24px 0",
         }}
@@ -956,19 +993,19 @@ function VotingComplete({ totalEarned, questionVisible }: { totalEarned: number;
       <span
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "18px",
+          fontSize: "13px",
           fontWeight: 600,
           color: "#ffffff",
-          backgroundColor: "#0C3D3D",
-          padding: "0 32px",
-          minHeight: "52px",
-          borderRadius: "999px",
+          backgroundColor: "#000000",
+          padding: "0 22px",
+          height: "38px",
+          borderRadius: "40px",
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        +${totalEarned.toFixed(2)} Goop Credit earned today
+        +{totalEarned} goop credit earned today
       </span>
     </div>
   );
@@ -994,11 +1031,10 @@ function VotingVersion1({
   onHoverOption: (option: string | null) => void;
   imageMap: Record<string, string>;
 }) {
-  const votingMobile = useIsMobile();
   return (
     <div
       style={{
-        minHeight: votingMobile ? "auto" : "500px",
+        height: "500px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -1007,19 +1043,18 @@ function VotingVersion1({
         transition: "opacity 0.3s ease",
         position: "relative",
         overflow: "hidden",
-        padding: votingMobile ? "24px 0" : 0,
       }}
     >
       {!showPoints ? (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", padding: votingMobile ? "12px" : "20px" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", padding: "20px" }}>
           <h3
             style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: votingMobile ? "18px" : "22px",
+              fontFamily: "var(--font-serif)",
+              fontSize: "22px",
               fontWeight: 400,
               color: "#000000",
               textAlign: "center",
-              margin: "0 0 24px 0",
+              margin: "0 0 36px 0",
             }}
           >
             {questionData.question}
@@ -1028,12 +1063,10 @@ function VotingVersion1({
           <div
             style={{
               display: "flex",
-              flexDirection: votingMobile ? "column" : "row",
-              gap: votingMobile ? "12px" : "16px",
+              gap: "20px",
               justifyContent: "center",
-              alignItems: votingMobile ? "center" : "flex-start",
-              width: "100%",
-              maxWidth: votingMobile ? "280px" : "1100px",
+              flexWrap: "wrap",
+              maxWidth: "820px",
             }}
           >
             {questionData.options.map((option) => {
@@ -1047,9 +1080,7 @@ function VotingVersion1({
                     flexDirection: "column",
                     alignItems: "center",
                     gap: "14px",
-                    flex: "1 1 0",
-                    minWidth: 0,
-                    maxWidth: "220px",
+                    width: "240px",
                   }}
                 >
                   <div
@@ -1057,10 +1088,10 @@ function VotingVersion1({
                     onMouseEnter={() => onHoverOption(option)}
                     onMouseLeave={() => onHoverOption(null)}
                     style={{
-                      width: "100%",
-                      aspectRatio: "3 / 3.5",
+                      width: "240px",
+                      height: "280px",
                       cursor: selectedOption ? "default" : "pointer",
-                      boxShadow: isSelected ? "inset 0 0 0 1px #0C3D3D" : isHovered ? "inset 0 0 0 1px #0C3D3D" : "inset 0 0 0 1px #d4e0df",
+                      boxShadow: isSelected ? "inset 0 0 0 1px #000000" : isHovered ? "inset 0 0 0 1px #000000" : "inset 0 0 0 1px #e5e2de",
                       overflow: "hidden",
                       transition: "box-shadow 0.2s ease",
                       position: "relative",
@@ -1085,14 +1116,14 @@ function VotingVersion1({
                     onMouseLeave={() => onHoverOption(null)}
                     style={{
                       fontFamily: "var(--font-sans)",
-                      fontSize: "18px",
+                      fontSize: "13px",
                       fontWeight: 600,
-                      color: isSelected ? "#ffffff" : "#0C3D3D",
-                      backgroundColor: isSelected ? "#0C3D3D" : "transparent",
-                      border: isSelected ? "1px solid #0C3D3D" : isHovered ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
-                      minHeight: "52px",
-                      padding: "0 32px",
-                      borderRadius: "999px",
+                      color: isSelected ? "#ffffff" : "#000000",
+                      backgroundColor: isSelected ? "#000000" : "transparent",
+                      border: isSelected ? "1px solid #000000" : isHovered ? "1px solid #000000" : "1px solid #d5d5d5",
+                      height: "38px",
+                      padding: "0 22px",
+                      borderRadius: "40px",
                       cursor: selectedOption ? "default" : "pointer",
                       transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
                       lineHeight: 1,
@@ -1140,11 +1171,10 @@ function VotingVersion2({
   onOptionClick: (option: string) => void;
   onHoverOption: (option: string | null) => void;
 }) {
-  const votingMobile = useIsMobile();
   return (
     <div
       style={{
-        minHeight: votingMobile ? "auto" : "500px",
+        height: "500px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -1153,19 +1183,18 @@ function VotingVersion2({
         transition: "opacity 0.3s ease",
         position: "relative",
         overflow: "hidden",
-        padding: votingMobile ? "24px 0" : 0,
       }}
     >
       {!showPoints ? (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", padding: votingMobile ? "12px" : "20px" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", padding: "20px" }}>
           <h3
             style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: votingMobile ? "18px" : "22px",
+              fontFamily: "var(--font-serif)",
+              fontSize: "22px",
               fontWeight: 400,
               color: "#000000",
               textAlign: "center",
-              margin: "0 0 24px 0",
+              margin: "0 0 36px 0",
             }}
           >
             {questionData.question}
@@ -1174,13 +1203,10 @@ function VotingVersion2({
           <div
             style={{
               display: "flex",
-              flexDirection: votingMobile ? "column" : "row",
-              gap: votingMobile ? "10px" : "16px",
+              gap: "16px",
               justifyContent: "center",
-              alignItems: votingMobile ? "stretch" : "center",
-              flexWrap: votingMobile ? "nowrap" : "wrap",
-              maxWidth: votingMobile ? "100%" : "680px",
-              width: "100%",
+              flexWrap: "wrap",
+              maxWidth: "680px",
             }}
           >
             {questionData.options.map((option) => {
@@ -1194,19 +1220,17 @@ function VotingVersion2({
                   onMouseLeave={() => onHoverOption(null)}
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: votingMobile ? "16px" : "18px",
+                    fontSize: "14px",
                     fontWeight: 500,
-                    color: isSelected ? "#ffffff" : "#0C3D3D",
-                    backgroundColor: isSelected ? "#0C3D3D" : "#ffffff",
-                    border: isSelected ? "1px solid #0C3D3D" : isHovered ? "1px solid #0C3D3D" : "1px solid #0C3D3D",
-                    padding: votingMobile ? "16px 20px" : "24px 30px",
-                    minHeight: votingMobile ? "48px" : "52px",
+                    color: isSelected ? "#ffffff" : "#000000",
+                    backgroundColor: isSelected ? "#000000" : "#ffffff",
+                    border: isSelected ? "1px solid #000000" : isHovered ? "1px solid #000000" : "1px solid #e5e2de",
+                    padding: "24px 20px",
                     cursor: selectedOption ? "default" : "pointer",
                     textAlign: "center",
-                    minWidth: votingMobile ? "auto" : "180px",
-                    flex: votingMobile ? "none" : "1 1 180px",
-                    maxWidth: votingMobile ? "100%" : "220px",
-                    width: votingMobile ? "100%" : "auto",
+                    minWidth: "180px",
+                    flex: "1 1 180px",
+                    maxWidth: "220px",
                     transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
                     lineHeight: 1.3,
                   }}
@@ -1273,7 +1297,7 @@ function VotingVersion3({
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", padding: "20px" }}>
           <h3
             style={{
-              fontFamily: "var(--font-sans)",
+              fontFamily: "var(--font-serif)",
               fontSize: "22px",
               fontWeight: 400,
               color: "#000000",
@@ -1306,7 +1330,7 @@ function VotingVersion3({
                 fontSize: "14px",
                 fontWeight: 400,
                 border: "none",
-                borderBottom: focused ? "1px solid #000000" : "1px solid #d4e0df",
+                borderBottom: focused ? "1px solid #000000" : "1px solid #e5e2de",
                 padding: "12px 0",
                 backgroundColor: "transparent",
                 width: "100%",
@@ -1322,19 +1346,19 @@ function VotingVersion3({
               style={{
                 marginTop: "24px",
                 fontFamily: "var(--font-sans)",
-                fontSize: "18px",
+                fontSize: "13px",
                 fontWeight: 600,
                 color: "#ffffff",
-                backgroundColor: submitHovered ? "#155050" : "#0C3D3D",
-                border: "1px solid #0C3D3D",
-                minHeight: "52px",
-                borderRadius: "999px",
-                padding: "0 32px",
+                backgroundColor: submitHovered ? "#222222" : "#000000",
+                border: "none",
+                height: "38px",
+                borderRadius: "40px",
+                padding: "0 22px",
                 cursor: "pointer",
                 transition: "background-color 0.2s ease",
               }}
             >
-              Submit →
+              submit
             </button>
           </div>
         </div>
@@ -1364,7 +1388,7 @@ function VotingContent({ onAnsweredCountChange }: { onAnsweredCountChange: (coun
   const [hoveredOption, setHoveredOption] = useState<string | null>(null);
   const [transitioning, setTransitioning] = useState(false);
   const [questionVisible, setQuestionVisible] = useState(true);
-  const currentPointsRef = useRef(5);
+  const currentPointsRef = useRef(50);
   const totalEarned = useRef(0);
 
   /* Shuffle all questions, pick 8, assign random variation (1/2/3) per question — once per mount */
@@ -1435,9 +1459,9 @@ function VotingContent({ onAnsweredCountChange }: { onAnsweredCountChange: (coun
 
   const awardPoints = useCallback(() => {
     setShowPoints(true);
-    const pts = 0.25;
-    totalEarned.current = Math.round((totalEarned.current + pts) * 100) / 100;
-    const newTotal = Math.round((currentPointsRef.current + pts) * 100) / 100;
+    const pts = 5;
+    totalEarned.current += pts;
+    const newTotal = currentPointsRef.current + pts;
     currentPointsRef.current = newTotal;
     window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
 
@@ -1535,1270 +1559,419 @@ function VotingContent({ onAnsweredCountChange }: { onAnsweredCountChange: (coun
   );
 }
 
-/* ─── Streak reward milestones ─── */
-const streakRewards = [
-  { name: "goop Shaker Bottle", image: "/featured-stanley.jpg", code: "SHAKER7" },
-  { name: "Travel Packs", image: "/earn1.jpg", code: "TRAVEL14" },
-  { name: "$2 Goop Credit", image: "/featured1.jpg", code: "STREAK2" },
-  { name: "goop Hat", image: "/milestone-hat.jpg", code: "HAT28" },
-  { name: "Free Shipping", image: "/earn2.jpg", code: "FREESHIP" },
-  { name: "$1 Goop Credit", image: "/featured2.jpg", code: "STREAK1" },
-  { name: "goop Tote", image: "/milestone-tote.jpg", code: "TOTE42" },
+/* ─── Check-in data ─── */
+const checkinRewardCycles = [
+  ["+5 goop credit", "+10 goop credit", "Free sample", "+15 goop credit", "2x goop credit today", "+25 goop credit", "Mystery gift"],
+  ["+10 goop credit", "Free mini", "+20 goop credit", "Early access", "+15 goop credit", "Beauty tool", "+50 goop credit"],
+  ["+5 goop credit", "+15 goop credit", "Lip balm", "+10 goop credit", "Free shipping", "+30 goop credit", "Deluxe sample"],
 ];
 
-/* ─── Streak rewards (every 50 days) ─── */
-const streakRewardsMultiplier = [
-  { name: "goop Shaker Bottle", image: "/featured-stanley.jpg", code: "SHAKER50" },
-  { name: "Travel Packs", image: "/earn1.jpg", code: "TRAVEL100" },
-  { name: "$5 Goop Credit", image: "/featured1.jpg", code: "STREAK5" },
-  { name: "goop Hat", image: "/milestone-hat.jpg", code: "HAT200" },
-  { name: "goop Tote", image: "/milestone-tote.jpg", code: "TOTE250" },
-  { name: "Free Shipping", image: "/earn2.jpg", code: "FREESHIP300" },
-];
+const checkinDayIcons = [DollarSignCircle, Star, GiftBox, Bolt, DiscountTag, DeliveryTruck, Headphones];
+const checkinTierImages = ["/tier1.jpg", "/tier2.jpg", "/tier3.jpg", "/tier4.jpg"];
 
-/* ─── Shared multiplier logic (cycle-based, used by V2/V3) ─── */
-const CYCLE_DAYS = 50;
-const TIER_2_START = 17;
-const TIER_3_START = 34;
+/* ─── Check-in Card ─── */
+function CheckInCard({
+  dayNum, isChecked, isCurrent, isFuture, isFlipping: isFlippingThis,
+  IconComponent, bgImage, reward,
+}: {
+  dayNum: number; isChecked: boolean; isCurrent: boolean; isFuture: boolean;
+  isFlipping: boolean; IconComponent: React.ComponentType<{ size: number; color: string }>;
+  bgImage: string; reward: string;
+}) {
+  const [hovered, setHovered] = useState(false);
 
-function getStreakTier(cycleDay: number) {
-  if (cycleDay >= TIER_3_START) return { label: "3x", rate: 0.75, tier: 3 };
-  if (cycleDay >= TIER_2_START) return { label: "2x", rate: 0.50, tier: 2 };
-  return { label: "1x", rate: 0.25, tier: 1 };
-}
-
-function getStreakBarProgress(cycleDay: number) {
-  if (cycleDay >= TIER_3_START) return 100;
-  if (cycleDay >= TIER_2_START) return 50 + ((cycleDay - TIER_2_START) / (TIER_3_START - TIER_2_START)) * 50;
-  return ((cycleDay - 1) / (TIER_2_START - 1)) * 50;
-}
-
-/* ─── V1 absolute-day tier logic (2x at day 50, 3x at day 150) ─── */
-const V1_TIER_2_DAY = 50;
-const V1_TIER_3_DAY = 150;
-
-function getStreakTierV1(currentDay: number) {
-  if (currentDay >= V1_TIER_3_DAY) return { label: "3x", rate: 0.75, tier: 3 };
-  if (currentDay >= V1_TIER_2_DAY) return { label: "2x", rate: 0.50, tier: 2 };
-  return { label: "1x", rate: 0.25, tier: 1 };
-}
-
-function getStreakBarProgressV1(currentDay: number) {
-  if (currentDay >= V1_TIER_3_DAY) return 100;
-  if (currentDay >= V1_TIER_2_DAY) return 50 + ((currentDay - V1_TIER_2_DAY) / (V1_TIER_3_DAY - V1_TIER_2_DAY)) * 50;
-  return ((currentDay - 1) / (V1_TIER_2_DAY - 1)) * 50;
-}
-
-/* ─── Shared streak fire icon ─── */
-function FlameIcon({ size = 20, color = "#E8913A" }: { size?: number; color?: string }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill={color} style={{ flexShrink: 0 }}>
-      <path d="M12 2C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2 14h-4v-1h4v1zm1.31-3.04l-.79.58V15h-5.04v-1.46l-.79-.58C6.93 11.84 6 10.51 6 9c0-3.31 2.69-6 6-6s6 2.69 6 6c0 1.51-.93 2.84-2.69 3.96z" />
-    </svg>
-  );
-}
-
-/* ─── Shared reward preview ─── */
-function RewardPreview({ reward, daysUntilReward, isMobile }: { reward: { name: string; image: string }; daysUntilReward: number; isMobile: boolean }) {
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: isMobile ? "column" : "row",
-        marginBottom: "32px",
-        border: "1px solid #d4e0df",
-        overflow: "hidden",
-        height: isMobile ? "auto" : "220px",
+        minWidth: "calc((100% - 72px) / 4)",
+        width: "calc((100% - 72px) / 4)",
+        flexShrink: 0,
+        perspective: "800px",
+        zIndex: hovered ? 10 : 1,
       }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       <div
         style={{
-          flex: 1,
-          backgroundColor: "#ffffff",
-          padding: isMobile ? "24px 20px" : "32px 40px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          position: "relative",
+          height: "380px",
+          transformStyle: "preserve-3d",
+          transition: isFlippingThis ? "none" : "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+          transform: isFlippingThis
+            ? undefined
+            : hovered && !isFuture
+              ? "rotateY(180deg)"
+              : "rotateY(0deg)",
+          animation: isFlippingThis ? "checkinFlip 0.7s ease forwards" : "none",
         }}
       >
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 600, color: "#999", margin: "0 0 10px 0", lineHeight: 1, textTransform: "uppercase" as const, letterSpacing: "0.04em" }}>
-          Next reward
-        </p>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "26px", fontWeight: 400, color: "#000000", margin: "0 0 10px 0", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
-          {reward.name}
-        </p>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "#0C3D3D", margin: 0, lineHeight: 1 }}>
-          {daysUntilReward === 0 ? "Unlocked today" : `${daysUntilReward} day${daysUntilReward === 1 ? "" : "s"} away`}
-        </p>
-      </div>
-      <div style={{ width: isMobile ? "100%" : "420px", maxWidth: isMobile ? "100%" : "420px", height: isMobile ? "220px" : "auto", flexShrink: 0 }}>
-        <img src={reward.image} alt={reward.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-      </div>
-    </div>
-  );
-}
-
-/* ─── Shared check-in button + confirmation ─── */
-function CheckInButton({ onCheckIn, showChecked, rate, checkInHovered, setCheckInHovered }: {
-  onCheckIn: () => void;
-  showChecked: boolean;
-  rate: number;
-  checkInHovered: boolean;
-  setCheckInHovered: (h: boolean) => void;
-}) {
-  return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", minHeight: "80px", justifyContent: "center" }}>
-      {showChecked ? (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", animation: "streakCheckedIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }}>
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style={{ overflow: "visible" }}>
-            <circle cx="20" cy="20" r="19" fill="#0C3D3D" style={{ transformOrigin: "20px 20px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
-            <path d="M12 21L17.5 26.5L28 14" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "streakDrawCheck 0.4s ease 0.25s forwards" }} />
-          </svg>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.3s both" }}>
-            +${rate.toFixed(2)} Goop Credit earned
-          </p>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.5s both" }}>
-            Check in again tomorrow
-          </p>
-        </div>
-      ) : (
-        <button
-          onClick={onCheckIn}
-          onMouseEnter={() => setCheckInHovered(true)}
-          onMouseLeave={() => setCheckInHovered(false)}
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "18px",
-            fontWeight: 400,
-            color: "#ffffff",
-            backgroundColor: checkInHovered ? "#155050" : "#0C3D3D",
-            border: "none",
-            minHeight: "52px",
-            padding: "0 40px",
-            borderRadius: "999px",
-            cursor: "pointer",
-            transition: "background-color 0.2s ease",
-            lineHeight: 1,
-          }}
-        >
-          Check In Today &rarr;
-        </button>
-      )}
-    </div>
-  );
-}
-
-/* ─── Shared check-in hook ─── */
-function useStreakCheckin(onStreakChange: (n: number) => void) {
-  const [checkedCount, setCheckedCount] = useState(0);
-  const [checkInHovered, setCheckInHovered] = useState(false);
-  const [showCheckedMessage, setShowCheckedMessage] = useState(false);
-  const [hasCheckedOnce, setHasCheckedOnce] = useState(false);
-  const [animatingBar, setAnimatingBar] = useState(false);
-  const checkinPointsRef = useRef(5);
-
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const detail = (e as CustomEvent).detail;
-      if (detail?.points !== undefined) checkinPointsRef.current = detail.points;
-    };
-    window.addEventListener("points-updated", handler);
-    return () => window.removeEventListener("points-updated", handler);
-  }, []);
-
-  useEffect(() => { onStreakChange(checkedCount); }, [checkedCount, onStreakChange]);
-
-  const currentDay = 1 + checkedCount;
-  const cycleDay = ((currentDay - 1) % CYCLE_DAYS) + 1;
-  const tier = getStreakTier(cycleDay);
-  const barProgress = getStreakBarProgress(cycleDay);
-  const nextRewardIdx = Math.floor((currentDay - 1) / CYCLE_DAYS);
-  const nextRewardDay = (nextRewardIdx + 1) * CYCLE_DAYS;
-  const daysUntilReward = nextRewardDay - currentDay;
-  const reward = streakRewardsMultiplier[nextRewardIdx % streakRewardsMultiplier.length];
-
-  const handleCheckIn = useCallback((rateOverride?: number) => {
-    if (showCheckedMessage) return;
-    setAnimatingBar(true);
-    setCheckedCount((c) => c + 1);
-    const rate = rateOverride ?? getStreakTier(cycleDay).rate;
-    const newTotal = Math.round((checkinPointsRef.current + rate) * 100) / 100;
-    checkinPointsRef.current = newTotal;
-    window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
-    if (!hasCheckedOnce) {
-      setShowCheckedMessage(true);
-      setHasCheckedOnce(true);
-      setTimeout(() => setShowCheckedMessage(false), 2800);
-    }
-    setTimeout(() => setAnimatingBar(false), 800);
-  }, [showCheckedMessage, cycleDay, hasCheckedOnce]);
-
-  return { checkedCount, currentDay, cycleDay, tier, barProgress, reward, daysUntilReward, animatingBar, showCheckedMessage, checkInHovered, setCheckInHovered, handleCheckIn };
-}
-
-/* ─── Shared multiplier keyframes ─── */
-const multiplierKeyframes = `
-  @keyframes streakCirclePop {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-  @keyframes streakDrawCheck {
-    from { stroke-dashoffset: 24; }
-    to { stroke-dashoffset: 0; }
-  }
-  @keyframes streakCheckedIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes streakTextFade {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes streakPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.06); }
-  }
-  @keyframes streakPillPop {
-    0% { transform: scale(1); }
-    30% { transform: scale(1.15); }
-    60% { transform: scale(0.95); }
-    100% { transform: scale(1); }
-  }
-  @keyframes streakConfettiBurst {
-    0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-    20% { opacity: 1; }
-    100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.6); opacity: 0; }
-  }
-`;
-
-/* ─── Daily Check-in V1 — Clean Progress ─── */
-function DailyStreakV1({ onStreakChange, isMobile }: { onStreakChange: (streak: number) => void; isMobile: boolean }) {
-  const s = useStreakCheckin(onStreakChange);
-  const [hoveredDot, setHoveredDot] = useState<number | null>(null);
-  const [celebrating, setCelebrating] = useState(false);
-
-  const v1Tier = getStreakTierV1(s.currentDay);
-  const v1BarProgress = getStreakBarProgressV1(s.currentDay);
-
-  const handleV1CheckIn = useCallback(() => {
-    s.handleCheckIn(v1Tier.rate);
-    setCelebrating(true);
-    setTimeout(() => setCelebrating(false), 1600);
-  }, [s, v1Tier.rate]);
-
-  const milestones = [
-    { label: "1x", rate: "$0.25/day", absoluteDay: 1 },
-    { label: "2x", rate: "$0.50/day", absoluteDay: V1_TIER_2_DAY },
-    { label: "3x", rate: "$0.75/day", absoluteDay: V1_TIER_3_DAY },
-  ];
-
-  return (
-    <div style={{ border: "1px solid #d4e0df", backgroundColor: "#ffffff", padding: isMobile ? "24px 16px" : "48px" }}>
-      <RewardPreview reward={s.reward} daysUntilReward={s.daysUntilReward} isMobile={isMobile} />
-
-      {/* Streak pill — centered above progress bar */}
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: "24px" }}>
-        <div style={{ position: "relative" }}>
-          <div style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: isMobile ? "8px" : "10px",
-            backgroundColor: "#0C3D3D",
-            borderRadius: "999px",
-            padding: isMobile ? "10px 20px" : "12px 24px",
-            animation: celebrating ? "streakPillPop 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none",
-          }}>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "20px" : "22px", fontWeight: 600, color: "#ffffff", lineHeight: 1 }}>
-              {s.checkedCount}
-            </span>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "14px" : "15px", fontWeight: 500, color: "rgba(255,255,255,0.8)", lineHeight: 1 }}>
-              day streak
-            </span>
-          </div>
-          {/* Confetti burst on first check-in */}
-          {celebrating && (
-            <div style={{ position: "absolute", inset: 0, pointerEvents: "none", overflow: "visible", zIndex: 5 }}>
-              {Array.from({ length: 30 }).map((_, i) => {
-                const w = 3 + Math.random() * 5;
-                const h = i % 4 === 0 ? w : 2 + Math.random() * 4;
-                const angle = Math.random() * Math.PI * 2;
-                const dist = 40 + Math.random() * 100;
-                const dx = Math.cos(angle) * dist;
-                const dy = Math.sin(angle) * dist;
-                const colors = ["#0C3D3D", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#3da88a", "#276b5d", "#E8913A"];
-                const delay = i * 0.008;
-                const dur = 1.0 + Math.random() * 0.5;
-                return (
-                  <div
-                    key={i}
-                    style={{
-                      position: "absolute",
-                      left: "50%",
-                      top: "50%",
-                      width: `${w}px`,
-                      height: `${h}px`,
-                      borderRadius: i % 3 === 0 ? "50%" : "1px",
-                      backgroundColor: colors[i % colors.length],
-                      opacity: 0,
-                      animation: `streakConfettiBurst ${dur}s cubic-bezier(0.12, 0.8, 0.2, 1) ${delay}s forwards`,
-                      ["--dx" as string]: `${dx.toFixed(1)}px`,
-                      ["--dy" as string]: `${dy.toFixed(1)}px`,
-                    }}
-                  />
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Progress bar — flush dots, absolute day milestones */}
-      <div style={{ position: "relative", marginBottom: "56px", marginLeft: isMobile ? "12px" : "0", marginRight: isMobile ? "12px" : "0" }}>
-        <div style={{ height: "6px", backgroundColor: "#e8eeed", borderRadius: "3px", overflow: "hidden" }}>
-          <div style={{ height: "100%", width: `${v1BarProgress}%`, backgroundColor: "#0C3D3D", borderRadius: "3px", transition: s.animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none" }} />
-        </div>
-
-        {/* Dots — 0%, 50%, 100% flush with bar edges */}
-        {milestones.map((m, i) => {
-          const isReached = s.currentDay >= m.absoluteDay;
-          const daysToReach = m.absoluteDay - s.currentDay;
-          const tooltipText = isReached ? `${m.rate} earned` : `${daysToReach} day${daysToReach === 1 ? "" : "s"} until ${m.rate}`;
-
-          return (
-            <div
-              key={i}
-              onMouseEnter={() => setHoveredDot(i)}
-              onMouseLeave={() => setHoveredDot(null)}
-              style={{
-                position: "absolute",
-                top: "-5px",
-                ...(i === 0 ? { left: 0 } : i === 2 ? { right: 0 } : { left: "50%", transform: "translateX(-50%)" }),
-                cursor: "default",
-              }}
-            >
-              <div style={{ width: "16px", height: "16px", borderRadius: "50%", backgroundColor: isReached ? "#0C3D3D" : "#d4e0df", border: isReached ? "3px solid #0C3D3D" : "3px solid #ffffff", boxShadow: "0 0 0 1px #d4e0df", transition: "background-color 0.5s ease" }} />
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "absolute", top: "22px", left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: isReached ? 700 : 500, color: isReached ? "#0C3D3D" : "#999", lineHeight: 1 }}>{m.label}</span>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 400, color: "#999", lineHeight: 1, marginTop: "4px" }}>{m.rate}</span>
-              </div>
-              {hoveredDot === i && (
-                <div style={{ position: "absolute", bottom: "calc(100% + 8px)", left: "50%", transform: "translateX(-50%)", backgroundColor: "#1a1a1a", color: "#ffffff", fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, padding: "6px 10px", borderRadius: "6px", whiteSpace: "nowrap", lineHeight: 1, zIndex: 10 }}>
-                  {tooltipText}
-                  <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderTop: "4px solid #1a1a1a" }} />
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      <CheckInButton onCheckIn={handleV1CheckIn} showChecked={s.showCheckedMessage} rate={v1Tier.rate} checkInHovered={s.checkInHovered} setCheckInHovered={s.setCheckInHovered} />
-      <style>{multiplierKeyframes}</style>
-    </div>
-  );
-}
-
-/* ─── Daily Check-in V2 — Tier Cards ─── */
-function DailyStreakV2({ onStreakChange, isMobile }: { onStreakChange: (streak: number) => void; isMobile: boolean }) {
-  const s = useStreakCheckin(onStreakChange);
-
-  const tiers = [
-    { label: "1x", rate: 0.25, startDay: 1, endDay: TIER_2_START - 1 },
-    { label: "2x", rate: 0.50, startDay: TIER_2_START, endDay: TIER_3_START - 1 },
-    { label: "3x", rate: 0.75, startDay: TIER_3_START, endDay: CYCLE_DAYS },
-  ];
-
-  return (
-    <div style={{ border: "1px solid #d4e0df", backgroundColor: "#ffffff", padding: isMobile ? "24px 16px" : "48px" }}>
-      <RewardPreview reward={s.reward} daysUntilReward={s.daysUntilReward} isMobile={isMobile} />
-
-      {/* Streak header */}
-      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "28px" }}>
-        <div style={{ width: "44px", height: "44px", borderRadius: "50%", backgroundColor: "#FFF5EB", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <FlameIcon size={22} />
-        </div>
-        <div>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "26px", fontWeight: 400, color: "#000000", letterSpacing: "-0.02em", lineHeight: 1, display: "block" }}>
-            {s.checkedCount} day streak
-          </span>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "#999", lineHeight: 1, marginTop: "5px", display: "block" }}>
-            Day {s.currentDay} of {CYCLE_DAYS}
-          </span>
-        </div>
-      </div>
-
-      {/* Tier cards */}
-      <div style={{ display: "flex", gap: isMobile ? "10px" : "16px", marginBottom: "32px", flexDirection: isMobile ? "column" : "row" }}>
-        {tiers.map((t, i) => {
-          const isActive = s.tier.label === t.label;
-          const isPast = s.tier.tier > i + 1;
-          const daysUntil = t.startDay - s.cycleDay;
-
-          return (
-            <div
-              key={t.label}
-              style={{
-                flex: 1,
-                border: isActive ? "2px solid #0C3D3D" : "1px solid #d4e0df",
-                backgroundColor: isActive ? "#0C3D3D" : "#ffffff",
-                padding: isMobile ? "20px" : "28px 24px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-                transition: "all 0.4s ease",
-                position: "relative",
-                overflow: "hidden",
-              }}
-            >
-              {isActive && (
-                <span style={{ position: "absolute", top: "10px", right: "12px", fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase" as const, letterSpacing: "0.06em" }}>
-                  Active
-                </span>
-              )}
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "36px" : "44px", fontWeight: 600, color: isActive ? "#ffffff" : isPast ? "#0C3D3D" : "#d4e0df", lineHeight: 1, letterSpacing: "-0.02em", transition: "color 0.4s ease" }}>
-                {t.label}
-              </span>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 500, color: isActive ? "rgba(255,255,255,0.9)" : "#000000", lineHeight: 1, marginTop: "10px" }}>
-                ${t.rate.toFixed(2)}/day
-              </span>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 500, color: isActive ? "rgba(255,255,255,0.5)" : "#999", lineHeight: 1, marginTop: "10px" }}>
-                {isActive ? "Current tier" : isPast ? "Completed" : daysUntil > 0 ? `Unlocks in ${daysUntil} day${daysUntil === 1 ? "" : "s"}` : ""}
-              </span>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Today's earning — prominent inline */}
-      <div style={{ textAlign: "center", marginBottom: "28px" }}>
-        <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 500, color: "#999", lineHeight: 1 }}>
-          Today&rsquo;s check-in earns{" "}
-        </span>
-        <span style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#0C3D3D", lineHeight: 1 }}>
-          +${s.tier.rate.toFixed(2)} Goop Credit
-        </span>
-      </div>
-
-      <CheckInButton onCheckIn={s.handleCheckIn} showChecked={s.showCheckedMessage} rate={s.tier.rate} checkInHovered={s.checkInHovered} setCheckInHovered={s.setCheckInHovered} />
-      <style>{multiplierKeyframes}</style>
-    </div>
-  );
-}
-
-/* ─── Daily Check-in V3 — Hero Multiplier ─── */
-function DailyStreakV3({ onStreakChange, isMobile }: { onStreakChange: (streak: number) => void; isMobile: boolean }) {
-  const s = useStreakCheckin(onStreakChange);
-  const [hoveredDot, setHoveredDot] = useState<number | null>(null);
-
-  const milestones = [
-    { label: "1x", rate: "$0.25/day", dayInCycle: 1 },
-    { label: "2x", rate: "$0.50/day", dayInCycle: TIER_2_START },
-    { label: "3x", rate: "$0.75/day", dayInCycle: TIER_3_START },
-  ];
-
-  // Next tier info
-  const nextTierInfo = s.tier.tier < 3
-    ? { label: s.tier.tier === 1 ? "2x" : "3x", daysAway: (s.tier.tier === 1 ? TIER_2_START : TIER_3_START) - s.cycleDay }
-    : null;
-
-  return (
-    <div style={{ border: "1px solid #d4e0df", backgroundColor: "#ffffff", padding: isMobile ? "24px 16px" : "48px" }}>
-      <RewardPreview reward={s.reward} daysUntilReward={s.daysUntilReward} isMobile={isMobile} />
-
-      {/* Streak badge */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", marginBottom: "28px" }}>
-        <div style={{ width: "36px", height: "36px", borderRadius: "50%", backgroundColor: "#FFF5EB", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <FlameIcon size={18} />
-        </div>
-        <span style={{ fontFamily: "var(--font-sans)", fontSize: "22px", fontWeight: 400, color: "#000000", letterSpacing: "-0.01em", lineHeight: 1 }}>
-          {s.checkedCount} day streak
-        </span>
-      </div>
-
-      {/* Big centered multiplier */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "32px" }}>
+        {/* ── Front face ── */}
         <div
           style={{
-            width: isMobile ? "110px" : "130px",
-            height: isMobile ? "110px" : "130px",
-            borderRadius: "50%",
-            backgroundColor: "#0C3D3D",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "14px",
+            position: "absolute",
+            inset: 0,
+            backfaceVisibility: "hidden",
+            overflow: "hidden",
+            opacity: isFuture ? 0.4 : 1,
+            transition: "opacity 0.3s ease",
           }}
         >
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "40px" : "48px", fontWeight: 600, color: "#ffffff", lineHeight: 1, letterSpacing: "-0.02em" }}>
-            {s.tier.label}
-          </span>
-        </div>
-        <span style={{ fontFamily: "var(--font-sans)", fontSize: "20px", fontWeight: 500, color: "#000000", lineHeight: 1 }}>
-          ${s.tier.rate.toFixed(2)} per day
-        </span>
-      </div>
-
-      {/* Progress bar with dots */}
-      <div style={{ position: "relative", marginBottom: "24px", padding: isMobile ? "0 16px" : "0 24px" }}>
-        <div style={{ height: "6px", backgroundColor: "#e8eeed", borderRadius: "3px", overflow: "hidden" }}>
-          <div style={{ height: "100%", width: `${s.barProgress}%`, backgroundColor: "#0C3D3D", borderRadius: "3px", transition: s.animatingBar ? "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none" }} />
-        </div>
-        {milestones.map((m, i) => {
-          const isReached = s.cycleDay >= m.dayInCycle;
-          const daysToReach = m.dayInCycle - s.cycleDay;
-          const tooltipText = isReached ? `${m.rate} earned` : `${daysToReach} day${daysToReach === 1 ? "" : "s"} until ${m.rate}`;
-          return (
-            <div
-              key={i}
-              onMouseEnter={() => setHoveredDot(i)}
-              onMouseLeave={() => setHoveredDot(null)}
+          <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center" }} />
+          <div style={{ position: "absolute", inset: 0, backgroundColor: isChecked ? "rgba(0,0,0,0.72)" : "rgba(0,0,0,0.50)" }} />
+          <div
+            style={{
+              position: "relative",
+              zIndex: 2,
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "24px 16px",
+            }}
+          >
+            <span
               style={{
-                position: "absolute",
-                top: "-5px",
-                ...(i === 0 ? { left: 0 } : i === 2 ? { right: 0 } : { left: "50%", transform: "translateX(-50%)" }),
-                cursor: "default",
+                fontFamily: "var(--font-sans)",
+                fontSize: "11px",
+                fontWeight: 600,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: isChecked ? "#ffffff" : "#1a1a1a",
+                backgroundColor: isChecked ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.92)",
+                padding: "6px 14px",
+                borderRadius: "40px",
+                lineHeight: 1,
               }}
             >
-              <div style={{ width: "16px", height: "16px", borderRadius: "50%", backgroundColor: isReached ? "#0C3D3D" : "#d4e0df", border: isReached ? "3px solid #0C3D3D" : "3px solid #ffffff", boxShadow: "0 0 0 1px #d4e0df", transition: "background-color 0.5s ease" }} />
-              <span style={{ position: "absolute", top: "22px", left: "50%", transform: "translateX(-50%)", fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: isReached ? 700 : 500, color: isReached ? "#0C3D3D" : "#999", whiteSpace: "nowrap", lineHeight: 1 }}>
-                {m.label}
-              </span>
-              {hoveredDot === i && (
-                <div style={{ position: "absolute", bottom: "calc(100% + 8px)", left: "50%", transform: "translateX(-50%)", backgroundColor: "#1a1a1a", color: "#ffffff", fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, padding: "6px 10px", borderRadius: "6px", whiteSpace: "nowrap", lineHeight: 1, zIndex: 10 }}>
-                  {tooltipText}
-                  <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderTop: "4px solid #1a1a1a" }} />
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
+              Day {dayNum}
+            </span>
 
-      {/* Day progress text */}
-      <div style={{ textAlign: "center", marginBottom: "28px", marginTop: "40px" }}>
-        <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "#999", lineHeight: 1 }}>
-          Day {s.currentDay} of {CYCLE_DAYS}
-          {nextTierInfo && (
-            <> &middot; {nextTierInfo.label} in {nextTierInfo.daysAway} day{nextTierInfo.daysAway === 1 ? "" : "s"}</>
-          )}
-        </span>
-      </div>
+            {isChecked ? (
+              <div
+                style={{
+                  width: "52px",
+                  height: "52px",
+                  borderRadius: "50%",
+                  backgroundColor: "rgba(255,255,255,0.15)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 12.5L10 16.5L18 8.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            ) : (
+              <div
+                style={{
+                  width: "52px",
+                  height: "52px",
+                  borderRadius: "50%",
+                  backgroundColor: "#000000",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <IconComponent size={22} color="#ffffff" />
+              </div>
+            )}
 
-      <CheckInButton onCheckIn={s.handleCheckIn} showChecked={s.showCheckedMessage} rate={s.tier.rate} checkInHovered={s.checkInHovered} setCheckInHovered={s.setCheckInHovered} />
-      <style>{multiplierKeyframes}</style>
-    </div>
-  );
-}
-
-/* ─── Daily Check-in V4 — Day-by-day timeline (original) ─── */
-function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (streak: number) => void; isMobile: boolean }) {
-  const [checkedCount, setCheckedCount] = useState(0);
-  const [checkInHovered, setCheckInHovered] = useState(false);
-  const [animatingDay, setAnimatingDay] = useState<number | null>(null);
-  const [claimedRewards, setClaimedRewards] = useState<Set<number>>(new Set());
-  const [claimingReward, setClaimingReward] = useState<number | null>(null);
-  const [celebratingReward, setCelebratingReward] = useState<number | null>(null);
-  const [copiedRewardDay, setCopiedRewardDay] = useState<number | null>(null);
-  const [hasCheckedOnce, setHasCheckedOnce] = useState(false);
-  const [showCheckedMessage, setShowCheckedMessage] = useState(false);
-  const [earnedDay, setEarnedDay] = useState<number | null>(null);
-
-  const currentDay = 1 + checkedCount;
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
-  const dragStartX = useRef(0);
-  const dragScrollLeft = useRef(0);
-  const hasDragged = useRef(false);
-  const checkinPointsRef = useRef(5);
-
-  // Sync points from other components
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const detail = (e as CustomEvent).detail;
-      if (detail?.points !== undefined) checkinPointsRef.current = detail.points;
-    };
-    window.addEventListener("points-updated", handler);
-    return () => window.removeEventListener("points-updated", handler);
-  }, []);
-
-  useEffect(() => { onStreakChange(checkedCount); }, [checkedCount, onStreakChange]);
-
-  // Get reward for a given day (every 7th day)
-  const getReward = useCallback((dayNum: number): typeof streakRewards[0] | null => {
-    if (dayNum > 0 && dayNum % 7 === 0) {
-      const idx = (dayNum / 7 - 1) % streakRewards.length;
-      return streakRewards[idx];
-    }
-    return null;
-  }, []);
-
-  const handleDayClick = useCallback((dayNum: number) => {
-    if (hasDragged.current) return;
-    if (dayNum !== currentDay) return;
-    if (showCheckedMessage) return;
-    setAnimatingDay(dayNum);
-    setCheckedCount((c) => c + 1);
-    setTimeout(() => setAnimatingDay(null), 700);
-    if (!hasCheckedOnce) {
-      setShowCheckedMessage(true);
-      setHasCheckedOnce(true);
-      setTimeout(() => setShowCheckedMessage(false), 2800);
-    }
-    // Award $0.25 Goop Credit for each check-in
-    const newTotal = Math.round((checkinPointsRef.current + 0.25) * 100) / 100;
-    checkinPointsRef.current = newTotal;
-    window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
-    setEarnedDay(dayNum);
-    setTimeout(() => setEarnedDay(null), 1800);
-    // Auto-claim reward if checking in on a reward day
-    const reward = getReward(dayNum);
-    if (reward && !claimedRewards.has(dayNum)) {
-      setCelebratingReward(dayNum);
-      setTimeout(() => setCelebratingReward(null), 2400);
-      setTimeout(() => {
-        setClaimedRewards((prev) => { const next = new Set(prev); next.add(dayNum); return next; });
-      }, 900);
-    }
-  }, [currentDay, hasCheckedOnce, showCheckedMessage, getReward, claimedRewards]);
-
-  const handleClaimReward = useCallback((dayNum: number) => {
-    if (hasDragged.current) return;
-    if (claimedRewards.has(dayNum) || claimingReward !== null) return;
-    setClaimingReward(dayNum);
-    setCelebratingReward(dayNum);
-    setTimeout(() => {
-      setClaimedRewards((prev) => { const next = new Set(prev); next.add(dayNum); return next; });
-      setClaimingReward(null);
-    }, 1000);
-    setTimeout(() => setCelebratingReward(null), 2400);
-  }, [claimedRewards, claimingReward]);
-
-  const handleCopyCode = useCallback((code: string, dayNum: number) => {
-    navigator.clipboard.writeText(code);
-    setCopiedRewardDay(dayNum);
-    setTimeout(() => setCopiedRewardDay(null), 2000);
-  }, []);
-
-  // Drag scroll handlers
-  const handleMouseDown = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    const el = scrollRef.current;
-    if (!el) return;
-    isDragging.current = true;
-    hasDragged.current = false;
-    dragStartX.current = e.pageX - el.offsetLeft;
-    dragScrollLeft.current = el.scrollLeft;
-    el.style.scrollBehavior = "auto";
-    el.style.cursor = "grabbing";
-  }, []);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!isDragging.current) return;
-    e.preventDefault();
-    const el = scrollRef.current;
-    if (!el) return;
-    const x = e.pageX - el.offsetLeft;
-    const walk = (x - dragStartX.current) * 1.5;
-    if (Math.abs(walk) > 5) hasDragged.current = true;
-    el.scrollLeft = dragScrollLeft.current - walk;
-  }, []);
-
-  const handleMouseUp = useCallback(() => {
-    isDragging.current = false;
-    const el = scrollRef.current;
-    if (el) {
-      el.style.scrollBehavior = "smooth";
-      el.style.cursor = "grab";
-    }
-    // Reset hasDragged after a tick so click handlers still see it during the same event loop
-    requestAnimationFrame(() => { hasDragged.current = false; });
-  }, []);
-
-  const handleShowHistory = useCallback(() => {
-    const el = scrollRef.current;
-    if (el) el.scrollTo({ left: 0, behavior: "smooth" });
-  }, []);
-
-  // Find next reward from current position
-  const nextReward = (() => {
-    for (let d = currentDay; d <= currentDay + 30; d++) {
-      const r = getReward(d);
-      if (r && !claimedRewards.has(d)) {
-        return { reward: r, dayNum: d, daysAway: d - currentDay };
-      }
-    }
-    return null;
-  })();
-
-  // Build all visible days: 1 to currentDay + 30
-  const totalDays = currentDay + 30;
-  const days = Array.from({ length: totalDays }, (_, i) => {
-    const dayNum = i + 1;
-    const isChecked = dayNum < currentDay;
-    const isToday = dayNum === currentDay;
-    const isAnimating = dayNum === animatingDay;
-    const reward = getReward(dayNum);
-    const isRewardEarned = isChecked && reward !== null;
-    const isRewardClaimed = claimedRewards.has(dayNum);
-    const isRewardClaiming = claimingReward === dayNum;
-    const isCelebrating = celebratingReward === dayNum;
-    return { dayNum, isChecked, isToday, isAnimating, reward, isRewardEarned, isRewardClaimed, isRewardClaiming, isCelebrating };
-  });
-
-  // Calculate progress width for timeline bar
-  const REGULAR_WIDTH = 100;
-  const REWARD_WIDTH = 140;
-  const progressWidth = (() => {
-    if (checkedCount === 0) return 0;
-    const lastCheckedIndex = currentDay - 2; // 0-indexed, last checked day
-    if (lastCheckedIndex < 0) return 0;
-    let w = 0;
-    for (let i = 0; i <= lastCheckedIndex; i++) {
-      const dayWidth = days[i].reward ? REWARD_WIDTH : REGULAR_WIDTH;
-      if (i < lastCheckedIndex) {
-        w += dayWidth;
-      } else {
-        w += dayWidth / 2;
-      }
-    }
-    return w;
-  })();
-
-  return (
-    <div
-      style={{
-        border: "1px solid #d4e0df",
-        backgroundColor: "#ffffff",
-        padding: isMobile ? "24px 16px" : "48px",
-      }}
-    >
-      {/* Header row */}
-      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "12px" }}>
-        <div>
-          <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 6px 0", letterSpacing: "-0.01em" }}>
-            Daily Check-in
-          </h3>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 400, color: "#000000", margin: 0, lineHeight: 1.5 }}>
-            Check in daily and unlock milestone rewards.
-          </p>
-          {checkedCount > 0 && (
-            <a
-              href="#"
-              onClick={(e) => { e.preventDefault(); handleShowHistory(); }}
+            <span
               style={{
                 fontFamily: "var(--font-sans)",
                 fontSize: "14px",
                 fontWeight: 500,
-                color: "#000000",
-                textDecoration: "underline",
-                textUnderlineOffset: "3px",
-                textDecorationThickness: "0.5px",
-                marginTop: "8px",
-                marginBottom: "16px",
-                display: "inline-block",
+                color: "#ffffff",
+                textAlign: "center",
+                lineHeight: 1.4,
+                opacity: isChecked ? 0.55 : 1,
               }}
             >
-              Rewards History
-            </a>
-          )}
+              {reward}
+            </span>
+          </div>
         </div>
-        <div style={{ textAlign: "center", flexShrink: 0 }}>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "36px", fontWeight: 400, color: "#000000", letterSpacing: "-0.02em", lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px" }}>
-            {checkedCount}
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8913A" style={{ flexShrink: 0 }}>
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg>
-          </span>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "#000000", lineHeight: 1, marginTop: "6px", display: "block" }}>
-            Days streak
-          </span>
-        </div>
-      </div>
 
-      {/* Next reward preview — text left, image right (fixed height) */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: isMobile ? "column" as const : "row" as const,
-          marginBottom: "32px",
-          border: "1px solid #d4e0df",
-          overflow: "hidden",
-          height: isMobile ? "auto" : "325px",
-        }}
-      >
-        {nextReward ? (
-          <>
+        {/* ── Back face ── */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+            overflow: "hidden",
+            opacity: isFuture ? 0.4 : 1,
+          }}
+        >
+          <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center" }} />
+          <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.80)" }} />
+          <div
+            style={{
+              position: "relative",
+              zIndex: 2,
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "16px",
+              padding: "24px 16px",
+            }}
+          >
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", lineHeight: 1 }}>
+              Day {dayNum}
+            </span>
             <div
               style={{
-                flex: 1,
-                backgroundColor: "#ffffff",
-                padding: "36px 40px",
+                width: "52px",
+                height: "52px",
+                borderRadius: "50%",
+                backgroundColor: "rgba(255,255,255,0.12)",
                 display: "flex",
-                flexDirection: "column",
+                alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              <p
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "18px",
-                  fontWeight: 600,
-                  color: "#000000",
-                  margin: "0 0 12px 0",
-                  lineHeight: 1,
-                }}
-              >
-                {nextReward.daysAway === 0 ? "Today\u2019s reward" : `Unlocks in ${nextReward.daysAway} day${nextReward.daysAway === 1 ? "" : "s"}`}
-              </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "28px",
-                  fontWeight: 400,
-                  color: "#000000",
-                  margin: 0,
-                  lineHeight: 1.2,
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                {nextReward.reward.name}
-              </p>
+              <IconComponent size={22} color="#ffffff" />
             </div>
-            <div style={{ width: isMobile ? "100%" : "510px", maxWidth: isMobile ? "100%" : "510px", height: isMobile ? "200px" : "auto", flexShrink: 0 }}>
-              <img
-                src={nextReward.reward.image}
-                alt={nextReward.reward.name}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  display: "block",
-                }}
-              />
-            </div>
-          </>
-        ) : (
-          <div
-            style={{
-              flex: 1,
-              backgroundColor: "#ffffff",
-              padding: "36px 40px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "18px",
-                fontWeight: 600,
-                color: "#000000",
-                margin: 0,
-                lineHeight: 1,
-              }}
-            >
-              All rewards claimed
-            </p>
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "28px",
-                fontWeight: 400,
-                color: "#000000",
-                margin: "12px 0 0 0",
-                lineHeight: 1.2,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              Keep your streak going!
-            </p>
+            <span style={{ fontFamily: "var(--font-serif)", fontSize: "20px", fontWeight: 400, color: "#ffffff", textAlign: "center", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
+              {reward}
+            </span>
+            {isChecked && (
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 400, color: "rgba(255,255,255,0.45)" }}>
+                Claimed
+              </span>
+            )}
+            {isCurrent && (
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontWeight: 500, color: "rgba(255,255,255,0.7)" }}>
+                Available today
+              </span>
+            )}
           </div>
-        )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Check-in Content ─── */
+function CheckInContent({ onCheckedDaysChange, onStreakChange }: { onCheckedDaysChange: (days: number) => void; onStreakChange: (streak: number) => void }) {
+  const [checkedDays, setCheckedDays] = useState(0);
+  const [currentCycle, setCurrentCycle] = useState(0);
+  const [isFlipping, setIsFlipping] = useState(false);
+  const [justCheckedIn, setJustCheckedIn] = useState(false);
+  const [streakCount, setStreakCount] = useState(0);
+  const [checkInHovered, setCheckInHovered] = useState(false);
+  const currentPointsRef = useRef(50);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const dragScrollLeft = useRef(0);
+
+  const cardImagesRef = useRef<string[]>([]);
+  if (cardImagesRef.current.length === 0) {
+    cardImagesRef.current = Array.from({ length: 7 }, () =>
+      checkinTierImages[Math.floor(Math.random() * checkinTierImages.length)]
+    );
+  }
+
+  useEffect(() => { onCheckedDaysChange(checkedDays); }, [checkedDays, onCheckedDaysChange]);
+  useEffect(() => { onStreakChange(streakCount); }, [streakCount, onStreakChange]);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.points !== undefined) currentPointsRef.current = detail.points;
+    };
+    window.addEventListener("points-updated", handler);
+    return () => window.removeEventListener("points-updated", handler);
+  }, []);
+
+  // Center current day on mount and change
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+    const idx = checkedDays < 7 ? checkedDays : 6;
+    const card = carousel.children[idx] as HTMLElement;
+    if (card) {
+      const target = card.offsetLeft - carousel.offsetWidth / 2 + card.offsetWidth / 2;
+      carousel.scrollTo({ left: Math.max(0, target), behavior: "smooth" });
+    }
+  }, [checkedDays]);
+
+  const rewards = checkinRewardCycles[currentCycle % 3];
+
+  const handleCheckIn = useCallback(() => {
+    if (isFlipping || checkedDays >= 7) return;
+    setIsFlipping(true);
+    setJustCheckedIn(false);
+
+    setTimeout(() => {
+      const newChecked = checkedDays + 1;
+      setCheckedDays(newChecked);
+      setStreakCount((s) => s + 1);
+      setJustCheckedIn(true);
+
+      const reward = rewards[checkedDays];
+      const match = reward.match(/\+(\d+)\s*goop credit/i);
+      if (match) {
+        const pts = parseInt(match[1], 10);
+        const newTotal = currentPointsRef.current + pts;
+        currentPointsRef.current = newTotal;
+        window.dispatchEvent(new CustomEvent("points-updated", { detail: { points: newTotal } }));
+      }
+
+      if (newChecked === 7) {
+        setTimeout(() => {
+          setCheckedDays(0);
+          setCurrentCycle((prev) => (prev + 1) % 3);
+          setJustCheckedIn(false);
+          cardImagesRef.current = Array.from({ length: 7 }, () =>
+            checkinTierImages[Math.floor(Math.random() * checkinTierImages.length)]
+          );
+        }, 1500);
+      }
+    }, 350);
+
+    setTimeout(() => { setIsFlipping(false); }, 700);
+  }, [isFlipping, checkedDays, rewards]);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isDragging.current = true;
+    dragStartX.current = e.pageX - (carouselRef.current?.offsetLeft || 0);
+    dragScrollLeft.current = carouselRef.current?.scrollLeft || 0;
+  };
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current || !carouselRef.current) return;
+    const x = e.pageX - (carouselRef.current.offsetLeft || 0);
+    carouselRef.current.scrollLeft = dragScrollLeft.current - (x - dragStartX.current);
+  };
+  const handleMouseUp = () => { isDragging.current = false; };
+
+  return (
+    <div style={{ padding: "48px 48px 44px" }}>
+      {/* Header */}
+      <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "8px" }}>
+        <div>
+          <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "32px", fontWeight: 400, color: "#000000", margin: "0 0 6px 0", letterSpacing: "-0.01em" }}>
+            Daily Check-in
+          </h3>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#888888", margin: 0, lineHeight: 1.5 }}>
+            Build your streak and unlock daily rewards.
+          </p>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C12 2 8.5 7 8.5 11C8.5 13 9.5 14.5 11 15.5C10 14 10.5 12 12 10.5C13.5 12 14 14 13 15.5C14.5 14.5 15.5 13 15.5 11C15.5 7 12 2 12 2Z" fill="#E8913A" />
+            <path d="M12 22C8.13 22 5 18.87 5 15C5 11.5 8 7.5 12 2C16 7.5 19 11.5 19 15C19 18.87 15.87 22 12 22Z" stroke="#E8913A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          </svg>
+          <span style={{ fontFamily: "var(--font-serif)", fontSize: "32px", fontWeight: 400, color: "#000000", letterSpacing: "-0.01em", lineHeight: 1 }}>
+            {streakCount}
+          </span>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 400, color: "#888888" }}>
+            Days<br />Streak
+          </span>
+        </div>
       </div>
 
-      {/* Timeline — drag to scroll */}
+      {/* Divider */}
+      <div style={{ height: "1px", backgroundColor: "#e5e2de", margin: "20px 0 32px" }} />
+
+      {/* Day cards — draggable, today centered */}
       <div
-        ref={scrollRef}
-        data-streak-scroll=""
+        ref={carouselRef}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
         style={{
+          display: "flex",
+          gap: "24px",
+          marginBottom: "36px",
           overflowX: "auto",
-          scrollBehavior: "smooth",
           scrollbarWidth: "none",
+          padding: "20px 0",
           msOverflowStyle: "none",
           cursor: "grab",
           userSelect: "none",
-          marginBottom: "36px",
         }}
       >
-        <div style={{
-          display: "flex",
-          alignItems: "flex-start",
-          position: "relative",
-          minWidth: "fit-content",
-          paddingTop: "8px",
-          paddingBottom: "8px",
-        }}>
-          {/* Background line */}
-          <div style={{
-            position: "absolute",
-            top: `${8 + 47}px`,
-            left: 0,
-            right: 0,
-            height: "3px",
-            backgroundColor: "#d4e0df",
-            zIndex: 0,
-          }} />
-
-          {/* Progress fill */}
-          <div style={{
-            position: "absolute",
-            top: `${8 + 47}px`,
-            left: 0,
-            height: "3px",
-            backgroundColor: "#0C3D3D",
-            zIndex: 1,
-            transition: "width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-            width: `${progressWidth}px`,
-          }} />
-
-          {days.map((day) => {
-            const hasReward = day.reward !== null;
-            const isClickable = day.isToday;
-
-            return (
-              <div
-                key={day.dayNum}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  width: hasReward ? `${REWARD_WIDTH}px` : `${REGULAR_WIDTH}px`,
-                  minWidth: hasReward ? `${REWARD_WIDTH}px` : `${REGULAR_WIDTH}px`,
-                  flexShrink: 0,
-                  position: "relative",
-                  zIndex: 2,
-                }}
-              >
-                {/* Circle row */}
-                <div style={{ height: hasReward ? "96px" : "auto", paddingTop: hasReward ? "0" : "40px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  {hasReward ? (
-                    /* Reward day — larger circle with image */
-                    <div
-                      onClick={() => {
-                        if (isClickable) handleDayClick(day.dayNum);
-                        else if (day.isRewardEarned && !day.isRewardClaimed && !day.isRewardClaiming) handleClaimReward(day.dayNum);
-                      }}
-                      style={{
-                        width: "96px",
-                        height: "96px",
-                        borderRadius: "50%",
-                        overflow: day.isCelebrating ? "visible" : "hidden",
-                        position: "relative",
-                        cursor: isClickable || (day.isRewardEarned && !day.isRewardClaimed) ? "pointer" : "default",
-                        border: day.isToday
-                          ? "3px solid #0C3D3D"
-                          : day.isChecked
-                              ? "3px solid #0C3D3D"
-                              : "3px solid #d4e0df",
-                        backgroundColor: "#ffffff",
-                        boxShadow: day.isToday
-                          ? "0 0 0 3px rgba(12,61,61,0.2)"
-                          : "none",
-                        transition: "border-color 0.5s ease, box-shadow 0.5s ease",
-                        flexShrink: 0,
-                      }}
-                    >
-                      <img
-                        src={day.reward!.image}
-                        alt={day.reward!.name}
-                        draggable={false}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          borderRadius: "50%",
-                          display: "block",
-                          filter: day.isChecked ? "none" : "grayscale(0.6)",
-                          opacity: day.isChecked ? 1 : 0.4,
-                          transition: "filter 0.6s ease, opacity 0.6s ease",
-                          pointerEvents: "none",
-                        }}
-                      />
-
-                      {/* Checked overlay (non-reward-earned) */}
-                      {(day.isChecked || day.isAnimating) && !day.isRewardEarned && (
-                        <div style={{ position: "absolute", inset: 0, borderRadius: "50%", backgroundColor: "rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                          <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
-                            <circle cx="14" cy="14" r="13" fill="#0C3D3D" style={{ transformOrigin: "14px 14px", animation: day.isAnimating ? "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" : "none" }} />
-                            <path d="M8 14.5L12 18.5L20 9.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 24, strokeDashoffset: day.isAnimating ? 24 : 0, animation: day.isAnimating ? "streakDrawCheck 0.4s ease 0.25s forwards" : "none" }} />
-                          </svg>
-                        </div>
-                      )}
-
-                      {/* Claimable overlay */}
-                      {day.isRewardEarned && !day.isRewardClaimed && !day.isRewardClaiming && (
-                        <div style={{ position: "absolute", inset: 0, borderRadius: "50%", backgroundColor: "rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center", animation: "streakOverlayIn 0.3s ease forwards" }}>
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <path d="M5 12l5 5L19 7" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </div>
-                      )}
-
-                      {/* Claiming animation */}
-                      {day.isRewardClaiming && (
-                        <div style={{ position: "absolute", inset: 0, borderRadius: "50%", backgroundColor: "rgba(0,0,0,0.3)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 3 }}>
-                          <svg width="24" height="24" viewBox="0 0 28 28" fill="none" style={{ overflow: "visible" }}>
-                            <circle cx="14" cy="14" r="13" fill="#0C3D3D" style={{ transformOrigin: "14px 14px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
-                            <path d="M8 14.5L12 18.5L20 9.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 24, strokeDashoffset: 24, animation: "streakDrawCheck 0.4s ease 0.25s forwards" }} />
-                          </svg>
-                        </div>
-                      )}
-
-                      {/* Claimed badge */}
-                      {day.isRewardClaimed && (
-                        <div style={{ position: "absolute", bottom: "-2px", right: "-2px", zIndex: 4 }}>
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <circle cx="8" cy="8" r="8" fill="#0C3D3D" />
-                            <path d="M4.5 8.5L7 11L11.5 5.5" stroke="#ffffff" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </div>
-                      )}
-
-                      {/* Confetti */}
-                      {day.isCelebrating && (
-                        <div style={{ position: "absolute", inset: 0, zIndex: 10, pointerEvents: "none", overflow: "visible" }}>
-                          {Array.from({ length: 30 }).map((_, i) => {
-                            const w = 5 + Math.random() * 6;
-                            const h = i % 4 === 0 ? w : (3 + Math.random() * 5);
-                            const angle = Math.random() * Math.PI * 2;
-                            const dist = 40 + Math.random() * 110;
-                            const dx = Math.cos(angle) * dist;
-                            const dy = Math.sin(angle) * dist;
-                            const spin = 180 + Math.random() * 540;
-                            const colors = ["#0C3D3D", "#0d8b87", "#14504F", "#1a6b5a", "#2d8f6f", "#3da88a"];
-                            return (
-                              <div
-                                key={i}
-                                style={{
-                                  position: "absolute", left: "50%", top: "50%",
-                                  width: `${w}px`, height: `${h}px`,
-                                  marginLeft: `${-w / 2}px`, marginTop: `${-h / 2}px`,
-                                  borderRadius: i % 4 === 0 ? "50%" : "1px",
-                                  backgroundColor: colors[i % colors.length],
-                                  opacity: 0,
-                                  animation: `streakConfetti ${1.8 + Math.random() * 0.6}s cubic-bezier(0.08, 0.82, 0.17, 1) ${i * 0.012}s forwards`,
-                                  ["--dx" as string]: `${dx.toFixed(1)}px`,
-                                  ["--dy" as string]: `${dy.toFixed(1)}px`,
-                                  ["--spin" as string]: `${spin}deg`,
-                                }}
-                              />
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    /* Regular day — small circle */
-                    <div
-                      onClick={() => isClickable && handleDayClick(day.dayNum)}
-                      style={{
-                        width: day.isToday ? "22px" : day.isChecked || day.isAnimating ? "16px" : "14px",
-                        height: day.isToday ? "22px" : day.isChecked || day.isAnimating ? "16px" : "14px",
-                        borderRadius: "50%",
-                        backgroundColor: day.isChecked || day.isAnimating ? "#0C3D3D" : day.isToday ? "#ffffff" : "#d4e0df",
-                        border: day.isToday ? "3px solid #0C3D3D" : "none",
-                        boxShadow: day.isToday ? "0 0 0 3px rgba(12,61,61,0.2)" : "none",
-                        cursor: isClickable ? "pointer" : "default",
-                        transition: "background-color 0.5s ease, box-shadow 0.5s ease, width 0.5s ease, height 0.5s ease",
-                        flexShrink: 0,
-                      }}
-                    />
-                  )}
-                </div>
-
-                {/* Day label */}
-                <span style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "13px",
-                  fontWeight: day.isToday ? 700 : 500,
-                  color: "#000000",
-                  lineHeight: 1,
-                  marginTop: "10px",
-                  whiteSpace: "nowrap",
-                  textAlign: "center",
-                }}>
-                  Day {day.dayNum}
-                </span>
-
-                {/* $0.25 Goop Credit for normal checked days */}
-                {!hasReward && (day.isChecked || earnedDay === day.dayNum) && (
-                  <span style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "11px",
-                    fontWeight: 600,
-                    color: "#000000",
-                    lineHeight: 1,
-                    marginTop: "8px",
-                    whiteSpace: "nowrap",
-                    textAlign: "center",
-                    opacity: earnedDay === day.dayNum ? 0 : 1,
-                    transform: earnedDay === day.dayNum ? "translateY(4px)" : "translateY(0)",
-                    animation: earnedDay === day.dayNum ? "streakCreditPop 0.5s ease 0.3s forwards" : "none",
-                  }}>
-                    +$0.25
-                  </span>
-                )}
-
-                {/* Reward info below */}
-                {hasReward ? (
-                  day.isRewardClaimed ? (
-                    <div style={{ width: "100%", marginTop: "8px" }}>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "#000000", textAlign: "center", lineHeight: 1.2, display: "block", marginBottom: "6px" }}>
-                        {day.reward!.name}
-                      </span>
-                      <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
-                        <div style={{
-                          fontFamily: "var(--font-sans)",
-                          fontSize: "12px",
-                          fontWeight: 600,
-                          color: "#000000",
-                          backgroundColor: "#f5f8f8",
-                          border: "1px solid #d4e0df",
-                          borderRight: "none",
-                          padding: "8px 10px",
-                          lineHeight: 1,
-                          flex: 1,
-                          minWidth: 0,
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                          whiteSpace: "nowrap",
-                        }}>
-                          {day.reward!.code}
-                        </div>
-                        <button
-                          onClick={(e) => { e.stopPropagation(); handleCopyCode(day.reward!.code, day.dayNum); }}
-                          style={{
-                            fontFamily: "var(--font-sans)",
-                            fontSize: "12px",
-                            fontWeight: 600,
-                            color: "#ffffff",
-                            backgroundColor: "#0C3D3D",
-                            border: "1px solid #0C3D3D",
-                            padding: "8px 12px",
-                            lineHeight: 1,
-                            cursor: "pointer",
-                            whiteSpace: "nowrap",
-                            flexShrink: 0,
-                          }}
-                        >
-                          {copiedRewardDay === day.dayNum ? "Copied!" : "Copy"}
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <span style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "13px",
-                      fontWeight: 600,
-                      color: day.isChecked ? "#000000" : "#999",
-                      textAlign: "center",
-                      lineHeight: 1.2,
-                      marginTop: "8px",
-                      maxWidth: "120px",
-                      transition: "color 0.3s ease",
-                    }}>
-                      {day.reward!.name}
-                    </span>
-                  )
-                ) : null}
-              </div>
-            );
-          })}
-        </div>
+        {Array.from({ length: 7 }).map((_, i) => (
+          <CheckInCard
+            key={i}
+            dayNum={i + 1}
+            isChecked={i < checkedDays}
+            isCurrent={i === checkedDays && checkedDays < 7}
+            isFuture={i > checkedDays}
+            isFlipping={isFlipping && i === checkedDays}
+            IconComponent={checkinDayIcons[i]}
+            bgImage={cardImagesRef.current[i]}
+            reward={rewards[i]}
+          />
+        ))}
       </div>
 
-      {/* Check-in button / confirmation */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", minHeight: "80px", justifyContent: "center" }}>
-        {showCheckedMessage ? (
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", animation: "streakCheckedIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }}>
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style={{ overflow: "visible" }}>
-              <circle cx="20" cy="20" r="19" fill="#0C3D3D" style={{ transformOrigin: "20px 20px", animation: "streakCirclePop 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards" }} />
-              <path d="M12 21L17.5 26.5L28 14" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "streakDrawCheck 0.4s ease 0.25s forwards" }} />
-            </svg>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 600, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.3s both" }}>
-              {"Checked in!"}
-            </p>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#000000", margin: 0, lineHeight: 1, animation: "streakTextFade 0.4s ease 0.5s both" }}>
-              Check in again tomorrow
-            </p>
-          </div>
+      {/* Action area */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", marginBottom: "32px" }}>
+        {justCheckedIn && checkedDays < 7 ? (
+          <>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M6 12.5L10 16.5L18 8.5" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 600, color: "#000000" }}>
+                Checked in.
+              </span>
+            </div>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#888888" }}>
+              See you tomorrow!
+            </span>
+          </>
         ) : (
           <button
-            onClick={() => handleDayClick(currentDay)}
+            onClick={handleCheckIn}
             onMouseEnter={() => setCheckInHovered(true)}
             onMouseLeave={() => setCheckInHovered(false)}
+            disabled={isFlipping}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "18px",
+              fontSize: "13px",
               fontWeight: 600,
               color: "#ffffff",
-              backgroundColor: checkInHovered ? "#155050" : "#0C3D3D",
+              backgroundColor: isFlipping ? "#444444" : checkInHovered ? "#222222" : "#000000",
               border: "none",
-              minHeight: "52px",
-              padding: "0 40px",
-              borderRadius: "999px",
-              cursor: "pointer",
+              height: "38px",
+              padding: "0 32px",
+              borderRadius: "40px",
+              cursor: isFlipping ? "not-allowed" : "pointer",
               transition: "background-color 0.2s ease",
               lineHeight: 1,
             }}
           >
-            {"Check In Today →"}
+            Check in today
           </button>
         )}
       </div>
 
+      {/* Progress bar */}
+      <div style={{ maxWidth: "480px", margin: "0 auto 10px", height: "3px", backgroundColor: "#e5e2de", borderRadius: "2px", overflow: "hidden" }}>
+        <div style={{ height: "100%", width: `${(checkedDays / 7) * 100}%`, backgroundColor: "#000000", borderRadius: "2px", transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }} />
+      </div>
+
+      {/* Progress text */}
+      <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 400, color: "#888888", textAlign: "center", margin: 0 }}>
+        <span style={{ fontWeight: 600, color: "#000000" }}>{checkedDays}</span> of 7 days completed
+      </p>
+
       <style>{`
-        [data-streak-scroll]::-webkit-scrollbar { display: none; }
-        [data-streak-scroll] img { -webkit-user-drag: none; user-select: none; pointer-events: none; }
-        @keyframes streakCirclePop {
-          0% { transform: scale(0); opacity: 0; }
-          100% { transform: scale(1); opacity: 1; }
-        }
-        @keyframes streakDrawCheck {
-          from { stroke-dashoffset: 24; }
-          to { stroke-dashoffset: 0; }
-        }
-        @keyframes streakOverlayIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes streakCheckedIn {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes streakTextFade {
-          from { opacity: 0; transform: translateY(4px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes streakCreditPop {
-          0% { opacity: 0; transform: translateY(4px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes streakConfetti {
-          0% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
-          70% { opacity: 1; }
-          100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--spin)) scale(0); }
-        }
-        @keyframes streakSheen {
-          0% { transform: rotate(25deg) translateX(0); }
-          100% { transform: rotate(25deg) translateX(400%); }
+        @keyframes checkinFlip {
+          0% { transform: rotateY(0deg); }
+          50% { transform: rotateY(90deg); }
+          100% { transform: rotateY(0deg); }
         }
       `}</style>
     </div>
@@ -2807,58 +1980,69 @@ function DailyStreakContent({ onStreakChange, isMobile }: { onStreakChange: (str
 
 /* ─── Activities Section ─── */
 export default function Activities() {
-  const isMobile = useIsMobile();
-  const [claimedCount, setClaimedCount] = useState(0);
+  const [activeTab, setActiveTab] = useState<"achievements" | "voting" | "check-in">("achievements");
+  const [achievementsTabHovered, setAchievementsTabHovered] = useState(false);
+  const [votingTabHovered, setVotingTabHovered] = useState(false);
+  const [checkinTabHovered, setCheckinTabHovered] = useState(false);
+  const [claimedCount, setClaimedCount] = useState(2);
   const [votingAnsweredCount, setVotingAnsweredCount] = useState(0);
-  const [hasClaimable, setHasClaimable] = useState(false);
+  const [checkinCheckedDays, setCheckinCheckedDays] = useState(0);
+  const [checkinStreak, setCheckinStreak] = useState(0);
+  const [hasClaimable, setHasClaimable] = useState(true);
 
   // Dispatch event for StickyNav red dot
   useEffect(() => {
     window.dispatchEvent(new CustomEvent("activities-claimable", { detail: { hasClaimable } }));
   }, [hasClaimable]);
 
+  const switchTab = useCallback((tab: "achievements" | "voting" | "check-in") => {
+    setActiveTab(tab);
+    const el = document.getElementById("section-activities");
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 76 - 20;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  }, []);
+
   return (
     <section
       id="section-activities"
       style={{
-        padding: isMobile ? "0px 16px 60px" : "0px 48px 100px",
+        padding: "0px 48px 100px",
+        marginTop: "-80px",
       }}
     >
-      {/* Achievements Title */}
+      {/* Title */}
       <h2
         style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: isMobile ? "28px" : "44px",
+          fontFamily: "var(--font-serif)",
+          fontSize: "44px",
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
-          textAlign: "left",
+          textAlign: "center",
           margin: "0 0 12px 0",
           letterSpacing: "-0.01em",
-          maxWidth: "1280px",
-          marginLeft: "auto",
-          marginRight: "auto",
         }}
       >
-        Achievements
+        activities
       </h2>
 
-      {/* Achievements Subtext */}
+      {/* Subtext */}
       <p
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "16px",
+          fontSize: "14px",
           fontWeight: 400,
-          color: "#000000",
-          textAlign: "left",
+          color: "#888888",
+          textAlign: "center",
           margin: "0 0 36px 0",
           lineHeight: 1.4,
-          maxWidth: "1280px",
-          marginLeft: "auto",
-          marginRight: "auto",
         }}
       >
-        Complete milestones to earn bonus Goop Credit.
+        {activeTab === "achievements" && "Unlock achievements by shopping and engaging with the brand."}
+        {activeTab === "voting" && "Have a say in what happens next and earn +5 goop credit."}
+        {activeTab === "check-in" && "Check in daily to earn rewards and build your streak."}
       </p>
 
       <div
@@ -2867,49 +2051,88 @@ export default function Activities() {
           margin: "0 auto",
         }}
       >
-        {/* Achievements content */}
-        <AchievementsContent onClaimedCountChange={setClaimedCount} onHasClaimableChange={setHasClaimable} isMobile={isMobile} />
-
-        {/* Voting Title */}
-        <h2
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: isMobile ? "28px" : "44px",
-            fontWeight: 400,
-            lineHeight: 1.1,
-            color: "#000000",
-            textAlign: "left",
-            margin: isMobile ? "60px 0 12px 0" : "80px 0 12px 0",
-            letterSpacing: "-0.01em",
-          }}
-        >
-          Voting
-        </h2>
-
-        {/* Voting Subtext */}
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "16px",
-            fontWeight: 400,
-            color: "#000000",
-            textAlign: "left",
-            margin: "0 0 36px 0",
-            lineHeight: 1.4,
-          }}
-        >
-          Have your say and earn +$0.25 Goop Credit per vote.
-        </p>
-
-        {/* Voting content */}
+        {/* Tab buttons */}
         <div
           style={{
-            border: "1px solid #d4e0df",
-            backgroundColor: "#ffffff",
+            display: "flex",
+            gap: "10px",
+            marginBottom: "24px",
           }}
         >
-          <VotingContent onAnsweredCountChange={setVotingAnsweredCount} />
+          <button
+            onClick={() => switchTab("achievements")}
+            onMouseEnter={() => setAchievementsTabHovered(true)}
+            onMouseLeave={() => setAchievementsTabHovered(false)}
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "13px",
+              fontWeight: 600,
+              padding: "0 22px",
+              height: "38px",
+              borderRadius: "40px",
+              cursor: "pointer",
+              transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
+              backgroundColor: activeTab === "achievements" ? "#000000" : "transparent",
+              color: activeTab === "achievements" ? "#ffffff" : "#000000",
+              border: activeTab === "achievements" ? "1px solid #000000" : achievementsTabHovered ? "1px solid #000000" : "1px solid #d5d5d5",
+            }}
+          >
+            achievements{" "}
+            <span
+              style={{
+                fontWeight: 400,
+                color: activeTab === "achievements" ? "rgba(255,255,255,0.45)" : "#aaaaaa",
+                marginLeft: "6px",
+              }}
+            >
+              (<span style={{ fontWeight: 600, color: activeTab === "achievements" ? "rgba(255,255,255,0.45)" : "#aaaaaa" }}>{claimedCount}</span>/{achievements.length})
+            </span>
+          </button>
+          <button
+            onClick={() => switchTab("voting")}
+            onMouseEnter={() => setVotingTabHovered(true)}
+            onMouseLeave={() => setVotingTabHovered(false)}
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "13px",
+              fontWeight: 600,
+              padding: "0 22px",
+              height: "38px",
+              borderRadius: "40px",
+              cursor: "pointer",
+              transition: "background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
+              backgroundColor: activeTab === "voting" ? "#000000" : "transparent",
+              color: activeTab === "voting" ? "#ffffff" : "#000000",
+              border: activeTab === "voting" ? "1px solid #000000" : votingTabHovered ? "1px solid #000000" : "1px solid #d5d5d5",
+            }}
+          >
+            voting{" "}
+            <span
+              style={{
+                fontWeight: 400,
+                color: activeTab === "voting" ? "rgba(255,255,255,0.45)" : "#aaaaaa",
+                marginLeft: "6px",
+              }}
+            >
+              (<span style={{ fontWeight: 600, color: activeTab === "voting" ? "rgba(255,255,255,0.45)" : "#aaaaaa" }}>{votingAnsweredCount}</span>/{VOTING_DISPLAY_COUNT})
+            </span>
+          </button>
+          {/* check-in tab hidden for now */}
         </div>
+
+        {/* Tab content */}
+        {activeTab === "achievements" && <AchievementsContent onClaimedCountChange={setClaimedCount} onHasClaimableChange={setHasClaimable} />}
+        {activeTab === "voting" && (
+          <div
+            style={{
+              border: "1px solid #e5e2de",
+              backgroundColor: "#ffffff",
+            }}
+          >
+            <VotingContent onAnsweredCountChange={setVotingAnsweredCount} />
+          </div>
+        )}
+        {/* check-in content hidden for now */}
       </div>
 
       <style>{`

@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "@vectoricons/atlas-icons-react";
-import { useIsMobile } from "@/hooks/useIsMobile";
 
 const steps = [
   {
@@ -21,7 +20,7 @@ const steps = [
     number: 3,
     title: "share on social",
     description:
-      "Repost our video with #AG1 on Tik Tok or Instagram, tag at least 1 friend.",
+      "Repost our video with #goop26 on Tik Tok or Instagram, tag at least 1 friend.",
   },
   {
     number: 4,
@@ -33,44 +32,44 @@ const steps = [
 
 const pastWinners = [
   {
-    product: "AG1 Puffer Jacket",
+    product: "Jillian Dempsey Makeup Bag",
     winner: "casey r.",
-    image: "/featured-puffer-jacket.jpg",
+    image: "/product-makeupbag.webp",
   },
   {
-    product: "AG1 Pajama Pants",
+    product: "Bathorium Boreal Fog Bath Bomb",
     winner: "jake k.",
-    image: "/milestone-sweatpants.jpg",
+    image: "/product-bath-bomb.webp",
   },
   {
-    product: "AG1 Stanley Cup",
+    product: "Corpus Body Wash",
     winner: "sam o.",
-    image: "/featured-stanley.jpg",
+    image: "/product-corpus-bodywash.webp",
   },
   {
-    product: "AG1 Travel Packs (30ct)",
+    product: "goop beauty Afterglow Body Oil",
     winner: "mia t.",
-    image: "/milestone-welcome-kit.jpg",
+    image: "/product-afterglow-bodyoil.webp",
   },
   {
-    product: "AG1 Shaker Bottle",
+    product: "Surya Love Bath Heart-Opening Soak",
     winner: "alex d.",
-    image: "/milestone-merch-store.jpg",
+    image: "/product-love-bath-soak.webp",
   },
   {
-    product: "AG1 Duffel Bag",
+    product: "Kate McLeod Amber & Vanilla Pebble",
     winner: "riley p.",
-    image: "/milestone-duffel-bag.jpg",
+    image: "/product-amber-pebble.webp",
   },
   {
-    product: "AG1 Sweatshirt",
+    product: "Maison Louis Marie No.14 Icila Body Lotion",
     winner: "jordan w.",
-    image: "/milestone-sweatshirt.jpg",
+    image: "/product-icila-bodylotion.webp",
   },
   {
-    product: "AG1 Hat",
+    product: "Rahua Aloe Vera Shampoo & Conditioner Duo",
     winner: "taylor m.",
-    image: "/milestone-hat.jpg",
+    image: "/product-aloe-vera-duo.webp",
   },
 ];
 
@@ -88,7 +87,6 @@ function scrollToEarn() {
 }
 
 export default function Sweepstakes() {
-  const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState<"join" | "past">("join");
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const [hoveredWinner, setHoveredWinner] = useState<number | null>(null);
@@ -167,23 +165,20 @@ export default function Sweepstakes() {
       id="section-sweepstakes"
       style={{
         backgroundColor: "#ffffff",
-        padding: isMobile ? "0px 16px 60px" : "0px 48px 100px",
+        padding: "60px 48px 112px",
       }}
     >
       {/* Heading */}
       <h2
         style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: isMobile ? "28px" : "44px",
+          fontFamily: "var(--font-serif)",
+          fontSize: "44px",
           fontWeight: 400,
           lineHeight: 1.1,
           color: "#000000",
-          textAlign: "left",
-          margin: isMobile ? "0 0 32px 0" : "0 0 56px 0",
+          textAlign: "center",
+          margin: "0 0 56px 0",
           letterSpacing: "-0.01em",
-          maxWidth: "1280px",
-          marginLeft: "auto",
-          marginRight: "auto",
         }}
       >
         Sweepstakes
@@ -192,7 +187,7 @@ export default function Sweepstakes() {
       {/* Beige container */}
       <div
         style={{
-          backgroundColor: "#F6F5F1",
+          backgroundColor: "#f9f7f5",
           maxWidth: "1280px",
           margin: "0 auto",
           padding: "32px 0 48px",
@@ -203,9 +198,8 @@ export default function Sweepstakes() {
           style={{
             display: "flex",
             justifyContent: "center",
-            gap: isMobile ? "8px" : "12px",
-            marginBottom: isMobile ? "24px" : "36px",
-            padding: isMobile ? "0 16px" : undefined,
+            gap: "12px",
+            marginBottom: "36px",
           }}
         >
           <button
@@ -214,24 +208,24 @@ export default function Sweepstakes() {
             onMouseLeave={() => setJoinHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: isMobile ? "14px" : "17px",
-              fontWeight: 400,
-              padding: isMobile ? "0 18px" : "0 32px",
-              minHeight: isMobile ? "44px" : "52px",
-              borderRadius: "999px",
+              fontSize: "13px",
+              fontWeight: 600,
+              padding: "0 22px",
+              height: "38px",
+              borderRadius: "40px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease",
               backgroundColor:
                 activeTab === "join"
-                  ? "#0C3D3D"
+                  ? "#000000"
                   : joinHovered
-                    ? "#46DE46"
+                    ? "rgba(0,0,0,0.08)"
                     : "transparent",
-              color: activeTab === "join" ? "#ffffff" : joinHovered ? "#000000" : "#0C3D3D",
-              border: activeTab === "join" ? "1px solid #0C3D3D" : joinHovered ? "1px solid #46DE46" : "1px solid #0C3D3D",
+              color: activeTab === "join" ? "#ffffff" : "#000000",
+              border: "1px solid #000000",
             }}
           >
-            Join The Sweepstakes
+            join the sweepstakes
           </button>
           <button
             onClick={() => setActiveTab("past")}
@@ -239,52 +233,50 @@ export default function Sweepstakes() {
             onMouseLeave={() => setPastHovered(false)}
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: isMobile ? "14px" : "17px",
-              fontWeight: 400,
-              padding: isMobile ? "0 18px" : "0 32px",
-              minHeight: isMobile ? "44px" : "52px",
-              borderRadius: "999px",
+              fontSize: "13px",
+              fontWeight: 600,
+              padding: "0 22px",
+              height: "38px",
+              borderRadius: "40px",
               cursor: "pointer",
               transition: "background-color 0.2s ease, color 0.2s ease",
               backgroundColor:
                 activeTab === "past"
-                  ? "#0C3D3D"
+                  ? "#000000"
                   : pastHovered
-                    ? "#46DE46"
+                    ? "rgba(0,0,0,0.08)"
                     : "transparent",
-              color: activeTab === "past" ? "#ffffff" : pastHovered ? "#000000" : "#0C3D3D",
-              border: activeTab === "past" ? "1px solid #0C3D3D" : pastHovered ? "1px solid #46DE46" : "1px solid #0C3D3D",
+              color: activeTab === "past" ? "#ffffff" : "#000000",
+              border: "1px solid #000000",
             }}
           >
-            Past Winners
+            past winners
           </button>
         </div>
 
         {/* ═══ JOIN TAB — new version (editorial split) ═══ */}
         {activeTab === "join" && version === 1 && (
-          <div style={{ padding: isMobile ? "0 16px" : "0 48px" }}>
+          <div style={{ padding: "0 48px" }}>
             <div
               style={{
                 display: "flex",
-                flexDirection: isMobile ? "column" : "row",
                 backgroundColor: "#ffffff",
                 overflow: "hidden",
-                minHeight: isMobile ? undefined : "520px",
+                minHeight: "520px",
               }}
             >
               {/* Left — hero image */}
               <div
                 style={{
-                  width: isMobile ? "100%" : "45%",
-                  height: isMobile ? "200px" : undefined,
+                  width: "45%",
                   flexShrink: 0,
                   overflow: "hidden",
                   position: "relative",
                 }}
               >
                 <img
-                  src="/milestone-sweatshirt.jpg"
-                  alt="AG1 Sweatshirt"
+                  src="/sweepstakes_hero.jpg"
+                  alt="Sweepstakes prize"
                   style={{
                     width: "100%",
                     height: "100%",
@@ -298,7 +290,7 @@ export default function Sweepstakes() {
               <div
                 style={{
                   flex: 1,
-                  padding: isMobile ? "28px 20px 32px" : "48px 52px 44px",
+                  padding: "48px 52px 44px",
                   display: "flex",
                   flexDirection: "column",
                 }}
@@ -307,9 +299,11 @@ export default function Sweepstakes() {
                 <p
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "15px",
+                    fontSize: "10px",
                     fontWeight: 600,
-                    color: "#0C3D3D",
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    color: "#888888",
                     margin: "0 0 16px 0",
                     lineHeight: 1,
                   }}
@@ -322,7 +316,7 @@ export default function Sweepstakes() {
                   onMouseEnter={() => setTitleHovered(true)}
                   onMouseLeave={() => setTitleHovered(false)}
                   style={{
-                    fontFamily: "var(--font-sans)",
+                    fontFamily: "var(--font-serif)",
                     fontSize: "36px",
                     fontWeight: 400,
                     lineHeight: 1.15,
@@ -333,9 +327,9 @@ export default function Sweepstakes() {
                     cursor: "pointer",
                   }}
                 >
-                  Limited Edition
+                  Microderm Instant Glow
                   <br />
-                  AG1 Sweatshirt
+                  Body Polish
                 </h2>
 
                 {/* Separator */}
@@ -343,7 +337,7 @@ export default function Sweepstakes() {
                   style={{
                     width: "100%",
                     height: "1px",
-                    backgroundColor: "#d4e0df",
+                    backgroundColor: "#e5e2de",
                     margin: "0 0 28px 0",
                   }}
                 />
@@ -392,11 +386,11 @@ export default function Sweepstakes() {
                             borderRadius: "50%",
                             border:
                               handlesConnected && step.number === 1
-                                ? "1px solid #0f2e2f"
+                                ? "1px solid #000000"
                                 : "1px solid #b8b4ae",
                             backgroundColor:
                               handlesConnected && step.number === 1
-                                ? "#0f2e2f"
+                                ? "#000000"
                                 : "transparent",
                             display: "flex",
                             alignItems: "center",
@@ -424,7 +418,7 @@ export default function Sweepstakes() {
                                 fontFamily: "var(--font-sans)",
                                 fontSize: "11px",
                                 fontWeight: 600,
-                                color: "#000000",
+                                color: "#888888",
                                 lineHeight: 1,
                               }}
                             >
@@ -455,7 +449,7 @@ export default function Sweepstakes() {
                       >
                         <h4
                           style={{
-                            fontFamily: "var(--font-sans)",
+                            fontFamily: "var(--font-serif)",
                             fontSize: "17px",
                             fontWeight: 400,
                             color: "#000000",
@@ -469,9 +463,9 @@ export default function Sweepstakes() {
                         <p
                           style={{
                             fontFamily: "var(--font-sans)",
-                            fontSize: "14px",
+                            fontSize: "12.5px",
                             fontWeight: 400,
-                            color: "#000000",
+                            color: "#888888",
                             margin: 0,
                             lineHeight: 1.5,
                           }}
@@ -489,7 +483,7 @@ export default function Sweepstakes() {
                     style={{
                       width: "100%",
                       height: "1px",
-                      backgroundColor: "#d4e0df",
+                      backgroundColor: "#e5e2de",
                       margin: "0 0 20px 0",
                     }}
                   />
@@ -499,7 +493,7 @@ export default function Sweepstakes() {
                     <p
                       style={{
                         fontFamily: "var(--font-sans)",
-                        fontSize: "15px",
+                        fontSize: "13px",
                         fontWeight: 500,
                         color: "#1a1a1a",
                         margin: "0 0 24px 0",
@@ -513,9 +507,9 @@ export default function Sweepstakes() {
                     <p
                       style={{
                         fontFamily: "var(--font-sans)",
-                        fontSize: "15px",
+                        fontSize: "13px",
                         fontWeight: 400,
-                        color: "#000000",
+                        color: "#888888",
                         margin: "0 0 24px 0",
                         lineHeight: 1.6,
                       }}
@@ -538,7 +532,7 @@ export default function Sweepstakes() {
                           transition: "opacity 0.2s ease",
                         }}
                       >
-                        Ways to Earn
+                        Ways to Earn goop credit
                       </a>{" "}
                       to enter the campaign.
                     </p>
@@ -548,11 +542,9 @@ export default function Sweepstakes() {
                   <div
                     style={{
                       display: "flex",
-                      flexDirection: isMobile ? "column" : "row",
-                      alignItems: isMobile ? "flex-start" : "center",
+                      alignItems: "center",
                       justifyContent: "space-between",
-                      marginTop: isMobile ? "24px" : "36px",
-                      gap: isMobile ? "12px" : undefined,
+                      marginTop: "36px",
                     }}
                   >
                     <a
@@ -561,7 +553,7 @@ export default function Sweepstakes() {
                       onMouseLeave={() => setTermsHovered(false)}
                       style={{
                         fontFamily: "var(--font-sans)",
-                        fontSize: "14px",
+                        fontSize: "12px",
                         fontWeight: 400,
                         color: "#000000",
                         textDecoration: "underline",
@@ -575,9 +567,9 @@ export default function Sweepstakes() {
                     <p
                       style={{
                         fontFamily: "var(--font-sans)",
-                        fontSize: "14px",
+                        fontSize: "12px",
                         fontWeight: 400,
-                        color: "#000000",
+                        color: "#888888",
                         margin: 0,
                         lineHeight: 1,
                       }}
@@ -593,20 +585,20 @@ export default function Sweepstakes() {
 
         {/* ═══ JOIN TAB — alternative version (card grid) ═══ */}
         {activeTab === "join" && version === 2 && (
-          <div style={{ padding: isMobile ? "0 16px" : "0 48px" }}>
+          <div style={{ padding: "0 48px" }}>
             {/* Hero image — narrower */}
             <div
               style={{
-                width: isMobile ? "100%" : "60%",
-                height: isMobile ? "200px" : "280px",
+                width: "60%",
+                height: "280px",
                 overflow: "hidden",
                 marginBottom: "40px",
                 margin: "0 auto 40px",
               }}
             >
               <img
-                src="/milestone-sweatshirt.jpg"
-                alt="AG1 Sweatshirt"
+                src="/sweepstakes_hero.jpg"
+                alt="Sweepstakes prize"
                 style={{
                   width: "100%",
                   height: "100%",
@@ -619,7 +611,7 @@ export default function Sweepstakes() {
             {/* Product title */}
             <h3
               style={{
-                fontFamily: "var(--font-sans)",
+                fontFamily: "var(--font-serif)",
                 fontSize: "32px",
                 fontWeight: 400,
                 color: "#000000",
@@ -628,14 +620,14 @@ export default function Sweepstakes() {
                 letterSpacing: "-0.01em",
               }}
             >
-              Limited Edition AG1 Sweatshirt
+              Microderm Instant Glow Body Polish
             </h3>
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "14px",
+                fontSize: "12px",
                 fontWeight: 400,
-                color: "#000000",
+                color: "#888888",
                 textAlign: "center",
                 margin: "0 0 40px 0",
                 lineHeight: 1.4,
@@ -648,7 +640,7 @@ export default function Sweepstakes() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
+                gridTemplateColumns: "repeat(4, 1fr)",
                 gap: "0",
                 maxWidth: "960px",
                 margin: "0 auto 40px",
@@ -679,7 +671,7 @@ export default function Sweepstakes() {
                         top: "25%",
                         height: "50%",
                         width: "1px",
-                        backgroundColor: "#d4e0df",
+                        backgroundColor: "#e5e2de",
                       }}
                     />
                   )}
@@ -691,11 +683,11 @@ export default function Sweepstakes() {
                       borderRadius: "50%",
                       border:
                         handlesConnected && step.number === 1
-                          ? "1.5px solid #0f2e2f"
+                          ? "1.5px solid #000000"
                           : "1.5px solid #d8d5d0",
                       backgroundColor:
                         handlesConnected && step.number === 1
-                          ? "#0f2e2f"
+                          ? "#000000"
                           : "transparent",
                       display: "flex",
                       alignItems: "center",
@@ -723,7 +715,7 @@ export default function Sweepstakes() {
                           fontFamily: "var(--font-sans)",
                           fontSize: "12px",
                           fontWeight: 600,
-                          color: "#000000",
+                          color: "#888888",
                           lineHeight: 1,
                         }}
                       >
@@ -733,7 +725,7 @@ export default function Sweepstakes() {
                   </div>
                   <h4
                     style={{
-                      fontFamily: "var(--font-sans)",
+                      fontFamily: "var(--font-serif)",
                       fontSize: "17px",
                       fontWeight: 400,
                       color: "#000000",
@@ -747,9 +739,9 @@ export default function Sweepstakes() {
                   <p
                     style={{
                       fontFamily: "var(--font-sans)",
-                      fontSize: "14px",
+                      fontSize: "12px",
                       fontWeight: 400,
-                      color: "#000000",
+                      color: "#888888",
                       margin: 0,
                       lineHeight: 1.5,
                     }}
@@ -764,21 +756,19 @@ export default function Sweepstakes() {
             <div
               style={{
                 display: "flex",
-                flexDirection: isMobile ? "column" : "row",
-                alignItems: isMobile ? "flex-start" : "center",
+                alignItems: "center",
                 justifyContent: "space-between",
                 maxWidth: "960px",
                 margin: "0 auto",
-                borderTop: "1px solid #d4e0df",
+                borderTop: "1px solid #e5e2de",
                 paddingTop: "20px",
-                gap: isMobile ? "12px" : undefined,
               }}
             >
               {handlesConnected ? (
                 <p
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "15px",
+                    fontSize: "13px",
                     fontWeight: 500,
                     color: "#1a1a1a",
                     margin: 0,
@@ -791,9 +781,9 @@ export default function Sweepstakes() {
                 <p
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "15px",
+                    fontSize: "13px",
                     fontWeight: 400,
-                    color: "#000000",
+                    color: "#888888",
                     margin: 0,
                     lineHeight: 1.6,
                   }}
@@ -816,7 +806,7 @@ export default function Sweepstakes() {
                       transition: "opacity 0.2s ease",
                     }}
                   >
-                    Ways to Earn
+                    Ways to Earn goop credit
                   </a>{" "}
                   to enter.
                 </p>
@@ -827,7 +817,7 @@ export default function Sweepstakes() {
                 onMouseLeave={() => setTermsHovered(false)}
                 style={{
                   fontFamily: "var(--font-sans)",
-                  fontSize: "14px",
+                  fontSize: "12px",
                   fontWeight: 400,
                   color: "#000000",
                   textDecoration: "underline",
@@ -846,7 +836,7 @@ export default function Sweepstakes() {
         {/* ═══ JOIN TAB — old version (centered card + grid) ═══ */}
         {activeTab === "join" && version === 3 && (
           <>
-            <div style={{ padding: isMobile ? "0 16px" : "0 48px" }}>
+            <div style={{ padding: "0 48px" }}>
               {/* White card — hero image + text */}
               <div
                 style={{
@@ -866,8 +856,8 @@ export default function Sweepstakes() {
                   }}
                 >
                   <img
-                    src="/milestone-sweatshirt.jpg"
-                    alt="AG1 Sweatshirt"
+                    src="/sweepstakes_hero.jpg"
+                    alt="Sweepstakes prize"
                     style={{
                       width: "100%",
                       height: "100%",
@@ -896,7 +886,7 @@ export default function Sweepstakes() {
                     onMouseEnter={() => setTitleHovered(true)}
                     onMouseLeave={() => setTitleHovered(false)}
                     style={{
-                      fontFamily: "var(--font-sans)",
+                      fontFamily: "var(--font-serif)",
                       fontSize: "38px",
                       fontWeight: 400,
                       lineHeight: 1.15,
@@ -907,9 +897,9 @@ export default function Sweepstakes() {
                       cursor: "pointer",
                     }}
                   >
-                    AG1 Limited Edition
+                    microderm instant glow
                     <br />
-                    Sweatshirt Giveaway
+                    body polish
                   </h2>
                 </div>
               </div>
@@ -920,7 +910,7 @@ export default function Sweepstakes() {
                   <p
                     style={{
                       fontFamily: "var(--font-sans)",
-                      fontSize: "16px",
+                      fontSize: "14px",
                       fontWeight: 500,
                       color: "#1a1a1a",
                       margin: "24px 0 6px 0",
@@ -934,7 +924,7 @@ export default function Sweepstakes() {
                   <p
                     style={{
                       fontFamily: "var(--font-sans)",
-                      fontSize: "16px",
+                      fontSize: "14px",
                       fontWeight: 400,
                       color: "#666666",
                       margin: "24px 0 6px 0",
@@ -956,7 +946,7 @@ export default function Sweepstakes() {
                         fontWeight: 400,
                       }}
                     >
-                      Ways to Earn
+                      Ways to Earn goop credit
                     </a>{" "}
                     to enter the campaign.
                   </p>
@@ -970,7 +960,7 @@ export default function Sweepstakes() {
                     onMouseLeave={() => setTermsHovered(false)}
                     style={{
                       fontFamily: "var(--font-sans)",
-                      fontSize: "16px",
+                      fontSize: "14px",
                       fontWeight: 400,
                       color: "#000000",
                       textDecoration: "underline",
@@ -989,10 +979,10 @@ export default function Sweepstakes() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
+                gridTemplateColumns: "repeat(4, 1fr)",
                 gap: "1px",
-                margin: isMobile ? "24px 16px 0" : "40px 48px 0",
-                backgroundColor: "#d4e0df",
+                margin: "40px 48px 0",
+                backgroundColor: "#e5e2de",
               }}
             >
               {steps.map((step) => (
@@ -1029,7 +1019,7 @@ export default function Sweepstakes() {
                           fontFamily: "var(--font-sans)",
                           fontSize: "12px",
                           fontWeight: 600,
-                          color: "#000000",
+                          color: "#888888",
                           margin: 0,
                           lineHeight: 1,
                         }}
@@ -1040,7 +1030,7 @@ export default function Sweepstakes() {
                   </div>
                   <h4
                     style={{
-                      fontFamily: "var(--font-sans)",
+                      fontFamily: "var(--font-serif)",
                       fontSize: "20px",
                       fontWeight: 400,
                       color: "#000000",
@@ -1054,9 +1044,9 @@ export default function Sweepstakes() {
                   <p
                     style={{
                       fontFamily: "var(--font-sans)",
-                      fontSize: "15px",
+                      fontSize: "13px",
                       fontWeight: 400,
-                      color: "#000000",
+                      color: "#888888",
                       margin: 0,
                       lineHeight: 1.5,
                     }}
@@ -1071,9 +1061,9 @@ export default function Sweepstakes() {
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "14px",
+                fontSize: "12px",
                 fontWeight: 400,
-                color: "#000000",
+                color: "#888888",
                 textAlign: "center",
                 margin: "32px 0 0 0",
                 lineHeight: 1,
@@ -1086,11 +1076,11 @@ export default function Sweepstakes() {
 
         {/* ═══ PAST WINNERS TAB ═══ */}
         {activeTab === "past" && (
-          <div style={{ padding: isMobile ? "0 16px" : "0 48px" }}>
+          <div style={{ padding: "0 48px" }}>
             <h2
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: isMobile ? "28px" : "44px",
+                fontFamily: "var(--font-serif)",
+                fontSize: "44px",
                 fontWeight: 400,
                 lineHeight: 1.1,
                 color: "#000000",
@@ -1104,9 +1094,9 @@ export default function Sweepstakes() {
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "16px",
+                fontSize: "14px",
                 fontWeight: 400,
-                color: "#000000",
+                color: "#888888",
                 textAlign: "center",
                 margin: "0 0 48px 0",
                 lineHeight: 1.4,
@@ -1141,8 +1131,8 @@ export default function Sweepstakes() {
                   onMouseLeave={() => setHoveredWinner(null)}
                   style={{
                     backgroundColor: "#ffffff",
-                    minWidth: isMobile ? "200px" : "280px",
-                    maxWidth: isMobile ? "200px" : "280px",
+                    minWidth: "280px",
+                    maxWidth: "280px",
                     flexShrink: 0,
                     opacity: hoveredWinner !== null && hoveredWinner !== i ? 0.75 : 1,
                     transition: "opacity 0.3s ease",
@@ -1169,7 +1159,7 @@ export default function Sweepstakes() {
                   <div style={{ padding: "20px 24px 24px" }}>
                     <h4
                       style={{
-                        fontFamily: "var(--font-sans)",
+                        fontFamily: "var(--font-serif)",
                         fontSize: "22px",
                         fontWeight: 400,
                         color: "#000000",
@@ -1183,7 +1173,7 @@ export default function Sweepstakes() {
                     <p
                       style={{
                         fontFamily: "var(--font-sans)",
-                        fontSize: "15px",
+                        fontSize: "13px",
                         fontWeight: 700,
                         color: "#000000",
                         margin: 0,
@@ -1216,8 +1206,8 @@ export default function Sweepstakes() {
                 onMouseLeave={() => setLeftArrowHovered(false)}
                 aria-label="Previous"
                 style={{
-                  width: "52px",
-                  minHeight: "52px",
+                  width: "36px",
+                  height: "36px",
                   borderRadius: "50%",
                   backgroundColor: "transparent",
                   border: leftArrowHovered ? "1px solid #000000" : "1px solid #d8d5d0",
@@ -1240,8 +1230,8 @@ export default function Sweepstakes() {
                 onMouseLeave={() => setRightArrowHovered(false)}
                 aria-label="Next"
                 style={{
-                  width: "52px",
-                  minHeight: "52px",
+                  width: "36px",
+                  height: "36px",
                   borderRadius: "50%",
                   backgroundColor: "transparent",
                   border: rightArrowHovered ? "1px solid #000000" : "1px solid #d8d5d0",
